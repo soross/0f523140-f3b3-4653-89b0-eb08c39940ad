@@ -1,0 +1,134 @@
+﻿body{
+	font-size:12px;
+	background-color:#f2f6fe;
+	background-image:url('../images/background.jpg');
+	background-repeat:repeat-x;
+}
+body,a,input,span{
+	margin:0;padding:0;
+}
+a{
+	text-decoration:none;
+	cursor:pointer;
+}
+div#header{
+	width:1024px;height:31px; background-color:#d1e9f1;
+	line-height:31px; margin:auto;
+}
+div#links{
+ padding-left:50px;
+}
+div#links a{
+	color:#5a7b92;
+	padding:0 10px;
+	border-right:1px #5a7b92 solid;
+	height:12px;
+	margin-top:10px;
+	line-height:14px;
+}
+div#links a.last{
+	border-right:none;
+}
+
+div#infos{
+	padding-right:30px;
+}
+div#infos a.logined{
+	padding:0 10px;
+	color:#5a7b92;
+}
+div#infos a.selected{
+	background-color:#eaf1fe;
+}
+div#infos a.orange{
+	color:#df7902;
+}
+div#infos a#sina-login
+{
+height:22px;width:114px;background-image:url('../images/sina-login.jpg');margin-top:4px;
+}
+
+div#logo-search
+{
+	height:100px;width:1024px;margin:auto;
+}
+div#logo-search a#logo
+{
+	height:65px;width:147px;background-image:url('../images/logo.jpg');
+	margin-top:17px;margin-left:60px;
+}
+
+div#logo-search div#search-bar
+{
+	background-image:url('../images/search-bar.jpg');
+	height:52px;width:606px;
+	margin-top:38px;margin-left:20px;
+}
+div#logo-search div#search-bar a.sort
+{
+height:14px;line-height:14px;color:#ebf1fe;margin-top:19px;
+}
+div#logo-search div#search-bar a#sort
+{margin-left:15px;
+}
+div#logo-search div#search-bar a#sort-triangle
+{margin-left:2px;
+font-family:Webdings;
+}
+div#logo-search div#search-bar input#search-text
+{
+font-size:16px;
+line-height:24px;
+outline:none;
+border:none;
+background:none;
+height:24px;
+width:370px;
+color:#adadad;
+margin-top:14px;
+margin-left:20px;font-weight:bold;
+}
+div#logo-search div#search-bar a#search-button
+{
+	height:32px;width:92px; margin-left:24px; margin-top:8px;
+}
+
+div#company
+{
+	height:38px;background-image:url('../images/company-background.jpg');background-repeat:repeat-x;
+}
+div#company span.company-name
+{
+	height:14px;line-height:14px;color:#496a8a;
+	margin-top:13px;margin-left:20px;}
+div#company div#companies
+{
+	width:840px;height:38px;
+	overflow:hidden;
+	white-space:nowrap;
+}
+div#company a.company-name
+{
+	height:14px;line-height:14px;color:#496a8a;
+	margin-top:13px;padding-left:10px;padding-right:10px;
+	border-right:1px #b0c2d7 solid;
+}
+div#company a.last
+{
+border-right:none;
+}
+div#company div#company-control
+{
+	height:38px;
+	width:40px;
+}
+
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
+.inner{
+	width:962px;margin:auto;
+}
