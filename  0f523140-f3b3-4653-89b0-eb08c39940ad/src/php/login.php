@@ -4,6 +4,9 @@ func_register(array(
     'login' => array(
         'callback' => 'login_page',
     ),
+    'relogin' => array(
+        'callback' => 'user_relogin',
+    ),
     'sina_login' => array(
         'callback' => 'oauth_sina',
     ),
@@ -19,12 +22,6 @@ func_register(array(
         'security' => 'true',
     ),
 ));
-
-function user_logout() {
-    unset($GLOBALS['user']);
-    setcookie('USER_AUTH', '', time() - 3600, '/');
-    header("Location: ".BASE_URL);
-}
 
 function user_is_authenticated()
 {
@@ -64,8 +61,25 @@ function show_credentials()
 
 function login_page()
 {
+    #Sina only:
+    header("Location: ".BASE_URL."sina_login");
+    
+    #else:
     $content = "<a href='sina_login'>新浪微博登陆</a>";
     theme('page', '登陆', $content);
+}
+
+function user_logout($login = 0) {
+    unset($GLOBALS['user']);
+    setcookie('USER_AUTH', '', time() - 3600, '/');
+    if($login == 1)
+        header("Location: ".BASE_URL."login");
+    else
+        header("Location: ".BASE_URL);
+}
+
+function user_relogin() {
+    user_logout(1);
 }
 
 function _user_encryption_key() {
@@ -103,13 +117,30 @@ function _user_decrypt_cookie($crypt_text) {
     $GLOBALS['user']['sinakey']['oauth_token_secret'] = urldecode($GLOBALS['user']['sinakey']['oauth_token_secret']);
 }
 
-function save_cookie($stay_logged_in = 1) {
-  $cookie = _user_encrypt_cookie();
-  $duration = 0;
-  if ($stay_logged_in) {
-    $duration = time() + (3600 * 24 * 365);
-  }
-  setcookie('USER_AUTH', $cookie, $duration, '/');
+function save_cookie($stay_logged_in = 1)
+{
+    $cookie = _user_encrypt_cookie();
+    $duration = 0;
+    if ($stay_logged_in)
+    {
+        $duration = time() + (3600 * 24 * 365);
+    }
+    setcookie('USER_AUTH', $cookie, $duration, '/');
+}
+
+function get_current_user_id()
+{
+    return $GLOBALS['user']['id'];
+}
+
+function get_current_user_nickname()
+{
+    return $GLOBALS['user']['nickname'];
+}
+
+function get_current_user_role()
+{
+    return $GLOBALS['user']['role'];
 }
 
 function oauth_sina()
@@ -141,10 +172,9 @@ function oauth_sina_callback()
         include_once("uuid.inc.php");
         $v4uuid = str_replace("-", "", UUID::v4());
         $add = "INSERT INTO userinfo(nickname, email, microblogs, user_id, role_id) VALUES ('".$me['name']."', '', '1', '$v4uuid', '0')";
-        echo $add;
-        $added = mysql_query($add) or die("Could not add entry");
+        $added = mysql_query($add) or die("Could not add entry 1");
         $add = "INSERT INTO accountbindings(user_id, user_site_id, site_id, secret1, secret2) VALUES ('$v4uuid', '".$me['id']."', 1, '".$GLOBALS['user']['sinakey']['oauth_token']."', '".$GLOBALS['user']['sinakey']['oauth_token_secret']."')";
-        $added = mysql_query($add) or die("Could not add entry");
+        $added = mysql_query($add) or die("Could not add entry 2");
         $id = $v4uuid;
         $role = 0;
         $nick = $me['name'];
