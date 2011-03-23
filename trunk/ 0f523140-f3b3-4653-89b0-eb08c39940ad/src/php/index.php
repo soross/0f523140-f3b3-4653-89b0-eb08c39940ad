@@ -2,11 +2,11 @@
 
 session_start();
 include_once('common.inc.php');
-include_once('theme.php');
-include_once('login.php');
-include_once('search.php');
-include_once('follow.php');
-include_once('favorite.php');
+include_once('theme.inc.php');
+include_once('login.inc.php');
+include_once('search.inc.php');
+include_once('follow.inc.php');
+include_once('favorite.inc.php');
 #include_once('.php');
 #include_once('.php');
 

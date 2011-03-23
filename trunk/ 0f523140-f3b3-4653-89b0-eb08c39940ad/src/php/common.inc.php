@@ -13,15 +13,23 @@ function func_register($items) {
 }
 
 function func_execute_active_handler() {
-    $query = (array) explode('/', $_GET['q']);
-    $GLOBALS['page'] = $query[0];
+	if(isset($_GET['q']))
+	{
+		$query = (array) explode('/', $_GET['q']);
+		$GLOBALS['page'] = $query[0];
+	}
+	else
+	{
+		$query = "";
+		$GLOBALS['page'] = "";
+	}
     $page = $GLOBALS['func_registry'][$GLOBALS['page']];
     if (!$page) {
         header('HTTP/1.0 404 Not Found');
         die('404 - Page not found.');
     }
   
-    if ($page['security'])
+    if (isset($page['security']) && $page['security'])
         user_ensure_authenticated();
 
     if (function_exists('config_log_request'))
