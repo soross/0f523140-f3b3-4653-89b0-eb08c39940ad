@@ -1,134 +1,256 @@
-﻿body{
-	font-size:12px;
-	background-color:#f2f6fe;
-	background-image:url('../images/background.jpg');
-	background-repeat:repeat-x;
+﻿body
+{
+    font-size: 12px;
+    background-color: #f2f6fe;
+    background-image: url('../images/background.jpg');
+    background-repeat: repeat-x;
 }
-body,a,input,span{
-	margin:0;padding:0;
+body, a, input, span, img
+{
+    margin: 0;
+    padding: 0;
 }
-a{
-	text-decoration:none;
-	cursor:pointer;
+a
+{
+    text-decoration: none;
+    cursor: pointer;
 }
-div#header{
-	width:1024px;height:31px; background-color:#d1e9f1;
-	line-height:31px; margin:auto;
+a, input, img
+{
+    outline: none;
 }
-div#links{
- padding-left:50px;
+img
+{
+    border: none;
 }
-div#links a{
-	color:#5a7b92;
-	padding:0 10px;
-	border-right:1px #5a7b92 solid;
-	height:12px;
-	margin-top:10px;
-	line-height:14px;
+div#header
+{
+    width: 1024px;
+    height: 31px;
+    background-color: #d1e9f1;
+    line-height: 31px;
+    margin: auto;
 }
-div#links a.last{
-	border-right:none;
+div#links
+{
+    padding-left: 50px;
+}
+div#links a
+{
+    color: #5a7b92;
+    padding: 0 10px;
+    border-right: 1px #5a7b92 solid;
+    height: 12px;
+    margin-top: 10px;
+    line-height: 14px;
+}
+div#links a.last
+{
+    border-right: none;
 }
 
-div#infos{
-	padding-right:30px;
+div#infos
+{
+    padding-right: 30px;
 }
-div#infos a.logined{
-	padding:0 10px;
-	color:#5a7b92;
+div#infos a.logined
+{
+    padding: 0 10px;
+    color: #5a7b92;
 }
-div#infos a.selected{
-	background-color:#eaf1fe;
+div#infos a.selected
+{
+    background-color: #eaf1fe;
 }
-div#infos a.orange{
-	color:#df7902;
+div#infos a.orange
+{
+    color: #df7902;
 }
 div#infos a#sina-login
 {
-height:22px;width:114px;background-image:url('../images/sina-login.jpg');margin-top:4px;
+    height: 22px;
+    width: 114px;
+    background-image: url('../images/sina-login.jpg');
+    margin-top: 4px;
 }
 
 div#logo-search
 {
-	height:100px;width:1024px;margin:auto;
+    height: 100px;
+    width: 1024px;
+    margin: auto;
 }
 div#logo-search a#logo
 {
-	height:65px;width:147px;background-image:url('../images/logo.jpg');
-	margin-top:17px;margin-left:60px;
+    height: 65px;
+    width: 147px;
+    background-image: url('../images/logo.jpg');
+    margin-top: 17px;
+    margin-left: 60px;
 }
 
 div#logo-search div#search-bar
 {
-	background-image:url('../images/search-bar.jpg');
-	height:52px;width:606px;
-	margin-top:38px;margin-left:20px;
+    background-image: url('../images/search-bar.jpg');
+    height: 52px;
+    width: 606px;
+    margin-top: 38px;
+    margin-left: 20px;
 }
 div#logo-search div#search-bar a.sort
 {
-height:14px;line-height:14px;color:#ebf1fe;margin-top:19px;
+    height: 14px;
+    line-height: 14px;
+    color: #ebf1fe;
+    margin-top: 19px;
 }
 div#logo-search div#search-bar a#sort
-{margin-left:15px;
+{
+    margin-left: 15px;
 }
 div#logo-search div#search-bar a#sort-triangle
-{margin-left:2px;
-font-family:Webdings;
+{
+    margin-left: 2px;
+    font-family: Webdings;
 }
 div#logo-search div#search-bar input#search-text
 {
-font-size:16px;
-line-height:24px;
-outline:none;
-border:none;
-background:none;
-height:24px;
-width:370px;
-color:#adadad;
-margin-top:14px;
-margin-left:20px;font-weight:bold;
+    font-size: 16px;
+    line-height: 24px;
+    border: none;
+    background: none;
+    height: 24px;
+    width: 370px;
+    color: #adadad;
+    margin-top: 14px;
+    margin-left: 20px;
+    font-weight: bold;
 }
 div#logo-search div#search-bar a#search-button
 {
-	height:32px;width:92px; margin-left:24px; margin-top:8px;
+    height: 32px;
+    width: 92px;
+    margin-left: 24px;
+    margin-top: 8px;
+}
+
+div#sorts
+{
+    height: 289px;
+    width: 294px;
+    position: absolute;
+    display: none;
+}
+div#sorts-tag
+{
+    width: 82px;
+    height: 35px;
+    background-color: #f8fcff;
+    border-top-left-radius: 5px 5px;
+    border-top-right-radius: 5px 5px;
+    line-height: 35px;
+    text-align: center;
+    color: #527299;
+}
+a#sorts-triangle
+{
+    font-family: Webdings;
+}
+div#sorts-content
+{
+    width: 294px;
+    background-color: #f8fcff;
+    border-top-right-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    padding-top: 10px;
+    border-bottom: 1px #9c9c9c solid;
+    border-right: 1px #9c9c9c solid;
+}
+div.sorts-item
+{
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    padding-left: 10px;
+    letter-spacing: 2px;
+    color: #527299;
+}
+div.sorts-item-alternative
+{
+    background-color: #f0f5fe;
+}
+div.sorts-item-over
+{
+    color: #ef7a0d;
+    text-decoration: underline;
 }
 
 div#company
 {
-	height:38px;background-image:url('../images/company-background.jpg');background-repeat:repeat-x;
+    height: 38px;
+    background-image: url('../images/company-background.jpg');
+    background-repeat: repeat-x;
 }
 div#company span.company-name
 {
-	height:14px;line-height:14px;color:#496a8a;
-	margin-top:13px;margin-left:20px;}
+    height: 14px;
+    line-height: 14px;
+    color: #496a8a;
+    margin-top: 13px;
+    margin-left: 20px;
+}
 div#company div#companies
 {
-	width:840px;height:38px;
-	overflow:hidden;
-	white-space:nowrap;
+    width: 840px;
+    height: 38px;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 38px;
+}
+div#company div#companies-inner
+{
+    position: relative;
 }
 div#company a.company-name
 {
-	height:14px;line-height:14px;color:#496a8a;
-	margin-top:13px;padding-left:10px;padding-right:10px;
-	border-right:1px #b0c2d7 solid;
+    height: 14px;
+    line-height: 14px;
+    color: #496a8a;
+    margin-top: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px #b0c2d7 solid;
 }
 div#company a.last
 {
-border-right:none;
+    border-right: none;
 }
 div#company div#company-control
 {
-	height:38px;
-	width:40px;
+    height: 38px;
+    width: 40px;
+}
+div#company a.company-control
+{
+    height: 38px;
+    width: 20px;
+    line-height: 38px;
+    text-align: center;
+    color: #334a5a;
+    font-size: 18px;
 }
 
-.left{
-	float:left;
+.left
+{
+    float: left;
 }
-.right{
-	float:right;
+.right
+{
+    float: right;
 }
-.inner{
-	width:962px;margin:auto;
+.inner
+{
+    width: 962px;
+    margin: auto;
 }
