@@ -90,7 +90,7 @@ function following_add()
     $row = mysql_fetch_array($list);
     if($row)
     {
-        search_history_delete("", "", $row['id']);
+        following_delete("", "", $row['id']);
     }
     include_once("uuid.inc.php");
     $v4uuid = str_replace("-", "", UUID::v4());

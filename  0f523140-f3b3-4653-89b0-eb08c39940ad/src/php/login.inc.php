@@ -1,5 +1,5 @@
 <?php
-
+include_once('common.inc.php');
 func_register(array(
     'login' => array(
         'callback' => 'login_page',
