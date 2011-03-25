@@ -180,7 +180,6 @@ function theme_page($title, $content) {
     <div id="content" class="inner">
         <div id="left" class="left">'.theme('left').'</div>
         <div id="right" class="left">'.$content.'</div>
-        </div>
     </div>
     <div id="sorts">
         <div id="sorts-tag">
