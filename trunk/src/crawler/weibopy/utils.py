@@ -11,7 +11,18 @@ import re
 def parse_datetime(str):
 
     # We must parse datetime this way to work in python 2.4
-    return datetime(*(time.strptime(str, '%a %b %d %H:%M:%S +0800 %Y')[0:6]))
+    
+    #return datetime(*(time.strptime(str, '%a %b %d %H:%M:%S +0800 %Y')[0:6]))
+    #Changed by Felix Yan
+    try:
+        a = time.strptime(str, '%a %b %d %H:%M:%S +0800 %Y')[0:6]
+    except:
+        print "Error: " + str
+        a = ""
+    if len(a)<6:
+        raise ValueError
+    else:
+        return datetime(*a)
 
 
 def parse_html_value(html):
