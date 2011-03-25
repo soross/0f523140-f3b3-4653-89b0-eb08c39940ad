@@ -75,7 +75,7 @@ function search_page($query)
     $key = (string) $query[1];
     if(!$key)
     {
-        $key = $_POST['search-text'];
+        $key = $_POST['search_text'];
         if(!$key)
             die("Invalid argument!");
     }
