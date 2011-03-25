@@ -231,12 +231,12 @@ function theme_history()
                 <div class="left-title">
                     <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic">
                     </a>
-                </div>
-                <div class="history-item">
-                    <a>北京 淘宝 百度 web前端开发 php工程师</a></div>
-                <div class="history-item">
-                    <a>杭州 阿里巴巴 web前端开发 产品设计</a></div>
-            </div>';
+                </div>';
+    $history = get_search_history();
+    foreach($history as $h)
+        $content .= '<div class="history-item">
+                    <a href="'.BASE_URL.'search/'.$h['search'].'">'.$h['search'].'</a></div>';
+    $content .= '</div>';
     return $content;
 }
 
