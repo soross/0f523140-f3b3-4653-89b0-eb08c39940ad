@@ -41,4 +41,18 @@ function func_execute_active_handler() {
 
     return false;
 }
+
+function get_categories()
+{
+    connect_db();
+    $view = "SELECT * FROM categories";
+    $list = mysql_query($view);
+    $result = array();
+    $i = 0;
+    while($row = mysql_fetch_array($list))
+    {
+        $result[$i++] = $row;
+    }
+    return $result;
+}
 ?>

@@ -19,7 +19,7 @@ func_register(array(
 function home_page()
 {
     $content = theme('result', get_newest_result(10));
-    theme('search', $content);
+    theme('search', '首页', $content);
 }
 
 func_execute_active_handler();

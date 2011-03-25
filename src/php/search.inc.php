@@ -9,9 +9,9 @@ func_register(array(
     ),
 ));
 
-function theme_search($content)
+function theme_search($title, $content)
 {
-    theme('page', "搜索", $content);
+    theme('page', $title, $content);
 }
 
 function get_search_result($key, $num)
@@ -66,9 +66,9 @@ function search_page($query)
     $content = "";
     foreach($data as $s)
     {
-        $content .= $s["tweet_id"]." ".$s["post_screenname"].":".$s["content"]."<br />";
+        $content .= $s["tweet_id"]." ".$s["post_screenname"].":".$s["content"]." ".$s["post_datetime"]."<br />";
     }
-    theme('search', $content);
+    theme('search', $key." - 搜索", $content);
 }
 
 function get_search_history($num)
