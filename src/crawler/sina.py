@@ -15,6 +15,8 @@ A = [(u"新媒体", u"小王trueman", "1f8f7db82cdbc346a91840cef2bc1cb9", "a16ea
 	 (u"其他外企", u"小黄Lily", "8ee871ac7d18e0141b54077fefd58af6", "dc5cda5a9a4ab5c5a5cd53f85f1f7915"),
 	 (u"网游", u"田田July", "032ec596fa363aa9bd3e5e5917f6aea4", "9e0c243fa3ff3515765510ba4010c411"),
 	]
+    
+B = []
 
 def iszhaopin(s):
 	keywords = [(u"招聘", ),
@@ -110,31 +112,57 @@ class SinaFetch():
         timeline = self.api.friends_timeline(count=200, page=1)
         results = []
         for line in timeline:
-			self.obj = line
-			mid = self.getAtt("id")
-			text = self.getAtt("text")
-			try:
-				time = self.getAtt("created_at")
-			except:
-				time = ""
-			if iszhaopin(text):
-				results += [str(mid) +":"+ text + " " + str(time)]
-        return "\n".join(results)
+            self.obj = line
+            mid = self.getAtt("id")
+            text = unicode(self.getAtt("text"))
+            time = self.getAtt("created_at")
+            user = self.getAtt("user")
+            self.obj = user
+            userid = self.getAtt("id")
+            name = unicode(self.getAtt("screen_name"))
+            if iszhaopin(text):
+                results += [(userid, name, mid, text, time)]
+        return results
 
 q = Queue()
 
 def working():
-	crawler = q.get()
-	test = SinaFetch()
-	test.setToken(crawler[2], crawler[3])
-	result = test.friends_timeline()
-	print crawler[0]+"\n"+result
-	q.task_done()
+    global B
+    crawler = q.get()
+    test = SinaFetch()
+    test.setToken(crawler[1][2], crawler[1][3])
+    result = test.friends_timeline()
+    B += [(crawler[0], result)]
+    print "Crawler %d/%d Done." % (crawler[0], len(A))
+    q.task_done()
 
-for crawler in A:
+for crawler in enumerate(A):
 	q.put(crawler)
 	t = Thread(target=working)
 	t.setDaemon(True)
 	t.start()
 	
 q.join()
+print "Craw Complete."
+import MySQLdb, uuid
+db = MySQLdb.connect("115.156.219.194","apis","apis","apis",charset="utf8")
+c = db.cursor()
+for cat, items in B:
+	for userid, name, mid, text, time in items:
+		tweet_id = uuid.uuid4().hex
+		c.execute("SELECT * FROM tweets WHERE tweet_site_id = %s", (mid,))
+		if c.fetchone() != None:
+			continue
+		c.execute("""INSERT INTO tweets (
+					 site_id, tweet_id, user_site_id, content, post_datetime,
+					 type, tweet_site_id, favorite_count, application_count, post_screenname)
+				     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+				  (1, tweet_id, userid, text, time,
+				   0, mid, 0, 0, name))
+		c.execute("""INSERT INTO cat_relationship (
+					 cat_id, tweet_id)
+					 VALUES (%s, %s)""",
+				  (cat, tweet_id))
+db.commit()
+c.close()
+print "Wrote Database."

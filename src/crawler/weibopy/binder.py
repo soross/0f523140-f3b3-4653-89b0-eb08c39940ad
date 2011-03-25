@@ -190,7 +190,6 @@ def bind_api(**config):
         method = APIMethod(api, args, kargs)
         return method.execute()
 
-
     # Set pagination mode
     if 'cursor' in APIMethod.allowed_param:
         _call.pagination_mode = 'cursor'
