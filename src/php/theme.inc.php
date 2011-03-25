@@ -27,6 +27,7 @@ function theme_page($title, $content) {
     header('Content-Type: text/html; charset=utf-8');
     echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<<<<<<< .mine
 <head>
     <title>'.$title.' - 微招聘</title>
     <link href="'.BASE_URL.'css/share.css" rel="stylesheet" type="text/css" />
@@ -187,6 +188,168 @@ function theme_page($title, $content) {
         <div id="sorts-content">'.theme('cat').'</div>
     </div>'.theme('google_analytics').'
 </body>
+=======
+<head>
+    <title>'.$title.'</title>
+    <link href="'.BASE_URL.'css/share.css" rel="stylesheet" type="text/css" />
+    <link href="'.BASE_URL.'css/default.css" rel="stylesheet" type="text/css" />
+    <script src="'.BASE_URL.'script/jquery-1.5.1.js" type="text/javascript"></script>
+    <script src="'.BASE_URL.'script/ui/jquery.ui.position.js" type="text/javascript"></script>
+    <script src="'.BASE_URL.'script/share.js" type="text/javascript"></script>
+    <script src="'.BASE_URL.'script/default.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var MR = false;
+        var ML = false;
+        var length = 0;
+        var position = 0;
+
+        $(function () {
+            $("#concern-pic").animate({ opacity: 0.6 }, 0);
+            $("#concern-pic").mouseover(function () {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+            $("#concern-pic").mouseout(function () {
+                $(this).animate({ opacity: 0.6 }, 200);
+            });
+            $("#history-pic").animate({ opacity: 0.6 }, 0);
+            $("#history-pic").mouseover(function () {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+            $("#history-pic").mouseout(function () {
+                $(this).animate({ opacity: 0.6 }, 200);
+            });
+
+            $(".concern-item").mouseover(function () {
+                $(this).addClass("concern-item-over");
+            });
+            $(".concern-item").mouseout(function () {
+                $(this).removeClass("concern-item-over");
+            });
+            $(".history-item").mouseover(function () { $(this).addClass("history-item-over"); });
+            $(".history-item").mouseout(function () { $(this).removeClass("history-item-over"); });
+
+            $(".concern-item-delete").click(function () {
+                $(this).parent().animate({ opacity: 0 }, 200, function () { $(this).slideUp(100); });
+            });
+            $(".concern-item-content").click(function () {
+                $(this).children(".concern-item-content-number").fadeOut(200, function () { $(this).parent().removeClass("concern-item-content-new"); });
+            });
+
+            function CompanyMR() {
+                if (position + 840 < length) {
+                    $("#companies-inner").animate({ "left": "-=2" }, 10, "linear", function () {
+                        if (MR) {
+                            position += 2;
+                            CompanyMR();
+                        }
+                    });
+                }
+            }
+            function CompanyML() {
+                if (position > 0) {
+                    $("#companies-inner").animate({ "left": "+=2" }, 10, "linear", function () {
+                        if (ML) {
+                            position -= 2;
+                            CompanyML();
+                        }
+                    });
+                }
+            }
+
+            $("#company-control-right").animate({ opacity: 0.4 }, 0);
+            $("#company-control-left").animate({ opacity: 0.4 }, 0);
+            $("#company-control-right").mouseover(function () {
+                if (!MR) {
+                    MR = true;
+                    CompanyMR();
+                }
+                $(this).animate({ opacity: 1 }, 200);
+            });
+            $("#company-control-right").mouseout(function () {
+                if (MR) {
+                    MR = false;
+                }
+                $(this).animate({ opacity: 0.4 }, 200);
+            });
+            $("#company-control-left").mouseover(function () {
+                if (!ML) {
+                    ML = true;
+                    CompanyML();
+                }
+                $(this).animate({ opacity: 1 }, 200);
+            });
+            $("#company-control-left").mouseout(function () {
+                if (ML) {
+                    ML = false;
+                }
+                $(this).animate({ opacity: 0.4 }, 200);
+            });
+
+            length = $("a.company-name:last").position().left + $("a.company-name:last").outerWidth("ture");
+
+            $("div#sorts").position({
+                of: $("a#sort"),
+                my: "left top",
+                at: "left top",
+                offset: "-5 -10",
+                collision: "none none"
+            });
+            $(".sorts-item").mouseover(function () { $(this).addClass("sorts-item-over") });
+            $(".sorts-item").mouseout(function () { $(this).removeClass("sorts-item-over") });
+
+            $("#sorts-name").click(function () { $("#sorts").fadeOut(200) });
+            $("#sorts-triangle").click(function () { $("#sorts").fadeOut(200) });
+            $("#sort-triangle").click(function () { $("#sorts").fadeIn(200) });
+            $("#sort").click(function () { $("#sorts").fadeIn(200) });
+        });
+    </script>
+</head>
+<body>
+    <div id="header">
+        <div class="left" id="links">
+            <a class="left">微博招聘网</a> <a class="left">微博招聘官方微博</a> <a class="left last">我的微博</a>
+        </div>
+        <div class="right" id="infos">'.theme("login").'</div>
+    </div>
+    <div id="logo-search">
+        <a id="logo" class="left" href="'.BASE_URL.'"></a>
+        <div id="search-bar" class="left">
+            <a class="left sort" id="sort">移动互联网</a><a class="left sort" id="sort-triangle">6</a>
+            <input class="left" id="search-text" type="text" value="产品 北京" />
+            <a class="left" id="search-button"></a>
+        </div>
+    </div>
+    <div id="company" class="inner">
+        <div class="clear">
+        </div>
+        <span class="left company-name">热门企业：</span>
+        <div class="left" id="companies">
+            <div id="companies-inner">
+                <a class="company-name">百度</a><a class="company-name">阿里巴巴</a><a class="company-name">
+                    百度</a><a class="company-name">阿里巴巴</a><a class="company-name">百度</a><a class="company-name">
+                        阿里巴巴</a><a class="company-name">百度</a><a class="company-name">阿里巴巴</a><a class="company-name">
+                            百度</a><a class="company-name">微软亚洲研究院</a><a class="company-name">微软亚洲研究院</a>
+                <a class="company-name">微软亚洲研究院</a><a class="company-name">微软亚洲研究院</a><a class="company-name">微软亚洲研究院</a><a
+                    class="company-name last">百度</a></div>
+        </div>
+        <div class="left" id="company-control">
+            <a class="left company-control" id="company-control-left">◀</a> <a class="left company-control"
+                id="company-control-right">▶</a>
+        </div>
+    </div>
+    <div id="content" class="inner">
+        <div id="left" class="left">'.theme('left').'</div>
+        <div id="right" class="left">'.$content.'</div>
+        </div>
+    </div>
+    <div id="sorts">
+        <div id="sorts-tag">
+            <a id="sorts-name">全部分类</a><a id="sorts-triangle">6</a>
+        </div>
+        <div id="sorts-content">'.theme('cat').'</div>
+    </div>'.theme('google_analytics').'
+</body>
+>>>>>>> .r35
 </html>';
     exit();
 }
@@ -299,6 +462,32 @@ function theme_login()
                 信息管理</a> <a class="left logined" id="publish">发布求职信息</a> <a class="left logined" href="'.BASE_URL.'logout">退出</a>';
     else
         $content .= '<a class="left logouted" id="sina-login" href="'.BASE_URL.'sina_login"></a>';
+    return $content;
+}
+
+function theme_result($result)
+{
+    $content = "";
+    foreach($result as $r)
+    {
+        $content .= '<div class="microblog-item">
+                    <div class="left microblog-item-pic">
+                        <img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/>
+                    </div>
+                    <div class="left microblog-item-content">
+                        <div class="microblog-item-blog">
+                            <a class="microblog-item-blog-name">'.$r['post_screenname'].'</a>：'.$r['content'].'
+                        </div>
+                        <div class="microblog-item-other">
+                            <span class="left microblog-item-time">'.$r['post_datetime'].'</span> '.$r['source'].'
+                                 <a class="right microblog-item-control">收藏</a> <a class="right microblog-item-control microblog-item-apply">
+                                    申请该职位</a>
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>';
+    }
     return $content;
 }
 ?>

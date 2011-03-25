@@ -159,30 +159,4 @@ function search_history($query)
         die("Invalid Argument!");
     return call_user_func_array($function, $query);
 }
-
-function theme_result($result)
-{
-    $content = "";
-    foreach($result as $r)
-    {
-        $content .= '<div class="microblog-item">
-                    <div class="left microblog-item-pic">
-                        <img alt="" width="50" height="50" />
-                    </div>
-                    <div class="left microblog-item-content">
-                        <div class="microblog-item-blog">
-                            <a class="microblog-item-blog-name">'.$r['post_screenname'].'</a>：'.$r['content'].'
-                        </div>
-                        <div class="microblog-item-other">
-                            <span class="left microblog-item-time">'.$r['post_datetime'].'</span> <a class="left microblog-item-position">
-                                新浪微博</a> <a class="right microblog-item-control">收藏</a> <a class="right microblog-item-control microblog-item-apply">
-                                    申请该职位</a>
-                        </div>
-                    </div>
-                    <div class="clear">
-                    </div>
-                </div>';
-    }
-    return $content;
-}
 ?>
