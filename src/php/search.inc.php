@@ -17,7 +17,15 @@ function theme_search($content)
 function get_search_result($key, $num)
 {
     connect_db();
-    $view = "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('$key') ORDER BY post_datetime DESC";
+    
+    //$view = "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('$key') ORDER BY post_datetime DESC";
+    //FIXME: Cannot use this syntax.
+    
+    $key = explode($key);
+    $key = "%".implode("%",$key)."%";
+    $view = "SELECT * FROM tweets WHERE content AGAINST ('$key') ORDER BY post_datetime DESC";
+    //FIXME: Low performance!
+    
     $list = mysql_query($view);
     $result = array();
     $i = 0;
