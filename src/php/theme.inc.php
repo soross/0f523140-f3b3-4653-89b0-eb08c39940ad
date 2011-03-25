@@ -229,7 +229,7 @@ function theme_history()
     include_once("search.inc.php");
     $content = '<div id="history">
                 <div class="left-title">
-                    <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic">
+                    <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic" href="'.BASE_URL.'history/deleteall">
                     </a>
                 </div>';
     $history = get_search_history();

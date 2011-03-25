@@ -11,16 +11,21 @@ func_register(array(
 
 function theme_search($title, $content)
 {
+    $key = mb_substr($title, 0, -9);
+    following_exist
     if($title=='首页')
         $content = '<div id="radio">
                 本周新增职位3124个，今日新增职位666个</div>
                 <div id="microblogs">'.$content;
     else
+    {
         $content = '<div id="microblogs"><div id="search-result-outer">
                     <div id="search-result">
                         <div class="left">
-                            #<a class="keyword">'.mb_substr($title, 0, -9).'</a>#的搜索结果</div>
-                        <a id="search-result-concern" class="left"></a><a id="search-result-rss" class="right">
+                            #<a class="keyword">'.$key.'</a>#的搜索结果</div>';
+        if(!following_exist($key))
+            $content .= '<a id="search-result-concern" class="left"></a>';
+        $content .= '<a id="search-result-rss" class="right">
                         </a>
                     </div>
                 </div>'.$content;
@@ -140,6 +145,16 @@ function search_history_delete()
         print $key;
         die(": Non-exist Error!");
     }
+}
+
+function search_history_deleteall()
+{
+    include_once('login.php');
+    $id = get_current_user_id();
+    connect_db();
+    $view = "UPDATE searchhistory SET deleted='1' WHERE user_id='$id'";
+    $list = mysql_query($view) or die("Delete error!");
+    header("Location: ".BASE_URL);
 }
 
 function search_history_add()
