@@ -107,7 +107,7 @@ function following_add()
     $current_datetime = date('Y-m-d H:i:s');
     $view = "INSERT INTO followings(following_id, search, user_id, deleted, add_time) VALUES ('$v4uuid', '$key', '$id', '0', '$current_datetime')";
     $list = mysql_query($view) or die($view."Insert error!");
-    header("Location: ".BASE_URL);
+    header("Location: ".BASE_URL."search/".$key);
 }
 
 function following($query)
