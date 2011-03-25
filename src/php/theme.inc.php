@@ -307,7 +307,7 @@ function theme_result($result)
     $content = "";
     foreach($result as $r)
     {
-        if strstr($r, '<')
+        if(strstr($r, '<'))
             $source = str_replace("<a ", '<a class="left microblog-item-position"', $r['source']);
         else
             $source = '<a class="left microblog-item-position">'.$r['source'].'</a>';
