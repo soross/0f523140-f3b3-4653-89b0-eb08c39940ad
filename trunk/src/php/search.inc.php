@@ -98,7 +98,7 @@ function get_search_history($num)
     $i = 0;
     while($row = mysql_fetch_array($list))
     {
-        $result[$i++] = $row['search'];
+        $result[$i++] = $row;
         if($i == $num)
             break;
     }
@@ -113,7 +113,7 @@ function search_history_show()
     $content = "";
     foreach($data as $s)
     {
-        $content .= $s."<br />";
+        $content .= $s['search']."<br />";
     }
     theme('page', '搜索历史', $content);
 }
