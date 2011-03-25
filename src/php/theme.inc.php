@@ -193,7 +193,15 @@ function theme_page($title, $content) {
 
 function theme_cat()
 {
-    return "";
+    include_once("common.inc.php");
+    $content = "";
+    $result = get_categories()
+    foreach($result as $r)
+    {
+        $content .= '<div class="sorts-item sorts-item-alternative">
+                <a>'.$r['name'].'</a></div>';
+    }
+    return $content;
 }
 
 function theme_follow()
