@@ -63,11 +63,7 @@ function search_page($query)
         die("Invalid argument!");
     endif;
     $data = get_search_result($key, 10);
-    $content = "";
-    foreach($data as $s)
-    {
-        $content .= $s["tweet_id"]." ".$s["post_screenname"].":".$s["content"]." ".$s["post_datetime"]."<br />";
-    }
+    $content = theme('result', $data);
     theme('search', $key." - 搜索", $content);
 }
 
