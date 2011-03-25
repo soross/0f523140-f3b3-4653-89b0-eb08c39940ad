@@ -34,6 +34,10 @@ function user_is_authenticated()
             return false;
         }
     }
+    elseif (!isset($GLOBALS['user']['id']))
+        return false;
+    else
+        return true;
 }
 
 function user_ensure_authenticated()
