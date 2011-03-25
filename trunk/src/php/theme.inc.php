@@ -218,7 +218,7 @@ function theme_follow()
                     <div class="left concern-item-content">
                         <a class="left concern-item-content-info" href="'.BASE_URL.'search/'.$f['search'].'">'.$f['search'].'</a> <a class="right concern-item-content-number">
                             </a>
-                    </div>';
+                    </div></div>';
     $content .= '</div>';
     return $content;
 }
