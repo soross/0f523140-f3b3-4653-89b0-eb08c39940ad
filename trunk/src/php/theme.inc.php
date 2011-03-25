@@ -152,7 +152,7 @@ function theme_page($title, $content) {
     <div id="logo-search">
         <a id="logo" class="left" href="'.BASE_URL.'"></a>
         <div id="search-bar" class="left">
-            <a class="left sort" id="sort">移动互联网</a><a class="left sort" id="sort-triangle">6</a>
+            <a class="left sort" id="sort">全部分类</a><a class="left sort" id="sort-triangle">6</a>
             <input class="left" id="search-text" type="text" value="产品 北京" />
             <a class="left" id="search-button"></a>
         </div>

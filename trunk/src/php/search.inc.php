@@ -16,7 +16,14 @@ function theme_search($title, $content)
                 本周新增职位3124个，今日新增职位666个</div>
                 <div id="microblogs">'.$content;
     else
-        $content = '<div id="microblogs">'.$content;
+        $content = '<div id="microblogs"><div id="search-result-outer">
+                    <div id="search-result">
+                        <div class="left">
+                            #<a class="keyword">'.mb_substr($title, -8).'</a>#的搜索结果</div>
+                        <a id="search-result-concern" class="left"></a><a id="search-result-rss" class="right">
+                        </a>
+                    </div>
+                </div>'.$content;
     $content .= '</div>';
     theme('page', $title, $content);
 }
