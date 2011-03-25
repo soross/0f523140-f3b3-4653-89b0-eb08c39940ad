@@ -13,23 +13,23 @@ function theme_search($title, $content)
 {
     $key = mb_substr($title, 0, -9);
     if($title=='首页')
-        $content = '<div id="radio">
+        $pre = '<div id="radio">
                 本周新增职位3124个，今日新增职位666个</div>
-                <div id="microblogs">'.$content;
+                <div id="microblogs">';
     else
     {
-        $content = '<div id="microblogs"><div id="search-result-outer">
+        $pre = '<div id="microblogs"><div id="search-result-outer">
                     <div id="search-result">
                         <div class="left">
                             #<a class="keyword">'.$key.'</a>#的搜索结果</div>';
         if(!following_exist($key))
-            $content .= '<a id="search-result-concern" class="left"></a>';
-        $content .= '<a id="search-result-rss" class="right">
+            $pre .= '<a id="search-result-concern" class="left"></a>';
+        $pre .= '<a id="search-result-rss" class="right">
                         </a>
                     </div>
-                </div>'.$content;
+                </div>';
     }
-    $content .= '</div>';
+    $content = $pre.$content.'</div>';
     theme('page', $title, $content);
 }
 
