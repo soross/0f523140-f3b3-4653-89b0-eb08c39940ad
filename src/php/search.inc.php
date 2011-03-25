@@ -24,7 +24,7 @@ function theme_search($title, $content)
                             #<a class="keyword">'.$key.'</a>#的搜索结果</div>';
         include_once("follow.inc.php");
         if(!following_exist($key))
-            $pre .= '<a id="search-result-concern" class="left" href="'.BASE_URL.'follow/'.$key.'"></a>';
+            $pre .= '<a id="search-result-concern" class="left" href="'.BASE_URL.'follow/add/'.$key.'"></a>';
         $pre .= '<a id="search-result-rss" class="right">
                         </a>
                     </div>
