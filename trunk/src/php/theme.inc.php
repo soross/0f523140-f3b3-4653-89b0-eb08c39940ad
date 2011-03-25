@@ -313,7 +313,7 @@ function theme_result($result)
                     </div>
                     <div class="left microblog-item-content">
                         <div class="microblog-item-blog">
-                            <a class="microblog-item-blog-name">'.$r['post_screenname'].'</a>：'.$r['content'].'
+                            <a class="microblog-item-blog-name" href="http://t.sina.com.cn/n/'.$r['post_screenname'].'">'.$r['post_screenname'].'</a>：'.$r['content'].'
                         </div>
                         <div class="microblog-item-other">
                             <span class="left microblog-item-time">'.$r['post_datetime'].'</span> '.$r['source'].'
