@@ -14,13 +14,35 @@ function theme_search($content)
     theme('page', "搜索", $content);
 }
 
+function get_search_result($key, $num)
+{
+    connect_db();
+    $view = "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('$key') ORDER BY post_datetime DESC";
+    $list = mysql_query($view);
+    $result = array();
+    $i = 0;
+    while($row = mysql_fetch_array($list))
+    {
+        $result[$i++] = $row['search'];
+        if($i == $num)
+            break;
+    }
+    return $result;
+}
+
 function search_page($query)
 {
     $key = (string) $query[1];
     if(!$key):
         die("Invalid argument!");
     endif;
-    $content = '建设中...<br/>关键词:'.$key;
+    $key = intval($args[2]);
+    $data = get_search_result($key, 10);
+    $content = "";
+    foreach($data as $s)
+    {
+        $content .= $s."<br />";
+    }
     theme('search', $content);
 }
 
