@@ -3,6 +3,7 @@ include_once('config.inc.php');
 function connect_db(){
     global $db_host, $db_name, $db_user, $db_pass;
     mysql_pconnect($db_host, $db_user, $db_pass);
+    mysql_query("SET NAMES 'utf8'"); 
     @mysql_select_db($db_name)  or die ("Unable to connect to database");
 }
 

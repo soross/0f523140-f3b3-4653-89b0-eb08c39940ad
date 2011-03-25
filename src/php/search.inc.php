@@ -21,9 +21,10 @@ function get_search_result($key, $num)
     //$view = "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('$key') ORDER BY post_datetime DESC";
     //FIXME: Cannot use this syntax.
     
-    $key = explode($key);
+    $key = explode(" ",$key);
     $key = "%".implode("%",$key)."%";
-    $view = "SELECT * FROM tweets WHERE content AGAINST ('$key') ORDER BY post_datetime DESC";
+    
+    $view = "SELECT * FROM tweets WHERE content LIKE '$key' ORDER BY post_datetime DESC LIMIT 0 , $num";
     //FIXME: Low performance!
     
     $list = mysql_query($view);
@@ -31,7 +32,7 @@ function get_search_result($key, $num)
     $i = 0;
     while($row = mysql_fetch_array($list))
     {
-        $result[$i++] = $row['search'];
+        $result[$i++] = $row;
         if($i == $num)
             break;
     }
@@ -48,7 +49,7 @@ function search_page($query)
     $content = "";
     foreach($data as $s)
     {
-        $content .= $s."<br />";
+        $content .= $s["tweet_id"]." ".$s["post_screenname"].":".$s["content"]."<br />";
     }
     theme('search', $content);
 }
