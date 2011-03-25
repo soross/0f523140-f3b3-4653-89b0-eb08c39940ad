@@ -19,7 +19,7 @@ function theme_search($title, $content)
         $content = '<div id="microblogs"><div id="search-result-outer">
                     <div id="search-result">
                         <div class="left">
-                            #<a class="keyword">'.mb_substr($title, -8).'</a>#的搜索结果</div>
+                            #<a class="keyword">'.mb_substr($title, 0, -9).'</a>#的搜索结果</div>
                         <a id="search-result-concern" class="left"></a><a id="search-result-rss" class="right">
                         </a>
                     </div>
@@ -73,11 +73,12 @@ function get_newest_result($num)
 function search_page($query)
 {
     $key = (string) $query[1];
-    if(!$key):
+    if(!$key)
+    {
         $key = $_POST['search-text'];
         if(!$key)
             die("Invalid argument!");
-    endif;
+    }
     $data = get_search_result($key, 10);
     $content = theme('result', $data);
     theme('search', $key." - 搜索", $content);
