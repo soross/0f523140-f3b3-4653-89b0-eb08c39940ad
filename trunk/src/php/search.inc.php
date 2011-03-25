@@ -74,7 +74,9 @@ function search_page($query)
 {
     $key = (string) $query[1];
     if(!$key):
-        die("Invalid argument!");
+        $key = $_POST['search_text'];
+        if(!$key)
+            die("Invalid argument!");
     endif;
     $data = get_search_result($key, 10);
     $content = theme('result', $data);
