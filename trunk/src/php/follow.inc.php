@@ -72,6 +72,20 @@ function following_delete()
     header("Location: ".BASE_URL);
 }
 
+function following_exist($key)
+{
+    include_once('login.php');
+    $id = get_current_user_id();
+    connect_db();
+    $view = "SELECT * FROM followings WHERE user_id='$id' AND search='$key' AND deleted='0'";
+    $list = mysql_query($view);
+    $row = mysql_fetch_array($list);
+    if($row)
+        return true;
+    else
+        return false;
+}
+
 function following_add()
 {
     include_once('login.php');
@@ -86,7 +100,7 @@ function following_add()
     $row = mysql_fetch_array($list);
     if($row)
     {
-        following_delete("", "", $row['id']);
+        following_delete("", "", $row['following_id']);
     }
     include_once("uuid.inc.php");
     $v4uuid = str_replace("-", "", UUID::v4());
