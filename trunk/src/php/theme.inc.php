@@ -195,7 +195,7 @@ function theme_cat()
 {
     include_once("common.inc.php");
     $content = "";
-    $result = get_categories()
+    $result = get_categories();
     foreach($result as $r)
     {
         $content .= '<div class="sorts-item sorts-item-alternative">
