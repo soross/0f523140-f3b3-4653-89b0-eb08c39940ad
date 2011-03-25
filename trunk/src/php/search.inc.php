@@ -156,7 +156,7 @@ function search_history_add()
     $row = mysql_fetch_array($list);
     if($row)
     {
-        search_history_delete("", "", $row['id']);
+        search_history_delete("", "", $row['history_id']);
     }
     include_once("uuid.inc.php");
     $v4uuid = str_replace("-", "", UUID::v4());
