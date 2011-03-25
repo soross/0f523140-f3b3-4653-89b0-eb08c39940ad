@@ -6,11 +6,6 @@ func_register(array(
     ),
 ));
 
-function theme_follow($content)
-{
-    theme('page', "关注", $content);
-}
-
 function user_follow($query)
 {
     $key = (string) $query[1];
@@ -18,7 +13,7 @@ function user_follow($query)
         die("Invalid argument!");
     endif;
     $content = '建设中...<br/>关注关键词:'.$key;
-    theme('follow', $content);
+    theme('page', "关注", $content);
 }
 
 function get_followings($num)
