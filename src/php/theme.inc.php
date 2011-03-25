@@ -154,7 +154,7 @@ function theme_page($title, $content) {
         <div id="search-bar" class="left">
             <form action="'.BASE_URL.'search" method="POST">
             <a class="left sort" id="sort">全部分类</a><a class="left sort" id="sort-triangle">6</a>
-            <input class="left" id="search_text" type="text" value="产品 北京" />
+            <input class="left" id="search-text" name="search_text" type="text" value="产品 北京" />
             <a class="left" id="search-button" onclick="this.form.submit()"></a>
             </form>
         </div>
