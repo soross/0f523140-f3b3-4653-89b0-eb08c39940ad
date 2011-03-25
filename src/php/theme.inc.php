@@ -209,36 +209,16 @@ function theme_follow()
     include_once("follow.inc.php");
     $content = '<div id="concern">
                 <div class="left-title">
-                    <span class="left-title-text left">我的关注</span><a class="right left-title-pic" id="concern-pic"></a></div>
-                <div class="concern-item concern-item-normal">
-                    <a class="concern-item-delete left"></a>
+                    <span class="left-title-text left">我的关注</span><a class="right left-title-pic" id="concern-pic"></a></div>';
+    $follows = get_followings();
+    foreach($follows as $f)
+        $content .= '<div class="concern-item concern-item-normal">
+                    <a class="concern-item-delete left" href="'.BASE_URL.'follow/delete/'.$f['following_id'].'"></a>
                     <div class="left concern-item-content">
-                        <a class="left concern-item-content-info">北京|淘宝|百度|产品设计</a> <a class="right concern-item-content-number">
+                        <a class="left concern-item-content-info">'.$f['search'].'</a> <a class="right concern-item-content-number">
                             </a>
-                    </div>
-                </div>
-                <div class="concern-item concern-item-normal">
-                    <a class="concern-item-delete left"></a>
-                    <div class="left concern-item-content">
-                        <a class="left concern-item-content-info">上海|微软|用户体验</a> <a class="right concern-item-content-number">
-                            </a>
-                    </div>
-                </div>
-                <div class="concern-item concern-item-normal">
-                    <a class="concern-item-delete left"></a>
-                    <div class="left concern-item-content">
-                        <a class="left concern-item-content-info">北京|淘宝|百度|产品设计</a> <a class="right concern-item-content-number">
-                        </a>
-                    </div>
-                </div>
-                <div class="concern-item concern-item-normal">
-                    <a class="concern-item-delete left"></a>
-                    <div class="left concern-item-content">
-                        <a class="left concern-item-content-info">北京|淘宝|百度|产品设计</a> <a class="right concern-item-content-number">
-                        </a>
-                    </div>
-                </div>
-            </div>';
+                    </div>';
+    $content .= '</div>';
     return $content;
 }
 

@@ -27,7 +27,7 @@ function get_followings($num)
     $i = 0;
     while($row = mysql_fetch_array($list))
     {
-        $result[$i++] = $row['search'];
+        $result[$i++] = $row;
         if($i == $num)
             break;
     }
@@ -42,7 +42,7 @@ function following_show()
     $content = "";
     foreach($data as $s)
     {
-        $content .= $s."<br />";
+        $content .= $s['search']."<br />";
     }
     theme('page', '我在关注', $content);
 }
