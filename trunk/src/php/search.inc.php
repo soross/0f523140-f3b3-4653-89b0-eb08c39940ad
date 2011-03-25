@@ -36,7 +36,6 @@ function search_page($query)
     if(!$key):
         die("Invalid argument!");
     endif;
-    $key = intval($args[2]);
     $data = get_search_result($key, 10);
     $content = "";
     foreach($data as $s)
