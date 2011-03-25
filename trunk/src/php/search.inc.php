@@ -28,6 +28,7 @@ function theme_search($title, $content)
                         </a>
                     </div>
                 </div>'.$content;
+    }
     $content .= '</div>';
     theme('page', $title, $content);
 }
