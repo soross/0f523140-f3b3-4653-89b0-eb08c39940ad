@@ -11,6 +11,13 @@ func_register(array(
 
 function theme_search($title, $content)
 {
+    if($title!='首页')
+        $content = '<div id="radio">
+                本周新增职位3124个，今日新增职位666个</div>
+                <div id="microblogs">'.$content;
+    else
+        $content = '<div id="microblogs">'.$content;
+    $content .= '</div>';
     theme('page', $title, $content);
 }
 
