@@ -79,6 +79,9 @@ function search_page($query)
         if(!$key)
             die("Invalid argument!");
     }
+    include_once('login.inc.php');
+    if(user_is_authenticated())
+        search_history_add("", "", $key);
     $data = get_search_result($key, 10);
     $content = theme('result', $data);
     theme('search', $key." - 搜索", $content);
