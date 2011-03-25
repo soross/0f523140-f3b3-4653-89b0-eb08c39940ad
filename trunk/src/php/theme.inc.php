@@ -28,7 +28,7 @@ function theme_page($title, $content) {
     echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>'.$title.'</title>
+    <title>'.$title.' - 微招聘</title>
     <link href="'.BASE_URL.'css/share.css" rel="stylesheet" type="text/css" />
     <link href="'.BASE_URL.'css/default.css" rel="stylesheet" type="text/css" />
     <script src="'.BASE_URL.'script/jquery-1.5.1.js" type="text/javascript"></script>
