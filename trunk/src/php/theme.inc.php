@@ -292,7 +292,7 @@ function theme_rss($result)
     <description>Latest 10 threads of all jobs</description>
     <copyright>Copyright(C) 微招聘</copyright> 
     <generator>Tbole by GNG.</generator>
-    <lastBuildDate>'.date('DATE_RSS').'</lastBuildDate> 
+    <lastBuildDate>'.date('DATE_RFC822').'</lastBuildDate> 
     <ttl>30</ttl>
     <image> 
       <url>'.BASE_URL.'images/logo.gif</url> 
@@ -302,9 +302,9 @@ function theme_rss($result)
     foreach($result as $r)
         $content .= '<item> 
       <title>'.$GLOBALS['search'].'</title> 
-      <link>http://api.t.sina.com.cn/'.$r['user_id'].'/statuses/'.$r['tweet_site_id'].'</link> 
+      <link>http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'</link> 
       <description><![CDATA['.$r['content'].']]></description> 
-      <pubDate>'.date('DATE_RSS', strtotime($r['post_datetime'])).'</pubDate> 
+      <pubDate>'.date('DATE_RFC822', strtotime($r['post_datetime'])).'</pubDate> 
     </item>';
     $content .= '</channel> 
 </rss>';
