@@ -192,7 +192,7 @@ for cat, items in B:
 		print now() + "Inserted item: %d, %d" % (cat, mid)
 		
 #counting
-c.execute("SELECT COUNT(*) FROM tweets WHERE post_datetime > %s", (datetime.combine(date.today() - timedelta(days = 1), time()),))
+c.execute("SELECT COUNT(*) FROM tweets WHERE post_datetime > %s", (datetime.combine(date.today(), time()),))
 t = c.fetchone()
 if t == None:
 	count = 0
@@ -200,7 +200,7 @@ else:
 	count = t[0]
 c.execute("UPDATE counts SET count = %s WHERE type = %s", (count, "tweets_today"))
 
-c.execute("SELECT COUNT(*) FROM tweets WHERE post_datetime > %s", (datetime.combine(date.today() - timedelta(days = 1), time()) - timedelta(days = datetime.now().isoweekday() - 1),))
+c.execute("SELECT COUNT(*) FROM tweets WHERE post_datetime > %s", (datetime.combine(date.today(), time()) - timedelta(days = datetime.now().isoweekday() - 1),))
 t = c.fetchone()
 if t == None:
 	count = 0
