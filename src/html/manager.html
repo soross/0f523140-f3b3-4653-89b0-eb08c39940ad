@@ -6,52 +6,13 @@
     <link href="css/share.css" rel="stylesheet" type="text/css" />
     <link href="css/manager.css" rel="stylesheet" type="text/css" />
     <script src="script/jquery-1.5.1.js" type="text/javascript"></script>
+    <script src="script/jquery.cookie.js" type="text/javascript"></script>
     <script src="script/ui/jquery.ui.position.js" type="text/javascript"></script>
     <script src="script/share.js" type="text/javascript"></script>
     <script src="script/manager.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
-            $("div#content-middle-delete a").animate({ opacity: 0.6 }, 0);
-            $("div#content-middle-delete a").mouseover(function () {
-                $(this).animate({ opacity: 1 }, 200);
-            });
-            $("div#content-middle-delete a").mouseout(function () {
-                $(this).animate({ opacity: 0.6 }, 200);
-            });
-
-            $("a.manager-control").click(function () {
-                $("a.manager-control").removeClass("manager-control-choose");
-                $(this).addClass("manager-control-choose");
-            });
-            $("a#jobs-publish-button").click(function () {
-                ShowJobsPublish();
-            });
-            $("a#recruitment-publish-button").click(function () {
-                ShowRecruitmentPublish();
-            });
-            $("div.item").mouseover(function () {
-                $(this).addClass("item-over");
-            });
-            $("div.item").mouseout(function () {
-                $(this).removeClass("item-over");
-            });
         });
-
-        function ShowApply() {
-            $("a.item-control").hide();
-            $("span.item-apply").show();
-            $("a.item-favourite").hide();
-        }
-        function ShowFavourite() {
-            $("a.item-control").hide();
-            $("span.item-apply").hide();
-            $("a.item-favourite").show();
-        }
-        function ShowNormal() {
-            $("a.item-control").show();
-            $("span.item-apply").hide();
-            $("a.item-favourite").hide();
-        }
     </script>
 </head>
 <body>
@@ -60,14 +21,14 @@
             <a class="left">微博招聘网</a> <a class="left">微博招聘官方微博</a> <a class="left last">我的微博</a>
         </div>
         <div class="right" id="infos">
-            <a class="left selected logined" id="name">OliveQ</a> <a class="left orange logined">
-                信息管理</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a class="left logined recruitment"
-                    id="recruitment-publish-quick">发布招聘信息</a> <a class="left logined">退出</a>
-            <a class="left logouted" id="sina-login"></a>
+            <a class="left selected logined" id="name">OliveQ</a> <a class="left orange logined"
+                href="manager.html">信息管理</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a
+                    class="left logined recruitment" id="recruitment-publish-quick">发布招聘信息</a>
+            <a class="left logined">退出</a> <a class="left logouted" id="sina-login"></a>
         </div>
     </div>
     <div id="logo-search">
-        <a id="logo" class="left"></a>
+        <a id="logo" class="left" href="default.html"></a>
         <div id="search-bar" class="left">
             <a class="left sort" id="sort">全部分类</a><a class="left sort" id="sort-triangle">6</a>
             <input class="left" id="search-text" type="text" value="职位关键字，如：北京 产品经理 阿里巴巴" />
@@ -267,7 +228,7 @@
                 <a>http://sinaurl.cn/YLKd</a></div>
         </div>
     </div>
-        <div id="sorts" class="absolute">
+    <div id="sorts" class="absolute">
         <div id="sorts-tag">
             <a id="sorts-name" class="left">全部分类</a><a id="sorts-triangle" class="left">6</a>
         </div>
