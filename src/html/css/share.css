@@ -14,6 +14,7 @@ a
 {
     text-decoration: none;
     cursor: pointer;
+    color: inherit;
 }
 a, input, img
 {
@@ -107,6 +108,8 @@ div#logo-search div#search-bar a.sort
 div#logo-search div#search-bar a#sort
 {
     margin-left: 15px;
+    width: 60px;
+    text-align: center;
 }
 div#logo-search div#search-bar a#sort-triangle
 {
@@ -138,12 +141,11 @@ div#sorts
 {
     height: 289px;
     width: 294px;
-    position: absolute;
     display: none;
 }
 div#sorts-tag
 {
-    width: 82px;
+    width: 77px;
     height: 35px;
     background-color: #f8fcff;
     border-top-left-radius: 5px 5px;
@@ -151,6 +153,12 @@ div#sorts-tag
     line-height: 35px;
     text-align: center;
     color: #527299;
+    padding-left: 5px;
+}
+a#sorts-name
+{
+    width: 60px;
+    text-align: center;
 }
 a#sorts-triangle
 {
@@ -241,6 +249,347 @@ div#company a.company-control
     font-size: 18px;
 }
 
+div#cover
+{
+    background-color: #000000;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+div#role-choose
+{
+    display: none;
+    width: 552px;
+    height: 372px;
+}
+div.role-jobs
+{
+    background-image: url('../images/role-background-jobs.jpg');
+}
+div.role-recruitment
+{
+    background-image: url('../images/role-background-recruitment.jpg');
+}
+a#role-jobs
+{
+    width: 170px;
+    height: 190px;
+}
+a#role-recruitment
+{
+    width: 166px;
+    height: 190px;
+}
+a#role-confirm
+{
+    width: 173px;
+    height: 46px;
+}
+
+div#jobs-publish
+{
+    display: none;
+    height: 307px;
+    width: 559px;
+    border: 5px #717171 solid;
+    border-top-left-radius: 5px 5px;
+    border-top-right-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+}
+div#jobs-publish-title
+{
+    height: 31px;
+    width: 559px;
+    background-color: #91d078;
+    background-image: url('../images/jobs-publish-pic.jpg');
+    background-repeat: no-repeat;
+    background-position: 15px center;
+}
+div#jobs-publish-title span
+{
+    height: 31px;
+    line-height: 31px;
+    color: #ffffff;
+    font-size: 18px;
+    font-family: 微软雅黑, 宋体;
+    letter-spacing: 8px;
+    padding-left: 45px;
+}
+div#jobs-publish-title a
+{
+    height: 16px;
+    width: 16px;
+    background-image: url('../images/jobs-publish-close.jpg');
+    margin-top: 7px;
+    margin-right: 7px;
+}
+div#jobs-publish-content
+{
+    height: 276px;
+    width: 559px;
+    background-color: #dff4dc;
+}
+div#jobs-publish-remain
+{
+    height: 40px;
+    width: 549px;
+    text-align: right;
+    color: #577a4a;
+    letter-spacing: 2px;
+    line-height: 40px;
+    padding-right: 10px;
+}
+div#jobs-publish-text
+{
+    height: 103px;
+    width: 559px;
+    background-image: url('../images/jobs-publish-text.jpg');
+    background-repeat: no-repeat;
+    background-position: 12px center;
+}
+div#jobs-publish-text textarea
+{
+    height: 94px;
+    width: 526px;
+    margin-top: 4px;
+    margin-left: 17px;
+    border: none;
+    background-color: #f5f5f5;
+    line-height:20px;
+    letter-spacing:1px;
+    font-size:14px;
+}
+div#jobs-publish-tags
+{
+    margin-top: 10px;
+    height: 28px;
+    width: 559px;
+    background-image: url('../images/jobs-publish-tags.jpg');
+    background-repeat: no-repeat;
+    background-position: 85px center;
+}
+div#jobs-publish-tags span#jobs-publish-tags-title
+{
+    margin-left: 15px;
+    height: 28px;
+    line-height: 28px;
+    color: #577a4a;
+    letter-spacing: 4px;
+    width: 70px;
+    text-align: center;
+}
+div#jobs-publish-tags span#jobs-publish-tags-ps
+{
+    margin-left: 12px;
+    height: 28px;
+    line-height: 28px;
+    color: #8c8c8c;
+    letter-spacing: 1px;
+    text-align: center;
+}
+div#jobs-publish-tags input
+{
+    width: 320px;
+    margin-top: 7px;
+    margin-left: 6px;
+    border: none;
+    background-color: #f5f5f5;
+}
+div#jobs-publish-tags-hot
+{
+    margin-top: 10px;
+    height: 28px;
+    width: 559px;
+}
+div#jobs-publish-tags-hot span#jobs-publish-tags-hot-title
+{
+    margin-left: 15px;
+    height: 28px;
+    line-height: 28px;
+    color: #577a4a;
+    letter-spacing: 4px;
+    width: 70px;
+    text-align: center;
+}
+div#jobs-publish-tags-hot a.jobs-publish-tags-hot-item
+{
+    height: 28px;
+    line-height: 28px;
+    padding: 0 5px;
+    margin: 0 5px;
+    background-color: #91d078;
+    color: #ffffff;
+    border-top-left-radius: 3px 3px;
+    border-top-right-radius: 3px 3px;
+    border-bottom-left-radius: 3px 3px;
+    border-bottom-right-radius: 3px 3px;
+}
+div#jobs-publish-confirm
+{
+    margin-top: 10px;
+    height: 36px;
+    width: 529px;
+    padding-right: 30px;
+}
+div#jobs-publish-confirm a
+{
+    height: 36px;
+    width: 115px;
+    background-image: url('../images/jobs-publish-confirm.jpg');
+}
+div#recruitment-publish
+{
+    display:none;
+    height: 307px;
+    width: 559px;
+    border: 5px #717171 solid;
+    border-top-left-radius: 5px 5px;
+    border-top-right-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+}
+div#recruitment-publish-title
+{
+    height: 31px;
+    width: 559px;
+    background-color: #7cb5da;
+    background-image: url('../images/recruitment-publish-pic.jpg');
+    background-repeat: no-repeat;
+    background-position: 15px center;
+}
+div#recruitment-publish-title span
+{
+    height: 31px;
+    line-height: 31px;
+    color: #ffffff;
+    font-size: 18px;
+    font-family: 微软雅黑, 宋体;
+    letter-spacing: 8px;
+    padding-left: 45px;
+}
+div#recruitment-publish-title a
+{
+    height: 16px;
+    width: 15px;
+    background-image: url('../images/recruitment-publish-close.jpg');
+    margin-top: 7px;
+    margin-right: 7px;
+}
+div#recruitment-publish-content
+{
+    height: 276px;
+    width: 559px;
+    background-color: #e2edf2;
+}
+div#recruitment-publish-remain
+{
+    height: 40px;
+    width: 549px;
+    text-align: right;
+    color: #435c79;
+    letter-spacing: 2px;
+    line-height: 40px;
+    padding-right: 10px;
+}
+div#recruitment-publish-text
+{
+    height: 103px;
+    width: 559px;
+    background-image: url('../images/recruitment-publish-text.jpg');
+    background-repeat: no-repeat;
+    background-position: 12px center;
+}
+div#recruitment-publish-text textarea
+{
+    height: 94px;
+    width: 526px;
+    margin-top: 4px;
+    margin-left: 17px;
+    border: none;
+    background-color: #f5f5f5;
+}
+div#recruitment-publish-tags
+{
+    margin-top: 10px;
+    height: 28px;
+    width: 559px;
+    background-image: url('../images/recruitment-publish-tags.jpg');
+    background-repeat: no-repeat;
+    background-position: 85px center;
+}
+div#recruitment-publish-tags span#recruitment-publish-tags-title
+{
+    margin-left: 15px;
+    height: 28px;
+    line-height: 28px;
+    color: #435c79;
+    letter-spacing: 4px;
+    width: 70px;
+    text-align: center;
+}
+div#recruitment-publish-tags span#recruitment-publish-tags-ps
+{
+    margin-left: 12px;
+    height: 28px;
+    line-height: 28px;
+    color: #8c8c8c;
+    letter-spacing: 1px;
+    text-align: center;
+}
+div#recruitment-publish-tags input
+{
+    width: 320px;
+    margin-top: 7px;
+    margin-left: 6px;
+    border: none;
+    background-color: #f5f5f5;
+}
+div#recruitment-publish-tags-hot
+{
+    margin-top: 10px;
+    height: 28px;
+    width: 559px;
+}
+div#recruitment-publish-tags-hot span#recruitment-publish-tags-hot-title
+{
+    margin-left: 15px;
+    height: 28px;
+    line-height: 28px;
+    color: #435c79;
+    letter-spacing: 4px;
+    width: 70px;
+    text-align: center;
+}
+div#recruitment-publish-tags-hot a.recruitment-publish-tags-hot-item
+{
+    height: 28px;
+    line-height: 28px;
+    padding: 0 5px;
+    margin: 0 5px;
+    background-color: #7cb5da;
+    color: #ffffff;
+    border-top-left-radius: 3px 3px;
+    border-top-right-radius: 3px 3px;
+    border-bottom-left-radius: 3px 3px;
+    border-bottom-right-radius: 3px 3px;
+}
+div#recruitment-publish-confirm
+{
+    margin-top: 10px;
+    height: 36px;
+    width: 529px;
+    padding-right: 30px;
+}
+div#recruitment-publish-confirm a
+{
+    height: 36px;
+    width: 114px;
+    background-image: url('../images/recruitment-publish-confirm.jpg');
+}
+
 .left
 {
     float: left;
@@ -248,6 +597,10 @@ div#company a.company-control
 .right
 {
     float: right;
+}
+.absolute
+{
+    position: absolute;
 }
 .inner
 {
