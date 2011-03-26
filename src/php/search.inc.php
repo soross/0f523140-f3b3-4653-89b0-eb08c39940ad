@@ -7,6 +7,9 @@ func_register(array(
         'callback' => 'search_history',
         'security' => 'true',
     ),
+    'rss' => array(
+        'callback' => 'get_rss',
+    ),
 ));
 
 function theme_search($title, $content)
@@ -97,6 +100,20 @@ function search_page($query)
     $data = get_search_result($key, 10);
     $content = theme('result', $data);
     theme('search', $key." - 搜索", $content);
+}
+
+function get_rss($query)
+{
+    $key = (string) $query[1];
+    if(!$key)
+    {
+        $key = $_POST['search_text'];
+        if(!$key)
+            die("Invalid argument!");
+    }
+    $data = get_search_result($key, 10);
+    $GLOBALS['search'] = $key;
+    theme('rss', $data);
 }
 
 function get_search_history($num)

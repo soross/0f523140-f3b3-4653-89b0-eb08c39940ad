@@ -280,4 +280,34 @@ function theme_result($result)
     }
     return $content;
 }
+
+function theme_rss($result)
+{
+    header('Content-Type: application/xml; charset=utf-8');
+    $content = '<?xml version="1.0" encoding="gbk"?>
+<rss version="2.0">
+  <channel>
+    <title>'.$GLOBALS['search'].'最新职位订阅-微招聘</title>
+    <link>'.BASE_URL.'search/'.$GLOBALS['search'].'</link> 
+    <description>Latest 10 threads of all jobs</description>
+    <copyright>Copyright(C) 微招聘</copyright> 
+    <generator>Tbole by GNG.</generator>
+    <lastBuildDate>'.date('DATE_RSS').'</lastBuildDate> 
+    <ttl>30</ttl>
+    <image> 
+      <url>'.BASE_URL.'images/logo.gif</url> 
+      <title>'.$GLOBALS['search'].'最新职位订阅-微招聘</title> 
+      <link>'.BASE_URL.'search/'.$GLOBALS['search'].'</link> 
+    </image>';
+    foreach($result as $r)
+        $content .= '<item> 
+      <title>'.$GLOBALS['search'].'</title> 
+      <link>http://api.t.sina.com.cn/'.$r['user_id'].'/statuses/'.$r['tweet_site_id'].'</link> 
+      <description><![CDATA['.$r['content'].']]></description> 
+      <pubDate>'.date('DATE_RSS', strtotime($r['post_datetime'])).'</pubDate> 
+    </item>'
+    $content .= '</channel> 
+</rss>';
+    echo $content;
+}
 ?>
