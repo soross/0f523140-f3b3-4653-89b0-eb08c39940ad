@@ -65,7 +65,7 @@ function get_counts()
     $i = 0;
     while($row = mysql_fetch_array($list))
     {
-        $result[$i++] = $row;
+        $result[$row['type']] = $row['count'];
     }
     return $result;
 }
