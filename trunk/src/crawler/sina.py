@@ -141,8 +141,8 @@ def working():
 	test.setToken(crawler[1][2], crawler[1][3])	
 	for page in range(1, PAGE + 1):
 		result = test.friends_timeline(page)
-		B += [(crawler[0], result)]
-		print now() + "Crawler %d/%d page %d/%d Done." % (crawler[0], len(A), page, PAGE)
+		B += [(crawler[0] + 1, result)]
+		print now() + "Crawler %d/%d page %d/%d Done." % (crawler[0] + 1, len(A), page, PAGE)
 	q.task_done()
 
 for crawler in enumerate(A):
@@ -180,8 +180,9 @@ for cat, items in B:
 		t = c.fetchone()
 		if t == None:
 			print now() + "Error updating count: No category %d found!" % (cat, )
-		count = t[0] + 1
-		c.execute("UPDATE categories SET count = %s WHERE cat_id = %s", (count, cat))
+		else
+			count = t[0] + 1
+			c.execute("UPDATE categories SET count = %s WHERE cat_id = %s", (count, cat))
 		print now() + "Inserted item: %d, %d" % (cat, mid)
 db.commit()
 c.close()
