@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #coding=utf-8
 from weibopy.auth import OAuthHandler
 from weibopy.api import API
