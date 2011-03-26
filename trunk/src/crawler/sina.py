@@ -176,7 +176,7 @@ for cat, items in B:
 					 cat_id, tweet_id)
 					 VALUES (%s, %s)""",
 				  (cat, tweet_id))
-		print now() + "Done item: %d, %d" % (cat, mid)
+		print now() + "Insert item: %d, %d" % (cat, mid)
 db.commit()
 c.close()
 print now() + "Wrote Database."
