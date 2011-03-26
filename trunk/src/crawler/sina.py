@@ -7,6 +7,7 @@ from threading import Thread
 from Queue import Queue
 from time import sleep
 from datetime import datetime, timedelta
+import sys
 
 PAGE = 2
 A = [(u"新媒体", u"小王trueman", "1f8f7db82cdbc346a91840cef2bc1cb9", "a16ead9ee3b6b3f43e601de127275ddc"),
@@ -20,6 +21,11 @@ A = [(u"新媒体", u"小王trueman", "1f8f7db82cdbc346a91840cef2bc1cb9", "a16ea
 	]
     
 B = []
+
+try:
+	PAGE = sys.argv[1]
+except IndexError:
+	pass
 
 def now():
 	return str(datetime.now()) + " "
