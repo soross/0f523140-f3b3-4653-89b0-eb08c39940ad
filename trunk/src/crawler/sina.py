@@ -23,7 +23,7 @@ A = [(u"新媒体", u"小王trueman", "1f8f7db82cdbc346a91840cef2bc1cb9", "a16ea
 B = []
 
 try:
-	PAGE = sys.argv[1]
+	PAGE = int(sys.argv[1])
 except IndexError:
 	pass
 
