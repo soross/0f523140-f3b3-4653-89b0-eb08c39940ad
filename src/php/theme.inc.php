@@ -29,6 +29,7 @@ function theme_page($title, $content) {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>'.$title.' - 微招聘</title>
+    <link href="'.BASE_URL.'css/themes/base/jquery.ui.all.css" rel="Stylesheet" type="text/css" />
     <link href="'.BASE_URL.'css/share.css" rel="stylesheet" type="text/css" />
     <link href="'.BASE_URL.'css/default.css" rel="stylesheet" type="text/css" />
     <script src="'.BASE_URL.'script/jquery-1.5.1.js" type="text/javascript"></script>
@@ -36,109 +37,7 @@ function theme_page($title, $content) {
     <script src="'.BASE_URL.'script/share.js" type="text/javascript"></script>
     <script src="'.BASE_URL.'script/default.js" type="text/javascript"></script>
     <script type="text/javascript">
-        var MR = false;
-        var ML = false;
-        var length = 0;
-        var position = 0;
-
         $(function () {
-            $("#concern-pic").animate({ opacity: 0.6 }, 0);
-            $("#concern-pic").mouseover(function () {
-                $(this).animate({ opacity: 1 }, 200);
-            });
-            $("#concern-pic").mouseout(function () {
-                $(this).animate({ opacity: 0.6 }, 200);
-            });
-            $("#history-pic").animate({ opacity: 0.6 }, 0);
-            $("#history-pic").mouseover(function () {
-                $(this).animate({ opacity: 1 }, 200);
-            });
-            $("#history-pic").mouseout(function () {
-                $(this).animate({ opacity: 0.6 }, 200);
-            });
-
-            $(".concern-item").mouseover(function () {
-                $(this).addClass("concern-item-over");
-            });
-            $(".concern-item").mouseout(function () {
-                $(this).removeClass("concern-item-over");
-            });
-            $(".history-item").mouseover(function () { $(this).addClass("history-item-over"); });
-            $(".history-item").mouseout(function () { $(this).removeClass("history-item-over"); });
-
-            $(".concern-item-delete").click(function () {
-                $(this).parent().animate({ opacity: 0 }, 200, function () { $(this).slideUp(100); });
-            });
-            $(".concern-item-content").click(function () {
-                $(this).children(".concern-item-content-number").fadeOut(200, function () { $(this).parent().removeClass("concern-item-content-new"); });
-            });
-
-            function CompanyMR() {
-                if (position + 840 < length) {
-                    $("#companies-inner").animate({ "left": "-=2" }, 10, "linear", function () {
-                        if (MR) {
-                            position += 2;
-                            CompanyMR();
-                        }
-                    });
-                }
-            }
-            function CompanyML() {
-                if (position > 0) {
-                    $("#companies-inner").animate({ "left": "+=2" }, 10, "linear", function () {
-                        if (ML) {
-                            position -= 2;
-                            CompanyML();
-                        }
-                    });
-                }
-            }
-
-            $("#company-control-right").animate({ opacity: 0.4 }, 0);
-            $("#company-control-left").animate({ opacity: 0.4 }, 0);
-            $("#company-control-right").mouseover(function () {
-                if (!MR) {
-                    MR = true;
-                    CompanyMR();
-                }
-                $(this).animate({ opacity: 1 }, 200);
-            });
-            $("#company-control-right").mouseout(function () {
-                if (MR) {
-                    MR = false;
-                }
-                $(this).animate({ opacity: 0.4 }, 200);
-            });
-            $("#company-control-left").mouseover(function () {
-                if (!ML) {
-                    ML = true;
-                    CompanyML();
-                }
-                $(this).animate({ opacity: 1 }, 200);
-            });
-            $("#company-control-left").mouseout(function () {
-                if (ML) {
-                    ML = false;
-                }
-                $(this).animate({ opacity: 0.4 }, 200);
-            });
-
-            length = $("a.company-name:last").position().left + $("a.company-name:last").outerWidth("ture");
-
-            $("div#sorts").position({
-                of: $("a#sort"),
-                my: "left top",
-                at: "left top",
-                offset: "-5 -10",
-                collision: "none none"
-            });
-            $(".sorts-item").mouseover(function () { $(this).addClass("sorts-item-over") });
-            $(".sorts-item").mouseout(function () { $(this).removeClass("sorts-item-over") });
-
-            $("#sorts-name").click(function () { $("#sorts").fadeOut(200) });
-            $("#sorts-triangle").click(function () { $("#sorts").fadeOut(200) });
-            $("#sort-triangle").click(function () { $("#sorts").fadeIn(200) });
-            $("#sort").click(function () { $("#sorts").fadeIn(200) });
         });
     </script>
 </head>
@@ -285,7 +184,8 @@ function theme_login()
     $content = "";
     if(user_is_authenticated())
         $content .= '<a class="left selected logined" id="name">'.$GLOBALS['user']['nickname'].'</a> <a class="left orange logined">
-                信息管理</a> <a class="left logined" id="publish">发布求职信息</a> <a class="left logined" href="'.BASE_URL.'logout">退出</a>';
+                信息管理</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a class="left logined recruitment"
+                    id="recruitment-publish-quick">发布应聘信息</a> <a class="left logined" href="'.BASE_URL.'logout">退出</a>';
     else
         $content .= '<a class="left logouted" id="sina-login" href="'.BASE_URL.'sina_login"></a>';
     return $content;
