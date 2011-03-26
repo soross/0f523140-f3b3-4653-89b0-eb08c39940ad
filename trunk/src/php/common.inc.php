@@ -55,4 +55,18 @@ function get_categories()
     }
     return $result;
 }
+
+function get_counts()
+{
+    connect_db();
+    $view = "SELECT * FROM counts";
+    $list = mysql_query($view);
+    $result = array();
+    $i = 0;
+    while($row = mysql_fetch_array($list))
+    {
+        $result[$i++] = $row;
+    }
+    return $result;
+}
 ?>

@@ -13,9 +13,13 @@ function theme_search($title, $content)
 {
     $key = mb_substr($title, 0, -9);
     if($title=='首页')
+    {
+        include_once("common.inc.php");
+        $counts = get_counts();
         $pre = '<div id="radio">
-                本周新增职位3124个，今日新增职位666个</div>
+                本周新增职位'.$counts['tweets_thisweek'].'个，今日新增职位'.$counts['tweets_today'].'个</div>
                 <div id="microblogs">';
+    }
     else
     {
         $pre = '<div id="microblogs"><div id="search-result-outer">
