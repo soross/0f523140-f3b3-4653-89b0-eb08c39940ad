@@ -160,7 +160,7 @@ for cat, items in B:
 		tweet_id = uuid.uuid4().hex
 		c.execute("SELECT * FROM tweets WHERE tweet_site_id = %s", (mid,))
 		if c.fetchone() != None:
-			print now() + "Dulplicate item: %d" % (mid, )
+			print now() + "Dulplicate item: %d, %d" % (cat, mid)
 			continue
 		c.execute("""INSERT INTO tweets (
 					 site_id, tweet_id, user_site_id, content, post_datetime,
@@ -174,7 +174,7 @@ for cat, items in B:
 					 cat_id, tweet_id)
 					 VALUES (%s, %s)""",
 				  (cat, tweet_id))
-		print now() + "Done item: %d" % (mid, )
+		print now() + "Done item: %d, %d" % (cat, mid)
 db.commit()
 c.close()
 print now() + "Wrote Database."
