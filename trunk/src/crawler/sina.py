@@ -8,7 +8,7 @@ from Queue import Queue
 from time import sleep
 from datetime import datetime, timedelta
 
-PAGE = 10
+PAGE = 2
 A = [(u"新媒体", u"小王trueman", "1f8f7db82cdbc346a91840cef2bc1cb9", "a16ead9ee3b6b3f43e601de127275ddc"),
 	 (u"风投/投行", u"小毕Simon", "4151efe34301f5fddb9d34fc72e5f4a4", "dc4a07e8b7936d688726604a7442e4bc"),
 	 (u"移动互联", u"冬冬Billy", "f6449dd703d66cf2be5274f321416958", "31c47db4cd79e43a9196871a554d0847"),
@@ -186,7 +186,7 @@ for cat, items in B:
 		print now() + "Inserted item: %d, %d" % (cat, mid)
 		
 #counting
-c.execute("SELECT COUNT(*) FROM tweets WHERE post_datetime > %s", (now() - timedelta(days = 1),))
+c.execute("SELECT COUNT(*) FROM tweets WHERE post_datetime > %s", (datetime.now() - timedelta(days = 1),))
 t = c.fetchone()
 if t == None:
 	count = 0
@@ -194,7 +194,7 @@ else:
 	count = t[0]
 c.execute("UPDATE counts SET count = %s WHERE type = %s", (count, "tweets_today"))
 
-c.execute("SELECT COUNT(*) FROM tweets WHERE post_datetime > %s", (now() - timedelta(days = 7),))
+c.execute("SELECT COUNT(*) FROM tweets WHERE post_datetime > %s", (datetime.now() - timedelta(days = 7),))
 t = c.fetchone()
 if t == None:
 	count = 0
