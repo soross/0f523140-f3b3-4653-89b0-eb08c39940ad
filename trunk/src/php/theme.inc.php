@@ -80,11 +80,67 @@ function theme_page($title, $content) {
         <div id="left" class="left">'.theme('left').'</div>
         <div id="right" class="left">'.$content.'</div>
     </div>
-    <div id="sorts">
+    <div id="sorts" class="absolute">
         <div id="sorts-tag">
-            <a id="sorts-name">全部分类</a><a id="sorts-triangle">6</a>
+            <a id="sorts-name" class="left">全部分类</a><a id="sorts-triangle">6</a>
         </div>
         <div id="sorts-content">'.theme('cat').'</div>
+    </div>
+    <div id="cover">
+    </div>
+    <div id="role-choose" class="absolute role-jobs">
+        <a id="role-jobs" class="absolute"></a><a id="role-recruitment" class="absolute">
+        </a><a id="role-confirm" class="absolute"></a>
+    </div>
+    <div id="jobs-publish" class="absolute">
+        <div id="jobs-publish-title">
+            <span class="left">发布求职信息</span> <a class="right"></a>
+        </div>
+        <div id="jobs-publish-content">
+            <div id="jobs-publish-remain">
+                还可输入136个字</div>
+            <div id="jobs-publish-text">
+                <textarea>#求职#</textarea>
+            </div>
+            <div id="jobs-publish-tags">
+                <span id="jobs-publish-tags-title" class="left">职位标签</span>
+                <input type="text" class="left" />
+                <span id="jobs-publish-tags-ps" class="left">标签之间用逗号隔开</span>
+            </div>
+            <div id="jobs-publish-tags-hot">
+                <span id="jobs-publish-tags-hot-title" class="left">热门标签</span> <a class="left jobs-publish-tags-hot-item"
+                    title="产品经理">产品经理</a> <a class="left jobs-publish-tags-hot-item" title=".NET开发工程师">.NET开发工程师</a>
+                <a class="left jobs-publish-tags-hot-item" title="UI设计师">UI设计师</a>
+            </div>
+            <div id="jobs-publish-confirm">
+                <a class="right"></a>
+            </div>
+        </div>
+    </div>
+    <div id="recruitment-publish" class="absolute">
+        <div id="recruitment-publish-title">
+            <span class="left">发布招聘信息</span> <a class="right"></a>
+        </div>
+        <div id="recruitment-publish-content">
+            <div id="recruitment-publish-remain">
+                还可输入136个字</div>
+            <div id="recruitment-publish-text">
+                <textarea></textarea>
+            </div>
+            <div id="recruitment-publish-tags">
+                <span id="recruitment-publish-tags-title" class="left">职位标签</span>
+                <input type="text" class="left" />
+                <span id="recruitment-publish-tags-ps" class="left">标签之间用逗号隔开</span>
+            </div>
+            <div id="recruitment-publish-tags-hot">
+                <span id="recruitment-publish-tags-hot-title" class="left">热门标签</span> <a class="left recruitment-publish-tags-hot-item"
+                    title="产品经理">产品经理</a> <a class="left recruitment-publish-tags-hot-item" title=".NET开发工程师">
+                        .NET开发工程师</a> <a class="left recruitment-publish-tags-hot-item" title="UI设计师">UI设计师</a>
+            </div>
+            <div id="recruitment-publish-confirm">
+                <a class="right"></a>
+            </div>
+        </div>
     </div>'.theme('google_analytics').'
 </body>
 </html>';
