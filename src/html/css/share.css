@@ -25,7 +25,7 @@ img
 }
 div#header
 {
-    width: 1024px;
+    width: 980px;
     height: 31px;
     background-color: #d1e9f1;
     line-height: 31px;
@@ -77,7 +77,7 @@ div#infos a#sina-login
 div#logo-search
 {
     height: 100px;
-    width: 1024px;
+    width: 980px;
     margin: auto;
 }
 div#logo-search a#logo
