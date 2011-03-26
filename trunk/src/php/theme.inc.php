@@ -305,7 +305,7 @@ function theme_rss($result)
       <link>http://api.t.sina.com.cn/'.$r['user_id'].'/statuses/'.$r['tweet_site_id'].'</link> 
       <description><![CDATA['.$r['content'].']]></description> 
       <pubDate>'.date('DATE_RSS', strtotime($r['post_datetime'])).'</pubDate> 
-    </item>'
+    </item>';
     $content .= '</channel> 
 </rss>';
     echo $content;
