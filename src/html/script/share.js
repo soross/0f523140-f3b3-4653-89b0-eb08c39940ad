@@ -1,11 +1,11 @@
 ﻿var MR = false;
 var ML = false;
 var logined = true;
-var isjob = false;
+var isjob = true;
+var first = false;
+var rolekind = "";
 var length = 0;
 var position = 0;
-var rolekind = "";
-var first = false;
 
 $(function () {
     Init();
@@ -108,6 +108,16 @@ function Init() {
         $(".logined").hide();
         $(".logouted").show();
     }
+    $("input#search-text").focusin(function () {
+        if ($(this).val() == "职位关键字，如：北京 产品经理 阿里巴巴") {
+            $(this).val("");
+        }
+    });
+    $("input#search-text").focusout(function () {
+        if ($(this).val() == "") {
+            $(this).val("职位关键字，如：北京 产品经理 阿里巴巴");
+        }
+    });
 }
 
 function CompanyMR() {

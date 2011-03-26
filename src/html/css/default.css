@@ -176,6 +176,10 @@ div#right div#microblogs
     background-color: #ffffff;
     margin-top: 10px;
     padding: 5px 13px;
+    border-top-left-radius: 3px 3px;
+    border-top-right-radius: 3px 3px;
+    border-bottom-left-radius: 3px 3px;
+    border-bottom-right-radius: 3px 3px;
 }
 div#right div#search-result-outer
 {

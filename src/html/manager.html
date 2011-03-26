@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
@@ -12,7 +11,47 @@
     <script src="script/manager.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
+            $("div#content-middle-delete a").animate({ opacity: 0.6 }, 0);
+            $("div#content-middle-delete a").mouseover(function () {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+            $("div#content-middle-delete a").mouseout(function () {
+                $(this).animate({ opacity: 0.6 }, 200);
+            });
+
+            $("a.manager-control").click(function () {
+                $("a.manager-control").removeClass("manager-control-choose");
+                $(this).addClass("manager-control-choose");
+            });
+            $("a#jobs-publish-button").click(function () {
+                ShowJobsPublish();
+            });
+            $("a#recruitment-publish-button").click(function () {
+                ShowRecruitmentPublish();
+            });
+            $("div.item").mouseover(function () {
+                $(this).addClass("item-over");
+            });
+            $("div.item").mouseout(function () {
+                $(this).removeClass("item-over");
+            });
         });
+
+        function ShowApply() {
+            $("a.item-control").hide();
+            $("span.item-apply").show();
+            $("a.item-favourite").hide();
+        }
+        function ShowFavourite() {
+            $("a.item-control").hide();
+            $("span.item-apply").hide();
+            $("a.item-favourite").show();
+        }
+        function ShowNormal() {
+            $("a.item-control").show();
+            $("span.item-apply").hide();
+            $("a.item-favourite").hide();
+        }
     </script>
 </head>
 <body>
@@ -23,15 +62,15 @@
         <div class="right" id="infos">
             <a class="left selected logined" id="name">OliveQ</a> <a class="left orange logined">
                 信息管理</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a class="left logined recruitment"
-                    id="recruitment-publish-quick">发布应聘信息</a> <a class="left logined">退出</a> <a class="left logouted"
-                        id="sina-login"></a>
+                    id="recruitment-publish-quick">发布招聘信息</a> <a class="left logined">退出</a>
+            <a class="left logouted" id="sina-login"></a>
         </div>
     </div>
     <div id="logo-search">
         <a id="logo" class="left"></a>
         <div id="search-bar" class="left">
             <a class="left sort" id="sort">全部分类</a><a class="left sort" id="sort-triangle">6</a>
-            <input class="left" id="search-text" type="text" value="产品 北京" />
+            <input class="left" id="search-text" type="text" value="职位关键字，如：北京 产品经理 阿里巴巴" />
             <a class="left" id="search-button"></a>
         </div>
     </div>
@@ -53,7 +92,204 @@
                 id="company-control-right">▶</a>
         </div>
     </div>
-    
+    <div id="manager-title" class="inner">
+        <span class="left manager-title">信息管理</span> <span class="left manager-title-tag recruitment">
+            我是招聘者</span> <span class="left manager-title-tag jobs">我是求职者</span>
+    </div>
+    <div id="manager-content" class="inner">
+        <div id="content-left" class="left">
+            <div id="manager-control">
+                <a class="manager-control left jobs" onclick="ShowApply()">申请记录</a> <a class="manager-control left jobs"
+                    onclick="ShowFavourite()">职位收藏</a> <a class="manager-control left jobs">个人简历</a>
+                <a class="manager-control left jobs manager-control-choose" onclick="ShowNormal()">我发布的信息</a>
+                <a class="manager-control left recruitment manager-control-choose">我发布的信息</a>
+            </div>
+            <a id="jobs-publish-button" class="publish-button jobs left"></a><a id="recruitment-publish-button"
+                class="publish-button recruitment left"></a>
+        </div>
+        <div id="content-middle" class="left">
+            <div id="content-middle-delete">
+                <a class="right">删除全部</a>
+            </div>
+            <div class="item">
+                <div class="item-delete">
+                    <a class="right"></a>
+                </div>
+                <div class="left item-pic">
+                    <img alt="" width="50" height="50" />
+                </div>
+                <div class="left item-content">
+                    <div class="item-blog">
+                        <a class="item-blog-name">赶集网</a>：赶集网招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。
+                        （3）简历发送至 nihongtao@ganji.com&nbsp; 欢迎同学们骚扰 <a class="item-blog-link">http://sinaurl.cn/ht7Wa5</a>
+                    </div>
+                    <div class="item-other">
+                        <span class="left item-time">5分钟前</span> <a class="left item-position">新浪微博</a>
+                        <a class="right item-control">评论</a> <a class="right item-control">收藏(1)</a> <a class="right item-control">
+                            转发(2)</a> <a class="right item-control last">删除</a> <span class="right item-apply item-apply-info">
+                                未读</span> <span class="right item-apply item-apply-name">状态：</span> <span class="right item-apply item-apply-info">
+                                    2小时前</span> <span class="right item-apply item-apply-name">申请于：</span>
+                        <a class="right item-favourite item-action">取消收藏</a> <a class="right item-favourite item-doapply">
+                            申请该职位</a>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-delete">
+                    <a class="right"></a>
+                </div>
+                <div class="left item-pic">
+                    <img alt="" width="50" height="50" />
+                </div>
+                <div class="left item-content">
+                    <div class="item-blog">
+                        <a class="item-blog-name">赶集网</a>：赶集网招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。
+                        （3）简历发送至 nihongtao@ganji.com&nbsp; 欢迎同学们骚扰 <a class="item-blog-link">http://sinaurl.cn/ht7Wa5</a>
+                    </div>
+                    <div class="item-other">
+                        <span class="left item-time">5分钟前</span> <a class="left item-position">新浪微博</a>
+                        <a class="right item-control">评论</a> <a class="right item-control">收藏(1)</a> <a class="right item-control">
+                            转发(2)</a> <a class="right item-control last">删除</a> <span class="right item-apply item-apply-info">
+                                未读</span> <span class="right item-apply item-apply-name">状态：</span> <span class="right item-apply item-apply-info">
+                                    2小时前</span> <span class="right item-apply item-apply-name">申请于：</span>
+                        <a class="right item-favourite item-action">取消收藏</a> <a class="right item-favourite item-doapply">
+                            申请该职位</a>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-delete">
+                    <a class="right"></a>
+                </div>
+                <div class="left item-pic">
+                    <img alt="" width="50" height="50" />
+                </div>
+                <div class="left item-content">
+                    <div class="item-blog">
+                        <a class="item-blog-name">赶集网</a>：赶集网招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。
+                        （3）简历发送至 nihongtao@ganji.com&nbsp; 欢迎同学们骚扰 <a class="item-blog-link">http://sinaurl.cn/ht7Wa5</a>
+                    </div>
+                    <div class="item-other">
+                        <span class="left item-time">5分钟前</span> <a class="left item-position">新浪微博</a>
+                        <a class="right item-control">评论</a> <a class="right item-control">收藏(1)</a> <a class="right item-control">
+                            转发(2)</a> <a class="right item-control last">删除</a> <span class="right item-apply item-apply-info">
+                                未读</span> <span class="right item-apply item-apply-name">状态：</span> <span class="right item-apply item-apply-info">
+                                    2小时前</span> <span class="right item-apply item-apply-name">申请于：</span>
+                        <a class="right item-favourite item-action">取消收藏</a> <a class="right item-favourite item-doapply">
+                            申请该职位</a>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-delete">
+                    <a class="right"></a>
+                </div>
+                <div class="left item-pic">
+                    <img alt="" width="50" height="50" />
+                </div>
+                <div class="left item-content">
+                    <div class="item-blog">
+                        <a class="item-blog-name">赶集网</a>：赶集网招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。
+                        （3）简历发送至 nihongtao@ganji.com&nbsp; 欢迎同学们骚扰 <a class="item-blog-link">http://sinaurl.cn/ht7Wa5</a>
+                    </div>
+                    <div class="item-other">
+                        <span class="left item-time">5分钟前</span> <a class="left item-position">新浪微博</a>
+                        <a class="right item-control">评论</a> <a class="right item-control">收藏(1)</a> <a class="right item-control">
+                            转发(2)</a> <a class="right item-control last">删除</a> <span class="right item-apply item-apply-info">
+                                未读</span> <span class="right item-apply item-apply-name">状态：</span> <span class="right item-apply item-apply-info">
+                                    2小时前</span> <span class="right item-apply item-apply-name">申请于：</span>
+                        <a class="right item-favourite item-action">取消收藏</a> <a class="right item-favourite item-doapply">
+                            申请该职位</a>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-delete">
+                    <a class="right"></a>
+                </div>
+                <div class="left item-pic">
+                    <img alt="" width="50" height="50" />
+                </div>
+                <div class="left item-content">
+                    <div class="item-blog">
+                        <a class="item-blog-name">赶集网</a>：赶集网招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。
+                        （3）简历发送至 nihongtao@ganji.com&nbsp; 欢迎同学们骚扰 <a class="item-blog-link">http://sinaurl.cn/ht7Wa5</a>
+                    </div>
+                    <div class="item-other">
+                        <span class="left item-time">5分钟前</span> <a class="left item-position">新浪微博</a>
+                        <a class="right item-control">评论</a> <a class="right item-control">收藏(1)</a> <a class="right item-control">
+                            转发(2)</a> <a class="right item-control last">删除</a> <span class="right item-apply item-apply-info">
+                                未读</span> <span class="right item-apply item-apply-name">状态：</span> <span class="right item-apply item-apply-info">
+                                    2小时前</span> <span class="right item-apply item-apply-name">申请于：</span>
+                        <a class="right item-favourite item-action">取消收藏</a> <a class="right item-favourite item-doapply">
+                            申请该职位</a>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div id="pages">
+                <div id="pages-inner" class="right">
+                    <a class="page-number page-number-current left">1</a><a class="page-number left">2</a><a
+                        class="page-number left">3</a> <a class="page-number left">4</a> <span class="left">
+                            ...</span> <a class="page-number left">50</a> <a class="page-control left">下一页</a>
+                </div>
+            </div>
+        </div>
+        <div id="content-right" class="left">
+            <div id="right-title">
+                推广企业</div>
+            <div class="ad-title">
+                <a>某某互联网公司</a></div>
+            <div class="ad-content">
+                北京，招聘产品经理，待遇从优</div>
+            <div class="ad-address">
+                <a>http://sinaurl.cn/YLKd</a></div>
+            <div class="ad-title">
+                <a>某某互联网公司</a></div>
+            <div class="ad-content">
+                北京，招聘产品经理，待遇从优</div>
+            <div class="ad-address">
+                <a>http://sinaurl.cn/YLKd</a></div>
+            <div class="ad-title">
+                <a>某某互联网公司</a></div>
+            <div class="ad-content">
+                北京，招聘产品经理，待遇从优</div>
+            <div class="ad-address">
+                <a>http://sinaurl.cn/YLKd</a></div>
+        </div>
+    </div>
+        <div id="sorts" class="absolute">
+        <div id="sorts-tag">
+            <a id="sorts-name" class="left">全部分类</a><a id="sorts-triangle" class="left">6</a>
+        </div>
+        <div id="sorts-content">
+            <div class="sorts-item sorts-item-alternative">
+                <a>[互联网]</a></div>
+            <div class="sorts-item">
+                <a>[互联网]</a></div>
+            <div class="sorts-item sorts-item-alternative">
+                <a>[互联网]</a></div>
+            <div class="sorts-item">
+                <a>[互联网]</a></div>
+            <div class="sorts-item sorts-item-alternative">
+                <a>[互联网]</a></div>
+            <div class="sorts-item">
+                <a>[互联网]</a></div>
+            <div class="sorts-item sorts-item-alternative">
+                <a>[互联网]</a></div>
+            <div class="sorts-item">
+                <a>[互联网]</a></div>
+        </div>
+    </div>
     <div id="cover">
     </div>
     <div id="jobs-publish" class="absolute">
