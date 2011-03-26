@@ -6,6 +6,7 @@ import sqlite3
 from threading import Thread
 from Queue import Queue
 from time import sleep
+from datetime import datetime
 
 A = [(u"新媒体", u"小王trueman", "1f8f7db82cdbc346a91840cef2bc1cb9", "a16ead9ee3b6b3f43e601de127275ddc"),
 	 (u"风投/投行", u"小毕Simon", "4151efe34301f5fddb9d34fc72e5f4a4", "dc4a07e8b7936d688726604a7442e4bc"),
@@ -18,6 +19,9 @@ A = [(u"新媒体", u"小王trueman", "1f8f7db82cdbc346a91840cef2bc1cb9", "a16ea
 	]
     
 B = []
+
+def now():
+	return str(datetime.now()) + " "
 
 def iszhaopin(s):
 	keywords = [(u"招聘", ),
@@ -136,7 +140,7 @@ def working():
     test.setToken(crawler[1][2], crawler[1][3])
     result = test.friends_timeline()
     B += [(crawler[0], result)]
-    print "Crawler %d/%d Done." % (crawler[0], len(A))
+    print now() + "Crawler %d/%d Done." % (crawler[0], len(A))
     q.task_done()
 
 for crawler in enumerate(A):
@@ -147,7 +151,7 @@ for crawler in enumerate(A):
 	sleep(2)
 	
 q.join()
-print "Craw Complete."
+print now() + "Craw Complete."
 import MySQLdb, uuid
 db = MySQLdb.connect("115.156.219.194","apis","apis","apis",charset="utf8")
 c = db.cursor()
@@ -156,6 +160,7 @@ for cat, items in B:
 		tweet_id = uuid.uuid4().hex
 		c.execute("SELECT * FROM tweets WHERE tweet_site_id = %s", (mid,))
 		if c.fetchone() != None:
+			print now() + "Dulplicate item: %d" % (mid, )
 			continue
 		c.execute("""INSERT INTO tweets (
 					 site_id, tweet_id, user_site_id, content, post_datetime,
@@ -169,6 +174,7 @@ for cat, items in B:
 					 cat_id, tweet_id)
 					 VALUES (%s, %s)""",
 				  (cat, tweet_id))
+		print now() + "Done item: %d" % (mid, )
 db.commit()
 c.close()
-print "Wrote Database."
+print now() + "Wrote Database."
