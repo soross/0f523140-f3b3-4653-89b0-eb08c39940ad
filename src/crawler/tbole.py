@@ -7,14 +7,14 @@ import sys, re, StringIO
 import urllib2 as urllib
 q = Queue()
 NUM = 7
-JOBS = 2000
+JOBS = 100
 results = []
 
 def craw(arguments):
     global results
     try:
-        a = unicode(urllib.urlopen("http://tbole.com/result.php?searchid=%d" % (arguments,)).read(), "gbk")
-        b = re.findall(u"<title>(.+?)职位搜索结果", a)[0]
+        a = unicode(urllib.urlopen("http://tbole.com/result.php?cate_id=%d" % (arguments,)).read(), "gbk")
+        b = re.findall(u"<span class=\"result_search\">cate\:(.+?),共", a)[0]
         results += [b]
         print arguments, b, "Done."
     except:
@@ -39,7 +39,7 @@ for i in range(JOBS):
 q.join()
 print "Craw completed."
 
-f = open("tbole.txt", "w")
+f = open("tbole_cat.txt", "w")
 f.write("\r\n".join(results).encode('utf-8'))
 f.close()
 print "Wrote results."
