@@ -180,7 +180,7 @@ for cat, items in B:
 		t = c.fetchone()
 		if t == None:
 			print now() + "Error updating count: No category %d found!" % (cat, )
-		else
+		else:
 			count = t[0] + 1
 			c.execute("UPDATE categories SET count = %s WHERE cat_id = %s", (count, cat))
 		print now() + "Inserted item: %d, %d" % (cat, mid)
