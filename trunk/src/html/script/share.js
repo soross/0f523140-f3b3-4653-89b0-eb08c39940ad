@@ -92,6 +92,7 @@ function HideRecruitmentPublish() {
 }
 
 function Init() {
+
     if (logined) {
         $(".logined").show();
         $(".logouted").hide();
