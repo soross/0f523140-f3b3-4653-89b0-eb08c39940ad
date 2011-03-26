@@ -291,7 +291,7 @@ function theme_rss($result)
     <link>'.BASE_URL.'search/'.$GLOBALS['search'].'</link> 
     <description>Latest 10 threads of all jobs</description>
     <copyright>Copyright(C) 微招聘</copyright> 
-    <generator>Tbole by GNG.</generator>
+    <generator>DiggJob by GNG.</generator>
     <lastBuildDate>'.date(DATE_RSS).'</lastBuildDate> 
     <ttl>30</ttl>
     <image> 
