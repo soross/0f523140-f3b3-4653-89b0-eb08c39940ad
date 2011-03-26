@@ -258,36 +258,6 @@ div#cover
     display: none;
 }
 
-div#role-choose
-{
-    display: none;
-    width: 552px;
-    height: 372px;
-}
-div.role-jobs
-{
-    background-image: url('../images/role-background-jobs.jpg');
-}
-div.role-recruitment
-{
-    background-image: url('../images/role-background-recruitment.jpg');
-}
-a#role-jobs
-{
-    width: 170px;
-    height: 190px;
-}
-a#role-recruitment
-{
-    width: 166px;
-    height: 190px;
-}
-a#role-confirm
-{
-    width: 173px;
-    height: 46px;
-}
-
 div#jobs-publish
 {
     display: none;

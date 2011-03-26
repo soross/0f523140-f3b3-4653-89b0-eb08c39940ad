@@ -1,7 +1,59 @@
 ﻿$(function () {
+    SetRolePicker();
     SetConcern();
     SetHistory();
 });
+
+function SetRolePicker() {
+    $("div#role-choose").position({
+        of: $("body"),
+        my: "center top",
+        at: "center top",
+        offset: "0 130",
+        collision: "none none"
+    });
+    $("a#role-jobs").position({
+        of: $("div#role-choose"),
+        my: "left top",
+        at: "left top",
+        offset: "51 57",
+        collision: "none none"
+    });
+    $("a#role-recruitment").position({
+        of: $("div#role-choose"),
+        my: "left top",
+        at: "left top",
+        offset: "331 57",
+        collision: "none none"
+    });
+    $("a#role-confirm").position({
+        of: $("div#role-choose"),
+        my: "left top",
+        at: "left top",
+        offset: "190 276",
+        collision: "none none"
+    });
+
+    $("a#role-jobs").click(function () {
+        $("div#role-choose").removeClass("role-recruitment");
+        $("div#role-choose").addClass("role-jobs");
+        rolekind = "jobs";
+    });
+    $("a#role-recruitment").click(function () {
+        $("div#role-choose").removeClass("role-jobs");
+        $("div#role-choose").addClass("role-recruitment");
+        rolekind = "recruitment";
+    });
+    $("a#role-confirm").click(function () {
+        $("div#cover").fadeOut(200);
+        $("div#role-choose").fadeOut(200);
+    });
+
+    if (first) {
+        $("div#cover").fadeIn(200);
+        $("div#role-choose").fadeIn(200);
+    }
+}
 
 function SetConcern() {
     $("#concern-pic").animate({ opacity: 0.6 }, 0);
