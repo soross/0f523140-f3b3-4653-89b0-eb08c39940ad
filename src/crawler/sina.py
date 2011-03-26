@@ -127,7 +127,7 @@ class SinaFetch():
             self.obj = line
             mid = self.getAtt("id")
             text = unicode(self.getAtt("text"))
-            time = self.getAtt("created_at")
+            posttime = self.getAtt("created_at")
             source = self.getAtt("source")
             user = self.getAtt("user")
             self.obj = user
@@ -135,7 +135,7 @@ class SinaFetch():
             name = unicode(self.getAtt("screen_name"))
             avatar = self.getAtt("profile_image_url")
             if iszhaopin(text):
-                results += [(userid, name, avatar, mid, text, time, source)]
+                results += [(userid, name, avatar, mid, text, posttime, source)]
         return results
 
 q = Queue()
@@ -164,7 +164,7 @@ import MySQLdb, uuid
 db = MySQLdb.connect("115.156.219.194","apis","apis","apis",charset="utf8")
 c = db.cursor()
 for cat, items in B:
-	for userid, name, avatar, mid, text, time, source in items:
+	for userid, name, avatar, mid, text, posttime, source in items:
 		tweet_id = uuid.uuid4().hex
 		c.execute("SELECT * FROM tweets WHERE tweet_site_id = %s", (mid,))
 		if c.fetchone() != None:
@@ -175,7 +175,7 @@ for cat, items in B:
 					 type, tweet_site_id, favorite_count, application_count,
 					 post_screenname, profile_image_url, source)
 				     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
-				  (1, tweet_id, userid, text, time,
+				  (1, tweet_id, userid, text, posttime,
 				   0, mid, 0, 0,
 				   name, avatar, source))
 		c.execute("""INSERT INTO cat_relationship (
