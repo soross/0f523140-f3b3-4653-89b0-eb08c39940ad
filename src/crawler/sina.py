@@ -176,6 +176,11 @@ for cat, items in B:
 					 cat_id, tweet_id)
 					 VALUES (%s, %s)""",
 				  (cat, tweet_id))
+		c.execute("SELECT * FROM categories WHERE cat_id = %s", (cat,))
+		t = c.fetchone()
+		if t == None:
+			print now() + "Error updating count: %d" % (cat, )
+		print t
 		print now() + "Insert item: %d, %d" % (cat, mid)
 db.commit()
 c.close()
