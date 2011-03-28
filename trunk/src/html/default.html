@@ -33,11 +33,23 @@
                             $("a#search-result-concern").mouseout(function () {
                                 $(this).attr("class", "left search-result-concern");
                             });
+                            setTimeout(function () { GetNewerBlogs(); }, 5000);
+                        }
+                    });
+                    $.ajax({
+                        type: 'GET',
+                        url: 'history/show/5',
+                        success: function (msg) {
+                            $("div#history").html(msg);
+                            SetHistory();
                         }
                     });
                 }
             });
         });
+
+        function GetNewerBlogs() {
+        }
 
         function AfterLogin() {
             $.ajax({
@@ -66,6 +78,14 @@
                         success: function (msg) {
                             $("#concern").html(msg);
                             SetConcern();
+                        }
+                    });
+                    $.ajax({
+                        type: 'GET',
+                        url: 'history/show/5',
+                        success: function (msg) {
+                            $("#history").html(msg);
+                            SetHistory();
                         }
                     });
                 }
@@ -117,14 +137,6 @@
             <div id="concern" class="logined">
             </div>
             <div id="history" class="logined">
-                <div class="left-title">
-                    <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic">
-                    </a>
-                </div>
-                <div class="history-item">
-                    <a>北京 淘宝 百度 web前端开发 php工程师</a></div>
-                <div class="history-item">
-                    <a>杭州 阿里巴巴 web前端开发 产品设计</a></div>
             </div>
             <div id="hot">
                 <div class="left-title">
