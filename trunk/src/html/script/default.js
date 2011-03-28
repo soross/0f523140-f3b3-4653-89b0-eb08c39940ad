@@ -3,6 +3,10 @@
     SetHistory();
 });
 
+function GetNewerJob() { 
+
+}
+
 function SetRolePicker() {
     $("div#role-choose").position({
         of: $("body"),
@@ -49,7 +53,7 @@ function SetRolePicker() {
             $(".recruitment").hide();
             $.ajax({
                 type: 'POST',
-                url: sourcePath + 'role/set/1',
+                url: 'role/set/1',
                 success: function (msg) {
                     alert(msg);
                 }
@@ -60,7 +64,7 @@ function SetRolePicker() {
             $(".recruitment").show();
             $.ajax({
                 type: 'POST',
-                url: sourcePath + 'role/set/2',
+                url: 'role/set/2',
                 success: function (msg) {
                     alert(msg);
                 }
