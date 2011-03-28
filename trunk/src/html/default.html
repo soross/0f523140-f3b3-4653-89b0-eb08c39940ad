@@ -13,6 +13,9 @@
     <script type="text/javascript">
         $(function () {
         });
+        function GoTo(e) {
+            location = sourcePath + e;
+        }
     </script>
 </head>
 <body>
@@ -24,7 +27,7 @@
             <a class="left selected logined" id="name">OliveQ</a> <a class="left orange logined"
                 href="manager.html">信息管理</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a
                     class="left logined recruitment" id="recruitment-publish-quick">发布招聘信息</a>
-            <a class="left logined">退出</a> <a class="left logouted" id="sina-login"></a>
+            <a class="left logined">退出</a> <a class="left logouted" id="sina-login" onclick="GoTo('login/')"></a>
         </div>
     </div>
     <div id="logo-search">
