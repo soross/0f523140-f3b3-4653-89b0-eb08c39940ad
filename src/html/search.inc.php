@@ -139,6 +139,8 @@ function get_search_history($num)
 
 function search_history_show()
 {
+    theme('history');
+    return;
     $args = func_get_args();
     $key = intval($args[2]);
     $data = get_search_history($key);

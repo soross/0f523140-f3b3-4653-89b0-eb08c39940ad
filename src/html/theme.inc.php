@@ -61,8 +61,7 @@ function theme_follow()
 function theme_history()
 {
     include_once("search.inc.php");
-    $content = '<div id="history">
-                <div class="left-title">
+    $content = '<div class="left-title">
                     <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic" href="'.BASE_URL.'history/deleteall">
                     </a>
                 </div>';
@@ -71,7 +70,7 @@ function theme_history()
         $content .= '<div class="history-item">
                     <a href="'.BASE_URL.'search/'.$h['search'].'">'.$h['search'].'</a></div>';
     $content .= '</div>';
-    return $content;
+    echo $content;
 }
 
 function theme_hot()
@@ -180,7 +179,7 @@ function theme_rss($result)
       <link>'.BASE_URL.'search/'.$GLOBALS['search'].'</link> 
     </image>';
     foreach($result as $r)
-        $content .= '<item> 
+        $content .= '<item>
       <title>'.$GLOBALS['search'].'</title> 
       <link>http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'</link> 
       <description><![CDATA['.$r['content'].']]></description>
