@@ -18,7 +18,25 @@
                     type: 'POST',
                     url: sourcePath + 'info/',
                     success: function (msg) {
-                        alert(msg);
+                        $("a#name").html(msg.split(',')[0]);
+                        var type = msg.split(',')[1];
+                        if (type == 0) {
+                            first = true;
+                        }
+                        else if (type == 1) {
+                            isjob = true;
+                        }
+                        else {
+                            isjob = false;
+                        }
+                        if (isjob) {
+                            $(".jobs").show();
+                            $(".recruitment").hide();
+                        }
+                        else {
+                            $(".jobs").hide();
+                            $(".recruitment").show();
+                        }
                     }
                 });
                 $(".logined").show();
@@ -51,8 +69,8 @@
             <a class="left selected logined" id="name">OliveQ</a> <a class="left orange logined"
                 href="manager.html">信息管理</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a
                     class="left logined recruitment" id="recruitment-publish-quick">发布招聘信息</a>
-            <a class="left logined">退出</a> <a class="left logouted" id="sina-login" onclick="GoTo('login/')">
-            </a>
+            <a class="left logined" onclick="GoTo('logout/')">退出</a> <a class="left logouted"
+                id="sina-login" onclick="GoTo('login/')"></a>
         </div>
     </div>
     <div id="logo-search">
