@@ -94,7 +94,7 @@ function HideRecruitmentPublish() {
 }
 
 function Init() {
-    auth = $.cookie("USER_AUTH", { path: "/" });
+    auth = $.cookie("USER_AUTH");
     if (auth == null) {
         logined = false;
     }
