@@ -3,7 +3,6 @@ var ML = false;
 var logined = true;
 var rolekind = "jobs";
 var auth = "";
-var sourcePath = "http://115.156.219.194/apis/";
 var length = 0;
 var position = 0;
 

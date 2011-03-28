@@ -21,14 +21,11 @@
                 $(".logouted").show();
             }
         });
-        function GoTo(e) {
-            location = sourcePath + e;
-        }
 
         function AfterLogin() {
             $.ajax({
                 type: 'POST',
-                url: sourcePath + 'info/',
+                url: 'info/',
                 success: function (msg) {
                     $(".logined").show();
                     $(".logouted").hide();
@@ -48,7 +45,7 @@
                     }
                     $.ajax({
                         type: 'POST',
-                        url: sourcePath + 'follow/show/5',
+                        url: 'follow/show/5',
                         success: function (msg) {
                             $("#concern").html(msg);
                             SetConcern();
@@ -68,8 +65,8 @@
             <a class="left selected logined" id="name">OliveQ</a> <a class="left orange logined"
                 href="manager.html">信息管理</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a
                     class="left logined recruitment" id="recruitment-publish-quick">发布招聘信息</a>
-            <a class="left logined" onclick="GoTo('logout/')">退出</a> <a class="left logouted"
-                id="sina-login" onclick="GoTo('login/')"></a>
+            <a class="left logined" href="logout/">退出</a> <a class="left logouted"
+                id="sina-login" href="login/"></a>
         </div>
     </div>
     <div id="logo-search">
