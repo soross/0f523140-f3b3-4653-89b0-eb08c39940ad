@@ -101,22 +101,6 @@ function Init() {
     else {
         logined = true;
     }
-    if (logined) {
-        $(".logined").show();
-        $(".logouted").hide();
-        if (isjob) {
-            $(".jobs").show();
-            $(".recruitment").hide();
-        }
-        else {
-            $(".jobs").hide();
-            $(".recruitment").show();
-        }
-    }
-    else {
-        $(".logined").hide();
-        $(".logouted").show();
-    }
     $("input#search-text").focusin(function () {
         if ($(this).val() == "职位关键字，如：北京 产品经理 阿里巴巴") {
             $(this).val("");
@@ -126,6 +110,12 @@ function Init() {
         if ($(this).val() == "") {
             $(this).val("职位关键字，如：北京 产品经理 阿里巴巴");
         }
+    });
+    $("a#search-result-concern").mouseover(function () {
+        $(this).attr("class", "left search-result-concern-over");
+    });
+    $("a#search-result-concern").mouseout(function () {
+        $(this).attr("class", "left search-result-concern");
     });
 }
 
