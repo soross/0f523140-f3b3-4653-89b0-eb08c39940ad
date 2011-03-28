@@ -163,7 +163,7 @@ function oauth_sina_callback()
     $last_key = $o -> getAccessToken($_REQUEST['oauth_verifier']);
     $GLOBALS['user']['sinakey'] = $last_key;
     connect_db();
-    $me =   () or die("Cound not get data from Sina API");
+    $me = sina_get_credentials() or die("Cound not get data from Sina API");
     if(!$me['id'])
         die("Cound not get data from Sina API");
     $view = "SELECT * FROM accountbindings WHERE site_id='1' AND user_site_id='".$me['id']."'";
