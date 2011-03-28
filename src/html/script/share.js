@@ -120,8 +120,8 @@ function Init() {
 function CompanyMR() {
     if (position + 840 < length) {
         $("#companies-inner").animate({ "left": "-=2" }, 10, "linear", function () {
+            position += 2;
             if (MR) {
-                position += 2;
                 CompanyMR();
             }
         });
@@ -130,8 +130,8 @@ function CompanyMR() {
 function CompanyML() {
     if (position > 0) {
         $("#companies-inner").animate({ "left": "+=2" }, 10, "linear", function () {
+            position -= 2;
             if (ML) {
-                position -= 2;
                 CompanyML();
             }
         });
