@@ -56,7 +56,7 @@ function sina_get_credentials()
 
 function show_credentials()
 {
-    $r = $GLOBALS['user']['nickname'] +','+$GLOBALS['user']['role'];
+    $r = $GLOBALS['user']['nickname'].','.$GLOBALS['user']['role'];
     theme('page', 'info', $r);
 }
 
