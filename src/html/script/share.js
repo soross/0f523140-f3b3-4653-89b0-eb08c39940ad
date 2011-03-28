@@ -108,12 +108,6 @@ function Init() {
             $(this).val("职位关键字，如：北京 产品经理 阿里巴巴");
         }
     });
-    $("a#search-result-concern").mouseover(function () {
-        $(this).attr("class", "left search-result-concern-over");
-    });
-    $("a#search-result-concern").mouseout(function () {
-        $(this).attr("class", "left search-result-concern");
-    });
 }
 
 function CompanyMR() {

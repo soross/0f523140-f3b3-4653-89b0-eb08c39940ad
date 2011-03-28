@@ -26,6 +26,13 @@
                         type: 'POST',
                         url: 'search/' + $("#search-text").val(),
                         success: function (msg) {
+                            $("div#blogs").html(msg);
+                            $("a#search-result-concern").mouseover(function () {
+                                $(this).attr("class", "left search-result-concern-over");
+                            });
+                            $("a#search-result-concern").mouseout(function () {
+                                $(this).attr("class", "left search-result-concern");
+                            });
                         }
                     });
                 }
@@ -75,8 +82,8 @@
             <a class="left selected logined" id="name">OliveQ</a> <a class="left orange logined"
                 href="manager.html">信息管理</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a
                     class="left logined recruitment" id="recruitment-publish-quick">发布招聘信息</a>
-            <a class="left logined" href="logout/">退出</a> <a class="left logouted"
-                id="sina-login" href="login/"></a>
+            <a class="left logined" href="logout/">退出</a> <a class="left logouted" id="sina-login"
+                href="login/"></a>
         </div>
     </div>
     <div id="logo-search">
@@ -137,75 +144,12 @@
             <div id="radio">
                 本周新增职位3124个，今日新增职位666个</div>
             <div id="microblogs">
-                <div id="search-result-outer">
-                    <div id="search-result">
-                        <div class="left">
-                            #<a class="keyword">产品</a>##<a class="keyword">北京</a>##<a class="keyword">移动互联网</a>#的搜索结果</div>
-                        <a id="search-result-concern" class="left search-result-concern"></a><a id="search-result-rss"
-                            class="right"></a>
-                    </div>
-                </div>
                 <div id="fresh-outer">
                     <div id="freash">
                         有条更新，点击<a class="keyword">这里</a>刷新
                     </div>
                 </div>
-                <div class="microblog-item">
-                    <div class="left microblog-item-pic">
-                        <img alt="" width="50" height="50" />
-                    </div>
-                    <div class="left microblog-item-content">
-                        <div class="microblog-item-blog">
-                            <a class="microblog-item-blog-name">赶集网</a>：赶集网招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X)
-                            HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。 （3）简历发送至 nihongtao@ganji.com&nbsp;
-                            欢迎同学们骚扰 <a class="microblog-item-blog-link">http://sinaurl.cn/ht7Wa5</a>
-                        </div>
-                        <div class="microblog-item-other">
-                            <span class="left microblog-item-time">5分钟前</span> <a class="left microblog-item-position">
-                                新浪微博</a> <a class="right microblog-item-control">收藏</a> <a class="right microblog-item-control microblog-item-apply">
-                                    申请该职位</a>
-                        </div>
-                    </div>
-                    <div class="clear">
-                    </div>
-                </div>
-                <div class="microblog-item">
-                    <div class="left microblog-item-pic">
-                        <img alt="" width="50" height="50" />
-                    </div>
-                    <div class="left microblog-item-content">
-                        <div class="microblog-item-blog">
-                            <a class="microblog-item-blog-name">赶集网</a>：赶集网招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X)
-                            HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。 （3）简历发送至 nihongtao@ganji.com&nbsp;
-                            欢迎同学们骚扰 <a class="microblog-item-blog-link">http://sinaurl.cn/ht7Wa5</a>
-                        </div>
-                        <div class="microblog-item-other">
-                            <span class="left microblog-item-time">5分钟前</span> <a class="left microblog-item-position">
-                                新浪微博</a> <a class="right microblog-item-control">收藏</a> <a class="right microblog-item-control microblog-item-apply">
-                                    申请该职位</a>
-                        </div>
-                    </div>
-                    <div class="clear">
-                    </div>
-                </div>
-                <div class="microblog-item">
-                    <div class="left microblog-item-pic">
-                        <img alt="" width="50" height="50" />
-                    </div>
-                    <div class="left microblog-item-content">
-                        <div class="microblog-item-blog">
-                            <a class="microblog-item-blog-name">赶集网</a>：赶集网招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X)
-                            HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。 （3）简历发送至 nihongtao@ganji.com&nbsp;
-                            欢迎同学们骚扰 <a class="microblog-item-blog-link">http://sinaurl.cn/ht7Wa5</a>
-                        </div>
-                        <div class="microblog-item-other">
-                            <span class="left microblog-item-time">5分钟前</span> <a class="left microblog-item-position">
-                                新浪微博</a> <a class="right microblog-item-control">收藏</a> <a class="right microblog-item-control microblog-item-apply">
-                                    申请该职位</a>
-                        </div>
-                    </div>
-                    <div class="clear">
-                    </div>
+                <div id="blogs">
                 </div>
                 <div id="relative">
                     <span class="left">相关招聘：</span><a class="left">前端开发</a><a class="left">前端开发</a><a
