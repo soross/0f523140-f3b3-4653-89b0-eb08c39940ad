@@ -21,6 +21,10 @@ func_register(array(
         'callback' => 'show_credentials',
         'security' => 'true',
     ),
+    'role' => array(
+        'callback' => 'role',
+        'security' => 'true',
+    ),
 ));
 
 function user_is_authenticated()
@@ -211,5 +215,34 @@ function db_get_sinakey()
             'oauth_token' => $row['secret1'],
             'oauth_token_secret' => $row['secret2'],
             );
+}
+
+function role($query)
+{
+    $key = (string) $query[1];
+    if(!$key)
+        $key = "show";
+    $function = 'following_'.$key;
+    if (!function_exists($function))
+        die("Invalid Argument!");
+    return call_user_func_array($function, $query);
+}
+
+function role_set()
+{
+    $id = get_current_user_id();
+    $args = func_get_args();
+    $key = $args[2];
+    if(!$key or ($key != "1" and $key != "2"))
+        die("Invalid argument!");
+    connect_db();
+    $view = "SELECT role_id FROM userinfo WHERE user_id='".$id."'";
+    $list = mysql_query($view);
+    $row = mysql_fetch_array($list);
+    $role = $row['role_id'];
+    if($role != 0)
+        die('Already set role!');
+    $view = "UPDATE userinfo SET role_id=".$key." WHERE user_id='".$id."'";
+    $list = mysql_query($view) or die("Update error!");
 }
 ?>
