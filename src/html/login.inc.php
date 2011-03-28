@@ -56,11 +56,8 @@ function sina_get_credentials()
 
 function show_credentials()
 {
-    $me = sina_get_credentials();
-    $r = '';
-    foreach($me as $a)
-        $r .= $a."<br>";
-    theme('page', '_userinfo', $r);
+    $r = $GLOBALS['user']['nickname'] +','+$GLOBALS['user']['role'];
+    theme('page', 'info', $r);
 }
 
 function login_page()
