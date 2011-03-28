@@ -23,8 +23,8 @@
             $("a#search-button").click(function () {
                 if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴") {
                     $.ajax({
-                        type: 'POST',
-                        url: 'search/' + $("#search-text").val(),
+                        type: 'GET',
+                        url: 'search/' + encodeURI($("#search-text").val()),
                         success: function (msg) {
                             $("div#blogs").html(msg);
                             $("a#search-result-concern").mouseover(function () {
