@@ -47,10 +47,24 @@ function SetRolePicker() {
         if (rolekind == "jobs") {
             $(".jobs").show();
             $(".recruitment").hide();
+            $.ajax({
+                type: 'POST',
+                url: sourcePath + 'role/set/1',
+                success: function (msg) {
+                    alert(msg);
+                }
+            });
         }
         else if (rolekind == "recruitment") {
             $(".jobs").hide();
             $(".recruitment").show();
+            $.ajax({
+                type: 'POST',
+                url: sourcePath + 'role/set/2',
+                success: function (msg) {
+                    alert(msg);
+                }
+            });
         }
         $("div#cover").fadeOut(200);
         $("div#role-choose").fadeOut(200);
