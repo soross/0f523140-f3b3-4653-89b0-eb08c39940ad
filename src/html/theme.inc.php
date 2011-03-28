@@ -57,7 +57,7 @@ function theme_follow()
                             </a>
                     </div></div>';
     $content .= '</div>';
-    return $content;
+    echo $content;
 }
 
 function theme_history()
