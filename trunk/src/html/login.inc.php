@@ -147,7 +147,6 @@ function get_current_user_role()
 function oauth_sina()
 {
     include_once('sinaoauth.php');
-    session_start();
     $o = new WeiboOAuth(SINA_AKEY, SINA_SKEY);
     $keys = $o -> getRequestToken();
     $callback = BASE_URL."sina_callback";
