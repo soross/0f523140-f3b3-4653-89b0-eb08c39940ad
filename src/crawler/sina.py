@@ -62,7 +62,7 @@ def iszhaopin(s):
 			]
 	declinekeywords = [(u"智联招聘", ),
 					   (u"寻人启事", ),
-					   #(r"//", r"@"),
+					   (r"//@", ),
 					  ]
 	match = False
 	for keywordset in keywords:
