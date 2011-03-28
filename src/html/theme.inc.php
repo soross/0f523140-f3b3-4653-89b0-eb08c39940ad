@@ -45,8 +45,7 @@ function theme_cat()
 function theme_follow()
 {
     include_once("follow.inc.php");
-    $content = '<div id="concern">
-                <div class="left-title">
+    $content = '<div class="left-title">
                     <span class="left-title-text left">我的关注</span><a class="right left-title-pic" id="concern-pic"></a></div>';
     $follows = get_followings();
     foreach($follows as $f)
@@ -56,7 +55,6 @@ function theme_follow()
                         <a class="left concern-item-content-info" href="'.BASE_URL.'search/'.$f['search'].'">'.$f['search'].'</a> <a class="right concern-item-content-number">
                             </a>
                     </div></div>';
-    $content .= '</div>';
     echo $content;
 }
 
