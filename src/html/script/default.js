@@ -118,4 +118,20 @@ function SetHistory() {
     });
     $(".history-item").mouseover(function () { $(this).addClass("history-item-over"); });
     $(".history-item").mouseout(function () { $(this).removeClass("history-item-over"); });
+    $("a#history-pic").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: 'history/deleteall',
+            success: function (msg) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'history/show/5',
+                    success: function (msg) {
+                        $("#history").html(msg);
+                        SetHistory();
+                    }
+                });
+            }
+        });
+    });
 }
