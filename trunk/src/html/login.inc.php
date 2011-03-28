@@ -222,7 +222,7 @@ function role($query)
     $key = (string) $query[1];
     if(!$key)
         $key = "show";
-    $function = 'following_'.$key;
+    $function = 'role_'.$key;
     if (!function_exists($function))
         die("Invalid Argument!");
     return call_user_func_array($function, $query);
