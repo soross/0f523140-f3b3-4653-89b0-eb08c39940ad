@@ -1,6 +1,9 @@
-﻿$(function () {
+﻿var issearch = false;
+
+$(function () {
     SetRolePicker();
     SetHistory();
+    GetNewerJob();
 });
 
 function GetNewerJob() {
