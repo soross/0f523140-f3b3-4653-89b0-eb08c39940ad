@@ -2,7 +2,6 @@
 var ML = false;
 var logined = true;
 var isjob = true;
-var first = false;
 var rolekind = "";
 var auth = "";
 var sourcePath = "http://115.156.219.194/apis/";

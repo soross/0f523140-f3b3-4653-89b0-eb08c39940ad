@@ -48,11 +48,6 @@ function SetRolePicker() {
         $("div#cover").fadeOut(200);
         $("div#role-choose").fadeOut(200);
     });
-
-    if (first) {
-        $("div#cover").fadeIn(200);
-        $("div#role-choose").fadeIn(200);
-    }
 }
 
 function SetConcern() {

@@ -21,7 +21,8 @@
                         $("a#name").html(msg.split(',')[0]);
                         var type = msg.split(',')[1];
                         if (type == 0) {
-                            first = true;
+                            $("div#cover").fadeIn(200);
+                            $("div#role-choose").fadeIn(200);
                         }
                         else if (type == 1) {
                             isjob = true;
