@@ -137,7 +137,7 @@ function theme_result($result)
         else
             $source = '<a class="left microblog-item-position">'.$r['source'].'</a>';
         
-        $content .= '<div class="microblog-item">
+        $content .= '<div class="microblog-item" title="'.strtotime($r['post_datetime']).'">
                     <div class="left microblog-item-pic">
                         <img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/>
                     </div>
@@ -146,7 +146,7 @@ function theme_result($result)
                             <a class="microblog-item-blog-name" target="_blank" href="http://t.sina.com.cn/n/'.$r['post_screenname'].'">'.$r['post_screenname'].'</a>：'.$r['content'].'
                         </div>
                         <div class="microblog-item-other">
-                            <span class="left microblog-item-time">'.strtotime($r['post_datetime']).'</span> '.$source;
+                            <span class="left microblog-item-time">'.$r['post_datetime'].'</span> '.$source;
         include_once("login.inc.php");
         if(user_is_authenticated())
             $content .= '<a class="right microblog-item-control">收藏</a> <a class="right microblog-item-control microblog-item-apply">
