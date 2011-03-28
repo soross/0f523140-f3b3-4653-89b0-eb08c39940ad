@@ -1,6 +1,5 @@
 ﻿$(function () {
     SetRolePicker();
-    SetConcern();
     SetHistory();
 });
 
