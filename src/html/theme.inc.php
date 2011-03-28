@@ -137,7 +137,7 @@ function theme_result($result)
         else
             $source = '<a class="left microblog-item-position">'.$r['source'].'</a>';
         
-        $content .= '<div class="microblog-item" title="'.strtotime($r['post_datetime']).'">
+        $content .= '<div class="microblog-item" id="'.strtotime($r['post_datetime']).'">
                     <div class="left microblog-item-pic">
                         <img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/>
                     </div>
