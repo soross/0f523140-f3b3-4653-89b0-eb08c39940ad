@@ -10,6 +10,9 @@ func_register(array(
     'rss' => array(
         'callback' => 'get_rss',
     ),
+    'count' => array(
+        'callback' => 'count_show',
+    ),
 ));
 
 function theme_search($title, $content)
@@ -90,16 +93,17 @@ function search_page($query)
     $key = (string) $query[1];
     if(!$key)
     {
-        $key = $_POST['search_text'];
-        if(!$key)
-            die("Invalid argument!");
+        $data = get_newest_result(10);
     }
-    include_once('login.inc.php');
-    if(user_is_authenticated())
+    else
+    {
+        include_once('login.inc.php');
+        if(user_is_authenticated())
         search_history_add("", "", $key);
-    $data = get_search_result($key, 10);
+        $data = get_search_result($key, 10);
+    }
     $content = theme('result', $data);
-    theme('search', $key." - 搜索", $content);
+    theme('search', $key, $content);
 }
 
 function get_rss($query)
@@ -213,5 +217,12 @@ function search_history($query)
     if (!function_exists($function))
         die("Invalid Argument!");
     return call_user_func_array($function, $query);
+}
+
+function count_show()
+{
+    $counts = get_counts();
+    $r = $counts['tweets_thisweek'].','.$counts['tweets_today'];
+    echo $r;
 }
 ?>
