@@ -36,7 +36,7 @@ function get_followings($num)
 
 function following_show()
 {
-    include_once("theme.inc.php");
+    #include_once("theme.inc.php");
     theme('follow');
     return;
     $args = func_get_args();
