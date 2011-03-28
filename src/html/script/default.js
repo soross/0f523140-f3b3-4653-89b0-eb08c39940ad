@@ -1,6 +1,4 @@
-﻿var issearch = false;
-
-$(function () {
+﻿$(function () {
     SetRolePicker();
     SetHistory();
     GetNewerJob();
