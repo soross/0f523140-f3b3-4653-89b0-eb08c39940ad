@@ -15,7 +15,7 @@ func_register(array(
     ),
 ));
 
-function theme_search($title, $content)
+function theme_search($key, $content)
 {
     if($title=='首页')
     {
@@ -28,9 +28,8 @@ function theme_search($title, $content)
     }
     else
     {
-        $key = mb_substr($title, 0, -9);
         $GLOBALS['search'] = $key;
-        $pre = '<div id="microblogs"><div id="search-result-outer">
+        $pre = '<div id="search-result-outer">
                     <div id="search-result">
                         <div class="left">
                             #<a class="keyword">'.$key.'</a>#的搜索结果</div>';
@@ -42,7 +41,7 @@ function theme_search($title, $content)
                     </div>
                 </div>';
     }
-    $content = $pre.$content.'</div>';
+    $content = $pre.$content;
     theme('page', $title, $content);
 }
 
