@@ -14,35 +14,7 @@
     <script type="text/javascript">
         $(function () {
             if (logined) {
-                $.ajax({
-                    type: 'POST',
-                    url: sourcePath + 'info/',
-                    success: function (msg) {
-                        $(".logined").show();
-                        $(".logouted").hide();
-                        $("a#name").html(msg.split(',')[0]);
-                        var type = msg.split(',')[1];
-                        if (type == 0) {
-                            $("div#cover").fadeIn(200);
-                            $("div#role-choose").fadeIn(200);
-                        }
-                        else if (type == 1) {
-                            $(".jobs").show();
-                            $(".recruitment").hide();
-                        }
-                        else {
-                            $(".jobs").hide();
-                            $(".recruitment").show();
-                        }
-                        $.ajax({
-                            type: 'POST',
-                            url: sourcePath + 'follow/show/5',
-                            success: function (msg) {
-                                $("#concern").html(msg);
-                            }
-                        });
-                    }
-                });
+                AfterLogin();
             }
             else {
                 $(".logined").hide();
@@ -51,6 +23,39 @@
         });
         function GoTo(e) {
             location = sourcePath + e;
+        }
+
+        function AfterLogin() {
+            $.ajax({
+                type: 'POST',
+                url: sourcePath + 'info/',
+                success: function (msg) {
+                    $(".logined").show();
+                    $(".logouted").hide();
+                    $("a#name").html(msg.split(',')[0]);
+                    var type = msg.split(',')[1];
+                    if (type == 0) {
+                        $("div#cover").fadeIn(200);
+                        $("div#role-choose").fadeIn(200);
+                    }
+                    else if (type == 1) {
+                        $(".jobs").show();
+                        $(".recruitment").hide();
+                    }
+                    else {
+                        $(".jobs").hide();
+                        $(".recruitment").show();
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: sourcePath + 'follow/show/5',
+                        success: function (msg) {
+                            $("#concern").html(msg);
+                            SetConcern();
+                        }
+                    });
+                }
+            });
         }
     </script>
 </head>
