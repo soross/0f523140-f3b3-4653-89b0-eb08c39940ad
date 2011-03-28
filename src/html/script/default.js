@@ -3,8 +3,15 @@
     SetHistory();
 });
 
-function GetNewerJob() { 
-
+function GetNewerJob() {
+    $.ajax({
+        type: 'POST',
+        url: 'count/',
+        success: function (msg) {
+            $("div#radio").html("本周新增职位" + msg.split(',')[0] + "个，今日新增职位" + msg.split(',')[0] + "个");
+            setTimeout(function () { GetNewerJob(); }, 1200000);
+        }
+    });
 }
 
 function SetRolePicker() {
