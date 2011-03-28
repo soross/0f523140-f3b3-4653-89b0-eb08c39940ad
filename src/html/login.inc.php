@@ -244,5 +244,7 @@ function role_set()
         die('Already set role!');
     $view = "UPDATE userinfo SET role_id=".$key." WHERE user_id='".$id."'";
     $list = mysql_query($view) or die("Update error!");
+    $GLOBALS['user']['role'] = $key;
+    save_cookie();
 }
 ?>
