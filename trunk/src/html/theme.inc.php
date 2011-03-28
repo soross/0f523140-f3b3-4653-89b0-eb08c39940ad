@@ -146,7 +146,7 @@ function theme_result($result)
                             <a class="microblog-item-blog-name" target="_blank" href="http://t.sina.com.cn/n/'.$r['post_screenname'].'">'.$r['post_screenname'].'</a>：'.$r['content'].'
                         </div>
                         <div class="microblog-item-other">
-                            <span class="left microblog-item-time">'.$r['post_datetime'].'</span> '.$source;
+                            <span class="left microblog-item-time">'.strtotime($r['post_datetime']).'</span> '.$source;
         include_once("login.inc.php");
         if(user_is_authenticated())
             $content .= '<a class="right microblog-item-control">收藏</a> <a class="right microblog-item-control microblog-item-apply">
@@ -183,7 +183,7 @@ function theme_rss($result)
         $content .= '<item> 
       <title>'.$GLOBALS['search'].'</title> 
       <link>http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'</link> 
-      <description><![CDATA['.$r['content'].']]></description> 
+      <description><![CDATA['.$r['content'].']]></description>
       <pubDate>'.date(DATE_RSS, strtotime($r['post_datetime'])).'</pubDate> 
     </item>';
     $content .= '</channel> 
