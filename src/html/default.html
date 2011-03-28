@@ -17,6 +17,8 @@
                     type: 'POST',
                     url: sourcePath + 'info/',
                     success: function (msg) {
+                        $(".logined").show();
+                        $(".logouted").hide();
                         $("a#name").html(msg.split(',')[0]);
                         var type = msg.split(',')[1];
                         if (type == 0) {
