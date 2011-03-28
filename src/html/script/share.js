@@ -4,6 +4,8 @@ var logined = true;
 var isjob = true;
 var first = false;
 var rolekind = "";
+var auth = "";
+var sourcePath = "http://115.156.219.194/apis/";
 var length = 0;
 var position = 0;
 
@@ -92,7 +94,13 @@ function HideRecruitmentPublish() {
 }
 
 function Init() {
-
+    auth = $.cookie("USER_AUTH", { path: "/" });
+    if (auth == null) {
+        logined = false;
+    }
+    else {
+        logined = true;
+    }
     if (logined) {
         $(".logined").show();
         $(".logouted").hide();
