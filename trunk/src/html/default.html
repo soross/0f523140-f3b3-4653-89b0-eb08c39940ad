@@ -12,7 +12,6 @@
     <script src="script/default.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
-
             if (logined) {
                 $.ajax({
                     type: 'POST',
@@ -25,12 +24,6 @@
                             $("div#role-choose").fadeIn(200);
                         }
                         else if (type == 1) {
-                            isjob = true;
-                        }
-                        else {
-                            isjob = false;
-                        }
-                        if (isjob) {
                             $(".jobs").show();
                             $(".recruitment").hide();
                         }
@@ -40,16 +33,6 @@
                         }
                     }
                 });
-                $(".logined").show();
-                $(".logouted").hide();
-                if (isjob) {
-                    $(".jobs").show();
-                    $(".recruitment").hide();
-                }
-                else {
-                    $(".jobs").hide();
-                    $(".recruitment").show();
-                }
             }
             else {
                 $(".logined").hide();
@@ -102,7 +85,7 @@
     </div>
     <div id="content" class="inner">
         <div id="left" class="left">
-            <div id="concern">
+            <div id="concern" class="logined">
                 <div class="left-title">
                     <span class="left-title-text left">我的关注</span><a class="right left-title-pic" id="concern-pic"></a></div>
                 <div class="concern-item concern-item-normal">
@@ -134,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            <div id="history">
+            <div id="history" class="logined">
                 <div class="left-title">
                     <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic">
                     </a>
@@ -162,7 +145,7 @@
             <div id="radio">
                 本周新增职位3124个，今日新增职位666个</div>
             <div id="microblogs">
-                <div id="search-result-outer">
+                <div id="search-result-outer" class="logined">
                     <div id="search-result">
                         <div class="left">
                             #<a class="keyword">产品</a>##<a class="keyword">北京</a>##<a class="keyword">移动互联网</a>#的搜索结果</div>

@@ -45,6 +45,14 @@ function SetRolePicker() {
         rolekind = "recruitment";
     });
     $("a#role-confirm").click(function () {
+        if (rolekind == "jobs") {
+            $(".jobs").show();
+            $(".recruitment").hide();
+        }
+        else if (rolekind == "recruitment") {
+            $(".jobs").hide();
+            $(".recruitment").show();
+        }
         $("div#cover").fadeOut(200);
         $("div#role-choose").fadeOut(200);
     });
