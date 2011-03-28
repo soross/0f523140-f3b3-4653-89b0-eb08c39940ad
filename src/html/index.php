@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 include_once('common.inc.php');
 include_once('theme.inc.php');
 include_once('login.inc.php');

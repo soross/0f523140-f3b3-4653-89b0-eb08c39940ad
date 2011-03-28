@@ -36,6 +36,8 @@ function get_followings($num)
 
 function following_show()
 {
+    theme('follow');
+    return;
     $args = func_get_args();
     $key = intval($args[2]);
     $data = get_followings($key);
@@ -69,7 +71,6 @@ function following_delete()
         print $key;
         die(": Non-exist Error!");
     }
-    header("Location: ".BASE_URL);
 }
 
 function following_exist($key)
@@ -106,8 +107,7 @@ function following_add()
     $v4uuid = str_replace("-", "", UUID::v4());
     $current_datetime = date('Y-m-d H:i:s');
     $view = "INSERT INTO followings(following_id, search, user_id, deleted, add_time) VALUES ('$v4uuid', '$key', '$id', '0', '$current_datetime')";
-    $list = mysql_query($view) or die($view."Insert error!");
-    header("Location: ".BASE_URL."search/".$key);
+    $list = mysql_query($view) or die("Insert error!");
 }
 
 function following($query)

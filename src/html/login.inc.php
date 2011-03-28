@@ -66,8 +66,8 @@ function login_page()
     header("Location: ".BASE_URL."sina_login");
     
     #else:
-    $content = "<a href='sina_login'>新浪微博登陆</a>";
-    theme('page', '登陆', $content);
+    #$content = "<a href='sina_login'>新浪微博登陆</a>";
+    #theme('page', '登陆', $content);
 }
 
 function user_logout($login = 0) {
@@ -147,6 +147,7 @@ function get_current_user_role()
 function oauth_sina()
 {
     include_once('sinaoauth.php');
+    session_start();
     $o = new WeiboOAuth(SINA_AKEY, SINA_SKEY);
     $keys = $o -> getRequestToken();
     $callback = BASE_URL."sina_callback";
@@ -162,7 +163,7 @@ function oauth_sina_callback()
     $last_key = $o -> getAccessToken($_REQUEST['oauth_verifier']);
     $GLOBALS['user']['sinakey'] = $last_key;
     connect_db();
-    $me = sina_get_credentials() or die("Cound not get data from Sina API");
+    $me =   () or die("Cound not get data from Sina API");
     if(!$me['id'])
         die("Cound not get data from Sina API");
     $view = "SELECT * FROM accountbindings WHERE site_id='1' AND user_site_id='".$me['id']."'";
