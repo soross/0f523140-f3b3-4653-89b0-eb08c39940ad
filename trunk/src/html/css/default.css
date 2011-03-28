@@ -188,6 +188,7 @@ div#right div#search-result-outer
     background-color: #ffffff;
     width: 588px;
     padding: 1px;
+    display:none;
 }
 div#right div#search-result
 {
