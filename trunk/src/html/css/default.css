@@ -314,6 +314,7 @@ div#right div#pages
 {
     height: 21px;
     margin-top: 5px;
+    display:none;
 }
 div#right a.page-number
 {
@@ -384,6 +385,27 @@ a#role-confirm
     height: 46px;
 }
 
+div#right div#fresh-outer
+{
+    height: 28px;
+    border: 1px #d7e7ef solid;
+    background-color: #ffffff;
+    width: 588px;
+    padding: 1px;
+    display:none;
+}
+div#right div#freash
+{
+    height: 28px;
+    background-color: #d7e7ef;
+    width: 563px;
+    line-height: 28px;
+    background-image: url('../images/search-result-pic.jpg');
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    padding-left: 25px;
+    letter-spacing: 3px;
+}
 
 .clear
 {
