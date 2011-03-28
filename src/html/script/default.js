@@ -2,11 +2,10 @@
 
 $(function () {
     SetRolePicker();
-    SetHistory();
-    GetNewerJob();
+    GetNewerCount();
 });
 
-function GetNewerJob() {
+function GetNewerCount() {
     $.ajax({
         type: 'POST',
         url: 'count/',
