@@ -49,7 +49,7 @@ function theme_cat()
         else
             $pre = "";
         $content .= '<div class="sorts-item'.$pre.'">
-                <a>'.$r['name'].'</a></div>';
+                <a id='.$i.'>'.$r['name'].'</a></div>';
     }
     echo $content;
 }
