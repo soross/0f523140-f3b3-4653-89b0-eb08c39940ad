@@ -187,6 +187,10 @@ function SetSorts() {
             $("#sorts-content").html(msg);
             $(".sorts-item").mouseover(function () { $(this).addClass("sorts-item-over") });
             $(".sorts-item").mouseout(function () { $(this).removeClass("sorts-item-over") });
+            $(".sorts-item a").click(function () {
+                $("a#sorts-name").html($(this).html());
+                $("a#sort").html($(this).html());
+            });
         }
     });
     $("#sorts-name").click(function () { $("#sorts").fadeOut(200) });
