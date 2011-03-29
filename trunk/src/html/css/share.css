@@ -172,6 +172,7 @@ div#sorts-content
 {
     width: 294px;
     background-color: #f8fcff;
+    border-top-left-radius: 5px 5px;
     border-top-right-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
     border-bottom-right-radius: 5px 5px;
