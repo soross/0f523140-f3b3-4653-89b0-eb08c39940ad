@@ -54,7 +54,7 @@ function get_search_result($key, $num, $cate, $time)
     $key = explode(" ",$key);
     $key = "%".implode("%",$key)."%";
     if($cate)
-        $cate = " AND a.tweet_id=b.tweet_id AND b.cat_id=$cate)";
+        $cate = " AND a.tweet_id=b.tweet_id AND b.cat_id=$cate";
         #$cate = " AND cat_id=".$cate;
     if($time)
     {
