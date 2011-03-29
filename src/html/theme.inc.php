@@ -45,7 +45,7 @@ function theme_cat()
         $content .= '<div class="sorts-item sorts-item-alternative">
                 <a>'.$r['name'].'</a></div>';
     }
-    return $content;
+    echo $content;
 }
 
 function theme_follow()
