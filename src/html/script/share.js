@@ -147,26 +147,26 @@ function SetCompany() {
             MR = true;
             CompanyMR();
         }
-        $(this).animate({ opacity: 1 }, 200);
+        $(this).stop().animate({ opacity: 1 }, 200);
     });
     $("#company-control-right").mouseout(function () {
         if (MR) {
             MR = false;
         }
-        $(this).animate({ opacity: 0.4 }, 200);
+        $(this).stop().animate({ opacity: 0.4 }, 200);
     });
     $("#company-control-left").mouseover(function () {
         if (!ML) {
             ML = true;
             CompanyML();
         }
-        $(this).animate({ opacity: 1 }, 200);
+        $(this).stop().animate({ opacity: 1 }, 200);
     });
     $("#company-control-left").mouseout(function () {
         if (ML) {
             ML = false;
         }
-        $(this).animate({ opacity: 0.4 }, 200);
+        $(this).stop().animate({ opacity: 0.4 }, 200);
     });
 
     length = $("a.company-name:last").position().left + $("a.company-name:last").outerWidth("ture");
