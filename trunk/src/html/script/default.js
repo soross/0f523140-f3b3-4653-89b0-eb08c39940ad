@@ -178,7 +178,7 @@ function SetConcern() {
                         SetHistory();
                     }
                 });
-                SetResult(msg);
+                SetResult($(this).children(".concern-item-content-info").html());
             }
         });
     });
@@ -219,7 +219,7 @@ function SetHistory() {
                         SetHistory();
                     }
                 });
-                SetResult(msg);
+                SetResult($(this).children("a").html());
             }
         });
     });
