@@ -86,7 +86,7 @@ function get_search_result($key, $num, $cate, $time)
 function get_newest_result($num)
 {
     connect_db();
-    $view = "SELECT tweets.* FROM tweets ORDER BY tweets.post_datetime DESC LIMIT 0 , $num";
+    $view = "SELECT * FROM tweets ORDER BY post_datetime DESC LIMIT 0 , $num";
     
     $list = mysql_query($view);
     $result = array();
