@@ -148,8 +148,7 @@ function SetConcern() {
         $.ajax({
             type: 'POST',
             url: 'follow/delete/' + $(this).attr("id"),
-            success: function (msg) {
-                $("div#blogs").html(msg);
+            success: function () {
             }
         });
         $(this).parent().animate({ opacity: 0 }, 200, function () { $(this).slideUp(100); });
