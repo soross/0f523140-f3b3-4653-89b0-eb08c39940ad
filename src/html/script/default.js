@@ -18,11 +18,42 @@ function GetNewerCount() {
         url: 'count/',
         success: function (msg) {
             if (!issearch) {
-                $("div#radio").html("本周新增职位" + msg.split(',')[0] + "个，今日新增职位" + msg.split(',')[1] + "个");
+                $("div#radio").html("本周新增职位" + trim(msg).split(',')[0] + "个，今日新增职位" + trim(msg).split(',')[1] + "个");
                 setTimeout(function () { GetNewerJob(); }, 1200000);
             }
         }
     });
+}
+
+function SetResult(msg) {
+    msg = trim(msg);
+    var str = "";
+    for (s in msg.split(' ')) {
+        str += '#<a class="keyword">' + s + '</a>#';
+    }
+    str += "的搜索结果";
+    $("div#search-result div.left").html(str);
+    $.ajax({
+        type: 'POST',
+        url: 'follow/exist/' + msg,
+        success: function (e) {
+            if (e == 0) {
+                $("a#search-result-concern").click(function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'follow/add/' + msg,
+                        success: function () {
+                            $("a#search-result-concern").attr("class", "left search-result-concern-have");
+                        }
+                    });
+                });
+            }
+            else {
+                $("a#search-result-concern").attr("class", "left search-result-concern-have");
+            }
+        }
+    });
+    $("a#search-result-rss").attr("href", 'follow/rss/' + msg);
 }
 
 function SetRolePicker() {
