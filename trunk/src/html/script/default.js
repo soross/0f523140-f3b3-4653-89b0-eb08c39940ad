@@ -118,6 +118,15 @@ function SetHistory() {
     });
     $(".history-item").mouseover(function () { $(this).addClass("history-item-over"); });
     $(".history-item").mouseout(function () { $(this).removeClass("history-item-over"); });
+    $(".history-item").click(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'search/' + encodeURI($(this).html()),
+            success: function (msg) {
+                $("div#blogs").html(msg);
+            }
+        });
+    });
     $("a#history-pic").click(function () {
         $.ajax({
             type: 'POST',
