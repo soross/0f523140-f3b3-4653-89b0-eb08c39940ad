@@ -44,20 +44,16 @@ function SetResult(msg) {
                         url: 'follow/add/' + msg,
                         success: function () {
                             $("a#search-result-concern").attr("class", "left search-result-concern-have");
-                            $("a#search-result-concern").mouseover(function () {
-                            });
-                            $("a#search-result-concern").mouseout(function () {
-                            });
+                            $("a#search-result-concern").unbind("mouseover");
+                            $("a#search-result-concern").unbind("mouseout");
                         }
                     });
                 });
             }
             else {
                 $("a#search-result-concern").attr("class", "left search-result-concern-have");
-                $("a#search-result-concern").mouseover(function () {
-                });
-                $("a#search-result-concern").mouseout(function () {
-                });
+                $("a#search-result-concern").unbind("mouseover");
+                $("a#search-result-concern").unbind("mouseout");
             }
         }
     });
