@@ -54,7 +54,7 @@ function get_search_result($key, $num, $cate, $time)
     $key = explode(" ",$key);
     $key = "%".implode("%",$key)."%";
     if($cate)
-        $cate = " AND tweet_id=(SELECT tweet_id FROM cat_relationship WHERE cat_id=$cate)";
+        $cate = " AND a.tweet_id=b.tweet_id AND b.cat_id=$cate)";
         #$cate = " AND cat_id=".$cate;
     if($time)
     {
@@ -65,9 +65,9 @@ function get_search_result($key, $num, $cate, $time)
             $fuhao = "<";
             $time = strval(0 - intval($time));
         }
-        $time = " AND post_datetime".$fuhao.date('Y-m-d H:i:s', strtotime($time));
+        $time = " AND a.post_datetime".$fuhao.date('Y-m-d H:i:s', strtotime($time));
     }
-    $view = "SELECT * FROM tweets WHERE content LIKE '$key'$cate$time ORDER BY post_datetime DESC LIMIT 0 , $num";
+    $view = "SELECT a.*,b.* FROM tweets,cat_relationship WHERE a.content LIKE '$key'$cate$time ORDER BY a.post_datetime DESC LIMIT 0 , $num";
     echo $view;
     //FIXME: Low performance!
     
