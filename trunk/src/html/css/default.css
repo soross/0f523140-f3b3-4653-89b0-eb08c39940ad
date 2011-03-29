@@ -218,6 +218,10 @@ div#right a.search-result-concern-over
 {
     background-image: url('../images/search-result-concern-over.jpg');
 }
+div#right a.search-result-concern-click
+{
+    background-image: url('../images/search-result-concern-click.jpg');
+}
 div#right a.search-result-concern-have
 {
     background-image: url('../images/search-result-concern-have.jpg');
