@@ -89,7 +89,7 @@ function following_exist()
     if($row)
         echo "1";
     else
-        echo "0"s;
+        echo "0";
 }
 
 function following_add()
