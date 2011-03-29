@@ -170,22 +170,13 @@ function SetConcern() {
             type: 'GET',
             url: 'search/' + encodeURI(text),
             success: function (msg) {
-                SetSearch(msg);
-                $.ajax({
-                    type: 'GET',
-                    url: 'history/show/5',
-                    success: function (msg) {
-                        $("div#history").html(msg);
-                        SetHistory();
-                    }
-                });
-                SetResult(text);
+                SetSearch(msg, text);
             }
         });
     });
 }
 
-function SetSearch(msg) {
+function SetSearch(msg, e) {
     $("div#blogs").html(msg);
     $("div#search-result-outer").slideDown(200);
     $("a#search-result-concern").mouseover(function () {
@@ -194,6 +185,15 @@ function SetSearch(msg) {
     $("a#search-result-concern").mouseout(function () {
         $(this).attr("class", "left search-result-concern");
     });
+    $.ajax({
+        type: 'GET',
+        url: 'history/show/5',
+        success: function (msg) {
+            $("div#history").html(msg);
+            SetHistory();
+        }
+    });
+    SetResult(e);
 }
 
 function SetHistory() {
@@ -212,16 +212,7 @@ function SetHistory() {
             type: 'GET',
             url: 'search/' + encodeURI(text),
             success: function (msg) {
-                SetSearch(msg);
-                $.ajax({
-                    type: 'GET',
-                    url: 'history/show/5',
-                    success: function (msg) {
-                        $("div#history").html(msg);
-                        SetHistory();
-                    }
-                });
-                SetResult(text);
+                SetSearch(msg, text);
             }
         });
     });

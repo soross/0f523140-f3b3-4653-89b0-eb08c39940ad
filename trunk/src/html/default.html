@@ -20,17 +20,7 @@
                             type: 'GET',
                             url: 'search/' + encodeURI($("#search-text").val()),
                             success: function (msg) {
-                                SetSearch(msg);
-                                setTimeout(function () { GetNewerBlogs(); }, 5000);
-                                $.ajax({
-                                    type: 'GET',
-                                    url: 'history/show/5',
-                                    success: function (msg) {
-                                        $("div#history").html(msg);
-                                        SetHistory();
-                                    }
-                                });
-                                SetResult($("#search-text").val());
+                                SetSearch(msg, $("#search-text").val());
                             }
                         });
                     }
@@ -42,16 +32,7 @@
                         type: 'GET',
                         url: 'search/' + encodeURI($("#search-text").val()),
                         success: function (msg) {
-                            SetSearch(msg);
-                            $.ajax({
-                                type: 'GET',
-                                url: 'history/show/5',
-                                success: function (msg) {
-                                    $("div#history").html(msg);
-                                    SetHistory();
-                                }
-                            });
-                            SetResult($("#search-text").val());
+                            SetSearch(msg, $("#search-text").val());
                         }
                     });
                 }
