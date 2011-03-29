@@ -117,13 +117,21 @@ function SetConcern() {
             type: 'GET',
             url: 'search/' + encodeURI($(this).children(".concern-item-content-info").html()),
             success: function (msg) {
-                $("div#blogs").html(msg);
+                SetSearch(msg);
             }
         });
     });
 }
 
-function SetSearch() {
+function SetSearch(msg) {
+    $("div#blogs").html(msg);
+    $("#search-result-outer").slideDown(200);
+    $("a#search-result-concern").mouseover(function () {
+        $(this).attr("class", "left search-result-concern-over");
+    });
+    $("a#search-result-concern").mouseout(function () {
+        $(this).attr("class", "left search-result-concern");
+    });
 }
 
 function SetHistory() {
@@ -141,7 +149,7 @@ function SetHistory() {
             type: 'GET',
             url: 'search/' + encodeURI($(this).children("a").html()),
             success: function (msg) {
-                $("div#blogs").html(msg);
+                SetSearch(msg);
             }
         });
     });
