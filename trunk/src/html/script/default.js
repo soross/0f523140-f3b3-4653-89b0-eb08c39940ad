@@ -43,11 +43,12 @@ function SetResult(msg) {
                 $("a#search-result-concern").click(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'follow/add/' + SearchResult,
+                        url: 'follow/add/' + encodeURI(SearchResult),
                         success: function () {
                             $("a#search-result-concern").attr("class", "left search-result-concern-have");
                             $("a#search-result-concern").unbind("mouseover");
                             $("a#search-result-concern").unbind("mouseout");
+                            $("a#search-result-concern").unbind("click");
                         }
                     });
                 });
