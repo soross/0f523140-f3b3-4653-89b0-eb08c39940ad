@@ -164,10 +164,11 @@ function SetConcern() {
         $(this).parent().animate({ opacity: 0 }, 200, function () { $(this).slideUp(100); });
     });
     $(".concern-item-content").click(function () {
+        var text = $(this).children(".concern-item-content-info").html();
         $(this).children(".concern-item-content-number").fadeOut(200, function () { $(this).parent().removeClass("concern-item-content-new"); });
         $.ajax({
             type: 'GET',
-            url: 'search/' + encodeURI($(this).children(".concern-item-content-info").html()),
+            url: 'search/' + encodeURI(text),
             success: function (msg) {
                 SetSearch(msg);
                 $.ajax({
@@ -178,7 +179,7 @@ function SetConcern() {
                         SetHistory();
                     }
                 });
-                SetResult($(this).children(".concern-item-content-info").html());
+                SetResult(text);
             }
         });
     });
@@ -206,9 +207,10 @@ function SetHistory() {
     $(".history-item").mouseover(function () { $(this).addClass("history-item-over"); });
     $(".history-item").mouseout(function () { $(this).removeClass("history-item-over"); });
     $(".history-item").click(function () {
+        var text = $(this).children("a").html();
         $.ajax({
             type: 'GET',
-            url: 'search/' + encodeURI($(this).children("a").html()),
+            url: 'search/' + encodeURI(text),
             success: function (msg) {
                 SetSearch(msg);
                 $.ajax({
@@ -219,7 +221,7 @@ function SetHistory() {
                         SetHistory();
                     }
                 });
-                SetResult($(this).children("a").html());
+                SetResult(text);
             }
         });
     });
