@@ -190,6 +190,7 @@ function SetSorts() {
             $(".sorts-item a").click(function () {
                 $("a#sorts-name").html($(this).html());
                 $("a#sort").html($(this).html());
+                $("#sorts").fadeOut(200);
             });
         }
     });
