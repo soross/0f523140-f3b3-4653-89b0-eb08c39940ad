@@ -162,9 +162,12 @@ function SetHistory() {
                     type: 'GET',
                     url: 'history/show/5',
                     success: function (msg) {
-                        $(".history-item").animate({ opacity: 0 }, 200, function () { $(this).slideUp(100); });
-                        $("#history").html(msg);
-                        SetHistory();
+                        $(".history-item").animate({ opacity: 0 }, 200, function () {
+                            $(this).slideUp(100, null, function () {
+                                $("#history").html(msg);
+                                SetHistory();
+                            });
+                        });
                     }
                 });
             }
