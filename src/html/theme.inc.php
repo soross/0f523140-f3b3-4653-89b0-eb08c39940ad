@@ -44,7 +44,7 @@ function theme_cat()
     foreach($result as $r)
     {
         $i ++;
-        if($i%2==0)
+        if($i%2==1)
             $pre = " sorts-item-alternative";
         else
             $pre = "";
