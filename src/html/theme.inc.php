@@ -58,21 +58,6 @@ function theme_follow()
     echo $content;
 }
 
-function theme_history()
-{
-    include_once("search.inc.php");
-    $content = '<div class="left-title">
-                    <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic">
-                    </a>
-                </div>';
-    $history = get_search_history();
-    foreach($history as $h)
-        $content .= '<div class="history-item">
-                    <a>'.$h['search'].'</a></div>';
-    $content .= '</div>';
-    echo $content;
-}
-
 function theme_hot()
 {
     include_once("common.inc.php");
