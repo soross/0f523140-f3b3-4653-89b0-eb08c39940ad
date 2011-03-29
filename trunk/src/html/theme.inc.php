@@ -43,13 +43,12 @@ function theme_cat()
     $i = 0;
     foreach($result as $r)
     {
-        $i ++;
-        if($i%2==1)
+        if($i%2==0)
             $pre = " sorts-item-alternative";
         else
             $pre = "";
         $content .= '<div class="sorts-item'.$pre.'">
-                <a id='.$i.'>'.$r['name'].'</a></div>';
+                <a id='.$i++.'>'.$r['name'].'</a></div>';
     }
     echo $content;
 }
