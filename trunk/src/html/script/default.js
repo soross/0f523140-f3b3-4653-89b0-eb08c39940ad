@@ -40,6 +40,7 @@ function SetResult(msg) {
         url: 'follow/exist/' + encodeURI(msg),
         success: function (e) {
             if (e[0] == '0') {
+                $("a#search-result-concern").attr("class", "left search-result-concern");
                 $("a#search-result-concern").click(function () {
                     $.ajax({
                         type: 'POST',
