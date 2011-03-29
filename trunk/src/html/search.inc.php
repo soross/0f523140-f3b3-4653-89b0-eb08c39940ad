@@ -53,7 +53,7 @@ function get_search_result($key, $num, $cate, $time)
     
     $key = explode(" ",$key);
     $key = "%".implode("%",$key)."%";
-    if($cate)
+    if($cate and $cate!="0")
     {
         $cate1 = ",(SELECT * from cat_relationship WHERE cat_id=$cate) AS cate";
         $cate2 = " AND tweets.tweet_id=cate.tweet_id";

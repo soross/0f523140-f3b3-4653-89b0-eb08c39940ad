@@ -46,7 +46,7 @@ function func_execute_active_handler() {
 function get_categories()
 {
     connect_db();
-    $view = "SELECT * FROM categories";
+    $view = "SELECT * FROM categories ORDER BY cat_id ASC";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
