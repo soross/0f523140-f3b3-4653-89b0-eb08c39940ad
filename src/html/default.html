@@ -43,7 +43,6 @@
                         url: 'search/' + encodeURI($("#search-text").val()),
                         success: function (msg) {
                             SetSearch(msg);
-                            setTimeout(function () { GetNewerBlogs(); }, 5000);
                             $.ajax({
                                 type: 'GET',
                                 url: 'history/show/5',
