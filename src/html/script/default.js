@@ -48,6 +48,7 @@ function SetResult(msg) {
                         success: function () {
                             $("a#search-result-concern").attr("class", "left search-result-concern-have");
                             $("a#search-result-concern").unbind("mouseover");
+                            $("a#search-result-concern").unbind("mousedown");
                             $("a#search-result-concern").unbind("mouseout");
                             $("a#search-result-concern").unbind("click");
                             $.ajax({
@@ -65,6 +66,7 @@ function SetResult(msg) {
             else {
                 $("a#search-result-concern").attr("class", "left search-result-concern-have");
                 $("a#search-result-concern").unbind("mouseover");
+                $("a#search-result-concern").unbind("mousedown");
                 $("a#search-result-concern").unbind("mouseout");
             }
         }
@@ -181,6 +183,9 @@ function SetSearch(msg, e) {
     $("div#search-result-outer").slideDown(200);
     $("a#search-result-concern").mouseover(function () {
         $(this).attr("class", "left search-result-concern-over");
+    });
+    $("a#search-result-concern").mousedown(function () {
+        $(this).attr("class", "left search-result-concern-click");
     });
     $("a#search-result-concern").mouseout(function () {
         $(this).attr("class", "left search-result-concern");
