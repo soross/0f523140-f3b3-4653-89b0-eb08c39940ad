@@ -198,6 +198,13 @@ function SetSorts() {
     $("#sorts-triangle").click(function () { $("#sorts").fadeOut(200) });
     $("#sort-triangle").click(function () { $("#sorts").fadeIn(200) });
     $("#sort").click(function () { $("#sorts").fadeIn(200) });
+    $("body").click(function (e) {
+        if (e.pageX >= $("#sorts").offset().left && e.pageX <= $("#sorts").offset().left + $("#sorts").width() && e.pageY >= $("#sorts").offset().top && e.pageY <= $("#sorts").offset().left + $("#sorts").height()) {
+        }
+        else {
+            $("#sorts").fadeOut(200);
+        }
+    });
 }
 
 function CoverResize() {

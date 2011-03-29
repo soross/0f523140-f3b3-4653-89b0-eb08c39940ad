@@ -4,6 +4,7 @@
     background-color: #f2f6fe;
     background-image: url('../images/background.jpg');
     background-repeat: repeat-x;
+    overflow:hidden;
 }
 body, a, input, span, img
 {
