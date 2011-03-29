@@ -74,18 +74,22 @@ function following_delete()
     }
 }
 
-function following_exist($key)
+function following_exist()
 {
     include_once('login.php');
     $id = get_current_user_id();
+    $args = func_get_args();
+    $key = $args[2];
+    if(!$key)
+        die('Invalid Argument!');
     connect_db();
     $view = "SELECT * FROM followings WHERE user_id='$id' AND search='$key' AND deleted='0'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     if($row)
-        return true;
+        echo "1";
     else
-        return false;
+        echo "0"s;
 }
 
 function following_add()
