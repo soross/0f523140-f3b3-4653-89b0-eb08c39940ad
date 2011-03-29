@@ -53,22 +53,6 @@ function theme_cat()
     echo $content;
 }
 
-function theme_follow()
-{
-    include_once("follow.inc.php");
-    $content = '<div class="left-title">
-                    <span class="left-title-text left">我的关注</span><a class="right left-title-pic" id="concern-pic"></a></div>';
-    $follows = get_followings();
-    foreach($follows as $f)
-        $content .= '<div class="concern-item concern-item-normal">
-                    <a class="concern-item-delete left" id="'.$f['following_id'].'"></a>
-                    <div class="left concern-item-content">
-                        <a class="left concern-item-content-info">'.$f['search'].'</a> <a class="right concern-item-content-number">
-                            </a>
-                    </div></div>';
-    echo $content;
-}
-
 function theme_hot()
 {
     include_once("common.inc.php");
