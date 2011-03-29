@@ -50,7 +50,7 @@ function theme_follow()
     $follows = get_followings();
     foreach($follows as $f)
         $content .= '<div class="concern-item concern-item-normal">
-                    <a class="concern-item-delete left"></a>
+                    <a class="concern-item-delete left" id="'.$f['following_id'].'"></a>
                     <div class="left concern-item-content">
                         <a class="left concern-item-content-info">'.$f['search'].'</a> <a class="right concern-item-content-number">
                             </a>
