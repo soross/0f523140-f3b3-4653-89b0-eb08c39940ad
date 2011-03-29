@@ -3,6 +3,13 @@
 $(function () {
     SetRolePicker();
     GetNewerCount();
+    $.ajax({
+        type: 'GET',
+        url: 'search/',
+        success: function (msg) {
+            $("div#blogs").html(msg);
+        }
+    });
 });
 
 function GetNewerCount() {
