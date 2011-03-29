@@ -44,7 +44,7 @@ function theme_search($key, $content)
     theme('page', $title, $content);
 }
 
-function get_search_result($key, $num)
+function get_search_result($key, $num, $cate, $time)
 {
     connect_db();
     
@@ -53,8 +53,20 @@ function get_search_result($key, $num)
     
     $key = explode(" ",$key);
     $key = "%".implode("%",$key)."%";
-    
-    $view = "SELECT * FROM tweets WHERE content LIKE '$key' ORDER BY post_datetime DESC LIMIT 0 , $num";
+    if($cate)
+        $cate = " AND cat_id=".$cate;
+    if($time)
+    {
+        if(intval($time) > 0)
+            $fuhao = ">";
+        else
+        {
+            $fuhao = "<";
+            $time = strval(0 - intval($time));
+        }
+        $time = " AND post_datetime".date('Y-m-d H:i:s', strtotime($time));
+    }
+    $view = "SELECT * FROM tweets WHERE content LIKE '$key'".$cate.$time." ORDER BY post_datetime DESC LIMIT 0 , $num";
     //FIXME: Low performance!
     
     $list = mysql_query($view);
@@ -88,6 +100,8 @@ function get_newest_result($num)
 
 function search_page($query)
 {
+    $cate = (string) $query[2];
+    $time = (string) $query[3];
     $key = (string) $query[1];
     if(!$key)
     {
@@ -98,7 +112,7 @@ function search_page($query)
         include_once('login.inc.php');
         if(user_is_authenticated())
         search_history_add("", "", $key);
-        $data = get_search_result($key, 10);
+        $data = get_search_result($key, 10, $cate, $time);
     }
     $content = theme('result', $data);
     theme('search', $key, $content);
