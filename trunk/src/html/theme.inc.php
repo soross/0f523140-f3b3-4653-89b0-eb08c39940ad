@@ -40,9 +40,15 @@ function theme_cat()
     include_once("common.inc.php");
     $content = "";
     $result = get_categories();
+    $i = 0;
     foreach($result as $r)
     {
-        $content .= '<div class="sorts-item sorts-item-alternative">
+        $i ++;
+        if($i%2==0)
+            $pre = " sorts-item-alternative";
+        else
+            $pre = "";
+        $content .= '<div class="sorts-item'.$pre.'">
                 <a>'.$r['name'].'</a></div>';
     }
     echo $content;
