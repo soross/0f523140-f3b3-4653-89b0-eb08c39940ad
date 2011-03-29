@@ -25,8 +25,10 @@ function GetNewerCount() {
     });
 }
 
+var SearchResult = "";
+
 function SetResult(msg) {
-    msg = msg;
+    SearchResult = msg;
     var str = "";
     for (s in msg.split(' ')) {
         str += '#<a class="keyword">' + msg.split(' ')[s] + '</a>#';
@@ -41,7 +43,7 @@ function SetResult(msg) {
                 $("a#search-result-concern").click(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'follow/add/' + msg,
+                        url: 'follow/add/' + SearchResult,
                         success: function () {
                             $("a#search-result-concern").attr("class", "left search-result-concern-have");
                             $("a#search-result-concern").unbind("mouseover");
@@ -57,7 +59,7 @@ function SetResult(msg) {
             }
         }
     });
-    $("a#search-result-rss").attr("href", 'follow/rss/' + msg);
+    $("a#search-result-rss").attr("href", 'follow/rss/' + encodeURI(msg));
 }
 
 function SetRolePicker() {
