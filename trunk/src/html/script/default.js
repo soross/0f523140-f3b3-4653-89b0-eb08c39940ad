@@ -50,6 +50,14 @@ function SetResult(msg) {
                             $("a#search-result-concern").unbind("mouseover");
                             $("a#search-result-concern").unbind("mouseout");
                             $("a#search-result-concern").unbind("click");
+                            $.ajax({
+                                type: 'POST',
+                                url: 'follow/show/5',
+                                success: function (msg) {
+                                    $("#concern").html(msg);
+                                    SetConcern();
+                                }
+                            });
                         }
                     });
                 });
