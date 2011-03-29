@@ -1,5 +1,11 @@
 <?php
 
+func_register(array(
+    'cate' => array(
+        'callback' => 'theme_cat',
+    ),
+));
+
 $current_theme = false;
 
 function theme()
