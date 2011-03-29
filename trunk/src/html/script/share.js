@@ -108,11 +108,13 @@ function Init() {
     $("input#search-text").focusin(function () {
         if ($(this).val() == "职位关键字，如：北京 产品经理 阿里巴巴") {
             $(this).val("");
+            $(this).css("color", "#000000");
         }
     });
     $("input#search-text").focusout(function () {
         if ($(this).val() == "") {
             $(this).val("职位关键字，如：北京 产品经理 阿里巴巴");
+            $(this).css("color", "#adadad");
         }
     });
 }
