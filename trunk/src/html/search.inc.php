@@ -54,7 +54,7 @@ function get_search_result($key, $num, $cate, $time)
     $key = explode(" ",$key);
     $key = "%".implode("%",$key)."%";
     if($cate)
-        $cate = " AND a.tweet_id=b.tweet_id AND b.cat_id=$cate";
+        $cate = " AND tweets.tweet_id=cat_relationship.tweet_id AND cat_relationship.cat_id=$cate";
         #$cate = " AND cat_id=".$cate;
     if($time)
     {
@@ -65,9 +65,9 @@ function get_search_result($key, $num, $cate, $time)
             $fuhao = "<";
             $time = strval(0 - intval($time));
         }
-        $time = " AND a.post_datetime".$fuhao.date('Y-m-d H:i:s', strtotime($time));
+        $time = " AND tweets.post_datetime".$fuhao.date('Y-m-d H:i:s', strtotime($time));
     }
-    $view = "SELECT a.*,b.* FROM tweets,cat_relationship WHERE a.content LIKE '$key'$cate$time ORDER BY a.post_datetime DESC LIMIT 0 , $num";
+    $view = "SELECT tweets.*,cat_relationship.* FROM tweets,cat_relationship WHERE tweets.content LIKE '$key'$cate$time ORDER BY tweets.post_datetime DESC LIMIT 0 , $num";
     echo $view;
     //FIXME: Low performance!
     
@@ -86,7 +86,7 @@ function get_search_result($key, $num, $cate, $time)
 function get_newest_result($num)
 {
     connect_db();
-    $view = "SELECT * FROM tweets ORDER BY post_datetime DESC LIMIT 0 , $num";
+    $view = "SELECT tweets.* FROM tweets ORDER BY tweets.post_datetime DESC LIMIT 0 , $num";
     
     $list = mysql_query($view);
     $result = array();
