@@ -105,6 +105,13 @@ function SetConcern() {
     });
     $(".concern-item-content").click(function () {
         $(this).children(".concern-item-content-number").fadeOut(200, function () { $(this).parent().removeClass("concern-item-content-new"); });
+        $.ajax({
+            type: 'GET',
+            url: 'search/' + encodeURI($(this).children(".concern-item-content-info").html()),
+            success: function (msg) {
+                $("div#blogs").html(msg);
+            }
+        });
     });
 }
 
