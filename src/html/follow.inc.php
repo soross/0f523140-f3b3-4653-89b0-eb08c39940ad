@@ -36,18 +36,19 @@ function get_followings($num)
 
 function following_show()
 {
-    include_once("theme.inc.php");
-    theme('follow');
-    return;
     $args = func_get_args();
     $key = intval($args[2]);
-    $data = get_followings($key);
-    $content = "";
-    foreach($data as $s)
-    {
-        $content .= $s['search']."<br />";
-    }
-    theme('page', '我在关注', $content);
+    $content = '<div class="left-title">
+                    <span class="left-title-text left">我的关注</span><a class="right left-title-pic" id="concern-pic"></a></div>';
+    $follows = get_followings($key);
+    foreach($follows as $f)
+        $content .= '<div class="concern-item concern-item-normal">
+                    <a class="concern-item-delete left" id="'.$f['following_id'].'"></a>
+                    <div class="left concern-item-content">
+                        <a class="left concern-item-content-info">'.$f['search'].'</a> <a class="right concern-item-content-number">
+                            </a>
+                    </div></div>';
+    echo $content;
 }
 
 function following_delete()
