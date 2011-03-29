@@ -14,7 +14,15 @@
     <script type="text/javascript">
         $(function () {
             $(document).scroll(function () {
-                var isFoot = ($(window).scrollTop() + $(window).height()) == $(document).height() ? alert("The window is Footer") : '';
+                if (($(window).scrollTop() + $(window).height()) == $(document).height()) {
+                    $.ajax({
+                        type: 'GET',
+                        url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
+                        success: function (msg) {
+                            $("div#blogs").html($("div#blogs").html() + msg);
+                        }
+                    });
+                }
             });
             $("#search-text").keypress(function (e) {
                 if (e.which == 13) {
