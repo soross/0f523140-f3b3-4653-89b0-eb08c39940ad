@@ -1,12 +1,6 @@
 <?
 include_once('config.inc.php');
 
-func_register(array(
-    'cate' => array(
-        'callback' => 'theme_cat',
-    ),
-));
-
 function connect_db(){
     global $db_host, $db_name, $db_user, $db_pass;
     mysql_pconnect($db_host, $db_user, $db_pass);
