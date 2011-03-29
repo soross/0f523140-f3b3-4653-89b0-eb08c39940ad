@@ -17,7 +17,7 @@ func_register(array(
 
 function theme_search($key, $content)
 {
-    if($title=='首页')
+    /*if($title=='首页')
     {
         $GLOBALS['search'] = "淘宝";
         include_once("common.inc.php");
@@ -34,13 +34,13 @@ function theme_search($key, $content)
                         <div class="left">
                             #<a class="keyword">'.$key.'</a>#的搜索结果</div>';
         #include_once("follow.inc.php");
-        $pre .= '<a id="search-result-concern" class="left" href="'.BASE_URL.'follow/add/'.$key.'"></a>';
+        $pre .= '<a id="search-result-concern" class="left"></a>';
         $pre .= '<a id="search-result-rss" class="right">
                         </a>
                     </div>
                 </div>';
     }
-    $content = $pre.$content;
+    $content = $pre.$content;*/
     theme('page', $title, $content);
 }
 
