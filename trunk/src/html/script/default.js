@@ -199,13 +199,6 @@ function SetSearch(msg, e) {
         }
     });
     SetResult(e);
-    $("div#sorts").position({
-        of: $("a#sort"),
-        my: "left top",
-        at: "left top",
-        offset: "-5 -10",
-        collision: "none none"
-    });
 }
 
 function SetHistory() {
