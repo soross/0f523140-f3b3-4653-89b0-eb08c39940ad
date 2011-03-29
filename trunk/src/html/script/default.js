@@ -69,7 +69,7 @@ function SetResult(msg) {
             }
         }
     });
-    $("a#search-result-rss").attr("href", 'follow/rss/' + encodeURI(msg));
+    $("a#search-result-rss").attr("href", 'rss/' + encodeURI(msg));
 }
 
 function SetRolePicker() {
@@ -170,6 +170,15 @@ function SetConcern() {
             url: 'search/' + encodeURI($(this).children(".concern-item-content-info").html()),
             success: function (msg) {
                 SetSearch(msg);
+                $.ajax({
+                    type: 'GET',
+                    url: 'history/show/5',
+                    success: function (msg) {
+                        $("div#history").html(msg);
+                        SetHistory();
+                    }
+                });
+                SetResult(msg);
             }
         });
     });
@@ -202,6 +211,15 @@ function SetHistory() {
             url: 'search/' + encodeURI($(this).children("a").html()),
             success: function (msg) {
                 SetSearch(msg);
+                $.ajax({
+                    type: 'GET',
+                    url: 'history/show/5',
+                    success: function (msg) {
+                        $("div#history").html(msg);
+                        SetHistory();
+                    }
+                });
+                SetResult(msg);
             }
         });
     });
