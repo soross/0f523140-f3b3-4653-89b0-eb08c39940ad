@@ -98,6 +98,13 @@ function Init() {
     else {
         logined = true;
     }
+    if (logined) {
+        AfterLogin();
+    }
+    else {
+        $(".logined").hide();
+        $(".logouted").show();
+    }
     $("input#search-text").focusin(function () {
         if ($(this).val() == "职位关键字，如：北京 产品经理 阿里巴巴") {
             $(this).val("");
