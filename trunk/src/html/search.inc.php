@@ -67,7 +67,7 @@ function get_search_result($key, $num, $cate, $time)
         }
         $time = " AND post_datetime".$fuhao.date('Y-m-d H:i:s', strtotime($time));
     }
-    $view = "SELECT * FROM tweets WHERE content LIKE '$key'$cate$time ORDER BY post_datetime DESC LIMIT 0 , $num)";
+    $view = "SELECT * FROM tweets WHERE content LIKE '$key'$cate$time ORDER BY post_datetime DESC LIMIT 0 , $num";
     echo $view;
     //FIXME: Low performance!
     
