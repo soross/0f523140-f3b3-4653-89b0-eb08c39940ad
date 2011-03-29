@@ -125,7 +125,7 @@ function SetConcern() {
 
 function SetSearch(msg) {
     $("div#blogs").html(msg);
-    $("#search-result-outer").slideDown(200);
+    $("div#search-result-outer").slideDown(200);
     $("a#search-result-concern").mouseover(function () {
         $(this).attr("class", "left search-result-concern-over");
     });
