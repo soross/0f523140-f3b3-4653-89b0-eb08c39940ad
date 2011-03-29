@@ -129,20 +129,20 @@ function theme_result($result)
     foreach($result as $r)
     {
         if(strstr($r, '<'))
-            $source = str_replace("<a ", '<a class="left microblog-item-position"', $r['tweets.source']);
+            $source = str_replace("<a ", '<a class="left microblog-item-position"', $r['source']);
         else
-            $source = '<a class="left microblog-item-position">'.$r['tweets.source'].'</a>';
+            $source = '<a class="left microblog-item-position">'.$r['source'].'</a>';
         
-        $content .= '<div class="microblog-item" id="'.strtotime($r['tweets.post_datetime']).'">
+        $content .= '<div class="microblog-item" id="'.strtotime($r['post_datetime']).'">
                     <div class="left microblog-item-pic">
-                        <img alt="" width="50" height="50" src="'.$r['tweets.profile_image_url'].'"/>
+                        <img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/>
                     </div>
                     <div class="left microblog-item-content">
                         <div class="microblog-item-blog">
-                            <a class="microblog-item-blog-name" target="_blank" href="http://t.sina.com.cn/n/'.$r['tweets.post_screenname'].'">'.$r['tweets.post_screenname'].'</a>：'.$r['tweets.content'].'
+                            <a class="microblog-item-blog-name" target="_blank" href="http://t.sina.com.cn/n/'.$r['post_screenname'].'">'.$r['post_screenname'].'</a>：'.$r['content'].'
                         </div>
                         <div class="microblog-item-other">
-                            <span class="left microblog-item-time">'.$r['tweets.post_datetime'].'</span> '.$source;
+                            <span class="left microblog-item-time">'.$r['post_datetime'].'</span> '.$source;
         include_once("login.inc.php");
         if(user_is_authenticated())
             $content .= '<a class="right microblog-item-control">收藏</a> <a class="right microblog-item-control microblog-item-apply">
