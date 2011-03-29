@@ -138,17 +138,18 @@ function get_search_history($num)
 
 function search_history_show()
 {
-    theme('history');
-    return;
     $args = func_get_args();
     $key = intval($args[2]);
     $data = get_search_history($key);
-    $content = "";
-    foreach($data as $s)
-    {
-        $content .= $s['search']."<br />";
-    }
-    theme('page', '搜索历史', $content);
+    $content = '<div class="left-title">
+                    <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic">
+                    </a>
+                </div>';
+    foreach($history as $h)
+        $content .= '<div class="history-item">
+                    <a>'.$h['search'].'</a></div>';
+    $content .= '</div>';
+    echo $content;
 }
 
 function search_history_delete()
