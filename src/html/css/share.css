@@ -177,8 +177,7 @@ div#sorts-content
     border-bottom-left-radius: 5px 5px;
     border-bottom-right-radius: 5px 5px;
     padding-top: 10px;
-    border-bottom: 1px #9c9c9c solid;
-    border-right: 1px #9c9c9c solid;
+    border: 1px #9c9c9c solid;
 }
 div.sorts-item
 {
