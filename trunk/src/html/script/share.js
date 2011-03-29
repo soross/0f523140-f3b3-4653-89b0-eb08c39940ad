@@ -180,9 +180,15 @@ function SetSorts() {
         offset: "-5 -10",
         collision: "none none"
     });
-    $(".sorts-item").mouseover(function () { $(this).addClass("sorts-item-over") });
-    $(".sorts-item").mouseout(function () { $(this).removeClass("sorts-item-over") });
-
+    $.ajax({
+        type: "POST",
+        url: 'cate',
+        success: function (msg) {
+            $("#sorts-content").html(msg);
+            $(".sorts-item").mouseover(function () { $(this).addClass("sorts-item-over") });
+            $(".sorts-item").mouseout(function () { $(this).removeClass("sorts-item-over") });
+        }
+    });
     $("#sorts-name").click(function () { $("#sorts").fadeOut(200) });
     $("#sorts-triangle").click(function () { $("#sorts").fadeOut(200) });
     $("#sort-triangle").click(function () { $("#sorts").fadeIn(200) });
