@@ -37,7 +37,7 @@ function SetResult(msg) {
     $("div#search-result div.left").html(str);
     $.ajax({
         type: 'POST',
-        url: 'follow/exist/' + msg,
+        url: 'follow/exist/' + encodeURI(msg),
         success: function (e) {
             if (e[0] == '0') {
                 $("a#search-result-concern").click(function () {
