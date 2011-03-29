@@ -55,10 +55,8 @@ function SetResult(msg) {
             else {
                 $("a#search-result-concern").attr("class", "left search-result-concern-have");
                 $("a#search-result-concern").mouseover(function () {
-                    $(this).attr("class", "left search-result-concern-over");
                 });
                 $("a#search-result-concern").mouseout(function () {
-                    $(this).attr("class", "left search-result-concern");
                 });
             }
         }
@@ -173,6 +171,12 @@ function SetConcern() {
 function SetSearch(msg) {
     $("div#blogs").html(msg);
     $("div#search-result-outer").slideDown(200);
+    $("a#search-result-concern").mouseover(function () {
+        $(this).attr("class", "left search-result-concern-over");
+    });
+    $("a#search-result-concern").mouseout(function () {
+        $(this).attr("class", "left search-result-concern");
+    });
 }
 
 function SetHistory() {
