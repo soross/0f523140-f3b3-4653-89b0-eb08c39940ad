@@ -1,4 +1,5 @@
 ﻿var issearch = false;
+var SearchResult = "";
 
 $(function () {
     SetRolePicker();
@@ -24,8 +25,6 @@ function GetNewerCount() {
         }
     });
 }
-
-var SearchResult = "";
 
 function SetResult(msg) {
     SearchResult = msg;
@@ -179,6 +178,7 @@ function SetConcern() {
 }
 
 function SetSearch(msg, e) {
+    SearchResult = e;
     $("div#blogs").html(msg);
     $("div#search-result-outer").slideDown(200);
     $("a#search-result-concern").mouseover(function () {
@@ -199,6 +199,18 @@ function SetSearch(msg, e) {
         }
     });
     SetResult(e);
+}
+
+//function GetNewerBlogs() {
+//    $.ajax({
+//        type: "GET",
+//        url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + $(".microblog-item:first").attr("id"),
+//        success: function (msg) { 
+//        }
+//    });
+//}
+
+function GetOlderBlogs() { 
 }
 
 function SetHistory() {
