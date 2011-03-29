@@ -18,7 +18,7 @@ function GetNewerCount() {
         url: 'count/',
         success: function (msg) {
             if (!issearch) {
-                $("div#radio").html("本周新增职位" + trim(msg).split(',')[0] + "个，今日新增职位" + trim(msg).split(',')[1] + "个");
+                $("div#radio").html("本周新增职位" + msg.split(',')[0] + "个，今日新增职位" + msg.split(',')[1] + "个");
                 setTimeout(function () { GetNewerJob(); }, 1200000);
             }
         }
@@ -26,7 +26,7 @@ function GetNewerCount() {
 }
 
 function SetResult(msg) {
-    msg = trim(msg);
+    msg = msg;
     var str = "";
     for (s in msg.split(' ')) {
         str += '#<a class="keyword">' + s + '</a>#';
