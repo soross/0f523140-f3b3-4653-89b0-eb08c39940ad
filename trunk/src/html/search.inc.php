@@ -69,8 +69,7 @@ function get_search_result($key, $num, $cate, $time)
             $fuhao = "<";
             $time = strval(0 - intval($time));
         }
-        $time = " AND tweets.post_datetime".$fuhao.date('Y-m-d H:i:s', $time);
-        echo "date('Y-m-d H:i:s', $time)";
+        $time = " AND tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
     }
     $view = "SELECT tweets.* FROM tweets$cate1 WHERE tweets.content LIKE '$key'$cate2$time ORDER BY tweets.post_datetime DESC LIMIT 0 , $num";
     //echo $view;
