@@ -145,7 +145,7 @@ function search_history_show()
                     <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic">
                     </a>
                 </div>';
-    foreach($history as $h)
+    foreach($data as $h)
         $content .= '<div class="history-item">
                     <a>'.$h['search'].'</a></div>';
     $content .= '</div>';
