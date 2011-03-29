@@ -204,10 +204,10 @@ function SetSearch(msg, e) {
 function SetHistory() {
     $("#history-pic").animate({ opacity: 0.6 }, 0);
     $("#history-pic").mouseover(function () {
-        $(this).animate({ opacity: 1 }, 200);
+        $(this).stop().animate({ opacity: 1 }, 200);
     });
     $("#history-pic").mouseout(function () {
-        $(this).animate({ opacity: 0.6 }, 200);
+        $(this).stop().animate({ opacity: 0.6 }, 200);
     });
     $(".history-item").mouseover(function () { $(this).addClass("history-item-over"); });
     $(".history-item").mouseout(function () { $(this).removeClass("history-item-over"); });
