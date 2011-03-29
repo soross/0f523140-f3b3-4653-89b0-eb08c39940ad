@@ -19,7 +19,7 @@
                         type: 'GET',
                         url: 'search/' + encodeURI($("#search-text").val()),
                         success: function (msg) {
-                            $("div#blogs").html(msg);
+                            SetSearch(msg);
                             $("a#search-result-concern").mouseover(function () {
                                 $(this).attr("class", "left search-result-concern-over");
                             });
