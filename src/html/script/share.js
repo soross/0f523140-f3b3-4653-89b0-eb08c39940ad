@@ -5,6 +5,7 @@ var rolekind = "jobs";
 var auth = "";
 var length = 0;
 var position = 0;
+var cate = 0;
 
 $(function () {
     Init();
@@ -192,6 +193,7 @@ function SetSorts() {
                 $("a#sorts-name").html($(this).html());
                 $("a#sort").html($(this).html());
                 $("#sorts").fadeOut(200);
+                cate = $(this).attr("id");
             });
         }
     });
