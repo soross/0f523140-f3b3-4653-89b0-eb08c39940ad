@@ -22,17 +22,17 @@
                             success: function (msg) {
                                 SetSearch(msg);
                                 setTimeout(function () { GetNewerBlogs(); }, 5000);
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'history/show/5',
+                                    success: function (msg) {
+                                        $("div#history").html(msg);
+                                        SetHistory();
+                                    }
+                                });
+                                SetResult($("#search-text").val());
                             }
                         });
-                        $.ajax({
-                            type: 'GET',
-                            url: 'history/show/5',
-                            success: function (msg) {
-                                $("div#history").html(msg);
-                                SetHistory();
-                            }
-                        });
-                        SetResult($("#search-text").val());
                     }
                 }
             });
@@ -44,17 +44,17 @@
                         success: function (msg) {
                             SetSearch(msg);
                             setTimeout(function () { GetNewerBlogs(); }, 5000);
+                            $.ajax({
+                                type: 'GET',
+                                url: 'history/show/5',
+                                success: function (msg) {
+                                    $("div#history").html(msg);
+                                    SetHistory();
+                                }
+                            });
+                            SetResult($("#search-text").val());
                         }
                     });
-                    $.ajax({
-                        type: 'GET',
-                        url: 'history/show/5',
-                        success: function (msg) {
-                            $("div#history").html(msg);
-                            SetHistory();
-                        }
-                    });
-                    SetResult($("#search-text").val());
                 }
             });
         });

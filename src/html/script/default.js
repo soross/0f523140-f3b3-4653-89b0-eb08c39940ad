@@ -29,7 +29,7 @@ function SetResult(msg) {
     msg = msg;
     var str = "";
     for (s in msg.split(' ')) {
-        str += '#<a class="keyword">' + s + '</a>#';
+        str += '#<a class="keyword">' + msg.split(' ')[s] + '</a>#';
     }
     str += "的搜索结果";
     $("div#search-result div.left").html(str);
