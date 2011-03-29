@@ -101,6 +101,14 @@ function SetConcern() {
         $(this).removeClass("concern-item-over");
     });
     $(".concern-item-delete").click(function () {
+        /*Delete a follow*/
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: 'follow/delete'+,
+        //            success: function (msg) {
+        //                $("div#blogs").html(msg);
+        //            }
+        //        });
         $(this).parent().animate({ opacity: 0 }, 200, function () { $(this).slideUp(100); });
     });
     $(".concern-item-content").click(function () {
@@ -113,6 +121,9 @@ function SetConcern() {
             }
         });
     });
+}
+
+function SetSearch() {
 }
 
 function SetHistory() {
@@ -128,7 +139,7 @@ function SetHistory() {
     $(".history-item").click(function () {
         $.ajax({
             type: 'GET',
-            url: 'search/' + encodeURI($(this).html()),
+            url: 'search/' + encodeURI($(this).children("a").html()),
             success: function (msg) {
                 $("div#blogs").html(msg);
             }

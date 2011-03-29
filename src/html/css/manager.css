@@ -1,108 +1,108 @@
 ﻿div#manager-title
 {
-    height:30px;
-    line-height:30px;
-    margin-top:20px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 20px;
 }
 div#manager-title span.manager-title
 {
-    width:57px;
-    background-image:url('../images/manager-pic.jpg');
-    background-repeat:no-repeat;
-    background-position:5px center;
-    height:30px;
-    color:#df7902;
-    padding-left:25px;
+    width: 57px;
+    background-image: url('../images/manager-pic.jpg');
+    background-repeat: no-repeat;
+    background-position: 5px center;
+    height: 30px;
+    color: #df7902;
+    padding-left: 25px;
 }
 div#manager-title span.manager-title-tag
 {
-    width:116px;
-    background-image:url('../images/manager-title-tag.jpg');
-    background-repeat:no-repeat;
-    height:30px;
-    text-align:center;
-    font-weight:bold;
-    color:#000000;
-    letter-spacing:1px;
+    width: 116px;
+    background-image: url('../images/manager-title-tag.jpg');
+    background-repeat: no-repeat;
+    height: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: #000000;
+    letter-spacing: 1px;
 }
 div#manager-content
 {
-    background-image:url('../images/manager-content.jpg');
-    background-repeat:no-repeat;
-    padding-top:10px;
-    overflow:hidden;
+    background-image: url('../images/manager-content.jpg');
+    background-repeat: no-repeat;
+    padding-top: 10px;
+    overflow: hidden;
 }
 div#content-left
 {
-    width:164px;
-    padding-top:20px;
+    width: 164px;
+    padding-top: 20px;
 }
 div#manager-control
 {
-    width:164px;
-    height:160px;
-    background-color:#ebf1fe;
+    width: 164px;
+    height: 160px;
+    background-color: #ebf1fe;
 }
 a.manager-control
 {
-    width:139px;
-    height:37px;
-    border-bottom:1px #ccddf0 dashed;
-    line-height:37px;
-    text-align:left;
-    font-size:18px;
+    width: 139px;
+    height: 37px;
+    border-bottom: 1px #ccddf0 dashed;
+    line-height: 37px;
+    text-align: left;
+    font-size: 18px;
     font-family: 微软雅黑, 宋体;
-    color:#3e82af;
-    padding-left:25px;
+    color: #3e82af;
+    padding-left: 25px;
 }
 a.manager-control-choose
 {
-    background-image:url('../images/manager-control-background.jpg');
-    background-repeat:no-repeat;
+    background-image: url('../images/manager-control-background.jpg');
+    background-repeat: no-repeat;
 }
 a.publish-button
 {
-    height:37px;
-    width:137px;
-    margin-top:20px;
-    margin-left:10px;
+    height: 37px;
+    width: 137px;
+    margin-top: 20px;
+    margin-left: 10px;
 }
 a#jobs-publish-button
 {
-    background-image:url('../images/jobs-publish-button.jpg');
+    background-image: url('../images/jobs-publish-button.jpg');
 }
 a#recruitment-publish-button
 {
-    background-image:url('../images/recruitment-publish-button.jpg');
+    background-image: url('../images/recruitment-publish-button.jpg');
 }
 
 div#content-middle
 {
-    width:610px;
-    border:1px #e5eaf7 solid;
+    width: 610px;
+    border: 1px #e5eaf7 solid;
     border-top-left-radius: 3px 3px;
     border-top-right-radius: 3px 3px;
     border-bottom-left-radius: 3px 3px;
     border-bottom-right-radius: 3px 3px;
-    background-color:#ffffff;
-    padding:10px;
+    background-color: #ffffff;
+    padding: 10px;
 }
 div#content-middle-delete
 {
-    height:15px;
-    line-height:15px;
+    height: 15px;
+    line-height: 15px;
 }
 div#content-middle-delete a
 {
-    padding:0 0 0 20px;
-    background-image:url('../images/manager-conten-middle-deletet.jpg');
-    background-repeat:no-repeat;
+    padding: 0 0 0 20px;
+    background-image: url('../images/manager-conten-middle-deletet.jpg');
+    background-repeat: no-repeat;
 }
 
 div.item
 {
-    width:607px;
-    overflow:hidden;
+    width: 607px;
+    overflow: hidden;
     margin-top: 5px;
     border-bottom: 1px #dedede dashed;
     padding-left: 5px;
@@ -111,16 +111,16 @@ div.item
 }
 div.item-over
 {
-    background-image:url('../images/item-over-background.jpg');
+    background-image: url('../images/item-over-background.jpg');
 }
 div.item-delete
 {
-    height:17px;
+    height: 17px;
 }
 div.item-delete a
 {
-    width:17px;
-    height:17px;
+    width: 17px;
+    height: 17px;
 }
 div.item-pic
 {
@@ -184,17 +184,17 @@ span.item-apply
     line-height: 14px;
     height: 14px;
     margin-top: 5px;
-    display:none;
+    display: none;
 }
 span.item-apply-name
 {
     color: #7ba5d7;
-    margin-left:10px;
+    margin-left: 10px;
 }
 span.item-apply-info
 {
     color: #2281a4;
-    margin-right:10px;
+    margin-right: 10px;
 }
 span.item-apply-info-read
 {
@@ -202,7 +202,7 @@ span.item-apply-info-read
 }
 a.item-favourite
 {
-    display:none;
+    display: none;
     letter-spacing: 2px;
     padding: 0 10px;
     line-height: 14px;
@@ -211,11 +211,11 @@ a.item-favourite
 }
 a.item-action
 {
-    color:#2281a4;
+    color: #2281a4;
 }
 a.item-doapply
 {
-    color:#ea7f37;
+    color: #ea7f37;
 }
 div#pages
 {
@@ -264,39 +264,76 @@ div#pages span
 
 div#content-right
 {
-    background-color:#ebf1fe;
-    width:166px;
-    overflow:hidden;
+    background-color: #ebf1fe;
+    width: 166px;
+    overflow: hidden;
 }
 div#right-title
 {
-    height:40px;
-    line-height:40px;
-    text-align:center;
-    letter-spacing:2px;
-    color:#949494;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    letter-spacing: 2px;
+    color: #949494;
 }
 
 div.ad-title
 {
-    line-height:20px;
-    color:#7ba5d7;
-    padding:0 10px;
-    letter-spacing:1px;
-    padding-top:10px;
+    line-height: 20px;
+    color: #7ba5d7;
+    padding: 0 10px;
+    letter-spacing: 1px;
+    padding-top: 10px;
 }
 div.ad-content
 {
-    line-height:20px;
-    color:#949494;
-    padding:0 10px;
-    letter-spacing:1px;
+    line-height: 20px;
+    color: #949494;
+    padding: 0 10px;
+    letter-spacing: 1px;
 }
 div.ad-address
 {
-    line-height:20px;
-    color:#7ba5d7;
-    padding:0 10px;
-    letter-spacing:1px;
-    padding-bottom:10px;
+    line-height: 20px;
+    color: #7ba5d7;
+    padding: 0 10px;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+}
+div#blogs
+{
+    display: none;
+}
+div#profile-title
+{
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 10px;
+}
+div#profile-title span#title
+{
+    color: #3e82af;
+    font-size: 16px;
+    font-family: 微软雅黑, 宋体;
+}
+div#profile-title span#lasttime
+{
+    color: #999999;
+}
+div.profile-detail-title
+{
+    height: 47px;
+    background-image: url('../images/profile-title-background.jpg');
+    background-repeat: repeat-x;
+}
+div.profile-detail-title a
+{
+    height: 25px;
+    width: 82px;
+    line-height: 25px;
+    text-align: center;
+    background-image: url('../images/profile-title-button.jpg');
+    background-repeat: no-repeat;
+    margin-top: 15px;
+    margin-right:20px;
 }
