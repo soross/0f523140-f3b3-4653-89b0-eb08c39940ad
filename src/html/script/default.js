@@ -1,12 +1,12 @@
 ﻿var issearch = false;
-var SearchResult = "";
+var SearchResult = "all";
 
 $(function () {
     SetRolePicker();
     GetNewerCount();
     $.ajax({
         type: 'GET',
-        url: 'search/',
+        url: 'search/all',
         success: function (msg) {
             $("div#blogs").html(msg);
         }
