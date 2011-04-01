@@ -41,7 +41,7 @@ function theme_search($key, $content)
                 </div>';
     }
     $content = $pre.$content;*/
-    theme('page', $title, $content);
+    theme('page', $key, $content);
 }
 
 function get_search_result($key, $num, $cate, $time, $page)
@@ -71,6 +71,7 @@ function get_search_result($key, $num, $cate, $time, $page)
         $page = intval($page) * 10;
         $num = $page + $num;
         $limit = " LIMIT $page , $num";
+        $time = "";
     }
     elseif($time)
     {
@@ -114,7 +115,7 @@ function search_page($query)
 {
     $cate = (string) $query[2];
     $time = (string) $query[3];
-    $time2 = (string) $query[4];
+    $page = (string) $query[4];
     $key = (string) $query[1];
     if($key and $key != "all")
     {
@@ -122,7 +123,7 @@ function search_page($query)
         if(user_is_authenticated())
         search_history_add("", "", $key);
     }
-    $data = get_search_result($key, 10, $cate, $time, $time2);
+    $data = get_search_result($key, 10, $cate, $time, $page);
     $content = theme('result', $data);
     theme('search', $key, $content);
 }
