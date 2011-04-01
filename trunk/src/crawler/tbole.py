@@ -6,21 +6,25 @@ import sqlite3
 import sys, re, StringIO
 import urllib2 as urllib
 q = Queue()
-NUM = 7
-JOBS = 100
+NUM = 17
+JOBS = 3000
 results = []
 
 def craw(arguments):
     global results
     try:
-        a = unicode(urllib.urlopen("http://tbole.com/result.php?cate_id=%d" % (arguments,)).read(), "gbk")
-        b = re.findall(u"<span class=\"result_search\">cate\:(.+?),共", a)[0]
-        results += [b]
-        print arguments, b, "Done."
+        a = unicode(urllib.urlopen("http://tbole.com/result.php?searchid=%d" % (arguments,)).read(), "gbk")
+        a = a.replace("\n", " ").replace("\r", "")
+        b = re.findall(u"<span class=\"about_text\">[^<]+?</span>(.+?)</div>", a)
+        for c in b:
+            d = re.findall(u"<span><a[^>]*>(.+?)</a></span>", c)
+            for e in d:
+                results += [e]
+        print arguments, "Done."
     except:
         print arguments, "Error."
         pass
-    sleep(0.7)
+    sleep(0.2)
     
 def working():
     while True:
@@ -39,7 +43,11 @@ for i in range(JOBS):
 q.join()
 print "Craw completed."
 
-f = open("tbole_cat.txt", "w")
-f.write("\r\n".join(results).encode('utf-8'))
+b = {}
+for a in results:
+    b[a] = 1;
+
+f = open("tbole_key.txt", "w")
+f.write("\n".join(b.keys()).encode('utf-8'))
 f.close()
 print "Wrote results."
