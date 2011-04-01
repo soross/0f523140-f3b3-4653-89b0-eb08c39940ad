@@ -1,5 +1,6 @@
 ﻿var issearch = false;
 var SearchResult = "all";
+var count = 1;
 
 $(function () {
     SetRolePicker();
