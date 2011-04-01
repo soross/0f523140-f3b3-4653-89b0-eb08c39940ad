@@ -50,13 +50,19 @@ function get_search_result($key, $num, $cate, $time)
     
     //$view = "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('$key') ORDER BY post_datetime DESC";
     //FIXME: Cannot use this syntax.
-    
-    $key = explode(" ",$key);
-    $key = "%".implode("%",$key)."%";
+    if($key and $key != "all")
+    {
+        $key = explode(" ",$key);
+        $key = "%".implode("%",$key)."%";
+        $key = "tweets.content LIKE '$key'";
+        $cate2and = " AND";
+    }
+    else
+        $key = $cate2end = "";
     if($cate and $cate!="0")
     {
         $cate1 = ",(SELECT * from cat_relationship WHERE cat_id=$cate) AS cate";
-        $cate2 = " AND tweets.tweet_id=cate.tweet_id";
+        $cate2 = $cate2end." tweets.tweet_id=cate.tweet_id";
     }
     else
         $cate1 = $cate2 = "";
@@ -71,7 +77,7 @@ function get_search_result($key, $num, $cate, $time)
         }
         $time = " AND tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
     }
-    $view = "SELECT tweets.* FROM tweets$cate1 WHERE tweets.content LIKE '$key'$cate2$time ORDER BY tweets.post_datetime DESC LIMIT 0 , $num";
+    $view = "SELECT tweets.* FROM tweets$cate1 WHERE $key$cate2$time ORDER BY tweets.post_datetime DESC LIMIT 0 , $num";
     //echo $view;
     //FIXME: Low performance!
     
@@ -109,17 +115,13 @@ function search_page($query)
     $cate = (string) $query[2];
     $time = (string) $query[3];
     $key = (string) $query[1];
-    if(!$key or $key == "all")
-    {
-        $data = get_newest_result(10);
-    }
-    else
+    if($key and $key != "all")
     {
         include_once('login.inc.php');
         if(user_is_authenticated())
         search_history_add("", "", $key);
-        $data = get_search_result($key, 10, $cate, $time);
     }
+    $data = get_search_result($key, 10, $cate, $time);
     $content = theme('result', $data);
     theme('search', $key, $content);
 }
