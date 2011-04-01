@@ -18,6 +18,7 @@ $(function () {
 });
 
 function SetAllSearch(msg) {
+    count = 0;
     $("div#blogs").html(msg);
     $.ajax({
         type: "POST",
