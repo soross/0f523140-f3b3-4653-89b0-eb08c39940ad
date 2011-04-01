@@ -26,16 +26,16 @@ function SetAllSearch(msg) {
         success: function (msg) {
             var allPage;
             if (msg % 50 == 0) {
-                allPage = msg / 50;
+                allPage = Math.floor(msg / 50);
             }
             else {
-                allPage = msg / 50 + 1;
+                allPage = Math.floor(msg / 50) + 1;
             }
             var str = '<div id="pages-inner" class="right">';
             if (page != 0) {
                 str += '<a class="page-control left">上一页</a>';
             }
-            for (i = 0; i < msg / 50; i++) {
+            for (i = 0; i < allPage; i++) {
                 if (!prevLess && i - page < -3) {
                     if (i == 0) {
                         str += '<a class="page-number left">' + (i + 1) + '</a>';
