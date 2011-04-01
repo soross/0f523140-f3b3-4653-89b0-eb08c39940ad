@@ -24,6 +24,8 @@ function SetAllSearch(msg) {
         type: "POST",
         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
         success: function (msg) {
+            prevLess = false;
+            nextLess = false;
             var allPage;
             if (msg % 50 == 0) {
                 allPage = Math.floor(msg / 50);
