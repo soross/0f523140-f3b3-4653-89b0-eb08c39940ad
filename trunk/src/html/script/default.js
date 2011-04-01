@@ -180,6 +180,7 @@ function SetConcern() {
 }
 
 function SetSearch(msg, e) {
+    count = 0;
     SearchResult = e;
     $("div#blogs").html(msg);
     $("div#search-result-outer").slideDown(200);
@@ -201,6 +202,13 @@ function SetSearch(msg, e) {
         }
     });
     SetResult(e);
+    $.ajax({
+        type: "POST",
+        url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
+        success: function (msg) {
+            
+        }
+    });
 }
 
 //function GetNewerBlogs() {
