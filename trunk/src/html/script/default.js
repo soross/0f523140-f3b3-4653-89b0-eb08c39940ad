@@ -46,7 +46,7 @@ $(function () {
                             str += '<span class="left">...</span>';
                         }
                     }
-                    if (page != 0) {
+                    if (page != allPage) {
                         str += '<a class="page-control left">下一页</a>';
                     }
                     str += '</div>';
