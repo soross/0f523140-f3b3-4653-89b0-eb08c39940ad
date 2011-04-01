@@ -89,7 +89,6 @@ function get_search_result($key, $num, $cate, $time)
     else
         $and2 = "";
     $view = "SELECT tweets.* FROM tweets$cate1 $where$key$and1$cate2$and2$time ORDER BY tweets.post_datetime DESC LIMIT 0 , $num";
-    //echo $view;
     //FIXME: Low performance!
     
     $list = mysql_query($view);
