@@ -69,7 +69,6 @@ function get_search_result($key, $num, $cate, $time, $page)
     if($time == "page")
     {
         $page = intval($page) * 10;
-        $num = $page + $num;
         $limit = " LIMIT $page , $num";
         $time = "";
     }
