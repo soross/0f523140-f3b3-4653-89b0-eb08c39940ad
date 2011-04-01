@@ -173,6 +173,7 @@ function SetConcern() {
             type: 'GET',
             url: 'search/' + encodeURI(text),
             success: function (msg) {
+                cate = 0;
                 SetSearch(msg, text);
             }
         });
@@ -206,7 +207,7 @@ function SetSearch(msg, e) {
         type: "POST",
         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
         success: function (msg) {
-            
+
         }
     });
 }
@@ -240,6 +241,7 @@ function SetHistory() {
             url: 'search/' + encodeURI(text),
             success: function (msg) {
                 SetSearch(msg, text);
+                cate = 0;
             }
         });
     });
