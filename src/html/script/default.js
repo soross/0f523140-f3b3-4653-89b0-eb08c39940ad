@@ -207,7 +207,7 @@ function SetSearch(msg, e) {
         type: "POST",
         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
         success: function (msg) {
-
+            alert(msg % 10);
         }
     });
 }
