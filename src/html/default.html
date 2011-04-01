@@ -14,12 +14,13 @@
     <script type="text/javascript">
         $(function () {
             $(document).scroll(function () {
-                if (($(window).scrollTop() + $(window).height()) == $(document).height()) {
+                if (($(window).scrollTop() + $(window).height()) == $(document).height() - 50 && count<5 ) {
                     $.ajax({
                         type: 'GET',
                         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
                         success: function (msg) {
                             $("div#blogs").html($("div#blogs").html() + msg);
+                            count++;
                         }
                     });
                 }
