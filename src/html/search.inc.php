@@ -132,7 +132,7 @@ function search_page($query)
     $data = get_search_result($key, 10, $cate, $time, $page);
     $content = theme('result', $data);
     if($time == "count")
-        theme('page', 'count', $data[0]);
+        theme('page', 'count', $data[0][0]);
     else
         theme('search', $key, $content);
 }
