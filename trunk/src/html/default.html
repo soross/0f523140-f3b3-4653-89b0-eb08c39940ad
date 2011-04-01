@@ -15,12 +15,12 @@
         $(function () {
             $(document).scroll(function () {
                 if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4) {
+                    count++;
                     $.ajax({
                         type: 'GET',
                         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
                         success: function (msg) {
                             $("div#blogs").html($("div#blogs").html() + msg);
-                            count++;
                         }
                     });
                 }
