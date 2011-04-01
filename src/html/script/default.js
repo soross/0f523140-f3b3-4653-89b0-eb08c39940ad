@@ -2,6 +2,8 @@
 var SearchResult = "all";
 var count = 0;
 var page = 0;
+var prevLess = false;
+var nextLess = false;
 
 $(function () {
     SetRolePicker();
@@ -15,7 +17,40 @@ $(function () {
                 type: "POST",
                 url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
                 success: function (msg) {
-                    alert(msg % 10);
+                    var allPage;
+                    if (msg % 50 == 0) {
+                        allPage = msg / 50;
+                    }
+                    else {
+                        allPage = msg / 50 + 1;
+                    }
+                    var str = '<div id="pages-inner" class="right">';
+                    if (page != 0) {
+                        str += '<a class="page-control left">上一页</a>';
+                    }
+                    for (i = 0; i < msg / 50; i++) {
+                        if (!prevLess && i - page < -2) {
+                            prevLess = true;
+                            str += '<span class="left">...</span>';
+                        }
+                        if (Math.abs(i - page) <= 2) {
+                            if (i == page) {
+                                str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                            }
+                            else {
+                                str += '<a class="page-number left">' + (i + 1) + '</a>';
+                            }
+                        }
+                        if (!nextLess && i - page > 2) {
+                            nextLess = true;
+                            str += '<span class="left">...</span>';
+                        }
+                    }
+                    if (page != 0) {
+                        str += '<a class="page-control left">下一页</a>';
+                    }
+                    str += '</div>';
+                    $("div#pages").html(str);
                 }
             });
         }
