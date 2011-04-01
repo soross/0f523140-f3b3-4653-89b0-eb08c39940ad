@@ -297,7 +297,88 @@ function SetSearch(msg, e) {
         type: "POST",
         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
         success: function (msg) {
-            alert(msg % 10);
+            $.ajax({
+                type: "POST",
+                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
+                success: function (msg) {
+                    $(document).scrollTop(0);
+                    prevLess = false;
+                    nextLess = false;
+                    var allPage;
+                    if (msg % 50 == 0) {
+                        allPage = Math.floor(msg / 50);
+                    }
+                    else {
+                        allPage = Math.floor(msg / 50) + 1;
+                    }
+                    var str = '<div id="pages-inner" class="right">';
+                    if (page != 0) {
+                        str += '<a class="page-control left" id="prevPage">上一页</a>';
+                    }
+                    for (i = 0; i < allPage; i++) {
+                        if (!prevLess && i - page < -2) {
+                            if (i == 0) {
+                                str += '<a class="page-number left">' + (i + 1) + '</a>';
+                            }
+                            else {
+                                prevLess = true;
+                                str += '<span class="left">...</span>';
+                            }
+                        }
+                        if (Math.abs(i - page) <= 2) {
+                            if (i == page) {
+                                str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                            }
+                            else {
+                                str += '<a class="page-number left">' + (i + 1) + '</a>';
+                            }
+                        }
+                        if (i == allPage - 1 && i - page > 2) {
+                            str += '<a class="page-number left">' + (i + 1) + '</a>';
+                            nextLess = true;
+                        }
+                        if (!nextLess && i - page > 2) {
+                            nextLess = true;
+                            str += '<span class="left">...</span>';
+                        }
+                    }
+                    if (page != allPage - 1) {
+                        str += '<a class="page-control left" id="nextPage">下一页</a>';
+                    }
+                    str += '</div>';
+                    $("div#pages").html(str);
+                    $("a.page-number").click(function () {
+                        page = $(this).html() - 1;
+                        $.ajax({
+                            type: 'GET',
+                            url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                            success: function (msg) {
+                                SetSearch(msg, SearchResult);
+                            }
+                        });
+                    });
+                    $("a#prevPage").click(function () {
+                        page--;
+                        $.ajax({
+                            type: 'GET',
+                            url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                            success: function (msg) {
+                                SetSearch(msg, SearchResult);
+                            }
+                        });
+                    });
+                    $("a#nextPage").click(function () {
+                        page++;
+                        $.ajax({
+                            type: 'GET',
+                            url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                            success: function (msg) {
+                                SetSearch(msg, SearchResult);
+                            }
+                        });
+                    });
+                }
+            });
         }
     });
 }
