@@ -44,7 +44,7 @@ function theme_search($key, $content)
     theme('page', $title, $content);
 }
 
-function get_search_result($key, $num, $cate, $time)
+function get_search_result($key, $num, $cate, $time, $page)
 {
     connect_db();
     
@@ -65,7 +65,14 @@ function get_search_result($key, $num, $cate, $time)
     }
     else
         $cate1 = $cate2 = "";
-    if($time)
+    $limit = " LIMIT 0 , $num";
+    if($time == "page")
+    {
+        $page = intval($page) * 10;
+        $num = $page + $num;
+        $limit = " LIMIT $page , $num";
+    }
+    elseif($time)
     {
         if(intval($time) > 0)
             $fuhao = ">";
@@ -88,25 +95,8 @@ function get_search_result($key, $num, $cate, $time)
         $and2 = " AND ";
     else
         $and2 = "";
-    $view = "SELECT tweets.* FROM tweets$cate1 $where$key$and1$cate2$and2$time ORDER BY tweets.post_datetime DESC LIMIT 0 , $num";
+    $view = "SELECT tweets.* FROM tweets$cate1 $where$key$and1$cate2$and2$time ORDER BY tweets.post_datetime DESC$limit";
     //FIXME: Low performance!
-    
-    $list = mysql_query($view);
-    $result = array();
-    $i = 0;
-    while($row = mysql_fetch_array($list))
-    {
-        $result[$i++] = $row;
-        if($i == $num)
-            break;
-    }
-    return $result;
-}
-
-function get_newest_result($num)
-{
-    connect_db();
-    $view = "SELECT * FROM tweets ORDER BY post_datetime DESC LIMIT 0 , $num";
     
     $list = mysql_query($view);
     $result = array();
@@ -124,6 +114,7 @@ function search_page($query)
 {
     $cate = (string) $query[2];
     $time = (string) $query[3];
+    $time2 = (string) $query[4];
     $key = (string) $query[1];
     if($key and $key != "all")
     {
@@ -131,7 +122,7 @@ function search_page($query)
         if(user_is_authenticated())
         search_history_add("", "", $key);
     }
-    $data = get_search_result($key, 10, $cate, $time);
+    $data = get_search_result($key, 10, $cate, $time, $time2);
     $content = theme('result', $data);
     theme('search', $key, $content);
 }
