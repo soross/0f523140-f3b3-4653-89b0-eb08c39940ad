@@ -12,50 +12,91 @@ $(function () {
         type: 'GET',
         url: 'search/all/0',
         success: function (msg) {
-            $("div#blogs").html(msg);
-            $.ajax({
-                type: "POST",
-                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
-                success: function (msg) {
-                    var allPage;
-                    if (msg % 50 == 0) {
-                        allPage = msg / 50;
-                    }
-                    else {
-                        allPage = msg / 50 + 1;
-                    }
-                    var str = '<div id="pages-inner" class="right">';
-                    if (page != 0) {
-                        str += '<a class="page-control left">上一页</a>';
-                    }
-                    for (i = 0; i < msg / 50; i++) {
-                        if (!prevLess && i - page < -2) {
-                            prevLess = true;
-                            str += '<span class="left">...</span>';
-                        }
-                        if (Math.abs(i - page) <= 2) {
-                            if (i == page) {
-                                str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
-                            }
-                            else {
-                                str += '<a class="page-number left">' + (i + 1) + '</a>';
-                            }
-                        }
-                        if (!nextLess && i - page > 2) {
-                            nextLess = true;
-                            str += '<span class="left">...</span>';
-                        }
-                    }
-                    if (page != allPage) {
-                        str += '<a class="page-control left">下一页</a>';
-                    }
-                    str += '</div>';
-                    $("div#pages").html(str);
-                }
-            });
+            SetAllSearch(msg);
         }
     });
 });
+
+function SetAllSearch(msg) {
+    $("div#blogs").html(msg);
+    $.ajax({
+        type: "POST",
+        url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
+        success: function (msg) {
+            var allPage;
+            if (msg % 50 == 0) {
+                allPage = msg / 50;
+            }
+            else {
+                allPage = msg / 50 + 1;
+            }
+            var str = '<div id="pages-inner" class="right">';
+            if (page != 0) {
+                str += '<a class="page-control left">上一页</a>';
+            }
+            for (i = 0; i < msg / 50; i++) {
+                if (!prevLess && i - page < -3) {
+                    if (i == 0) {
+                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                    }
+                    else {
+                        prevLess = true;
+                        str += '<span class="left">...</span>';
+                    }
+                }
+                if (Math.abs(i - page) <= 3) {
+                    if (i == page) {
+                        str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                    }
+                    else {
+                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                    }
+                }
+                if (!nextLess && i - page > 3) {
+                    if (i == allPage) {
+                        nextLess = true;
+                        str += '<span class="left">...</span>';
+                    }
+                }
+            }
+            if (page != allPage) {
+                str += '<a class="page-control left">下一页</a>';
+            }
+            str += '</div>';
+            $("div#pages").html(str);
+            $("a.page-number").click(function () {
+                page = $(this).html() - 1;
+                $.ajax({
+                    type: 'GET',
+                    url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                    success: function (msg) {
+                        SetAllSearch(msg);
+                    }
+                });
+            });
+            $("a.page-control:first").click(function () {
+                page--;
+                $.ajax({
+                    type: 'GET',
+                    url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                    success: function (msg) {
+                        SetAllSearch(msg);
+                    }
+                });
+            });
+            $("a.page-control:last").click(function () {
+                page++;
+                $.ajax({
+                    type: 'GET',
+                    url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                    success: function (msg) {
+                        SetAllSearch(msg);
+                    }
+                });
+            });
+        }
+    });
+}
 
 function GetNewerCount() {
     $.ajax({
