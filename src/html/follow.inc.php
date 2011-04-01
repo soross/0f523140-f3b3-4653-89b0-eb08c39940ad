@@ -102,6 +102,13 @@ function following_add()
     if(!$key)
         die('Invalid Argument!');
     connect_db();
+    $view = "SELECT COUNT(*) FROM followings WHERE user_id='$id' AND deleted='0'";
+    $list = mysql_query($view);
+    $row = mysql_fetch_array($list);
+    if($row[0] >= 20)
+    {
+        die('Too many followings!');
+    }
     $view = "SELECT * FROM followings WHERE user_id='$id' AND search='$key' AND deleted='0'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);

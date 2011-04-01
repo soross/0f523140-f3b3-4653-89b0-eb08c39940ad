@@ -109,7 +109,7 @@ function search_page($query)
     $cate = (string) $query[2];
     $time = (string) $query[3];
     $key = (string) $query[1];
-    if(!$key)
+    if(!$key or $key == "all")
     {
         $data = get_newest_result(10);
     }
