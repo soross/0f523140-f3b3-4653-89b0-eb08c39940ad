@@ -66,7 +66,7 @@ function SetAllSearch(msg) {
                     }
                 }
             }
-            if (page != allPage) {
+            if (page != allPage - 1) {
                 str += '<a class="page-control left" id="nextPage">下一页</a>';
             }
             str += '</div>';
