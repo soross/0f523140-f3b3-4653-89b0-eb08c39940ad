@@ -8,9 +8,10 @@ $(function () {
     GetNewerCount();
     $.ajax({
         type: 'GET',
-        url: 'search/all',
+        url: 'search/all/0',
         success: function (msg) {
-            $("div#blogs").html(msg);
+            SetSearch(msg, 'all');
+            cate = 0;
         }
     });
 });
