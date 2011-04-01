@@ -66,10 +66,17 @@ function get_search_result($key, $num, $cate, $time, $page)
     else
         $cate1 = $cate2 = "";
     $limit = " LIMIT 0 , $num";
+    $content = "tweets.*";
     if($time == "page")
     {
         $page = intval($page) * 10;
         $limit = " LIMIT $page , $num";
+        $time = "";
+    }
+    elseif($time == "count")
+    {
+        $content = "COUNT(*)";
+        $limit = "";
         $time = "";
     }
     elseif($time)
@@ -124,7 +131,10 @@ function search_page($query)
     }
     $data = get_search_result($key, 10, $cate, $time, $page);
     $content = theme('result', $data);
-    theme('search', $key, $content);
+    if($time == "count")
+        theme('page', 'count', $data[0]);
+    else
+        theme('search', $key, $content);
 }
 
 function get_rss($query)
