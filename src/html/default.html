@@ -29,7 +29,19 @@
             }
         }
 
+        function GetNewerBlogs() {
+            $.ajax({
+                type: 'GET',
+                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + $(".microblog-item:firse").attr("id"),
+                success: function (msg) {
+                    alert(msg);
+                }
+            });
+        }
+
         $(function () {
+            GetNewerBlogs();
+
             $(document).scroll(function () {
                 DocumenScroll();
             });
