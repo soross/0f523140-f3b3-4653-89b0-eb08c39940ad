@@ -336,4 +336,9 @@ div.profile-detail-title a
     background-repeat: no-repeat;
     margin-top: 15px;
     margin-right:20px;
+    color:#496a8a;
+}
+div.profile-detail-title a:hover
+{
+    text-decoration:none;
 }
