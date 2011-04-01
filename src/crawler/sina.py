@@ -9,7 +9,7 @@ from time import sleep
 from datetime import datetime, timedelta, date, time
 import sys
 
-PAGE = 2
+PAGE = 1
 A = [(u"传统网络 Internet", u"超超Sandy", "d11c25990634d0e486235f1b42a55f9f", "89859ba49065135017b894df5e5a9089"),
      (u"移动互联", u"冬冬Billy", "f6449dd703d66cf2be5274f321416958", "31c47db4cd79e43a9196871a554d0847"),
      (u"网游", u"田田July", "032ec596fa363aa9bd3e5e5917f6aea4", "9e0c243fa3ff3515765510ba4010c411"),
