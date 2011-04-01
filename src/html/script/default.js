@@ -1,6 +1,7 @@
 ﻿var issearch = false;
 var SearchResult = "all";
-var count = 1;
+var count = 0;
+var page = 0;
 
 $(function () {
     SetRolePicker();
@@ -211,7 +212,7 @@ function SetSearch(msg, e) {
 //    });
 //}
 
-function GetOlderBlogs() { 
+function GetOlderBlogs() {
 }
 
 function SetHistory() {
