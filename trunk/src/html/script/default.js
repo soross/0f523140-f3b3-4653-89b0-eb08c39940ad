@@ -57,7 +57,7 @@ function SetAllSearch(msg) {
                     }
                 }
                 if (!nextLess && i - page > 3) {
-                    if (i == allPage) {
+                    if (i == allPage - 1) {
                         str += '<a class="page-number left">' + (i + 1) + '</a>';
                     }
                     else {
@@ -263,6 +263,7 @@ function SetConcern() {
             type: 'GET',
             url: 'search/' + encodeURI(text),
             success: function (msg) {
+                page = 0;
                 cate = 0;
                 SetSearch(msg, text);
             }
@@ -330,8 +331,9 @@ function SetHistory() {
             type: 'GET',
             url: 'search/' + encodeURI(text),
             success: function (msg) {
-                SetSearch(msg, text);
                 cate = 0;
+                page = 0;
+                SetSearch(msg, text);
             }
         });
     });
