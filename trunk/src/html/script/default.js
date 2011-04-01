@@ -39,7 +39,7 @@ function SetAllSearch(msg) {
                 str += '<a class="page-control left" id="prevPage">上一页</a>';
             }
             for (i = 0; i < allPage; i++) {
-                if (!prevLess && i - page < -3) {
+                if (!prevLess && i - page < -2) {
                     if (i == 0) {
                         str += '<a class="page-number left">' + (i + 1) + '</a>';
                     }
@@ -48,7 +48,7 @@ function SetAllSearch(msg) {
                         str += '<span class="left">...</span>';
                     }
                 }
-                if (Math.abs(i - page) <= 3) {
+                if (Math.abs(i - page) <= 2) {
                     if (i == page) {
                         str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
                     }
@@ -56,14 +56,13 @@ function SetAllSearch(msg) {
                         str += '<a class="page-number left">' + (i + 1) + '</a>';
                     }
                 }
-                if (!nextLess && i - page > 3) {
-                    if (i == allPage - 1) {
-                        str += '<a class="page-number left">' + (i + 1) + '</a>';
-                    }
-                    else {
-                        nextLess = true;
-                        str += '<span class="left">...</span>';
-                    }
+                if (i == allPage - 1 && i - page > 2) {
+                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                    nextLess = true;
+                }
+                if (!nextLess && i - page > 2) {
+                    nextLess = true;
+                    str += '<span class="left">...</span>';
                 }
             }
             if (page != allPage - 1) {
