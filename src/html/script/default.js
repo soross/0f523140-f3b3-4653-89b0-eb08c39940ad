@@ -24,6 +24,7 @@ function SetAllSearch(msg) {
         type: "POST",
         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
         success: function (msg) {
+            $(window).scrollTop(0);
             prevLess = false;
             nextLess = false;
             var allPage;
