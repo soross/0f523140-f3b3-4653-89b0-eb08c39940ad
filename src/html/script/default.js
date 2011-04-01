@@ -24,7 +24,7 @@ function SetAllSearch(msg) {
         type: "POST",
         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
         success: function (msg) {
-            $(window).scrollTop(0);
+            $(document).scrollTop(0);
             prevLess = false;
             nextLess = false;
             var allPage;
@@ -58,6 +58,9 @@ function SetAllSearch(msg) {
                 }
                 if (!nextLess && i - page > 3) {
                     if (i == allPage) {
+                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                    }
+                    else {
                         nextLess = true;
                         str += '<span class="left">...</span>';
                     }
