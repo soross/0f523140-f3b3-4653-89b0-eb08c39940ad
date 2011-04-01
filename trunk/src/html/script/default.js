@@ -36,7 +36,7 @@ function SetAllSearch(msg) {
             }
             var str = '<div id="pages-inner" class="right">';
             if (page != 0) {
-                str += '<a class="page-control left">上一页</a>';
+                str += '<a class="page-control left" id="prevPage">上一页</a>';
             }
             for (i = 0; i < allPage; i++) {
                 if (!prevLess && i - page < -3) {
@@ -64,7 +64,7 @@ function SetAllSearch(msg) {
                 }
             }
             if (page != allPage) {
-                str += '<a class="page-control left">下一页</a>';
+                str += '<a class="page-control left" id="nextPage">下一页</a>';
             }
             str += '</div>';
             $("div#pages").html(str);
@@ -78,7 +78,7 @@ function SetAllSearch(msg) {
                     }
                 });
             });
-            $("a.page-control:first").click(function () {
+            $("a#prevPage").click(function () {
                 page--;
                 $.ajax({
                     type: 'GET',
@@ -88,7 +88,7 @@ function SetAllSearch(msg) {
                     }
                 });
             });
-            $("a.page-control:last").click(function () {
+            $("a#nextPage").click(function () {
                 page++;
                 $.ajax({
                     type: 'GET',
