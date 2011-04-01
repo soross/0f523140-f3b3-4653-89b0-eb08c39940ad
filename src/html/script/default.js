@@ -10,8 +10,14 @@ $(function () {
         type: 'GET',
         url: 'search/all/0',
         success: function (msg) {
-            SetSearch(msg, 'all');
-            cate = 0;
+            $("div#blogs").html(msg);
+            $.ajax({
+                type: "POST",
+                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
+                success: function (msg) {
+                    alert(msg % 10);
+                }
+            });
         }
     });
 });
