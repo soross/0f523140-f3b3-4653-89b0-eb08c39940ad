@@ -55,14 +55,13 @@ function get_search_result($key, $num, $cate, $time)
         $key = explode(" ",$key);
         $key = "%".implode("%",$key)."%";
         $key = "tweets.content LIKE '$key'";
-        $cate2and = " AND";
     }
     else
-        $key = $cate2end = "";
+        $key = "";
     if($cate and $cate!="0")
     {
         $cate1 = ",(SELECT * from cat_relationship WHERE cat_id=$cate) AS cate";
-        $cate2 = $cate2end." tweets.tweet_id=cate.tweet_id";
+        $cate2 = " tweets.tweet_id=cate.tweet_id";
     }
     else
         $cate1 = $cate2 = "";
@@ -75,13 +74,21 @@ function get_search_result($key, $num, $cate, $time)
             $fuhao = "<";
             $time = strval(0 - intval($time));
         }
-        $time = " AND tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
+        $time = " tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
     }
-    if(!$key && !$cate2 && !$time)
+    if(!$key and !$cate2 and !$time)
         $where = "";
     else
         $where = "WHERE ";
-    $view = "SELECT tweets.* FROM tweets$cate1 $where$key$cate2$time ORDER BY tweets.post_datetime DESC LIMIT 0 , $num";
+    if($key and $cate or $key and $time)
+        $and1 = " AND ";
+    else
+        $and1 = "";
+    if($cate and $time)
+        $and2 = " AND ";
+    else
+        $and2 = "";
+    $view = "SELECT tweets.* FROM tweets$cate1 $where$key$and1$cate2$and2$time ORDER BY tweets.post_datetime DESC LIMIT 0 , $num";
     //echo $view;
     //FIXME: Low performance!
     
