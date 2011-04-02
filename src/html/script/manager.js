@@ -23,6 +23,12 @@
     $("div.item").mouseout(function () {
         $(this).removeClass("item-over");
     });
+    $("input.info-content-words").focusin(function () {
+        $(this).addClass("info-content-words-focus");
+    });
+    $("input.info-content-words").focusout(function () {
+        $(this).removeClass("info-content-words-focus");
+    });
 });
 
 function ShowProfile() {
