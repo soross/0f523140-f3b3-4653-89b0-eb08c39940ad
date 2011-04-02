@@ -34,9 +34,13 @@
                 type: 'GET',
                 url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + $(".microblog-item:firse").attr("id"),
                 success: function (msg) {
-                    alert(msg);
+                    if (msg != "") {
+                        var r = new RegExp("id");
+                        alert(msg.match(r).length);
+                    }
                 }
             });
+            setTimeout(function () { GetNewerBlogs(); }, 60000);
         }
 
         $(function () {

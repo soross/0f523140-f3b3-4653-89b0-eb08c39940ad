@@ -328,13 +328,13 @@ div.profile-detail-title
 }
 div.profile-detail-title span
 {
-    color:#585858;
-    margin-top:15px;
-    font-size:14px;
-    margin-left:10px;
-    font-weight:bold;
-    letter-spacing:2px;
-    line-height:30px;
+    color: #585858;
+    margin-top: 15px;
+    font-size: 14px;
+    margin-left: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    line-height: 30px;
 }
 div.profile-detail-title a
 {
@@ -345,104 +345,126 @@ div.profile-detail-title a
     background-image: url('../images/profile-title-button.jpg');
     background-repeat: no-repeat;
     margin-top: 15px;
-    margin-right:20px;
-    color:#496a8a;
+    margin-right: 20px;
+    color: #496a8a;
 }
 div.profile-detail-title a:hover
 {
-    text-decoration:none;
+    text-decoration: none;
 }
 div.profile-content
 {
-    overflow:hidden;
-    padding:10px 0;
+    overflow: hidden;
+    padding: 10px 0;
 }
 div#info-content-left
 {
-    width:400px;
+    width: 400px;
 }
 div#info-content-right
 {
-    width:210px;
+    width: 210px;
 }
 span.info-content-title
 {
-    color:#b2b2b2;
-    height:30px;
-    line-height:30px;
-    width:150px;
-    text-align:right;
+    color: #b2b2b2;
+    height: 30px;
+    line-height: 30px;
+    width: 150px;
+    text-align: right;
 }
 span.info-content-words
 {
-    color:#585858;
-    height:30px;
-    line-height:30px;
-    width:220px;
-    text-align:left;
-    padding-left:30px;
+    color: #585858;
+    height: 30px;
+    line-height: 30px;
+    width: 220px;
+    text-align: left;
+    padding-left: 30px;
 }
 div#info-pic
 {
-    height:94px;
-    width:94px;
-    margin-left:53px;
-    margin-top:20px;
-    border:5px #ebf1fe solid;
-    border-radius:5px 5px;
+    height: 94px;
+    width: 94px;
+    margin-left: 53px;
+    margin-top: 20px;
+    border: 5px #ebf1fe solid;
+    border-radius: 5px 5px;
 }
 div#info-pic div
 {
-    line-height:24px;
-    background-color:#dbeaf6;
-    height:24px;
-    text-align:center;
+    line-height: 24px;
+    background-color: #dbeaf6;
+    height: 24px;
+    text-align: center;
 }
 div#info-pic-control
 {
-    line-height:24px;
-    height:24px;
-    text-align:center;
-    margin-top:15px;
-    color:#585858;
+    line-height: 24px;
+    height: 24px;
+    text-align: center;
+    margin-top: 15px;
+    color: #585858;
 }
 div#info-pic-control
 {
-    line-height:24px;
-    height:24px;
-    text-align:center;
-    margin-top:15px;
-    color:#585858;
+    line-height: 24px;
+    height: 24px;
+    text-align: center;
+    margin-top: 15px;
+    color: #585858;
 }
 div.education-item
 {
-    height:30px;
-    line-height:30px;
-    color:#585858;
-    border-bottom:1px #dcebf6 dashed;
+    height: 30px;
+    line-height: 30px;
+    color: #585858;
+    border-bottom: 1px #dcebf6 dashed;
 }
 div.education-item-over
 {
-    background-color:#e4eff9;
+    background-color: #e4eff9;
 }
 div.education-item span.school
 {
-    width:100px;
-    margin-left:60px;
+    width: 100px;
+    margin-left: 60px;
 }
 div.education-item span.time
 {
-    width:120px;
+    width: 120px;
 }
 div.education-item span.education
 {
-    width:80px;
+    width: 80px;
 }
 div.education-item span.major
 {
-    width:80px;
+    width: 80px;
 }
 div.education-header
 {
-    color:#b2b2b2;
+    color: #b2b2b2;
+}
+
+div#ads
+{
+    display: none;
+}
+div#profile-control a
+{
+    height:36px;
+    width:142px;
+    margin-top:20px;
+    margin-left:14px;
+}
+a#profile-preview
+{
+    background-image: url('../images/profile-preview.jpg');
+    background-repeat: no-repeat;
+}
+a#profile-save
+{
+    background-image: url('../images/profile-save.jpg');
+    background-repeat: no-repeat;
 }
