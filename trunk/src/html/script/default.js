@@ -4,6 +4,7 @@ var count = 0;
 var page = 0;
 var prevLess = false;
 var nextLess = false;
+var nowFirst = "";
 
 $(function () {
     SetRolePicker();
@@ -13,11 +14,13 @@ $(function () {
         url: 'search/all/0',
         success: function (msg) {
             SetAllSearch(msg);
+            nowFirst = $(".microblog-item:first").attr("id");
         }
     });
 });
 
 function SetAllSearch(msg) {
+    $("div#fresh-outer").animate({ opacity: 0 }, 0);
     count = 0;
     $("div#blogs").html(msg);
     $.ajax({
@@ -265,12 +268,14 @@ function SetConcern() {
                 page = 0;
                 cate = 0;
                 SetSearch(msg, text);
+                nowFirst = $(".microblog-item:first").attr("id");
             }
         });
     });
 }
 
 function SetSearch(msg, e) {
+    $("div#fresh-outer").animate({ opacity: 0 }, 0);
     count = 0;
     SearchResult = e;
     $("div#blogs").html(msg);
@@ -409,6 +414,7 @@ function SetHistory() {
                 cate = 0;
                 page = 0;
                 SetSearch(msg, text);
+                nowFirst = $(".microblog-item:first").attr("id");
             }
         });
     });
