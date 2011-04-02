@@ -129,7 +129,9 @@ function SetResult(msg) {
     SearchResult = msg;
     var str = "";
     for (s in msg.split(' ')) {
-        str += '#<a class="keyword">' + msg.split(' ')[s] + '</a>#';
+        if (s != "") {
+            str += '#<a class="keyword">' + msg.split(' ')[s] + '</a>#';
+        }
     }
     str += "的搜索结果";
     $("div#search-result div.left").html(str);
