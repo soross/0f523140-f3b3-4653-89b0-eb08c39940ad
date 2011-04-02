@@ -184,7 +184,6 @@ span.item-apply
     line-height: 14px;
     height: 14px;
     margin-top: 5px;
-    display: none;
 }
 span.item-apply-name
 {
@@ -202,7 +201,6 @@ span.item-apply-info-read
 }
 a.item-favourite
 {
-    display: none;
     letter-spacing: 2px;
     padding: 0 10px;
     line-height: 14px;
