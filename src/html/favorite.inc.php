@@ -59,6 +59,68 @@ function favorites_show()
     echo $content;
 }
 
+function favorites_delete()
+{
+    include_once('login.php');
+    $id = get_current_user_id();
+    $args = func_get_args();
+    $key = $args[2];
+    if(!$key)
+        die('Invalid Argument!');
+    connect_db();
+    $view = "SELECT * FROM favorites WHERE user_id='$id' AND tweet_id='$key' AND deleted='0'";
+    $list = mysql_query($view);
+    $row = mysql_fetch_array($list);
+    if($row)
+    {
+        $view = "UPDATE favorites SET deleted='1' WHERE user_id='$id' AND tweet_id='$key'";
+        $list = mysql_query($view) or die("Delete error!");
+    }
+    else
+    {
+        print $key;
+        die(": Non-exist Error!");
+    }
+}
+
+function favorites_exist()
+{
+    include_once('login.php');
+    $id = get_current_user_id();
+    $args = func_get_args();
+    $key = $args[2];
+    if(!$key)
+        die('Invalid Argument!');
+    connect_db();
+    $view = "SELECT * FROM favorites WHERE user_id='$id' AND tweet_id='$key' AND deleted='0'";
+    $list = mysql_query($view);
+    $row = mysql_fetch_array($list);
+    if($row)
+        echo "1";
+    else
+        echo "0";
+}
+
+function favorites_add()
+{
+    include_once('login.php');
+    $id = get_current_user_id();
+    $args = func_get_args();
+    $key = $args[2];
+    if(!$key)
+        die('Invalid Argument!');
+    connect_db();
+    $view = "SELECT * FROM favorites WHERE user_id='$id' AND tweet_id='$key' AND deleted='0'";
+    $list = mysql_query($view);
+    $row = mysql_fetch_array($list);
+    if($row)
+    {
+        favorites_delete("", "", $key);
+    }
+    $view = "INSERT INTO favorites(tweet_id, user_id, deleted) VALUES ('$key', '$id', '0')";
+    $list = mysql_query($view) or die("Insert error!");
+}
+
 function theme_like($content)
 {
     theme('page', "收藏", $content);
