@@ -12,6 +12,26 @@
     <script src="script/share.js" type="text/javascript"></script>
     <script src="script/default.js" type="text/javascript"></script>
     <script type="text/javascript">
+        function LikeThis(e) {
+            $.ajax({
+                type: 'POST',
+                url: 'like/add/' + e,
+                success: function () { 
+
+                }
+            });
+        }
+
+        function LikeThis(e) {
+            $.ajax({
+                type: 'POST',
+                url: 'like/delete/' + e,
+                success: function () { 
+
+                }
+            });
+        }
+
         function DocumenScroll() {
             if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4) {
                 $(document).unbind("scroll");
@@ -77,7 +97,7 @@
                     type: 'POST',
                     url: 'post/1',
                     data: { text: $("div#jobs-publish-text textarea").val() },
-                    success: function () {
+                    success: function (msg) {
                         HideJobsPublish();
                     }
                 });
@@ -87,7 +107,7 @@
                     type: 'POST',
                     url: 'post/2',
                     data: { text: $("div#recruitment-publish-text textarea").val() },
-                    success: function () {
+                    success: function (msg) {
                         HideRecruitmentPublish();
                     }
                 });
