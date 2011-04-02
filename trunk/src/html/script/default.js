@@ -28,6 +28,30 @@ function SetAllSearch(msg) {
     $("div#fresh-blogs").hide();
     count = 0;
     $("div#blogs").html(msg);
+    $("a.like").click(function () {
+        var item = $(this);
+        var id = $(this).parent().parent().parent().attr("name");
+        $.ajax({
+            type: "POST",
+            url: 'like/add/' + id,
+            success: function () {
+                item.hide();
+                item.next("a.unlike").show();
+            }
+        });
+    });
+    $("a.unlike").click(function () {
+        var item = $(this);
+        var id = $(this).parent().parent().parent().attr("name");
+        $.ajax({
+            type: "POST",
+            url: 'like/delete/' + id,
+            success: function () {
+                item.hide();
+                item.prev("a.like").show();
+            }
+        });
+    });
     $.ajax({
         type: "POST",
         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
@@ -290,6 +314,30 @@ function SetSearch(msg, e) {
     count = 0;
     SearchResult = e;
     $("div#blogs").html(msg);
+    $("a.like").click(function () {
+        var item = $(this);
+        var id = $(this).parent().parent().parent().attr("name");
+        $.ajax({
+            type: "POST",
+            url: 'like/add/' + id,
+            success: function () {
+                item.hide();
+                item.next("a.unlike").show();
+            }
+        });
+    });
+    $("a.unlike").click(function () {
+        var item = $(this);
+        var id = $(this).parent().parent().parent().attr("name");
+        $.ajax({
+            type: "POST",
+            url: 'like/delete/' + id,
+            success: function () {
+                item.hide();
+                item.prev("a.like").show();
+            }
+        });
+    });
     $("div#search-result-outer").slideDown(200);
     $("a#search-result-concern").mouseover(function () {
         $(this).attr("class", "left search-result-concern-over");
