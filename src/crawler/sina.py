@@ -161,7 +161,7 @@ for crawler in enumerate(A):
 q.join()
 print now() + "Craw Complete."
 import MySQLdb, uuid
-db = MySQLdb.connect("115.156.219.194","apis","apis","apis",charset="utf8")
+db = MySQLdb.connect("127.0.0.1","apis","apis","apis",charset="utf8")
 c = db.cursor()
 for cat, items in B:
 	for userid, name, avatar, mid, text, posttime, source in items:
