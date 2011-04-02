@@ -49,6 +49,39 @@ function ShowFavourite() {
     $("div#blogs").show();
     $("div#profile-control").hide();
     $("div#ads").show();
+    $.ajax({
+        type: 'POST',
+        url: 'like/',
+        success: function (msg) {
+            $("div#blogsinner").html(msg);
+            $("a.delete").click(function () {
+                var item = $(this);
+                var id = $(this).parent().parent().parent().attr("name");
+                $.ajax({
+                    type: "POST",
+                    url: 'like/delete/' + id,
+                    success: function () {
+                        $(this).parent().parent().parent().animate({ opacity: 0 }, 300, null, function () {
+                            $(this).parent().parent().parent().slideUp(200);
+                        });
+                    }
+                });
+            });
+            $("div#item-delete a").click(function () {
+                var item = $(this);
+                var id = $(this).parent().attr("name");
+                $.ajax({
+                    type: "POST",
+                    url: 'like/delete/' + id,
+                    success: function () {
+                        $(this).parent().animate({ opacity: 0 }, 300, null, function () {
+                            $(this).parent().slideUp(200);
+                        });
+                    }
+                });
+            });
+        }
+    });
 }
 function ShowNormal() {
     $("div#profile").hide();
