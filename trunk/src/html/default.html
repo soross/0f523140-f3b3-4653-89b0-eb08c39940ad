@@ -13,12 +13,11 @@
     <script src="script/default.js" type="text/javascript"></script>
     <script type="text/javascript">
         function DocumenScroll() {
-            //            $("div#backTop").stop().animate({ top: $(window).scrollTop() + $(window).height() - 80 }, 300);
             if ($(window).scrollTop() != 0) {
-                $("div#backTop").show()
+                $("div#backTop").fadeIn(200)
             }
             else {
-                $("div#backTop").hide();
+                $("div#backTop").fadeOut(200);
             }
             if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4) {
                 $(document).unbind("scroll");
@@ -330,7 +329,7 @@
     </div>
     <div id="footer" class="inner">
         <div id="footerlinks">
-            <a>网站帮助</a> | <a>意见反馈</a> | <a>联系我们</a></div>
+            <a href="help.html">网站帮助</a> | <a href="feedback.html">意见反馈</a> | <a>联系我们</a></div>
         <div id="copyright">
             CopyRight © 2011-2012 <a>微博招聘网</a> Co. All Right Reserved. 鄂ICP证100111号<br />
             Powered by:GNG</div>
