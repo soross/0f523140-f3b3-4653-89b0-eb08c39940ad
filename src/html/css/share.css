@@ -4,7 +4,7 @@
     background-color: #f2f6fe;
     background-image: url('../images/background.jpg');
     background-repeat: repeat-x;
-    overflow:auto;
+    overflow: auto;
 }
 body, a, input, span, img
 {
@@ -562,6 +562,27 @@ div#recruitment-publish-confirm a
     height: 36px;
     width: 114px;
     background-image: url('../images/recruitment-publish-confirm.jpg');
+}
+
+div#footer
+{
+    margin-top: 30px;
+    letter-spacing:1px;
+}
+div#footer a
+{
+    color: #5c738f;
+}
+div#footerlinks
+{
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+div#copyright
+{
+    line-height: 20px;
+    text-align: center;
 }
 
 .left
