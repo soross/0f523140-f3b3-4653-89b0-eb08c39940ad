@@ -15,12 +15,14 @@ $(function () {
         success: function (msg) {
             SetAllSearch(msg);
             nowFirst = $(".microblog-item:first").attr("id");
+            GetNewerBlogs();
         }
     });
 });
 
 function SetAllSearch(msg) {
     $("div#fresh-outer").animate({ opacity: 0 }, 0);
+    $("div#fresh-outer").hide();
     count = 0;
     $("div#blogs").html(msg);
     $.ajax({
@@ -276,6 +278,7 @@ function SetConcern() {
 
 function SetSearch(msg, e) {
     $("div#fresh-outer").animate({ opacity: 0 }, 0);
+    $("div#fresh-outer").hide();
     count = 0;
     SearchResult = e;
     $("div#blogs").html(msg);

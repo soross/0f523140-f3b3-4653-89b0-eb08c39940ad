@@ -45,10 +45,13 @@
                             $("div#fresh-outer").animate({ opacity: 1 }, 200);
                         });
                         $("div#fresh a").click(function () {
-                            $("div#fresh-blogs").slideDown(300, null, function () {
+                            $("div#fresh-blogs").slideDown(500, null, function () {
                                 $("div#fresh-blogs").animate({ opacity: 1 }, 200);
                             });
                             nowFirst = $(".microblog-item:first").attr("id");
+                            $("div#fresh-outer").animate({ opacity: 0 }, 0, null, function () {
+                                $("div#fresh-blogs").slideUp(300);
+                            });
                         });
                     }
                 }
@@ -57,7 +60,6 @@
         }
 
         $(function () {
-            GetNewerBlogs();
 
             $(document).scroll(function () {
                 DocumenScroll();
