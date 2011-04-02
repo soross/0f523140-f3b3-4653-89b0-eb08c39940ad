@@ -5,6 +5,7 @@ var page = 0;
 var prevLess = false;
 var nextLess = false;
 var nowFirst = "";
+var isFreshed = false;
 
 $(function () {
     SetRolePicker();
