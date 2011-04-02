@@ -67,10 +67,11 @@ function theme_like($content)
 function user_like($query)
 {
     $key = (string) $query[1];
-    if(!$key):
-        die("Invalid argument!");
-    endif;
-    $content = '建设中...<br/>收藏关键词:'.$key;
-    theme('like', $content);
+    if(!$key)
+        $key = "show";
+    $function = 'favorites_'.$key;
+    if (!function_exists($function))
+        die("Invalid Argument!");
+    return call_user_func_array($function, $query);
 }
 ?>
