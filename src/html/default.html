@@ -32,11 +32,24 @@
         function GetNewerBlogs() {
             $.ajax({
                 type: 'GET',
-                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + $(".microblog-item:first").attr("id"),
+                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + nowFirst,
                 success: function (msg) {
                     if (msg != "") {
-                        var r = new RegExp("id");
-                        alert(msg.match(r).length);
+                        var str = '<div id="fresh-blogs" style="display:none;border-bottom:2px #000000 solid">';
+                        str += msg;
+                        str += '</div>';
+                        $("div#blogs").html(str + $("div#blogs").html());
+                        $("div#fresh-blogs").animate({ opacity: 0 }, 0);
+                        $("div#fresh").html('有' + (msg.split("id=").length - 1) + '条更新，点击<a class="keyword">这里</a>刷新');
+                        $("div#fresh-outer").slideDown(300, null, function () {
+                            $("div#fresh-outer").animate({ opacity: 1 }, 200);
+                        });
+                        $("div#fresh a").click(function () {
+                            $("div#fresh-blogs").slideDown(300, null, function () {
+                                $("div#fresh-blogs").animate({ opacity: 1 }, 200);
+                            });
+                            nowFirst = $(".microblog-item:first").attr("id");
+                        });
                     }
                 }
             });
@@ -58,6 +71,7 @@
                             url: 'search/' + encodeURI($("#search-text").val()) + '/' + cate,
                             success: function (msg) {
                                 SetSearch(msg, $("#search-text").val());
+                                nowFirst = $(".microblog-item:first").attr("id");
                             }
                         });
                     }
@@ -70,6 +84,7 @@
                         url: 'search/' + encodeURI($("#search-text").val()) + '/' + cate,
                         success: function (msg) {
                             SetSearch(msg, $("#search-text").val());
+                            nowFirst = $(".microblog-item:first").attr("id");
                         }
                     });
                 }
@@ -182,7 +197,7 @@
                 本周新增职位3124个，今日新增职位666个</div>
             <div id="microblogs">
                 <div id="fresh-outer">
-                    <div id="freash">
+                    <div id="fresh">
                         有条更新，点击<a class="keyword">这里</a>刷新
                     </div>
                 </div>
