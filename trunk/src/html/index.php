@@ -6,7 +6,7 @@ include_once('login.inc.php');
 include_once('search.inc.php');
 include_once('follow.inc.php');
 include_once('favorite.inc.php');
-#include_once('.php');
+include_once('post.inc.php');
 #include_once('.php');
 
 func_register(array(
