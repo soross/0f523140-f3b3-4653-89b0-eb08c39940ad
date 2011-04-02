@@ -13,7 +13,7 @@
     <script src="script/default.js" type="text/javascript"></script>
     <script type="text/javascript">
         function DocumenScroll() {
-            $("div#backTop").stop().animate({ top: $(window).scrollTop() + $(window).height() - 80 }, 300);
+            //            $("div#backTop").stop().animate({ top: $(window).scrollTop() + $(window).height() - 80 }, 300);
             if ($(window).scrollTop() != 0) {
                 $("div#backTop").show()
             }
@@ -137,6 +137,7 @@
                 offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 80),
                 collision: "none none"
             });
+            $("div#backTop").css("position", "fixed");
             $("div#backTop a").click(function () {
                 $(window).scrollTop(0);
             });
