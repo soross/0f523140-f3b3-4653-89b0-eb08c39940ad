@@ -1,0 +1,74 @@
+﻿a#back
+{
+    margin-top: 70px;
+    font-size: 16px;
+    margin-right: 50px;
+}
+div#content
+{
+    border-top: 1px #b1c3d8 solid;
+    overflow: hidden;
+}
+div#content-left
+{
+    width: 170px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    background-color: #ebf1fe;
+}
+div#content-left div
+{
+    height: 30px;
+    font-family: 微软雅黑, 宋体;
+    line-height: 30px;
+    padding-left: 20px;
+    color: #2a6790;
+}
+div#content-left a
+{
+    font-size: 20px;
+}
+div#content-middle
+{
+    width: 792px;
+    background-color: #ebf1fe;
+}
+div#inner-content
+{
+    width: 610px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px #e5eaf7 solid;
+    border-radius: 5px 5px;
+    margin-top: 10px;
+    line-height: 20px;
+}
+div#inner-content span
+{
+    width: 100px;
+    text-align: right;
+}
+div#inner-content div
+{
+    width: 610px;
+    overflow: hidden;
+    line-height: 30px;
+}
+div#inner-content input, textarea
+{
+    border: 1px #e1ebff solid;
+    background-color: #f2f6fe;
+}
+div#inner-content input, textarea
+{
+    border: 1px #e1ebff solid;
+    background-color: #f2f6fe;
+    width: 323px;
+}
+div#inner-content a
+{
+    width: 152px;
+    height: 29px;
+    background-image: url('../images/feedback-submit.jpg');
+    margin-left: 230px;
+}
