@@ -32,7 +32,7 @@
         function GetNewerBlogs() {
             $.ajax({
                 type: 'GET',
-                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + $(".microblog-item:firse").attr("id"),
+                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + $(".microblog-item:first").attr("id"),
                 success: function (msg) {
                     if (msg != "") {
                         var r = new RegExp("id");
