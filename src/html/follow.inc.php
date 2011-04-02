@@ -6,16 +6,6 @@ func_register(array(
     ),
 ));
 
-function user_follow($query)
-{
-    $key = (string) $query[1];
-    if(!$key):
-        die("Invalid argument!");
-    endif;
-    $content = '建设中...<br/>关注关键词:'.$key;
-    theme('page', "关注", $content);
-}
-
 function get_followings($num)
 {
     include_once('login.php');
