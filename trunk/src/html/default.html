@@ -35,7 +35,7 @@
                 url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + nowFirst,
                 success: function (msg) {
                     if (msg != "") {
-                        var str = '<div id="fresh-blogs" style="display:none;border-bottom:2px #000000 solid">';
+                        var str = '<div id="fresh-blogs" style="display:none;border-bottom:1px #4e88af solid">';
                         str += msg;
                         str += '</div>';
                         $("div#blogs").html(str + $("div#blogs").html());
@@ -50,7 +50,7 @@
                             });
                             nowFirst = $(".microblog-item:first").attr("id");
                             $("div#fresh-outer").animate({ opacity: 0 }, 0, null, function () {
-                                $("div#fresh-blogs").slideUp(300);
+                                $("div#fresh-outer").slideUp(300);
                             });
                         });
                     }
