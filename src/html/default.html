@@ -12,26 +12,6 @@
     <script src="script/share.js" type="text/javascript"></script>
     <script src="script/default.js" type="text/javascript"></script>
     <script type="text/javascript">
-        function LikeThis(e) {
-            $.ajax({
-                type: 'POST',
-                url: 'like/add/' + e,
-                success: function () {
-
-                }
-            });
-        }
-
-        function LikeThis(e) {
-            $.ajax({
-                type: 'POST',
-                url: 'like/delete/' + e,
-                success: function () {
-
-                }
-            });
-        }
-
         function DocumenScroll() {
             if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4) {
                 $(document).unbind("scroll");
@@ -68,6 +48,32 @@
                             $("div#blogs").html($("div#fresh-blogs").html() + $("div#blogs").html());
                             $("div#fresh-blogs").hide();
                             isFreshed = true;
+                            $("a.like").unbind("click");
+                            $("a.unlike").unbind("click");
+                            $("a.like").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'like/add/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.next("a.unlike").show();
+                                    }
+                                });
+                            });
+                            $("a.unlike").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'like/delete/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.prev("a.like").show();
+                                    }
+                                });
+                            });
                         }
                         $("div#fresh-blogs").html(msg);
                         $("div#fresh").html('有' + (msg.split("id=").length - 1) + '条更新，点击<a class="keyword">这里</a>刷新');
@@ -82,6 +88,32 @@
                             nowFirst = $(".microblog-item:first").attr("id");
                             $("div#fresh-outer").animate({ opacity: 0 }, 0, null, function () {
                                 $("div#fresh-outer").slideUp(300);
+                            });
+                            $("a.like").unbind("click");
+                            $("a.unlike").unbind("click");
+                            $("a.like").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'like/add/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.next("a.unlike").show();
+                                    }
+                                });
+                            });
+                            $("a.unlike").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'like/delete/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.prev("a.like").show();
+                                    }
+                                });
                             });
                         });
                     }
@@ -266,25 +298,6 @@
                 <div id="fresh-blogs" style="display: none; border-bottom: 1px #4e88af solid">
                 </div>
                 <div id="blogs">
-                    <div class="microblog-item" id="1301725934">
-                        <div class="left microblog-item-pic">
-                            <img width="50" height="50" alt="" src="http://tp2.sinaimg.cn/2010820933/50/1299486457/1" />
-                        </div>
-                        <div class="left microblog-item-content">
-                            <div class="microblog-item-blog">
-                                <a class="microblog-item-blog-name" href="http://t.sina.com.cn/n/FESCO招聘" target="_blank">
-                                    FESCO招聘</a>：先祝大家清明节愉快，多和家人聚会，体验快乐生活。下面发布新一周的职位快报，有意者可将中英文简历发至fesco.job@fesco.com.cn，主题注明微薄信息。1急聘上海办公的IT行业电话销售。2急聘外资律所的律师秘书。3本科有工作经验的秘书，销售助理。4日语流利的会计。5英文好的外贸男。后4职位均北京办公
-                            </div>
-                            <div class="microblog-item-other">
-                                <span class="left microblog-item-time">2011-04-02 14:32:14</span> <a class="left microblog-item-position">
-                                    新浪微博</a><a class="right microblog-item-control like">收藏</a><a class="right microblog-item-control unlike"
-                                        style="display: none;">取消收藏</a> <a class="right microblog-item-control microblog-item-apply">
-                                            申请该职位</a>
-                            </div>
-                        </div>
-                        <div class="clear">
-                        </div>
-                    </div>
                 </div>
                 <div id="relative">
                     <span class="left">相关招聘：</span><a class="left">前端开发</a><a class="left">前端开发</a><a
