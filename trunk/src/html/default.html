@@ -123,6 +123,16 @@
         }
 
         $(function () {
+            $("div#backTop").position({
+                of: $("div#microblogs"),
+                my: "left top",
+                at: "right top",
+                offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 80),
+                collision: "none none"
+            });
+            $("div#backTop a").click(function () {
+                $(window).scrollTop(0);
+            });
 
             $("div#jobs-publish-confirm a").click(function () {
                 $.ajax({
@@ -146,6 +156,13 @@
             });
 
             $(document).scroll(function () {
+                $("div#backTop").stop().animate({ top: $(window).scrollTop() + $(window).height() - 80 }, 300);
+                if ($(window).scrollTop() != 0) {
+                    $("div#backTop").show()
+                }
+                else {
+                    $("div#backTop").hide();
+                }
                 DocumenScroll();
             });
 
@@ -372,6 +389,9 @@
                 <a class="right"></a>
             </div>
         </div>
+    </div>
+    <div id="backTop" class="absolute">
+        <a>回到顶部</a>
     </div>
 </body>
 </html>

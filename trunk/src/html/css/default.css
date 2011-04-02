@@ -410,6 +410,16 @@ div#right div#fresh
     letter-spacing: 3px;
 }
 
+div#backTop
+{
+    width:20px;
+    height:80px;
+    line-height:20px;
+    text-align:center;
+    background-color: #d7e7ef;
+    display:none;
+}
+
 .clear
 {
     clear: both;
