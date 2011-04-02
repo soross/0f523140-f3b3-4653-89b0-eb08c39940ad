@@ -118,7 +118,7 @@ function GetNewerCount() {
         url: 'count/',
         success: function (msg) {
             if (!issearch) {
-                $("div#radio").html("本周新增职位" + msg.split(',')[0] + "个，今日新增职位" + msg.split(',')[1] + "个");
+                $("div#radio").html("本周新增职位" + $.trim(msg).split(',')[0] + "个，今日新增职位" + $.trim(msg).split(',')[1] + "个");
                 setTimeout(function () { GetNewerCount(); }, 1200000);
             }
         }
@@ -126,10 +126,11 @@ function GetNewerCount() {
 }
 
 function SetResult(msg) {
-    SearchResult = msg;
+    msg = $.trim(msg);
+    SearchResult = msg
     var str = "";
     for (s in msg.split(' ')) {
-        if (s != "") {
+        if (msg.split(' ')[s] != "") {
             str += '#<a class="keyword">' + msg.split(' ')[s] + '</a>#';
         }
     }
