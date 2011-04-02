@@ -30,9 +30,7 @@ function SetPublish() {
         collision: "none none"
     });
     $("div#jobs-publish-title a").click(function () { HideJobsPublish(); });
-    $("div#jobs-publish-confirm a").click(function () { HideJobsPublish(); });
     $("div#recruitment-publish-title a").click(function () { HideRecruitmentPublish(); });
-    $("div#recruitment-publish-confirm a").click(function () { HideRecruitmentPublish(); });
 
     $("a.jobs-publish-tags-hot-item").click(function () {
         $("div#jobs-publish-tags input").val($("div#jobs-publish-tags input").val() + " " + $(this).attr("title"));
