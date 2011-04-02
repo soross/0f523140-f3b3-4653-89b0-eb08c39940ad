@@ -441,16 +441,6 @@ function SetSearch(msg, e) {
     });
 }
 
-//function GetNewerBlogs() {
-//    $.ajax({
-//        type: "GET",
-//        url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + $(".microblog-item:first").attr("id"),
-//        success: function (msg) { 
-//        }
-//    });
-//}
-
-
 function GetOlderBlogs() {
 }
 
