@@ -39,27 +39,18 @@ function ShowProfile() {
 }
 
 function ShowApply() {
-    $("a.item-control").hide();
-    $("span.item-apply").show();
-    $("a.item-favourite").hide();
     $("div#profile").hide();
     $("div#blogs").show();
     $("div#profile-control").hide();
     $("div#ads").show();
 }
 function ShowFavourite() {
-    $("a.item-control").hide();
-    $("span.item-apply").hide();
-    $("a.item-favourite").show();
     $("div#profile").hide();
     $("div#blogs").show();
     $("div#profile-control").hide();
     $("div#ads").show();
 }
 function ShowNormal() {
-    $("a.item-control").show();
-    $("span.item-apply").hide();
-    $("a.item-favourite").hide();
     $("div#profile").hide();
     $("div#blogs").show();
     $("div#profile-control").hide();
