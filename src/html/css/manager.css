@@ -112,6 +112,7 @@ div.item
 div.item-over
 {
     background-image: url('../images/item-over-background.jpg');
+    background-repeat: no-repeat;
 }
 div.item-delete
 {
@@ -378,13 +379,13 @@ input.info-content-words
     line-height: 16px;
     width: 200px;
     margin-left: 30px;
-    margin-top:7px;
-    margin-bottom:7px;
-    border:1px #ffffff solid;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    border: 1px #ffffff solid;
 }
 input.info-content-words-focus
 {
-    border:1px #b2b2b2 solid;
+    border: 1px #b2b2b2 solid;
 }
 div#info-pic
 {
@@ -457,10 +458,10 @@ div#profile-control
 }
 div#profile-control a
 {
-    height:36px;
-    width:142px;
-    margin-top:20px;
-    margin-left:14px;
+    height: 36px;
+    width: 142px;
+    margin-top: 20px;
+    margin-left: 14px;
 }
 a#profile-preview
 {
