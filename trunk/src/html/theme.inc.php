@@ -109,6 +109,7 @@ function theme_login()
 function theme_result($result)
 {
     include_once("login.inc.php");
+    include_once("tag.inc.php");
     if(user_is_authenticated())
     {
         include_once("favorite.inc.php");
@@ -117,6 +118,7 @@ function theme_result($result)
     $content = "";
     foreach($result as $r)
     {
+        $tags = get_tags($r['tweet_id']);
         if(strstr($r['source'], '<'))
             $source = str_replace("<a ", '<a class="left microblog-item-position"', $r['source']);
         else
@@ -149,6 +151,13 @@ function theme_result($result)
                 $content .= '<a class="right microblog-item-control like" style="display: none;">收藏</a><a class="right microblog-item-control unlike"
                                         >取消收藏</a> <a class="right microblog-item-control microblog-item-apply apply">
                                             申请该职位</a>';
+        }
+        if($tags)
+        {
+            $content.='</div><div class="microblog-item-other1">
+                            <span class="left microblog-item-time">相关职位：</span> ';
+            foreach($tags as $t)
+                $content.='<a class="left keyword microblog-item-relate">'.$t.'</a>';
         }
         $content .='
                         </div>
