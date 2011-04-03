@@ -31,7 +31,17 @@
             });
             CKFinder.setupCKEditor(editor, "ckfinder/");
 
+            $("div#info-pic a").click(function () {
+                var finder = new CKFinder();
+                finder.basePath = 'ckfinder/';
+                finder.selectActionFunction = SetFileField;
+                finder.popup();
+            });
         });
+
+        function SetFileField(fileUrl) {
+            $("div#info-pic img").attr("src", fileUrl);
+        }
     </script>
 </head>
 <body>
