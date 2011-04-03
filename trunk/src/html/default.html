@@ -267,8 +267,8 @@
                             type: 'GET',
                             url: 'search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate,
                             success: function (msg) {
+                                isTurn = false;
                                 SetSearch(msg, $("#search-text").val());
-                                nowFirst = $(".microblog-item:first").attr("id");
                             }
                         });
                     }
@@ -280,8 +280,8 @@
                         type: 'GET',
                         url: 'search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate,
                         success: function (msg) {
+                            isTurn = false;
                             SetSearch(msg, $("#search-text").val());
-                            nowFirst = $(".microblog-item:first").attr("id");
                         }
                     });
                 }
