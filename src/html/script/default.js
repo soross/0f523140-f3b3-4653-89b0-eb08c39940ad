@@ -6,6 +6,7 @@ var prevLess = false;
 var nextLess = false;
 var nowFirst = "";
 var isFreshed = false;
+var isTurn = false;
 
 $(function () {
     SetRolePicker();
@@ -14,8 +15,8 @@ $(function () {
         type: 'GET',
         url: 'search/all/0',
         success: function (msg) {
+            isTurn = false;
             SetAllSearch(msg);
-            nowFirst = $(".microblog-item:first").attr("id");
             GetNewerBlogs();
         }
     });
@@ -35,6 +36,9 @@ function SetAllSearch(msg) {
                     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
                         $("div#blogs").slideUp(100, null, function () {
                             $("div#blogs").html(msg);
+                            if (!isTurn) {
+                                nowFirst = $(".microblog-item:first").attr("id");
+                            }
                             $("div#blogs").slideDown(100, null, function () {
                                 $("div#blogs").animate({ opacity: 1 }, 200);
                             });
@@ -139,6 +143,7 @@ function SetAllSearch(msg) {
                     type: 'GET',
                     url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
                     success: function (msg) {
+                        isTurn = true;
                         SetAllSearch(msg);
                     }
                 });
@@ -149,6 +154,7 @@ function SetAllSearch(msg) {
                     type: 'GET',
                     url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
                     success: function (msg) {
+                        isTurn = true;
                         SetAllSearch(msg);
                     }
                 });
@@ -159,6 +165,7 @@ function SetAllSearch(msg) {
                     type: 'GET',
                     url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
                     success: function (msg) {
+                        isTurn = true;
                         SetAllSearch(msg);
                     }
                 });
@@ -207,13 +214,29 @@ function SetResult(msg) {
                             $("a#search-result-concern").unbind("mousedown");
                             $("a#search-result-concern").unbind("mouseout");
                             $("a#search-result-concern").unbind("click");
-                            $.ajax({
-                                type: 'POST',
-                                url: 'follow/show/5',
-                                success: function (msg) {
-                                    $("#concern").html(msg);
-                                    SetConcern();
-                                }
+                            $("div#history").animate({ opacity: 0 }, 200, null, function () {
+                                $("div#concern").slideUp(100, null, function () {
+                                    $("div#concern").html('<img src="images/loading.gif" style="margin-left:134px;" />');
+                                    $("div#concern").slideDown(100, null, function () {
+                                        $("div#concern").animate({ opacity: 1 }, 200, null, function () {
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: 'follow/show/5',
+                                                success: function (msg) {
+                                                    $("div#concern").animate({ opacity: 0 }, 200, null, function () {
+                                                        $("div#concern").slideUp(100, null, function () {
+                                                            $("#concern").html(msg);
+                                                            SetConcern();
+                                                            $("div#concern").slideDown(100, null, function () {
+                                                                $("div#concern").animate({ opacity: 1 }, 200);
+                                                            });
+                                                        });
+                                                    });
+                                                }
+                                            });
+                                        });
+                                    });
+                                });
                             });
                         }
                     });
@@ -330,8 +353,8 @@ function SetConcern() {
             success: function (msg) {
                 page = 0;
                 cate = 0;
+                isTurn = false;
                 SetSearch(msg, text);
-                nowFirst = $(".microblog-item:first").attr("id");
             }
         });
     });
@@ -352,6 +375,9 @@ function SetSearch(msg, e) {
                     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
                         $("div#blogs").slideUp(100, null, function () {
                             $("div#blogs").html(msg);
+                            if (!isTurn) {
+                                nowFirst = $(".microblog-item:first").attr("id");
+                            }
                             $("div#blogs").slideDown(100, null, function () {
                                 $("div#blogs").animate({ opacity: 1 }, 200);
                             });
@@ -369,8 +395,8 @@ function SetSearch(msg, e) {
             success: function (msg) {
                 page = 0;
                 cate = 0;
+                isTurn = false;
                 SetSearch(msg, text);
-                nowFirst = $(".microblog-item:first").attr("id");
             }
         });
     });
@@ -410,7 +436,7 @@ function SetSearch(msg, e) {
     });
     $("div#history").animate({ opacity: 0 }, 200, null, function () {
         $("div#history").slideUp(100, null, function () {
-            $("#history").html('<img src="images/loading.gif" style="margin-left:134px;" />');
+            $("div#history").html('<img src="images/loading.gif" style="margin-left:134px;" />');
             $("div#history").slideDown(100, null, function () {
                 $("div#history").animate({ opacity: 1 }, 200, null, function () {
                     $.ajax({
@@ -493,6 +519,7 @@ function SetSearch(msg, e) {
                         type: 'GET',
                         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
                         success: function (msg) {
+                            isTurn = true;
                             SetSearch(msg, SearchResult);
                         }
                     });
@@ -503,6 +530,7 @@ function SetSearch(msg, e) {
                         type: 'GET',
                         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
                         success: function (msg) {
+                            isTurn = true;
                             SetSearch(msg, SearchResult);
                         }
                     });
@@ -513,6 +541,7 @@ function SetSearch(msg, e) {
                         type: 'GET',
                         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
                         success: function (msg) {
+                            isTurn = true;
                             SetSearch(msg, SearchResult);
                         }
                     });
@@ -543,8 +572,8 @@ function SetHistory() {
             success: function (msg) {
                 cate = 0;
                 page = 0;
+                isTurn = false;
                 SetSearch(msg, text);
-                nowFirst = $(".microblog-item:first").attr("id");
             }
         });
     });
