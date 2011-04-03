@@ -45,7 +45,7 @@ function favorites_show()
                        </div>
                        <div class="item-other">
                            <span class="left item-time">'.$r['post_datetime'].'</span> '.$source.'
-                           <a class="right item-favourite item-action delete">取消收藏</a> '
+                           <a class="right item-favourite item-action delete">取消收藏</a> ';
                             if($f['type'] != 1)
                                 $content .= '<a class="right item-favourite item-doapply apply">
                                         申请该职位</a>';
