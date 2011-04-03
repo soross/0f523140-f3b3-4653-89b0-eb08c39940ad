@@ -69,13 +69,13 @@ function ShowFavourite() {
             });
             $("div.item-delete a").click(function () {
                 var item = $(this);
-                var id = $(this).parent().attr("id");
+                var id = $(this).parent().parent().attr("id");
                 $.ajax({
                     type: "POST",
                     url: 'like/delete/' + id,
                     success: function () {
-                        item.parent().animate({ opacity: 0 }, 300, null, function () {
-                            item.parent().slideUp(200);
+                        item.parent().parent().animate({ opacity: 0 }, 300, null, function () {
+                            item.parent().parent().slideUp(200);
                         });
                     }
                 });
