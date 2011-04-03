@@ -53,25 +53,6 @@ function theme_cat()
     echo $content;
 }
 
-function theme_hot()
-{
-    include_once("common.inc.php");
-    $content = '<div id="hot">
-                <div class="left-title">
-                    <span class="left left-title-text">热门职位</span> <span class="right left-title-time">截止至'.date('Y.n.j').'</span>
-                </div>
-                <div id="hot-content">
-                    <a class="left hot-content-item">产品设计师(2379)</a> <a class="left hot-content-item">销售经理(1187)</a>
-                    <a class="left hot-content-item">网络编辑(1082)</a> <a class="left hot-content-item">营销经理(1187)</a>
-                    <a class="left hot-content-item">开发工程师(1082)</a> <a class="left hot-content-item">php工程师(1187)</a>
-                    <a class="left hot-content-item">网络编辑(1082)</a> <a class="left hot-content-item">java工程师(1187)</a>
-                    <a class="left hot-content-item">平面设计师(1082)</a> <a class="left hot-content-item">销售经理(1187)</a>
-                    <a class="left hot-content-item">网络编辑(1082)</a>
-                </div>
-            </div>';
-    return $content;
-}
-
 function theme_left()
 {
     include_once("login.inc.php");
