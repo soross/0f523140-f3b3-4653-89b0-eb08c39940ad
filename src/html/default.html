@@ -197,6 +197,26 @@
         }
 
         $(function () {
+            $.ajax({
+                type: 'POST',
+                url: 'hot/',
+                success: function (msg) {
+                    $("div#hot").html(msg);
+                    $("a.hot-content-item").click(function () {
+                        var text = $(this).html();
+                        $.ajax({
+                            type: 'GET',
+                            url: 'search/' + encodeURI(text),
+                            success: function (msg) {
+                                page = 0;
+                                cate = 0;
+                                SetSearch(msg, text);
+                                nowFirst = $(".microblog-item:first").attr("id");
+                            }
+                        });
+                    });
+                }
+            });
             $("div#backTop").position({
                 of: $("div#microblogs"),
                 my: "left top",
@@ -349,22 +369,11 @@
             <div id="history" class="logined">
             </div>
             <div id="hot">
-                <div class="left-title">
-                    <span class="left left-title-text">热门职位</span> <span class="right left-title-time">截止至2011.3.11</span>
-                </div>
-                <div id="hot-content">
-                    <a class="left hot-content-item">产品设计师(2379)</a> <a class="left hot-content-item">销售经理(1187)</a>
-                    <a class="left hot-content-item">网络编辑(1082)</a> <a class="left hot-content-item">营销经理(1187)</a>
-                    <a class="left hot-content-item">开发工程师(1082)</a> <a class="left hot-content-item">php工程师(1187)</a>
-                    <a class="left hot-content-item">网络编辑(1082)</a> <a class="left hot-content-item">java工程师(1187)</a>
-                    <a class="left hot-content-item">平面设计师(1082)</a> <a class="left hot-content-item">销售经理(1187)</a>
-                    <a class="left hot-content-item">网络编辑(1082)</a>
-                </div>
             </div>
         </div>
         <div id="right" class="left">
             <div id="radio">
-                本周新增职位3124个，今日新增职位666个</div>
+            </div>
             <div id="microblogs">
                 <div id="fresh-outer">
                     <div id="fresh">
@@ -372,12 +381,6 @@
                     </div>
                 </div>
                 <div id="search-result-outer">
-                    <div id="search-result">
-                        <div class="left">
-                            #<a class="keyword">阿里巴巴</a>#的搜索结果</div>
-                        <a id="search-result-concern" class="left search-result-concern"></a><a id="search-result-rss"
-                            class="right"></a>
-                    </div>
                 </div>
                 <div id="fresh-blogs" style="display: none; border-bottom: 1px #4e88af solid">
                 </div>
