@@ -31,6 +31,7 @@ function favorites_show()
     $content = '';
     $favorites = get_favorites($key);
     foreach($favorites as $f)
+    {
         $content .= '<div class="item" id="'.$f['tweet_id'].'">
                    <div class="item-delete">
                        <a class="right"></a>
@@ -44,13 +45,17 @@ function favorites_show()
                        </div>
                        <div class="item-other">
                            <span class="left item-time">'.$r['post_datetime'].'</span> '.$source.'
-                           <a class="right item-favourite item-action delete">取消收藏</a> <a class="right item-favourite item-doapply apply">
-                                        申请该职位</a>
+                           <a class="right item-favourite item-action delete">取消收藏</a> '
+                            if($r['type'] != 1)
+                                $content .= '<a class="right item-favourite item-doapply apply">
+                                        申请该职位</a>';
+        $content .= '
                        </div>
                    </div>
                    <div class="clear">
                    </div>
                </div>';
+    }
     echo $content;
 }
 
