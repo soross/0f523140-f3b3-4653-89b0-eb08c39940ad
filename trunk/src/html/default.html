@@ -313,8 +313,15 @@
                         type: 'POST',
                         url: 'follow/show/5',
                         success: function (msg) {
-                            $("#concern").html(msg);
-                            SetConcern();
+                            $("#concern").animate({ opacity: 0 }, 200, null, function () {
+                                $("#concern").slideUp(100, null, function () {
+                                    $("#concern").html(msg);
+                                    SetConcern();
+                                    $("#concern").slideDown(100, null, function () {
+                                        $("#concern").animate({ opacity: 1 }, 200);
+                                    });
+                                });
+                            });
                         }
                     });
                     $.ajax({
