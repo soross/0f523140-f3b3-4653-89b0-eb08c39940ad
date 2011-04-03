@@ -44,12 +44,8 @@ function favorites_show()
                        </div>
                        <div class="item-other">
                            <span class="left item-time">'.$r['post_datetime'].'</span> '.$source.'
-                           <a class="right item-control">评论</a> <a class="right item-control">收藏(1)</a> <a class="right item-control">
-                               转发(2)</a> <a class="right item-control last">删除</a> <span class="right item-apply item-apply-info">
-                                   未读</span> <span class="right item-apply item-apply-name">状态：</span> <span class="right item-apply item-apply-info">
-                                       2小时前</span> <span class="right item-apply item-apply-name">申请于：</span>
-                           <a class="right item-favourite item-action">取消收藏</a> <a class="right item-favourite item-doapply">
-                               申请该职位</a>
+                           <a class="right item-favourite item-action delete">取消收藏</a> <a class="right item-favourite item-doapply apply">
+                                        申请该职位</a>
                        </div>
                    </div>
                    <div class="clear">
