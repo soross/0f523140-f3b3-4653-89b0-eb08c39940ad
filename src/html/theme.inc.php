@@ -160,7 +160,7 @@ function theme_result($result)
                                         >取消收藏</a> ';
             if($r['type'] != 1)
                 $content .= '<a class="right microblog-item-control microblog-item-apply apply">
-                                            申请该职位</a>'
+                                            申请该职位</a>';
         }
         if($tags)
         {
