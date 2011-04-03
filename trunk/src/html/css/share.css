@@ -4,7 +4,7 @@
     background-color: #f2f6fe;
     background-image: url('../images/background.jpg');
     background-repeat: repeat-x;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 body, a, input, span, img
 {
@@ -567,7 +567,7 @@ div#recruitment-publish-confirm a
 div#footer
 {
     margin-top: 30px;
-    letter-spacing:1px;
+    letter-spacing: 1px;
 }
 div#footer a
 {
@@ -604,17 +604,17 @@ div#copyright
 }
 .logined
 {
-    display:none;
+    display: none;
 }
 .logouted
 {
-    display:none;
+    display: none;
 }
 .jobs
 {
-    display:none;
+    display: none;
 }
 .recruitment
 {
-    display:none;
+    display: none;
 }
