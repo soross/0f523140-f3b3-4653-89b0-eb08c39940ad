@@ -141,7 +141,7 @@ function theme_result($result)
                     $fav = 1;
                     break;
                 }
-            if($fav)
+            if(!$fav)
                 $content .= '<a class="right microblog-item-control like">收藏</a><a class="right microblog-item-control unlike"
                                         style="display: none;">取消收藏</a> <a class="right microblog-item-control microblog-item-apply apply">
                                             申请该职位</a>';
