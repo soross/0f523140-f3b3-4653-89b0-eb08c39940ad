@@ -197,13 +197,18 @@ for cat, items in B:
 							 tag_id, tweet_id)
 							 VALUES (%s, %s)""",
 						 (tagid[tag], tweet_id))
-				c.execute("SELECT count FROM tags WHERE tag_id = %s", (tagid[tag],))
+				c.execute("SELECT count, tag_group FROM tags WHERE tag_id = %s", (tagid[tag],))
 				t = c.fetchone()
 				if t == None:
 					print now() + "Error updating count: No tag %s found!" % (tag, )
 				else:
 					count = t[0] + 1
-					c.execute("UPDATE tags SET count = %s WHERE tag_id = %s", (count, tagid[tag]))
+					tag_group = t[1]
+					if tag_group != 0:
+						print tag_group, "Group count detected!"
+						c.execute("UPDATE tags SET count = %s WHERE tag_group = %s", (count, tag_group))
+					else:
+						c.execute("UPDATE tags SET count = %s WHERE tag_id = %s", (count, tagid[tag]))
 			except KeyError:
 				print now() + "Error updating tag: No tag %s found!" % (tag, )
 		c.execute("SELECT count FROM categories WHERE cat_id = %s", (cat,))
