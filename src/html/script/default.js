@@ -10,13 +10,21 @@ var isFreshed = false;
 $(function () {
     SetRolePicker();
     GetNewerCount();
+    $("div#blogs").html('<img src="images/loading.gif" style="margin-left:280px;" />');
     $.ajax({
         type: 'GET',
         url: 'search/all/0',
         success: function (msg) {
-            SetAllSearch(msg);
-            nowFirst = $(".microblog-item:first").attr("id");
-            GetNewerBlogs();
+            $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
+                $("div#blogs").slideUp(100, null, function () {
+                    SetAllSearch(msg);
+                    nowFirst = $(".microblog-item:first").attr("id");
+                    GetNewerBlogs();
+                    $("div#blogs").slideDown(100, null, function () {
+                        $("div#blogs").animate({ opacity: 1 }, 200);
+                    });
+                });
+            });
         }
     });
 });
