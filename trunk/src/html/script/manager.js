@@ -1,10 +1,10 @@
 ﻿$(function () {
     $("div#content-middle-delete a").animate({ opacity: 0.6 }, 0);
     $("div#content-middle-delete a").mouseover(function () {
-        $(this).animate({ opacity: 1 }, 200);
+        $(this).stop().animate({ opacity: 1 }, 200);
     });
     $("div#content-middle-delete a").mouseout(function () {
-        $(this).animate({ opacity: 0.6 }, 200);
+        $(this).stop().animate({ opacity: 0.6 }, 200);
     });
 
     $("a.manager-control").click(function () {

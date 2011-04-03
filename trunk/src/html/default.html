@@ -203,7 +203,7 @@
                 success: function (msg) {
                     $("div#hot").html(msg);
                     $("a.hot-content-item").click(function () {
-                        var text = $(this).html();
+                        var text = $(this).html().split('(')[0];
                         $.ajax({
                             type: 'GET',
                             url: 'search/' + encodeURI(text),
@@ -381,6 +381,12 @@
                     </div>
                 </div>
                 <div id="search-result-outer">
+                    <div id="search-result">
+                        <div class="left">
+                        </div>
+                        <a id="search-result-concern" class="left search-result-concern"></a><a id="search-result-rss"
+                            class="right"></a>
+                    </div>
                 </div>
                 <div id="fresh-blogs" style="display: none; border-bottom: 1px #4e88af solid">
                 </div>
