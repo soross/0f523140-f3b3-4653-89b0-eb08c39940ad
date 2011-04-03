@@ -37,8 +37,8 @@ function get_hot($num)
     while($row = mysql_fetch_array($list))
     {
         $ok = true;
-        foreach($g as $group)
-            if($g == $row['tag_group'])
+        foreach($g as $_g)
+            if($_g == $row['tag_group'])
             {
                 $ok = false;
                 break;
