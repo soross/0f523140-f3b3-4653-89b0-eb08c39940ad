@@ -61,7 +61,7 @@ function theme_hot($num)
                     <span class="left left-title-text">热门职位</span> <span class="right left-title-time">截止至'.date('Y.n.j').'</span>
                 </div>
                 <div id="hot-content">';
-    $hots = get_hot(12);
+    $hots = get_hot(20);
     foreach($hots as $h)
         $content .= '<a class="left hot-content-item">'.$h['name'].'('.$h['count'].')</a>';
     $content .= '</div></div>';
