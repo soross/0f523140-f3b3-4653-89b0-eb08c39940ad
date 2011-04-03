@@ -108,6 +108,12 @@ function theme_login()
 
 function theme_result($result)
 {
+    include_once("login.inc.php");
+    if(user_is_authenticated())
+    {
+        include_once("favorite.inc.php");
+        $allfav = get_favorites(0);
+    }
     $content = "";
     foreach($result as $r)
     {
@@ -126,11 +132,24 @@ function theme_result($result)
                         </div>
                         <div class="microblog-item-other">
                             <span class="left microblog-item-time">'.$r['post_datetime'].'</span> '.$source;
-        include_once("login.inc.php");
         if(user_is_authenticated())
-            $content .= '<a class="right microblog-item-control like">收藏</a><a class="right microblog-item-control unlike"
+        {
+            $fav = 0;
+            foreach($allfav as $f)
+                if($f['tweet_id'] == $r['tweet_id'])
+                {
+                    $fav = 1;
+                    break;
+                }
+            if($fav)
+                $content .= '<a class="right microblog-item-control like">收藏</a><a class="right microblog-item-control unlike"
                                         style="display: none;">取消收藏</a> <a class="right microblog-item-control microblog-item-apply apply">
                                             申请该职位</a>';
+            else
+                $content .= '<a class="right microblog-item-control like" style="display: none;">收藏</a><a class="right microblog-item-control unlike"
+                                        >取消收藏</a> <a class="right microblog-item-control microblog-item-apply apply">
+                                            申请该职位</a>';
+        }
         $content .='
                         </div>
                     </div>
