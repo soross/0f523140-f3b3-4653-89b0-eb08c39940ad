@@ -2,7 +2,7 @@
 
 function get_tags($id)
 {
-    include_once("common.inc.php")
+    include_once("common.inc.php");
     connect_db();
     $view = "SELECT tags.name from tags, (SELECT * FROM tag_relationship WHERE tweet_id='$id') as r WHERE r.tag_id=tags.tag_id ORDER BY tags.count DESC";
     $list = mysql_query($view);
