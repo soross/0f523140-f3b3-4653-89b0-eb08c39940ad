@@ -259,6 +259,7 @@ div#right div.microblog-item-blog
     width: 530px;
     line-height: 20px;
     padding: 0 5px;
+    font-size:14px;
 }
 div#right a.microblog-item-blog-name
 {
@@ -274,6 +275,17 @@ div#right div.microblog-item-other
     height: 24px;
     line-height: 24px;
 }
+div#right div.microblog-item-other1
+{
+    height: 24px;
+    line-height: 24px;
+    border-top:1px #a3a3a3 dashed;
+}
+div#right a.microblog-item-time
+{
+    color: #7ba5d7;
+    padding: 0 5px;
+}
 div#right span.microblog-item-time
 {
     color: #a3a3a3;
@@ -284,9 +296,22 @@ div#right a.microblog-item-position
     color: #7ba5d7;
     margin: 0 10px;
 }
+div#right a.microblog-item-relate
+{
+    margin: 0 5px;
+}
 div#right a.microblog-item-control
 {
     color: #ea7f37;
+    letter-spacing: 2px;
+    padding: 0 10px;
+    line-height: 14px;
+    height: 14px;
+    margin-top: 5px;
+}
+div#right a.microblog-item-control1
+{
+    color: #7ba5d7;
     letter-spacing: 2px;
     padding: 0 10px;
     line-height: 14px;

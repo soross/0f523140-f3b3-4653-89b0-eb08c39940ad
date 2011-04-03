@@ -27,6 +27,20 @@
                     url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
                     success: function (msg) {
                         $("div#blogs").html($("div#blogs").html() + msg);
+                        $("a.microblog-item-relate").unbind("click");
+                        $("a.microblog-item-relate").click(function () {
+                            var text = $(this).html();
+                            $.ajax({
+                                type: 'GET',
+                                url: 'search/' + encodeURI(text),
+                                success: function (msg) {
+                                    page = 0;
+                                    cate = 0;
+                                    SetSearch(msg, text);
+                                    nowFirst = $(".microblog-item:first").attr("id");
+                                }
+                            });
+                        });
                         $("a.like").unbind("click");
                         $("a.unlike").unbind("click");
                         $("a.like").click(function () {
@@ -80,6 +94,20 @@
                             $("div#blogs").html($("div#fresh-blogs").html() + $("div#blogs").html());
                             $("div#fresh-blogs").hide();
                             isFreshed = true;
+                            $("a.microblog-item-relate").unbind("click");
+                            $("a.microblog-item-relate").click(function () {
+                                var text = $(this).html();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'search/' + encodeURI(text),
+                                    success: function (msg) {
+                                        page = 0;
+                                        cate = 0;
+                                        SetSearch(msg, text);
+                                        nowFirst = $(".microblog-item:first").attr("id");
+                                    }
+                                });
+                            });
                             $("a.like").unbind("click");
                             $("a.unlike").unbind("click");
                             $("a.like").click(function () {
@@ -120,6 +148,20 @@
                             nowFirst = $(".microblog-item:first").attr("id");
                             $("div#fresh-outer").animate({ opacity: 0 }, 0, null, function () {
                                 $("div#fresh-outer").slideUp(300);
+                            });
+                            $("a.microblog-item-relate").unbind("click");
+                            $("a.microblog-item-relate").click(function () {
+                                var text = $(this).html();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'search/' + encodeURI(text),
+                                    success: function (msg) {
+                                        page = 0;
+                                        cate = 0;
+                                        SetSearch(msg, text);
+                                        nowFirst = $(".microblog-item:first").attr("id");
+                                    }
+                                });
                             });
                             $("a.like").unbind("click");
                             $("a.unlike").unbind("click");
@@ -268,11 +310,10 @@
             <a class="left">微博招聘网</a> <a class="left">微博招聘官方微博</a> <a class="left last">我的微博</a>
         </div>
         <div class="right" id="infos">
-            <a class="left selected logined" id="name"></a> <a class="left orange logined"
-                href="manager.html">信息管理</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a
-                    class="left logined recruitment" id="recruitment-publish-quick">发布招聘信息</a>
-            <a class="left logined" href="logout/">退出</a> <a class="left logouted" id="sina-login"
-                href="login/"></a>
+            <a class="left selected logined" id="name"></a><a class="left orange logined" href="manager.html">
+                信息管理</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a class="left logined recruitment"
+                    id="recruitment-publish-quick">发布招聘信息</a> <a class="left logined" href="logout/">退出</a>
+            <a class="left logouted" id="sina-login" href="login/"></a>
         </div>
     </div>
     <div id="logo-search">
@@ -341,10 +382,6 @@
                 <div id="fresh-blogs" style="display: none; border-bottom: 1px #4e88af solid">
                 </div>
                 <div id="blogs">
-                </div>
-                <div id="relative">
-                    <span class="left">相关招聘：</span><a class="left">前端开发</a><a class="left">前端开发</a><a
-                        class="left">前端开发</a><a class="left">前端开发</a>
                 </div>
                 <div id="pages">
                 </div>
