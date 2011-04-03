@@ -11,7 +11,7 @@ function get_favorites($num)
     include_once('login.php');
     $id = get_current_user_id();
     connect_db();
-    $view = "SELECT tweets.* from tweets, (SELECT * FROM favorites WHERE user_id='$id' AND deleted=0) as favorites WHERE tweets.tweet_id=favorites.tweet_id ORDER BY add_time DESC";
+    $view = "SELECT tweets.* from tweets, (SELECT * FROM favorites WHERE user_id='$id' AND deleted=0) as favorites WHERE tweets.tweet_id=favorites.tweet_id ORDER BY tweets.post_datetime DESC";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
