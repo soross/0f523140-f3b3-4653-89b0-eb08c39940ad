@@ -23,7 +23,6 @@ A = [(u"传统网络 Internet", u"超超Sandy", "d11c25990634d0e486235f1b42a55f9
     
 B = []
 
-print now() + "Initializing..."
 try:
 	PAGE = int(sys.argv[1])
 except IndexError:
@@ -31,6 +30,7 @@ except IndexError:
 
 def now():
 	return str(datetime.now()) + " "
+print now() + "Initializing..."
 
 def iszhaopin(s):
 	keywords = [(u"招聘", ),
