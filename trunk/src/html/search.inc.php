@@ -153,7 +153,7 @@ function get_rss($query)
 
 function get_search_history($num)
 {
-    include_once('login.php');
+    include_once('login.inc.php');
     $id = get_current_user_id();
     connect_db();
     $view = "SELECT * FROM searchhistory WHERE user_id='$id' AND deleted=0 ORDER BY add_time DESC";
