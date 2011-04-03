@@ -223,7 +223,7 @@ while True:
 	try:
 		tweet_site_id, post_screenname, profile_image_url, source, post_datetime, content, type_, user_site_id, tweet_id, site_id = c.fetchone()
 		c.execute("DELETE FROM pending_tweets WHERE tweet_id = %s", (tweet_id,))
-		c.execute("SELECT * FROM tweets WHERE tweet_id = %s", (tweet_id,))
+		c.execute("SELECT * FROM tweets WHERE site_id = %s AND tweet_site_id = %s", (site_id, tweet_site_id))
 		if c.fetchone() != None:
 			print now() + "Dulplicate pending item:", tweet_site_id
 			c.execute("SELECT * FROM pending_tweets LIMIT 0 , 1")

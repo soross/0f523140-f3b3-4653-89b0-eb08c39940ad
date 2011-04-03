@@ -154,12 +154,13 @@ function theme_result($result)
                 }
             if(!$fav)
                 $content .= '<a class="right microblog-item-control like">收藏</a><a class="right microblog-item-control unlike"
-                                        style="display: none;">取消收藏</a> <a class="right microblog-item-control microblog-item-apply apply">
-                                            申请该职位</a>';
+                                        style="display: none;">取消收藏</a> ';
             else
                 $content .= '<a class="right microblog-item-control like" style="display: none;">收藏</a><a class="right microblog-item-control unlike"
-                                        >取消收藏</a> <a class="right microblog-item-control microblog-item-apply apply">
-                                            申请该职位</a>';
+                                        >取消收藏</a> ;
+            if($r['type'] != 1)
+                $content .= '<a class="right microblog-item-control microblog-item-apply apply">
+                                            申请该职位</a>'
         }
         if($tags)
         {
