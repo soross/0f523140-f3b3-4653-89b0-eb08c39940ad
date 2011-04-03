@@ -118,7 +118,7 @@ function _user_decrypt_cookie($crypt_text) {
     $GLOBALS['user']['nickname'] = urldecode($GLOBALS['user']['nickname']);
     $GLOBALS['user']['id'] = urldecode($GLOBALS['user']['id']);
     $GLOBALS['user']['role'] = urldecode($GLOBALS['user']['role']);
-    $GLOBALS['user']['sinakey']['sinakey'] = urldecode($GLOBALS['user']['sinakey']['sinakey']);
+    $GLOBALS['user']['sinakey']['oauth_token'] = urldecode($GLOBALS['user']['sinakey']['oauth_token']);
     $GLOBALS['user']['sinakey']['oauth_token_secret'] = urldecode($GLOBALS['user']['sinakey']['oauth_token_secret']);
 }
 
