@@ -30,8 +30,8 @@ function post_tweet($query)
 					 site_id, tweet_id, user_site_id, content, post_datetime,
 					 type, tweet_site_id,
 					 post_screenname, profile_image_url, source)
-				     VALUES (1, $v4uuid, ".$msg['user']['id'].", $content, ".date("Y-m-d H:i:s" ,strtotime($msg["created_at"])).",
-                     $cate, ".$msg['id'].", ".$msg["user"]["name"].", ".$msg["user"]["profile_image_url"].", ".$msg["source"].")";
+				     VALUES (1, '$v4uuid', '".$msg['user']['id']."', '$content', '".date("Y-m-d H:i:s" ,strtotime($msg["created_at"]))."',
+                     $cate, '".$msg['id']."', '".$msg["user"]["name"]."', '".$msg["user"]["profile_image_url"]."', '".$msg["source"]."')";
     $added = mysql_query($add) or die("Could not add entry!".$add);
     echo "0";
 }
