@@ -214,7 +214,7 @@ function SetResult(msg) {
                             $("a#search-result-concern").unbind("mousedown");
                             $("a#search-result-concern").unbind("mouseout");
                             $("a#search-result-concern").unbind("click");
-                            $("div#history").animate({ opacity: 0 }, 200, null, function () {
+                            $("div#concern").animate({ opacity: 0 }, 200, null, function () {
                                 $("div#concern").slideUp(100, null, function () {
                                     $("div#concern").html('<img src="images/loading.gif" style="margin-left:134px;" />');
                                     $("div#concern").slideDown(100, null, function () {
