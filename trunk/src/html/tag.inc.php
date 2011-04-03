@@ -58,7 +58,7 @@ function theme_hot($num)
 {
     $content = '<div id="hot">
                 <div class="left-title">
-                    <span class="left left-title-text">ÈÈÃÅÖ°Î»</span> <span class="right left-title-time">½ØÖ¹ÖÁ'.date('Y.n.j').'</span>
+                    <span class="left left-title-text">çƒ­é—¨èŒä½</span> <span class="right left-title-time">æˆªæ­¢è‡³'.date('Y.n.j').'</span>
                 </div>
                 <div id="hot-content">';
     $hots = get_hot(12);
