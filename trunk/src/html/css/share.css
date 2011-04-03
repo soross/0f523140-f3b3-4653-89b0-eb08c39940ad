@@ -4,7 +4,7 @@
     background-color: #f2f6fe;
     background-image: url('../images/background.jpg');
     background-repeat: repeat-x;
-    overflow: auto;
+    overflow: scroll;
 }
 body, a, input, span, img
 {
