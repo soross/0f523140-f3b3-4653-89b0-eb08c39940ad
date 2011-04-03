@@ -8,7 +8,7 @@ func_register(array(
 
 function get_followings($num)
 {
-    include_once('login.php');
+    include_once('login.inc.php');
     $id = get_current_user_id();
     connect_db();
     $view = "SELECT * FROM followings WHERE user_id='$id' AND deleted=0 ORDER BY add_time DESC";
