@@ -8,7 +8,7 @@ func_register(array(
 
 function get_favorites($num)
 {
-    include_once('login.php');
+    include_once('login.inc.php');
     $id = get_current_user_id();
     connect_db();
     $view = "SELECT tweets.* from tweets, (SELECT * FROM favorites WHERE user_id='$id' AND deleted=0) as favorites WHERE tweets.tweet_id=favorites.tweet_id ORDER BY tweets.post_datetime DESC";
