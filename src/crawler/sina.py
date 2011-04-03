@@ -226,6 +226,7 @@ while True:
 		c.execute("SELECT * FROM tweets WHERE tweet_id = %s", (tweet_id,))
 		if c.fetchone() != None:
 			print now() + "Dulplicate pending item:", tweet_site_id
+			c.execute("SELECT * FROM pending_tweets LIMIT 0 , 1")
 			continue
 		c.execute("""INSERT INTO tweets (
 					 site_id, tweet_id, user_site_id, content, post_datetime,
