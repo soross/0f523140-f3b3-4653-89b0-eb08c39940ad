@@ -45,7 +45,7 @@ function get_hot($num)
             }
         if(!$ok)
             continue;
-        $result[$i++] = $row[0];
+        $result[$i++] = $row;
         if($i == $num)
             break;
         if($row['tag_group']!=0)
