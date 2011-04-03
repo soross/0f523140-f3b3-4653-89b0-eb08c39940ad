@@ -17,7 +17,7 @@ for item in dic:
     dic2 += [tag]
 dic.close()
 dic = open("tag_list_nogroup.dict", "w")
-dic.write("\n".join(dic2))
+dic.write("\n".join(dic2).encode("utf-8"))
 dic.close()
 print now() + "Wrote Dict."
 
