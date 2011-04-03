@@ -170,6 +170,8 @@ tagid = {}
 for line in _tagid:
 	tag_id, tag = line.split()
 	tagid[tag] = tag_id
+print tagid
+raw_input()
 for cat, items in B:
 	for userid, name, avatar, mid, text, posttime, source in items:
 		tweet_id = uuid.uuid4().hex
