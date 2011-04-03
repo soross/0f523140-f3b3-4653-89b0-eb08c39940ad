@@ -61,8 +61,8 @@ function ShowFavourite() {
                     type: "POST",
                     url: 'like/delete/' + id,
                     success: function () {
-                        $(this).parent().parent().parent().animate({ opacity: 0 }, 300, null, function () {
-                            $(this).parent().parent().parent().slideUp(200);
+                        item.parent().parent().parent().animate({ opacity: 0 }, 300, null, function () {
+                            item.parent().parent().parent().slideUp(200);
                         });
                     }
                 });
@@ -74,8 +74,8 @@ function ShowFavourite() {
                     type: "POST",
                     url: 'like/delete/' + id,
                     success: function () {
-                        $(this).parent().animate({ opacity: 0 }, 300, null, function () {
-                            $(this).parent().slideUp(200);
+                        item.parent().animate({ opacity: 0 }, 300, null, function () {
+                            item.parent().slideUp(200);
                         });
                     }
                 });
