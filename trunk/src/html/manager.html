@@ -19,6 +19,27 @@
     <script src="script/manager.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
+            $("div#jobs-publish-confirm a").click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'post/1',
+                    data: { text: $("div#jobs-publish-text textarea").val() },
+                    success: function (msg) {
+                        HideJobsPublish();
+                    }
+                });
+            });
+            $("div#recruitment-publish-confirm a").click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'post/2',
+                    data: { text: $("div#recruitment-publish-text textarea").val() },
+                    success: function (msg) {
+                        HideRecruitmentPublish();
+                    }
+                });
+            });
+
             $("#birthday").datepicker();
             var editor = CKEDITOR.replace('profile-detail', {
                 uiColor: '#d1e9f1',
