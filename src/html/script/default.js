@@ -475,7 +475,10 @@ function SetSearch(msg, e) {
                 });
             }
             else {
-                $("div#pages").html("");
+                $("div#pages").fadeOut(200, null, function () {
+                    $("div#pages").html("");
+                    $("div#pages").show();
+                });
             }
         }
     });
