@@ -6,7 +6,6 @@ from configuration import Configuration
 class Segmenter:
     def __init__(self, config, nodeName):
         curNode = config.GetChild(nodeName)
-        print curNode
         self.mainDict = self.LoadMainDict(curNode.GetChild("main_dict").GetValue())
 
     def Split(self, line):
@@ -18,10 +17,9 @@ class Segmenter:
             for i in range(1, 5, 1) [::-1]:
                 if (i + index <= len(line)):
                     curWord = line[index : i + index]
-                    if (self.mainDict.has_key(curWord)): 
-                        wordList.append(line[index : i + index])
+                    if (self.mainDict.has_key(curWord) and curWord not in wordList):
+                        wordList.append(curWord)
                         index += i
-                        #index += 1
                         finded = True
                         break
             if (finded):

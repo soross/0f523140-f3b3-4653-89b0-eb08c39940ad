@@ -8,6 +8,7 @@ from Queue import Queue
 from time import sleep
 from datetime import datetime, timedelta, date, time
 import sys
+from tag_detect import detect
 
 PAGE = 1
 A = [(u"传统网络 Internet", u"超超Sandy", "d11c25990634d0e486235f1b42a55f9f", "89859ba49065135017b894df5e5a9089"),
@@ -163,6 +164,11 @@ print now() + "Craw Complete."
 import MySQLdb, uuid
 db = MySQLdb.connect("127.0.0.1","apis","apis","apis",charset="utf8")
 c = db.cursor()
+d = detect()
+_tagid = open("tag_list_withid.dict", "r").read().split('\n')
+tagid = {}
+for tag_id,tag in _tagid:
+	tagid[tag] = tag_id
 for cat, items in B:
 	for userid, name, avatar, mid, text, posttime, source in items:
 		tweet_id = uuid.uuid4().hex
@@ -182,6 +188,21 @@ for cat, items in B:
 					 cat_id, tweet_id)
 					 VALUES (%s, %s)""",
 				  (cat, tweet_id))
+		for tag in d.Split(text)[:]:
+			try:
+				c.execute("""INSERT INTO tag_relationship (
+							 tag_id, tweet_id)
+							 VALUES (%s, %s)""",
+						 (tagid[tag], tweet_id))
+				c.execute("SELECT count FROM tags WHERE tag_id = %s", (tagid[tag],))
+				t = c.fetchone()
+				if t == None:
+					print now() + "Error updating count: No tag %s found!" % (tag, )
+				else:
+					count = t[0] + 1
+					c.execute("UPDATE tags SET count = %s WHERE tag_id = %s", (count, tagid[tag]))
+			except KeyError:
+				print now() + "Error updating tag: No tag %s found!" % (tag, )
 		c.execute("SELECT count FROM categories WHERE cat_id = %s", (cat,))
 		t = c.fetchone()
 		if t == None:
