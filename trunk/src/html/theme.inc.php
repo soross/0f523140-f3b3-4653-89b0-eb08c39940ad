@@ -116,7 +116,7 @@ function theme_result($result)
         else
             $source = '<a class="left microblog-item-position">'.$r['source'].'</a>';
         
-        $content .= '<div class="microblog-item" id="'.strtotime($r['post_datetime']).'">
+        $content .= '<div class="microblog-item" id="'.strtotime($r['post_datetime']).'" name="'.$r['tweet_id'].'">
                     <div class="left microblog-item-pic">
                         <img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/>
                     </div>
@@ -128,8 +128,9 @@ function theme_result($result)
                             <span class="left microblog-item-time">'.$r['post_datetime'].'</span> '.$source;
         include_once("login.inc.php");
         if(user_is_authenticated())
-            $content .= '<a class="right microblog-item-control">收藏</a> <a class="right microblog-item-control microblog-item-apply">
-                                    申请该职位</a>';
+            $content .= '<a class="right microblog-item-control like">收藏</a><a class="right microblog-item-control unlike"
+                                        style="display: none;">取消收藏</a> <a class="right microblog-item-control microblog-item-apply apply">
+                                            申请该职位</a>';
         $content .='
                         </div>
                     </div>
