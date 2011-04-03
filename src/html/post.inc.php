@@ -6,7 +6,7 @@ func_register(array(
     ),
 ));
 
-function post_tweet()
+function post_tweet($query)
 {
     $cate = (string) $query[1];
     $content = $_POST['text'];
