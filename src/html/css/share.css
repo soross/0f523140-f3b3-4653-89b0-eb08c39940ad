@@ -602,3 +602,19 @@ div#copyright
     width: 962px;
     margin: auto;
 }
+.logined
+{
+    display:none;
+}
+.logouted
+{
+    display:none;
+}
+.jobs
+{
+    display:none;
+}
+.recruitment
+{
+    display:none;
+}

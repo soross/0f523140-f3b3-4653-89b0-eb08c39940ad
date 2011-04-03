@@ -101,8 +101,7 @@ function Init() {
         AfterLogin();
     }
     else {
-        $(".logined").hide();
-        $(".logouted").show();
+        $(".logouted").fadeIn(300);
     }
     $("input#search-text").focusin(function () {
         $("#sorts").fadeOut(200);
