@@ -17,12 +17,6 @@
     $("a#recruitment-publish-button").click(function () {
         ShowRecruitmentPublish();
     });
-    $("div.item").mouseover(function () {
-        $(this).addClass("item-over");
-    });
-    $("div.item").mouseout(function () {
-        $(this).removeClass("item-over");
-    });
     $("input.info-content-words").focusin(function () {
         $(this).addClass("info-content-words-focus");
     });
@@ -54,6 +48,12 @@ function ShowFavourite() {
         url: 'like/',
         success: function (msg) {
             $("div#blogsinner").html(msg);
+            $("div.item").mouseover(function () {
+                $(this).addClass("item-over");
+            });
+            $("div.item").mouseout(function () {
+                $(this).removeClass("item-over");
+            });
             $("a.delete").click(function () {
                 var item = $(this);
                 var id = $(this).parent().parent().parent().attr("id");
@@ -67,7 +67,7 @@ function ShowFavourite() {
                     }
                 });
             });
-            $("div#item-delete a").click(function () {
+            $("div.item-delete a").click(function () {
                 var item = $(this);
                 var id = $(this).parent().attr("id");
                 $.ajax({
