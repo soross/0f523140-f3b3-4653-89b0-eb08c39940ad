@@ -170,7 +170,7 @@ function theme_rss($result)
     </image>';
     foreach($result as $r)
         $content .= '<item>
-      <title>'.$GLOBALS['search'].'</title> 
+      <title>'.mb_substr($r['content'],0,15).'</title> 
       <link>http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'</link> 
       <description><![CDATA['.$r['content'].']]></description>
       <pubDate>'.date(DATE_RSS, strtotime($r['post_datetime'])).'</pubDate> 
