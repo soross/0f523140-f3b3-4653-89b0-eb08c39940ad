@@ -324,12 +324,20 @@
                             });
                         }
                     });
+                    $("#history").html('<img src="images/loading.gif" style="margin-left:134px;" />');
                     $.ajax({
                         type: 'GET',
                         url: 'history/show/5',
                         success: function (msg) {
-                            $("#history").html(msg);
-                            SetHistory();
+                            $("#history").animate({ opacity: 0 }, 200, null, function () {
+                                $("#history").slideUp(100, null, function () {
+                                    $("#history").html(msg);
+                                    SetHistory();
+                                    $("#history").slideDown(100, null, function () {
+                                        $("#history").animate({ opacity: 1 }, 200);
+                                    });
+                                });
+                            });
                         }
                     });
                 }
