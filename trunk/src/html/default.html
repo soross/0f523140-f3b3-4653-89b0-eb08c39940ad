@@ -236,7 +236,7 @@
                     data: { text: $("div#jobs-publish-text textarea").val() },
                     success: function (msg) {
                         if ($.trim(msg) != "0") {
-                            alert("fuck");
+                            alert(msg);
                         }
                         HideJobsPublish();
                     }
@@ -249,7 +249,7 @@
                     data: { text: $("div#recruitment-publish-text textarea").val() },
                     success: function (msg) {
                         if ($.trim(msg) != "0") {
-                            alert("fuck");
+                            alert(msg);
                         }
                         HideRecruitmentPublish();
                     }
