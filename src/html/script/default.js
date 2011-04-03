@@ -28,6 +28,19 @@ function SetAllSearch(msg) {
     $("div#fresh-blogs").hide();
     count = 0;
     $("div#blogs").html(msg);
+    $("a.microblog-item-relate").click(function () {
+        var text = $(this).html();
+        $.ajax({
+            type: 'GET',
+            url: 'search/' + encodeURI(text),
+            success: function (msg) {
+                page = 0;
+                cate = 0;
+                SetSearch(msg, text);
+                nowFirst = $(".microblog-item:first").attr("id");
+            }
+        });
+    });
     $("a.like").click(function () {
         var item = $(this);
         var id = $(this).parent().parent().parent().attr("name");
@@ -314,7 +327,7 @@ function SetSearch(msg, e) {
     count = 0;
     SearchResult = e;
     $("div#blogs").html(msg);
-    $("div#relative a").click(function () {
+    $("a.microblog-item-relate").click(function () {
         var text = $(this).html();
         $.ajax({
             type: 'GET',

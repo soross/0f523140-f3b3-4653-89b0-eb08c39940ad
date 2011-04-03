@@ -140,6 +140,8 @@ div.item-blog
     width: 530px;
     line-height: 20px;
     padding: 0 5px;
+    font-size:14px;
+    overflow:hidden;
 }
 a.item-blog-name
 {
@@ -182,9 +184,6 @@ a.last
 span.item-apply
 {
     letter-spacing: 2px;
-    line-height: 14px;
-    height: 14px;
-    margin-top: 5px;
 }
 span.item-apply-name
 {
