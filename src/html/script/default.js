@@ -17,7 +17,7 @@ $(function () {
         success: function (msg) {
             isTurn = false;
             SetAllSearch(msg);
-            GetNewerBlogs();
+            setTimeout(function () { GetNewerBlogs(); }, 60000);
         }
     });
 });
