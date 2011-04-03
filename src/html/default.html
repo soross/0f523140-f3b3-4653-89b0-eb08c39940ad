@@ -27,6 +27,32 @@
                     url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
                     success: function (msg) {
                         $("div#blogs").html($("div#blogs").html() + msg);
+                        $("a.like").unbind("click");
+                        $("a.unlike").unbind("click");
+                        $("a.like").click(function () {
+                            var item = $(this);
+                            var id = $(this).parent().parent().parent().attr("name");
+                            $.ajax({
+                                type: "POST",
+                                url: 'like/add/' + id,
+                                success: function () {
+                                    item.hide();
+                                    item.next("a.unlike").show();
+                                }
+                            });
+                        });
+                        $("a.unlike").click(function () {
+                            var item = $(this);
+                            var id = $(this).parent().parent().parent().attr("name");
+                            $.ajax({
+                                type: "POST",
+                                url: 'like/delete/' + id,
+                                success: function () {
+                                    item.hide();
+                                    item.prev("a.like").show();
+                                }
+                            });
+                        });
                         $(document).scroll(function () {
                             DocumenScroll();
                         });
