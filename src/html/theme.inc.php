@@ -153,7 +153,7 @@ function theme_result($result)
 function theme_rss($result)
 {
     header('Content-Type: application/xml; charset=utf-8');
-    $content = '<?xml version="1.0" encoding="gbk"?>
+    $content = '<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
   <channel>
     <title>'.$GLOBALS['search'].'最新职位订阅-微招聘</title>
@@ -170,7 +170,7 @@ function theme_rss($result)
     </image>';
     foreach($result as $r)
         $content .= '<item>
-      <title>'.mb_substr($r['content'],0,15).'</title> 
+      <title>'.mb_substr($r['content'],0,15,"utf8").'</title> 
       <link>http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'</link> 
       <description><![CDATA['.$r['content'].']]></description>
       <pubDate>'.date(DATE_RSS, strtotime($r['post_datetime'])).'</pubDate> 
