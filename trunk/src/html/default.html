@@ -302,10 +302,13 @@
                     }
                     else if (type == 1) {
                         $(".jobs").fadeIn(300);
+                        $(".recruitment").hide();
                     }
                     else {
                         $(".recruitment").fadeIn(300);
+                        $(".jobs").hide();
                     }
+                    $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;" />');
                     $.ajax({
                         type: 'POST',
                         url: 'follow/show/5',
