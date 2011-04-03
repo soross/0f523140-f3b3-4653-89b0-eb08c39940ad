@@ -170,8 +170,6 @@ tagid = {}
 for line in _tagid:
 	tag_id, tag = line.split()
 	tagid[tag] = tag_id
-print tagid
-raw_input()
 for cat, items in B:
 	for userid, name, avatar, mid, text, posttime, source in items:
 		tweet_id = uuid.uuid4().hex
@@ -205,7 +203,7 @@ for cat, items in B:
 					count = t[0] + 1
 					tag_group = t[1]
 					if tag_group != 0:
-						print tag_group, "Group count detected!"
+						#print tag_group, "Tag group detected!"
 						c.execute("UPDATE tags SET count = %s WHERE tag_group = %s", (count, tag_group))
 					else:
 						c.execute("UPDATE tags SET count = %s WHERE tag_id = %s", (count, tagid[tag]))
