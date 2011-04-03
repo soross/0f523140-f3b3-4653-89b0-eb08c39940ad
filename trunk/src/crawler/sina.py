@@ -167,7 +167,8 @@ c = db.cursor()
 d = detect()
 _tagid = open("tag_list_withid.dict", "r").read().split('\n')
 tagid = {}
-for tag_id,tag in _tagid:
+for line in _tagid:
+	tag_id, tag = line.split()
 	tagid[tag] = tag_id
 for cat, items in B:
 	for userid, name, avatar, mid, text, posttime, source in items:
