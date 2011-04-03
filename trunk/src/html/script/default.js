@@ -474,6 +474,9 @@ function SetSearch(msg, e) {
                     });
                 });
             }
+            else {
+                $("div#pages").html("");
+            }
         }
     });
 }
