@@ -6,6 +6,7 @@ def now():
 dic = open("tag_list.dict", "r")
 result = []
 dic2 = []
+dic3 = []
 for item in dic:
     m = unicode(item, "utf-8").split()
     if len(m) > 1:
@@ -15,9 +16,13 @@ for item in dic:
     tag_id = uuid.uuid4().hex
     result += [(tag_id, tag, group, 0)]
     dic2 += [tag]
+    dic3 += [(tag_id, tag)]
 dic.close()
 dic = open("tag_list_nogroup.dict", "w")
-dic.write("\n".join(dic2).encode("utf-8"))
+dic.write("\n".join(dic2).encode("utf-8").lower())
+dic.close()
+dic = open("tag_list_withid.dict", "w")
+dic.write("\n".join([" ".join(x) for x in dic3]).encode("utf-8").lower())
 dic.close()
 print now() + "Wrote Dict."
 

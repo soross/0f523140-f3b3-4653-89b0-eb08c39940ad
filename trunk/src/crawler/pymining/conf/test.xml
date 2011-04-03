@@ -1,6 +1,6 @@
 <config>
     <segmenter>
-        <main_dict>../tag_list_nogroup.dict</main_dict>
+        <main_dict>tag_list_nogroup.dict</main_dict>
     </segmenter>
 
     <__matrix__>
