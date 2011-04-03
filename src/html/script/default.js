@@ -391,6 +391,7 @@ function SetSearch(msg, e) {
         }
     });
     SetResult(e);
+    $("div#pages").animate({ opacity: 0 }, 50);
     $.ajax({
         type: "POST",
         url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
@@ -443,6 +444,7 @@ function SetSearch(msg, e) {
                 }
                 str += '</div>';
                 $("div#pages").html(str);
+                $("div#pages").animate({ opacity: 1 }, 200);
                 $("a.page-number").click(function () {
                     page = $(this).html() - 1;
                     $.ajax({
@@ -472,12 +474,6 @@ function SetSearch(msg, e) {
                             SetSearch(msg, SearchResult);
                         }
                     });
-                });
-            }
-            else {
-                $("div#pages").fadeOut(200, null, function () {
-                    $("div#pages").html("");
-                    $("div#pages").show();
                 });
             }
         }
