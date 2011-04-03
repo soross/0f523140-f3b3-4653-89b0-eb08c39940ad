@@ -28,9 +28,7 @@ function favorites_show()
 {
     $args = func_get_args();
     $key = intval($args[2]);
-    $content = '<div id="content-middle-delete">
-                   <a class="right">删除全部</a>
-               </div>';
+    $content = '';
     $favorites = get_favorites($key);
     foreach($favorites as $f)
         $content .= '<div class="item" id="'.$f['tweet_id'].'">
