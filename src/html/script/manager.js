@@ -56,7 +56,7 @@ function ShowFavourite() {
             $("div#blogsinner").html(msg);
             $("a.delete").click(function () {
                 var item = $(this);
-                var id = $(this).parent().parent().parent().attr("name");
+                var id = $(this).parent().parent().parent().attr("id");
                 $.ajax({
                     type: "POST",
                     url: 'like/delete/' + id,
@@ -69,7 +69,7 @@ function ShowFavourite() {
             });
             $("div#item-delete a").click(function () {
                 var item = $(this);
-                var id = $(this).parent().attr("name");
+                var id = $(this).parent().attr("id");
                 $.ajax({
                     type: "POST",
                     url: 'like/delete/' + id,
