@@ -95,17 +95,16 @@ function AfterLogin() {
         type: 'POST',
         url: 'info/',
         success: function (msg) {
-            $(".logined").show();
-            $(".logouted").hide();
+            $(".logined").fadeIn(300);
             $("a#name").html(msg.split(',')[0]);
             var type = msg.split(',')[1];
             if (type == 1) {
-                $(".jobs").show();
+                $(".jobs").fadeIn(300);
                 $(".recruitment").hide();
             }
             else {
+                $(".recruitment").fadeIn(300);
                 $(".jobs").hide();
-                $(".recruitment").show();
             }
         }
     });
