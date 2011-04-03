@@ -2,6 +2,7 @@
 func_register(array(
     'like' => array(
         'callback' => 'user_like',
+        'security' => 'true',
     ),
 ));
 
