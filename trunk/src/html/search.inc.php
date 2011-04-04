@@ -54,14 +54,14 @@ function get_search_result($key, $num, $cate, $time, $page)
     {
         $key = explode(" ",$key);
         $key = "%".implode("%",$key)."%";
-        $key = "tweets.content LIKE '$key'";
+        $key = " AND tweets.content LIKE '$key'";
     }
     else
         $key = "";
     if($cate and $cate!="0")
     {
         $cate1 = ",(SELECT * from cat_relationship WHERE cat_id=$cate) AS cate";
-        $cate2 = " tweets.tweet_id=cate.tweet_id";
+        $cate2 = " AND tweets.tweet_id=cate.tweet_id";
     }
     else
         $cate1 = $cate2 = "";
@@ -69,7 +69,7 @@ function get_search_result($key, $num, $cate, $time, $page)
     $content = "tweets.*";
     if($time == "page")
     {
-        $page = intval($page) * 10;
+        $page = intval($page) * $num;
         $limit = " LIMIT $page , $num";
         $time = "";
     }
@@ -88,21 +88,9 @@ function get_search_result($key, $num, $cate, $time, $page)
             $fuhao = "<";
             $time = strval(0 - intval($time));
         }
-        $time = " tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
+        $time = " AND tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
     }
-    if(!$key and !$cate2 and !$time)
-        $where = "";
-    else
-        $where = "WHERE ";
-    if($key and $cate or $key and $time)
-        $and1 = " AND ";
-    else
-        $and1 = "";
-    if($cate and $time)
-        $and2 = " AND ";
-    else
-        $and2 = "";
-    $view = "SELECT $content FROM tweets$cate1 $where$key$and1$cate2$and2$time ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT $content FROM tweets$cate1 WHERE deleted = 0$key$cate2$time ORDER BY tweets.post_datetime DESC$limit";
     //FIXME: Low performance!
     
     $list = mysql_query($view);
