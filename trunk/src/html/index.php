@@ -9,6 +9,7 @@ include_once('favorite.inc.php');
 include_once('post.inc.php');
 include_once('tag.inc.php');
 include_once('user.inc.php');
+include_once('tweet.inc.php');
 
 func_register(array(
   '' => array(
