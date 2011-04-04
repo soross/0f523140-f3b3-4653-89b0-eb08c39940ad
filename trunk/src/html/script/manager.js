@@ -82,6 +82,29 @@ function ShowNormal() {
     $("div#blogs").show();
     $("div#profile-control").hide();
     $("div#ads").show();
+    $.ajax({
+        type: 'POST',
+        url: 'user/current',
+        success: function (msg) {
+            $("div#blogsinner").html(msg);
+            $("div.item").mouseover(function () {
+                $(this).addClass("item-over");
+            });
+            $("div.item").mouseout(function () {
+                $(this).removeClass("item-over");
+            });
+            $("a.delete").click(function () {
+                deleteitem = $(this).parent().parent().parent();
+                deleteid = deleteitem.attr("id");
+                $("#delete-dialog").dialog("open");
+            });
+            $("div.item-delete a").click(function () {
+                deleteitem = $(this).parent().parent();
+                deleteid = $(this).attr("id");
+                $("#delete-dialog").dialog("open");
+            });
+        }
+    });
 }
 
 function AfterLogin() {
