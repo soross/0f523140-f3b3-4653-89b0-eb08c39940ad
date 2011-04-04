@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <title>信息管理 - 微招聘</title>
+    <link href="css/themes/base/jquery.ui.all.css" rel="Stylesheet" type="text/css" />
+    <link href="css/share.css" rel="stylesheet" type="text/css" />
+    <link href="css/admin.css" rel="stylesheet" type="text/css" />
+    <script src="script/jquery-1.5.1.js" type="text/javascript"></script>
+    <script src="script/jquery.cookie.js" type="text/javascript"></script>
+    <script src="script/ui/jquery.ui.core.js" type="text/javascript"></script>
+    <script src="script/ui/jquery.ui.widget.js" type="text/javascript"></script>
+    <script src="script/ui/jquery.ui.mouse.js" type="text/javascript"></script>
+    <script src="script/ui/jquery.ui.draggable.js" type="text/javascript"></script>
+    <script src="script/ui/jquery.ui.resizable.js" type="text/javascript"></script>
+    <script src="script/ui/jquery.ui.position.js" type="text/javascript"></script>
+    <script src="script/ui/jquery.ui.dialog.js" type="text/javascript"></script>
+    <script src="script/admin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#delete-dialog").dialog({
+                autoOpen: false,
+                draggable: false,
+                resizable: false,
+                width: 180,
+                buttons: {
+                    "确定": function () {
+                        $(this).dialog("close");
+                        $.ajax({
+                            type: "POST",
+                            url: 'like/delete/' + deleteid,
+                            success: function () {
+                                deleteitem.animate({ opacity: 0 }, 300, null, function () {
+                                    deleteitem.slideUp(200);
+                                });
+                            }
+                        });
+                    },
+                    "取消": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="delete-dialog" title="提示">
+        <p>
+            确定删除这条信息吗？</p>
+    </div>
+    <div id="header">
+        <div class="left" id="links">
+            <a class="left">微博招聘网</a> <a class="left">微博招聘官方微博</a> <a class="left last">我的微博</a>
+        </div>
+        <div class="right" id="infos">
+            <a class="left selected logined" id="name">admin</a><a class="left logined" href="logout/">退出</a>
+        </div>
+    </div>
+    <div id="logo-search">
+        <a id="logo" class="left" href="default.html"></a>
+    </div>
+    <div id="manager-title" class="inner">
+        <span class="left manager-title">信息管理</span> <span class="left manager-title-tag">管理员</span>
+    </div>
+    <div id="manager-content" class="inner">
+        <div id="content-left" class="left">
+            <div id="manager-control">
+                <a class="manager-control left manager-control-choose" onclick="ShowNormal()">信息管理</a>
+                <a class="manager-control left" onclick="ShowFeedback()">意见管理</a> <a class="manager-control left"
+                    onclick="ShowHot()">热门企业管理</a>
+            </div>
+            <a id="jobs-publish-button" class="publish-button jobs left"></a><a id="recruitment-publish-button"
+                class="publish-button recruitment left"></a>
+        </div>
+        <div id="content-middle" class="left">
+            <div id="blogs">
+                <div id="blogsinner">
+                    <div class="item">
+                        <div class="item-delete">
+                            <a class="right"></a>
+                        </div>
+                        <div class="left item-pic">
+                            <img alt="" width="50" height="50" />
+                        </div>
+                        <div class="left item-content">
+                            <div class="item-blog">
+                                <a class="item-blog-name">赶集网</a>：赶集网招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。
+                                （3）简历发送至 nihongtao@ganji.com&nbsp; 欢迎同学们骚扰 <a class="item-blog-link">http://sinaurl.cn/ht7Wa5</a>
+                            </div>
+                            <div class="item-other">
+                                <span class="left item-time">5分钟前</span> <a class="left item-position">新浪微博</a>
+                                <a class="right item-control last delete">删除</a>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-delete">
+                            <a class="right"></a>
+                        </div>
+                        <div class="left item-pic">
+                            <img alt="" width="50" height="50" />
+                        </div>
+                        <div class="left item-content">
+                            <div class="item-blog">
+                                <a class="item-blog-name">用户名：</a><a class="item-blog-title">问题标题</a>
+                            </div>
+                            <div class="item-blog-content close">
+                                问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容
+                            </div>
+                            <div class="item-other">
+                                <a class="left item-position">Email</a> <a class="right item-control last delete">删除</a>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+                <div id="pages">
+                </div>
+            </div>
+        </div>
+        <div id="content-right" class="left">
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <div id="footer" class="inner">
+        <div id="footerlinks">
+            <a href="help.html">网站帮助</a> | <a href="feedback.html">意见反馈</a> | <a>联系我们</a></div>
+        <div id="copyright">
+            CopyRight © 2011-2012 <a>微博招聘网</a> Co. All Right Reserved. 鄂ICP证100111号<br />
+            Powered by:GNG</div>
+    </div>
+</body>
+</html>
