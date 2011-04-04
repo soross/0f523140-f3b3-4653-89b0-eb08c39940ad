@@ -49,7 +49,7 @@ function get_hot($num)
         if($i == $num)
             break;
         if($row['tag_group']!=0)
-            $g[$j++] ++;
+            $g[$j++] = $row['tag_group'];
     }
     return $result;
 }
