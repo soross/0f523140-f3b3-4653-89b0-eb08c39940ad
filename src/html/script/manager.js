@@ -19,9 +19,15 @@
     });
     $("input.info-content-words").focusin(function () {
         $(this).addClass("info-content-words-focus");
+        if ($(this).val() == $(this).attr("title")) {
+            $(this).val("");
+        }
     });
     $("input.info-content-words").focusout(function () {
         $(this).removeClass("info-content-words-focus");
+        if ($(this).val() == "") {
+            $(this).val($(this).attr("title"));
+        }
     });
 });
 
