@@ -15,7 +15,7 @@ function theme_user($data)
             $source = str_replace("<a ", '<a class="left microblog-item-position"', $r['source']);
         else
             $source = '<a class="left microblog-item-position">'.$r['source'].'</a>';
-        $content .= '<div class="item">
+        $content .= '<div class="item" id="'.$r['tweet_id'].'">
                         <div class="item-delete">
                             <a class="right"></a>
                         </div>
