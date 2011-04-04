@@ -1,0 +1,63 @@
+﻿body
+{
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    font-family: 微软雅黑, 宋体;
+}
+#head
+{
+    height: 65px;
+    width: 826px;
+    background-image: url('../images/profile-logo.jpg');
+    background-repeat: no-repeat;
+    margin: auto;
+    margin-top: 20px;
+}
+#content
+{
+    width: 686px;
+    margin: auto;
+    overflow: hidden;
+    border: 2px #ebebeb solid;
+    border-radius: 5px 5px;
+    padding: 10px 70px;
+    margin-top: 20px;
+}
+#basic
+{
+    overflow: hidden;
+}
+#basic1
+{
+    height: 83px;
+}
+#basic1 span
+{
+    height: 83px;
+    line-height: 83px;
+    font-size: 22px;
+    letter-spacing: 1px;
+    float: left;
+    margin-left: 20px;
+}
+#basic1 img
+{
+    height: 83px;
+    width: 83px;
+    float: left;
+}
+#basic2
+{
+    height: 24px;
+    line-height: 24px;
+    border-bottom: 1px #ebf1fe solid;
+}
+.left
+{
+    float: left;
+}
+.right
+{
+    float: right;
+}
