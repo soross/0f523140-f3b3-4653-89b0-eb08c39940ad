@@ -9,6 +9,7 @@ func_register(array(
 function tweet_delete()
 {
     include_once('login.php');
+    include_once('sinaoauth.php');
     $id = get_current_user_id();
     $args = func_get_args();
     $key = $args[2];
@@ -20,6 +21,8 @@ function tweet_delete()
     $row = mysql_fetch_array($list);
     if($row)
     {
+        $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
+        $msg = $c -> destroy($row['tweet_site_id']);
         $view = "UPDATE tweets SET deleted='1' WHERE tweet_id='$key'";
         $list = mysql_query($view) or die("Delete error!");
     }
