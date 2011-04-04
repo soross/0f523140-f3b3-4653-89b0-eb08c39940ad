@@ -442,7 +442,13 @@ div#backTop
     line-height:20px;
     text-align:center;
     background-color: #d7e7ef;
-    display:none;
+    /*display:none;*/
+    letter-spacing:2px;
+    writing-mode: tb-rl;
+}
+div#backTop a:hover
+{
+    text-decoration:none;
 }
 
 .clear
