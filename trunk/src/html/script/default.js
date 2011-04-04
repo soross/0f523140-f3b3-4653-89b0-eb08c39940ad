@@ -359,7 +359,6 @@ function SetRolePicker() {
                 type: 'POST',
                 url: 'role/set/1',
                 success: function (msg) {
-                    alert(msg);
                 }
             });
         }
@@ -370,7 +369,6 @@ function SetRolePicker() {
                 type: 'POST',
                 url: 'role/set/2',
                 success: function (msg) {
-                    alert(msg);
                 }
             });
         }
