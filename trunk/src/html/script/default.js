@@ -9,6 +9,13 @@ var isFreshed = false;
 var isTurn = false;
 
 $(function () {
+    $("#concern-pic").animate({ opacity: 0.6 }, 0);
+    $("#concern-pic").mouseover(function () {
+        $(this).animate({ opacity: 1 }, 200);
+    });
+    $("#concern-pic").mouseout(function () {
+        $(this).animate({ opacity: 0.6 }, 200);
+    });
     SetRolePicker();
     GetNewerCount();
     if ($.query.get("search") != "") {
@@ -337,13 +344,6 @@ function SetRolePicker() {
 }
 
 function SetConcern() {
-    $("#concern-pic").animate({ opacity: 0.6 }, 0);
-    $("#concern-pic").mouseover(function () {
-        $(this).animate({ opacity: 1 }, 200);
-    });
-    $("#concern-pic").mouseout(function () {
-        $(this).animate({ opacity: 0.6 }, 200);
-    });
     $(".concern-item").mouseover(function () {
         $(this).addClass("concern-item-over");
     });
