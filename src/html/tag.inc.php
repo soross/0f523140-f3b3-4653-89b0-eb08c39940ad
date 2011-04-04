@@ -77,7 +77,8 @@ function theme_hot($query)
             $content .= '<a class="left jobs-publish-tags-hot-item" title="'.$h['name'].'">'.$h['name'].'</a>';
         elseif($key == "2")
             $content .= '<a class="left recruitment-publish-tags-hot-item" title="'.$h['name'].'">'.$h['name'].'</a>';
-    $content .= '</div></div>';
+    if($key == "0")
+        $content .= '</div></div>';
     echo $content;
 }
 
