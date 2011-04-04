@@ -237,26 +237,18 @@ function SetResult(msg) {
                             $("a#search-result-concern").unbind("mouseout");
                             $("a#search-result-concern").unbind("click");
                             $("div#concern").animate({ opacity: 0 }, 200, null, function () {
-                                $("div#concern").slideUp(100, null, function () {
-                                    $("div#concern").html('<img src="images/loading.gif" style="margin-left:134px;" />');
-                                    $("div#concern").slideDown(100, null, function () {
-                                        $("div#concern").animate({ opacity: 1 }, 200, null, function () {
-                                            $.ajax({
-                                                type: 'POST',
-                                                url: 'follow/show/5',
-                                                success: function (msg) {
-                                                    $("div#concern").animate({ opacity: 0 }, 200, null, function () {
-                                                        $("div#concern").slideUp(100, null, function () {
-                                                            $("#concern").html(msg);
-                                                            SetConcern();
-                                                            $("div#concern").slideDown(100, null, function () {
-                                                                $("div#concern").animate({ opacity: 1 }, 200);
-                                                            });
-                                                        });
-                                                    });
-                                                }
+                                $("div#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + ($("div#concern").height()) + 'px;" />');
+                                $("div#concern").animate({ opacity: 1 }, 200, null, function () {
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: 'follow/show/5',
+                                        success: function (msg) {
+                                            $("div#concern").animate({ opacity: 0 }, 200, null, function () {
+                                                $("#concern").html(msg);
+                                                SetConcern();
+                                                $("div#concern").animate({ opacity: 1 }, 200);
                                             });
-                                        });
+                                        }
                                     });
                                 });
                             });
