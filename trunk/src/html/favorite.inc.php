@@ -6,21 +6,21 @@ func_register(array(
     ),
 ));
 
-function get_favorites($num)
+function get_favorites($num, $page)
 {
     include_once('login.inc.php');
     $id = get_current_user_id();
+    if(!$page)
+        $page = "0";
+    $page = intval($page) * $num;
+    $limit = " LIMIT $page , $num";
     connect_db();
-    $view = "SELECT tweets.* from tweets, (SELECT * FROM favorites WHERE user_id='$id' AND deleted=0) as favorites WHERE tweets.tweet_id=favorites.tweet_id ORDER BY tweets.post_datetime DESC";
+    $view = "SELECT tweets.* from tweets, (SELECT * FROM favorites WHERE user_id='$id' AND deleted=0) as favorites WHERE tweets.tweet_id=favorites.tweet_id ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
     while($row = mysql_fetch_array($list))
-    {
         $result[$i++] = $row;
-        if($i == $num)
-            break;
-    }
     return $result;
 }
 
@@ -28,8 +28,12 @@ function favorites_show()
 {
     $args = func_get_args();
     $key = intval($args[2]);
+    if($args[3])
+        $page = intval($args[3]);
+    else
+        $page = "";
     $content = '';
-    $favorites = get_favorites($key);
+    $favorites = get_favorites($key, $page);
     foreach($favorites as $f)
     {
         $content .= '<div class="item" id="'.$f['tweet_id'].'">
