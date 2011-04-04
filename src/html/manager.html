@@ -51,6 +51,10 @@
                 finder.selectActionFunction = SetFileField;
                 finder.popup();
             });
+
+            $("a#profile-preview").click(function () {
+                alert($("#profile-detail").val());
+            });
         });
 
         function SetFileField(fileUrl) {
