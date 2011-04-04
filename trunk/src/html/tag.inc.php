@@ -58,18 +58,27 @@ function theme_hot($query)
 {
     $key = (string) $query[1];
     if($key == "0" or $key == "")
+    {
         $content = '<div id="hot">
                 <div class="left-title">
                     <span class="left left-title-text">热门职位</span> <span class="right left-title-time">截止至'.date('Y.n.j').'</span>
                 </div>
                 <div id="hot-content">';
+        $num = 20;
+    }
     elseif($key == "1")
+    {
         $content = '<span id="jobs-publish-tags-hot-title" class="left">热门标签</span>';
+        $num = 10;
+    }
     elseif($key == "2")
+    {
         $content = '<span id="recruitment-publish-tags-hot-title" class="left">热门标签</span>';
+        $num = 10;
+    }
     else
         die("Invalid argument!");
-    $hots = get_hot(20);
+    $hots = get_hot($num);
     foreach($hots as $h)
         if($key == "1")
             $content .= '<a class="left jobs-publish-tags-hot-item" title="'.$h['name'].'">'.$h['name'].'</a>';
