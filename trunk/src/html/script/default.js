@@ -16,6 +16,33 @@ $(function () {
     $("#concern-pic").mouseout(function () {
         $(this).animate({ opacity: 0.6 }, 200);
     });
+    $("#history-pic").animate({ opacity: 0.6 }, 0);
+    $("#history-pic").mouseover(function () {
+        $(this).stop().animate({ opacity: 1 }, 200);
+    });
+    $("#history-pic").mouseout(function () {
+        $(this).stop().animate({ opacity: 0.6 }, 200);
+    });
+    $("a#history-pic").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: 'history/deleteall',
+            success: function (msg) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'history/show/5',
+                    success: function (msg) {
+                        $(".history-item").animate({ opacity: 0 }, 200, function () {
+                            $(this).slideUp(100, null, function () {
+                                $("#history").html(msg);
+                                SetHistory();
+                            });
+                        });
+                    }
+                });
+            }
+        });
+    });
     SetRolePicker();
     GetNewerCount();
     if ($.query.get("search") != "") {
@@ -442,26 +469,18 @@ function SetSearch(msg, e) {
         $(this).attr("class", "left search-result-concern");
     });
     $("div#history").animate({ opacity: 0 }, 200, null, function () {
-        $("div#history").slideUp(100, null, function () {
-            $("div#history").html('<img src="images/loading.gif" style="margin-left:134px;" />');
-            $("div#history").slideDown(100, null, function () {
-                $("div#history").animate({ opacity: 1 }, 200, null, function () {
-                    $.ajax({
-                        type: 'GET',
-                        url: 'history/show/5',
-                        success: function (msg) {
-                            $("div#history").animate({ opacity: 0 }, 200, null, function () {
-                                $("div#history").slideUp(100, null, function () {
-                                    $("div#history").html(msg);
-                                    SetHistory();
-                                    $("div#history").slideDown(100, null, function () {
-                                        $("div#history").animate({ opacity: 1 }, 200);
-                                    });
-                                });
-                            });
-                        }
+        $("div#history").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#history").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#history").height() - 32) / 2) + 'px;" />');
+        $("div#history").animate({ opacity: 1 }, 200, null, function () {
+            $.ajax({
+                type: 'GET',
+                url: 'history/show/5',
+                success: function (msg) {
+                    $("div#history").animate({ opacity: 0 }, 200, null, function () {
+                        $("div#history").html(msg);
+                        SetHistory();
+                        $("div#history").animate({ opacity: 1 }, 200);
                     });
-                });
+                }
             });
         });
     });
@@ -473,7 +492,7 @@ function SetSearch(msg, e) {
         success: function (msg) {
             $(document).scrollTop(0);
             $("div#search-result div.left").html($("div#search-result div.left").html() + "，共有" + msg + "条结果");
-            if (msg != 0) {
+            if (msg != 0 || Math.floor(msg / 50) == 1) {
                 prevLess = false;
                 nextLess = false;
                 var allPage;
@@ -562,13 +581,6 @@ function GetOlderBlogs() {
 }
 
 function SetHistory() {
-    $("#history-pic").animate({ opacity: 0.6 }, 0);
-    $("#history-pic").mouseover(function () {
-        $(this).stop().animate({ opacity: 1 }, 200);
-    });
-    $("#history-pic").mouseout(function () {
-        $(this).stop().animate({ opacity: 0.6 }, 200);
-    });
     $(".history-item").mouseover(function () { $(this).addClass("history-item-over"); });
     $(".history-item").mouseout(function () { $(this).removeClass("history-item-over"); });
     $(".history-item").click(function () {
@@ -581,26 +593,6 @@ function SetHistory() {
                 page = 0;
                 isTurn = false;
                 SetSearch(msg, text);
-            }
-        });
-    });
-    $("a#history-pic").click(function () {
-        $.ajax({
-            type: 'POST',
-            url: 'history/deleteall',
-            success: function (msg) {
-                $.ajax({
-                    type: 'GET',
-                    url: 'history/show/5',
-                    success: function (msg) {
-                        $(".history-item").animate({ opacity: 0 }, 200, function () {
-                            $(this).slideUp(100, null, function () {
-                                $("#history").html(msg);
-                                SetHistory();
-                            });
-                        });
-                    }
-                });
             }
         });
     });
