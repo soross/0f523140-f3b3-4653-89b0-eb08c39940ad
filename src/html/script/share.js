@@ -7,8 +7,6 @@ var cate = 0;
 
 $(function () {
     Init();
-    SetCompany();
-    SetSorts();
     CoverResize();
     SetPublish();
 });
