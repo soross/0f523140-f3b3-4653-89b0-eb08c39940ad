@@ -47,7 +47,7 @@ function get_user_result($key, $num, $page)
     $page = intval($page) * $num;
     $limit = " LIMIT $page , $num";
     include_once("login.inc.php");
-    $view = "SELECT tweets.* from tweets, (SELECT user_site_id, site_id FROM accountbindings WHERE user_id = $key) AS ac WHERE tweets.deleted = 0 AND tweets.user_site_id = ac.user_site_id AND tweets.site_id = ac.site_id ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT tweets.* from tweets, (SELECT user_site_id, site_id FROM accountbindings WHERE user_id = '$key') AS ac WHERE tweets.deleted = 0 AND tweets.user_site_id = ac.user_site_id AND tweets.site_id = ac.site_id ORDER BY tweets.post_datetime DESC$limit";
     echo $view;
     $list = mysql_query($view);
     $result = array();
