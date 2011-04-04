@@ -44,7 +44,8 @@ function get_user_result($key, $site, $num, $page)
     connect_db();
     if(!$page)
         $page = "0";
-    c
+    $page = intval($page) * $num;
+    $limit = " LIMIT $page , $num";
     if($key == "current")
     {
         include_once("login.inc.php");
