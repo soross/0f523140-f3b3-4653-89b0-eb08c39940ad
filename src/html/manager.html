@@ -58,6 +58,18 @@
             $("a#profile-preview").click(function () {
                 //                alert(editor.document.getBody().getHtml());
             });
+
+            $("a.applys").click(function () {
+                var item = $(this).parent().next(".item-applys");
+                if (item.hasClass("close")) {
+                    item.slideDown(200);
+                    item.removeClass("close");
+                }
+                else {
+                    item.slideUp(200);
+                    item.addClass("close");
+                }
+            });
         });
 
         function SetFileField(fileUrl) {
@@ -113,8 +125,9 @@
                 <a class="manager-control left jobs manager-control-choose" onclick="ShowNormal()">我发布的信息</a>
                 <a class="manager-control left jobs" onclick="ShowApply()">申请记录</a> <a class="manager-control left jobs"
                     onclick="ShowFavourite()">职位收藏</a> <a class="manager-control left jobs" onclick="ShowProfile()">
-                        个人简历</a> <a class="manager-control left recruitment manager-control-choose">我发布的信息</a><a
-                            class="manager-control left recruitment" onclick="ShowFavourite()">职位收藏</a>
+                        个人简历</a> <a class="manager-control left recruitment manager-control-choose" onclick="ShowNormal()">
+                            我发布的信息</a><a class="manager-control left recruitment" onclick="ShowApplysl()">收到的职位申请</a><a
+                                class="manager-control left recruitment" onclick="ShowFavourite()">职位收藏</a>
             </div>
             <a id="jobs-publish-button" class="publish-button jobs left"></a><a id="recruitment-publish-button"
                 class="publish-button recruitment left"></a>
@@ -142,6 +155,37 @@
                                 <a class="right item-control comment">评论</a> <a class="right item-control likea">收藏(1)</a>
                                 <a class="right item-control fw">转发(2)</a> <a class="right item-control last delete">
                                     删除</a>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-delete">
+                            <a class="right"></a>
+                        </div>
+                        <div class="left item-pic">
+                            <img alt="" width="50" height="50" />
+                        </div>
+                        <div class="left item-content">
+                            <div class="item-blog">
+                                <a class="item-blog-name">赶集网</a>：赶集网招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。
+                                （3）简历发送至 nihongtao@ganji.com&nbsp; 欢迎同学们骚扰 <a class="item-blog-link">http://sinaurl.cn/ht7Wa5</a>
+                            </div>
+                            <div class="item-other">
+                                <span class="left item-time">5分钟前</span> <a class="left item-position">新浪微博</a>
+                                <a class="right item-control delete">删除</a> <a class="right item-control last applys">
+                                    申请数(4)</a>
+                            </div>
+                            <div class="item-applys close">
+                                <div>
+                                    <span class="left">申请自：</span><a class="left item-applys-name">Boyweb</a><span class="left item-applys-time">于2011-04-03</span><a class="right item-applys-read">查看简历</a></div>
+                                <div>
+                                    <span class="left">申请自：</span><a class="left item-applys-name">Boyweb</a><span class="left item-applys-time">于2011-04-03</span><a class="right item-applys-read">查看简历</a></div>
+                                <div>
+                                    <span class="left">申请自：</span><a class="left item-applys-name">Boyweb</a><span class="left item-applys-time">于2011-04-03</span><a class="right item-applys-read">查看简历</a></div>
+                                <div>
+                                    <span class="left">申请自：</span><a class="left item-applys-name">Boyweb</a><span class="left item-applys-time">于2011-04-03</span><a class="right item-applys-read">查看简历</a></div>
                             </div>
                         </div>
                         <div class="clear">

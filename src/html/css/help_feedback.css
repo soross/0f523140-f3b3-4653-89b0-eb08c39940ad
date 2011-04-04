@@ -58,12 +58,8 @@ div#inner-content input, textarea
 {
     border: 1px #e1ebff solid;
     background-color: #f2f6fe;
-}
-div#inner-content input, textarea
-{
-    border: 1px #e1ebff solid;
-    background-color: #f2f6fe;
     width: 323px;
+    margin-top:7px;
 }
 div#inner-content a
 {
