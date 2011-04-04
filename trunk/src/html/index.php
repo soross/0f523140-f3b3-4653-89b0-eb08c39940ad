@@ -8,7 +8,7 @@ include_once('follow.inc.php');
 include_once('favorite.inc.php');
 include_once('post.inc.php');
 include_once('tag.inc.php');
-#include_once('.php');
+include_once('user.inc.php');
 
 func_register(array(
   '' => array(
