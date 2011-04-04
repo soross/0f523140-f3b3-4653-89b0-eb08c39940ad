@@ -32,11 +32,56 @@ function SetPublish() {
     $("div#jobs-publish-title a").click(function () { HideJobsPublish(); });
     $("div#recruitment-publish-title a").click(function () { HideRecruitmentPublish(); });
 
-    $("a.jobs-publish-tags-hot-item").click(function () {
-        $("div#jobs-publish-tags input").val($("div#jobs-publish-tags input").val() + " " + $(this).attr("title"));
+
+    $("div#jobs-publish-confirm a").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: 'post/1',
+            data: { text: $("div#jobs-publish-text textarea").val() },
+            success: function (msg) {
+                if ($.trim(msg) != "0") {
+                    alert(msg);
+                }
+                HideJobsPublish();
+            }
+        });
     });
-    $("a.recruitment-publish-tags-hot-item").click(function () {
-        $("div#recruitment-publish-tags input").val($("div#recruitment-publish-tags input").val() + " " + $(this).attr("title"));
+    $("div#recruitment-publish-confirm a").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: 'post/2',
+            data: { text: $("div#recruitment-publish-text textarea").val() },
+            success: function (msg) {
+                if ($.trim(msg) != "0") {
+                    alert(msg);
+                }
+                HideRecruitmentPublish();
+            }
+        });
+    });
+    //Jobs Hot Tags
+    $.ajax({
+        type: 'POST',
+        url: ''/*'url/'*/,
+        success: function (msg) {
+            $("div#jobs-publish-tags-hot").html(msg);
+            $("a.jobs-publish-tags-hot-item").click(function () {
+                $("div#jobs-publish-text textarea").val($("div#jobs-publish-text textarea").val() + " " + $(this).attr("title"));
+                UpdateJobsText();
+            });
+        }
+    });
+    //Recruitment Hot Tags
+    $.ajax({
+        type: 'POST',
+        url: ''/*'url/'*/,
+        success: function (msg) {
+            $("div#recruitment-publish-tags-hot").html(msg);
+            $("a.recruitment-publish-tags-hot-item").click(function () {
+                $("div#recruitment-publish-text textarea").val($("div#recruitment-publish-text textarea").val() + " " + $(this).attr("title"));
+                UpdateRecruitmentText();
+            });
+        }
     });
     $("div#jobs-publish-text textarea").keydown(function () {
         UpdateJobsText();
