@@ -492,16 +492,16 @@ function SetSearch(msg, e) {
         success: function (msg) {
             $(document).scrollTop(0);
             $("div#search-result div.left").html($("div#search-result div.left").html() + "，共有" + msg + "条结果");
-            if (msg != 0 || Math.floor(msg / 50) == 1) {
+            var allPage;
+            if (msg % 50 == 0) {
+                allPage = Math.floor(msg / 50);
+            }
+            else {
+                allPage = Math.floor(msg / 50) + 1;
+            }
+            if (Math.floor(msg / 50) <= 1) {
                 prevLess = false;
                 nextLess = false;
-                var allPage;
-                if (msg % 50 == 0) {
-                    allPage = Math.floor(msg / 50);
-                }
-                else {
-                    allPage = Math.floor(msg / 50) + 1;
-                }
                 var str = '<div id="pages-inner" class="right">';
                 if (page != 0) {
                     str += '<a class="page-control left" id="prevPage">上一页</a>';
