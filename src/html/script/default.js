@@ -11,15 +11,30 @@ var isTurn = false;
 $(function () {
     SetRolePicker();
     GetNewerCount();
-    $.ajax({
-        type: 'GET',
-        url: 'search/all/0',
-        success: function (msg) {
-            isTurn = false;
-            SetAllSearch(msg);
-            setTimeout(function () { GetNewerBlogs(); }, 60000);
-        }
-    });
+    if ($.query.get("search") != "") {
+        var text = $.query.get("search");
+        $.ajax({
+            type: 'GET',
+            url: 'search/' + text,
+            success: function (msg) {
+                page = 0;
+                cate = 0;
+                isTurn = false;
+                SetSearch(msg, text);
+            }
+        });
+    }
+    else {
+        $.ajax({
+            type: 'GET',
+            url: 'search/all/0',
+            success: function (msg) {
+                isTurn = false;
+                SetAllSearch(msg);
+                setTimeout(function () { GetNewerBlogs(); }, 60000);
+            }
+        });
+    }
 });
 
 function SetAllSearch(msg) {
@@ -47,8 +62,8 @@ function SetAllSearch(msg) {
                                     success: function (msg) {
                                         page = 0;
                                         cate = 0;
+                                        isTurn = false;
                                         SetSearch(msg, text);
-                                        nowFirst = $(".microblog-item:first").attr("id");
                                     }
                                 });
                             });
