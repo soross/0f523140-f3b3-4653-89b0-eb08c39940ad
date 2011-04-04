@@ -55,6 +55,15 @@ $(function () {
                 cate = 0;
                 isTurn = false;
                 SetSearch(msg, text);
+                setTimeout(function () { GetNewerBlogs(); }, 60000);
+                $("div#backTop").position({
+                    of: $("div#microblogs"),
+                    my: "left top",
+                    at: "right top",
+                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 80),
+                    collision: "none none"
+                });
+                $("div#backTop").css("position", "fixed");
             }
         });
     }
@@ -65,6 +74,14 @@ $(function () {
             success: function (msg) {
                 isTurn = false;
                 SetAllSearch(msg);
+                $("div#backTop").position({
+                    of: $("div#microblogs"),
+                    my: "left top",
+                    at: "right top",
+                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 80),
+                    collision: "none none"
+                });
+                $("div#backTop").css("position", "fixed");
                 setTimeout(function () { GetNewerBlogs(); }, 60000);
             }
         });
