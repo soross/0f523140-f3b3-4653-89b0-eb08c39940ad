@@ -499,7 +499,7 @@ function SetSearch(msg, e) {
             else {
                 allPage = Math.floor(msg / 50) + 1;
             }
-            if (Math.floor(msg / 50) <= 1) {
+            if (allPage <= 1) {
                 prevLess = false;
                 nextLess = false;
                 var str = '<div id="pages-inner" class="right">';
