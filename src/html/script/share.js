@@ -58,7 +58,7 @@ function SetPublish() {
     //Jobs Hot Tags
     $.ajax({
         type: 'POST',
-        url: ''/*'url/'*/,
+        url: 'hot/1',
         success: function (msg) {
             $("div#jobs-publish-tags-hot").html(msg);
             $("a.jobs-publish-tags-hot-item").click(function () {
@@ -70,7 +70,7 @@ function SetPublish() {
     //Recruitment Hot Tags
     $.ajax({
         type: 'POST',
-        url: ''/*'url/'*/,
+        url: 'hot/2',
         success: function (msg) {
             $("div#recruitment-publish-tags-hot").html(msg);
             $("a.recruitment-publish-tags-hot-item").click(function () {
