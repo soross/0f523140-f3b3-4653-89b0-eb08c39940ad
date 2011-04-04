@@ -81,6 +81,7 @@
                 resizable: false,
                 buttons: {
                     "确定": function () {
+                        $(this).dialog("close");
                         $.ajax({
                             type: "POST",
                             url: 'like/delete/' + deleteid,
@@ -91,7 +92,8 @@
                             }
                         });
                     },
-                    "取消": function () { 
+                    "取消": function () {
+                        $(this).dialog("close");
                     }
                 }
             });
