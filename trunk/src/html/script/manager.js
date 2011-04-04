@@ -76,6 +76,7 @@ function ShowFavourite() {
         }
     });
 }
+
 function ShowNormal() {
     $("div#profile").hide();
     $("div#blogs").show();
