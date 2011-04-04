@@ -4,7 +4,7 @@
     background-color: #f2f6fe;
     background-image: url('../images/background.jpg');
     background-repeat: repeat-x;
-    overflow-y: visible;
+    overflow-y: scroll;
 }
 body, a, input, span, img
 {
@@ -376,7 +376,7 @@ div#jobs-publish-tags-hot
 {
     margin-top: 10px;
     width: 559px;
-    overflow: hidden;
+    overflow:hidden;
 }
 div#jobs-publish-tags-hot span#jobs-publish-tags-hot-title
 {
@@ -390,7 +390,7 @@ div#jobs-publish-tags-hot span#jobs-publish-tags-hot-title
 }
 div#jobs-publish-tags-hot a.jobs-publish-tags-hot-item
 {
-    white-space: nowrap;
+    white-space:nowrap;
     height: 24px;
     line-height: 24px;
     padding: 0 5px;
@@ -526,7 +526,7 @@ div#recruitment-publish-tags-hot
 {
     margin-top: 10px;
     width: 559px;
-    overflow: hidden;
+    overflow:hidden;
 }
 div#recruitment-publish-tags-hot span#recruitment-publish-tags-hot-title
 {
