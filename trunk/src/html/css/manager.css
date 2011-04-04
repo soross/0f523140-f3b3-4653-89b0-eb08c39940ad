@@ -382,6 +382,10 @@ input.info-content-words
     margin-bottom: 7px;
     border: 1px #ffffff solid;
 }
+input.info-content-words:hover
+{
+    border: 1px #b2b2b2 solid;
+}
 input.info-content-words-focus
 {
     border: 1px #b2b2b2 solid;
