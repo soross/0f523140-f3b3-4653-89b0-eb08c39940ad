@@ -157,6 +157,29 @@ div.item-other
     height: 24px;
     line-height: 24px;
 }
+div.item-applys
+{
+    margin-top:5px;
+    line-height: 24px;
+    display:none;
+}
+div.item-applys span.item-applys-time
+{
+    margin-left:5px;
+}
+div.item-applys a.item-applys-name
+{
+    color: #7ba5d7;
+}
+div.item-applys a.item-applys-read
+{
+    color: #7ba5d7;
+}
+div.item-applys div
+{
+    height:24px;
+    padding:0 20px;
+}
 span.item-time
 {
     color: #a3a3a3;
