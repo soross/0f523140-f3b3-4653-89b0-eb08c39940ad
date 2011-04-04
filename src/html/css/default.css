@@ -11,6 +11,14 @@ div#left div.left-title
     height: 24px;
     line-height: 24px;
     margin-bottom: 3px;
+    margin-top: 20px;
+}
+div#left div.left-title-first
+{
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 3px;
+    margin-top: 0px;
 }
 div#left span.left-title-text
 {
@@ -90,10 +98,6 @@ div#left a.concern-item-content-number
     margin-right: 5px;
 }
 
-div#history
-{
-    margin-top: 20px;
-}
 div#left a#history-pic
 {
     background-image: url('../images/history-clear.jpg');
@@ -119,10 +123,6 @@ div#left div.history-item-over
     background-color: #e7f1f5;
 }
 
-div#hot
-{
-    margin-top: 20px;
-}
 div#left span.left-title-time
 {
     margin-right: 5px;
