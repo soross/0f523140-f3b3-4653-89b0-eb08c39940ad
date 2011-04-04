@@ -227,7 +227,7 @@ for cat, items in B:
 					 post_screenname, profile_image_url, source)
 				     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
 				  (1, tweet_id, userid, text, posttime,
-				   0, mid, 0, 0,
+				   2, mid, 0, 0,
 				   name, avatar, source))
 		c.execute("""INSERT INTO cat_relationship (
 					 cat_id, tweet_id)
