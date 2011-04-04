@@ -33,7 +33,10 @@
                 }
             });
 
-            $("#birthday").datepicker();
+            $("#birthday").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
             var editor = CKEDITOR.replace('profile-detail', {
                 uiColor: '#d1e9f1',
                 language: 'zh-cn',
