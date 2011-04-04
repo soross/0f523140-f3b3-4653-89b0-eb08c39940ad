@@ -237,7 +237,7 @@ function SetResult(msg) {
                             $("a#search-result-concern").unbind("mouseout");
                             $("a#search-result-concern").unbind("click");
                             $("div#concern").animate({ opacity: 0 }, 200, null, function () {
-                                $("div#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#concern").height() - 32) / 2) + 'px;" />');
+                                $("div#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#concern").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#concern").height() - 32) / 2) + 'px;" />');
                                 $("div#concern").animate({ opacity: 1 }, 200, null, function () {
                                     $.ajax({
                                         type: 'POST',
