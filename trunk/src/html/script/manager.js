@@ -1,5 +1,6 @@
 ﻿var deleteitem;
 var deleteid;
+var deleteurl;
 
 $(function () {
     $("div#content-middle-delete a").animate({ opacity: 0.6 }, 0);
@@ -66,11 +67,13 @@ function ShowFavourite() {
             $("a.delete").click(function () {
                 deleteitem = $(this).parent().parent().parent();
                 deleteid = deleteitem.attr("id");
+                deleteurl = 'like/delete';
                 $("#delete-dialog").dialog("open");
             });
             $("div.item-delete a").click(function () {
                 deleteitem = $(this).parent().parent();
                 deleteid = $(this).attr("id");
+                deleteurl = 'like/delete';
                 $("#delete-dialog").dialog("open");
             });
         }
@@ -93,16 +96,16 @@ function ShowNormal() {
             $("div.item").mouseout(function () {
                 $(this).removeClass("item-over");
             });
-            $("a.delete").click(function () {
-                deleteitem = $(this).parent().parent().parent();
-                deleteid = deleteitem.attr("id");
-                $("#delete-dialog").dialog("open");
-            });
-            $("div.item-delete a").click(function () {
-                deleteitem = $(this).parent().parent();
-                deleteid = $(this).attr("id");
-                $("#delete-dialog").dialog("open");
-            });
+            //            $("a.delete").click(function () {
+            //                deleteitem = $(this).parent().parent().parent();
+            //                deleteid = deleteitem.attr("id");
+            //                $("#delete-dialog").dialog("open");
+            //            });
+            //            $("div.item-delete a").click(function () {
+            //                deleteitem = $(this).parent().parent();
+            //                deleteid = $(this).attr("id");
+            //                $("#delete-dialog").dialog("open");
+            //            });
         }
     });
 }
