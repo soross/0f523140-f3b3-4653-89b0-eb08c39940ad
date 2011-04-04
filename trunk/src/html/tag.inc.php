@@ -57,7 +57,7 @@ function get_hot($num)
 function theme_hot($query)
 {
     $key = (string) $query[1];
-    if($key == "0")
+    if($key == "0" or $key == "")
         $content = '<div id="hot">
                 <div class="left-title">
                     <span class="left left-title-text">热门职位</span> <span class="right left-title-time">截止至'.date('Y.n.j').'</span>
