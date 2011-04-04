@@ -12,7 +12,11 @@
     <script src="script/jquery.cookie.js" type="text/javascript"></script>
     <script src="script/ui/jquery.ui.core.js" type="text/javascript"></script>
     <script src="script/ui/jquery.ui.widget.js" type="text/javascript"></script>
+    <script src="script/ui/jquery.ui.mouse.js" type="text/javascript"></script>
+	<script src="script/ui/jquery.ui.draggable.js" type="text/javascript"></script>
+	<script src="script/ui/jquery.ui.resizable.js" type="text/javascript"></script>
     <script src="script/ui/jquery.ui.position.js" type="text/javascript"></script>
+    <script src="script/ui/jquery.ui.dialog.js" type="text/javascript"></script>
     <script src="script/ui/jquery.ui.datepicker.js" type="text/javascript"></script>
     <script src="script/ui/i18n/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
     <script src="script/share.js" type="text/javascript"></script>
@@ -70,6 +74,27 @@
                     item.addClass("close");
                 }
             });
+
+            $("#delete-dialog").dialog({
+                autoOpen: false,
+                draggable: false,
+                resizable: false,
+                buttons: {
+                    "确定": function () {
+                        $.ajax({
+                            type: "POST",
+                            url: 'like/delete/' + deleteid,
+                            success: function () {
+                                deleteitem.animate({ opacity: 0 }, 300, null, function () {
+                                    deleteitem.slideUp(200);
+                                });
+                            }
+                        });
+                    },
+                    "取消": function () { 
+                    }
+                }
+            });
         });
 
         function SetFileField(fileUrl) {
@@ -78,6 +103,9 @@
     </script>
 </head>
 <body>
+<div id="delete-dialog" title="提示">
+确定删除这条信息吗？
+</div>
     <div id="header">
         <div class="left" id="links">
             <a class="left">微博招聘网</a> <a class="left">微博招聘官方微博</a> <a class="left last">我的微博</a>

@@ -1,4 +1,7 @@
-﻿$(function () {
+﻿var deleteitem;
+var deleteid;
+
+$(function () {
     $("div#content-middle-delete a").animate({ opacity: 0.6 }, 0);
     $("div#content-middle-delete a").mouseover(function () {
         $(this).stop().animate({ opacity: 1 }, 200);
@@ -61,30 +64,14 @@ function ShowFavourite() {
                 $(this).removeClass("item-over");
             });
             $("a.delete").click(function () {
-                var item = $(this);
-                var id = $(this).parent().parent().parent().attr("id");
-                $.ajax({
-                    type: "POST",
-                    url: 'like/delete/' + id,
-                    success: function () {
-                        item.parent().parent().parent().animate({ opacity: 0 }, 300, null, function () {
-                            item.parent().parent().parent().slideUp(200);
-                        });
-                    }
-                });
+                deleteitem = $(this).parent().parent().parent();
+                deleteid = deleteitem.attr("id");
+                $("#delete-dialog").dialog("open");
             });
             $("div.item-delete a").click(function () {
-                var item = $(this);
-                var id = $(this).parent().parent().attr("id");
-                $.ajax({
-                    type: "POST",
-                    url: 'like/delete/' + id,
-                    success: function () {
-                        item.parent().parent().animate({ opacity: 0 }, 300, null, function () {
-                            item.parent().parent().slideUp(200);
-                        });
-                    }
-                });
+                deleteitem = $(this).parent().parent();
+                deleteid = $(this).attr("id");
+                $("#delete-dialog").dialog("open");
             });
         }
     });
