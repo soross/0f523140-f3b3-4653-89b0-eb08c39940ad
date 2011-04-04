@@ -71,13 +71,13 @@ function theme_hot($query)
         die("Invalid argument!");
     $hots = get_hot(20);
     foreach($hots as $h)
-        if($key == "0")
-            $content .= '<a class="left hot-content-item">'.$h['name'].'('.$h['count'].')</a>';
-        elseif($key == "1")
+        if($key == "1")
             $content .= '<a class="left jobs-publish-tags-hot-item" title="'.$h['name'].'">'.$h['name'].'</a>';
         elseif($key == "2")
             $content .= '<a class="left recruitment-publish-tags-hot-item" title="'.$h['name'].'">'.$h['name'].'</a>';
-    if($key == "0")
+        else
+            $content .= '<a class="left hot-content-item">'.$h['name'].'('.$h['count'].')</a>';
+    if($key == "0" or $key == "")
         $content .= '</div></div>';
     echo $content;
 }
