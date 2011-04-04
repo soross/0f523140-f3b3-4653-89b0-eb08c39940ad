@@ -46,7 +46,11 @@ function get_user_result($key, $site, $num, $page)
         $page = "0";
     $page = intval($page) * $num;
     $limit = " LIMIT $page , $num";
-    #include_once("login.inc.php");
+    if($key == "current")
+    {
+        include_once("login.inc.php");
+        $key = get_current_user_id();
+    }
     if($site)
         $view = "SELECT * from tweets WHERE deleted = 0 AND user_site_id = '$key' AND site_id = '$site' ORDER BY post_datetime DESC$limit";
     else
