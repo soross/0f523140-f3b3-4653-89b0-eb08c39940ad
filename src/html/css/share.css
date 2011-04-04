@@ -375,8 +375,8 @@ div#jobs-publish-tags input
 div#jobs-publish-tags-hot
 {
     margin-top: 10px;
-    height: 28px;
     width: 559px;
+    overflow:hidden;
 }
 div#jobs-publish-tags-hot span#jobs-publish-tags-hot-title
 {
@@ -390,10 +390,11 @@ div#jobs-publish-tags-hot span#jobs-publish-tags-hot-title
 }
 div#jobs-publish-tags-hot a.jobs-publish-tags-hot-item
 {
-    height: 28px;
-    line-height: 28px;
+    white-space:nowrap;
+    height: 24px;
+    line-height: 24px;
     padding: 0 5px;
-    margin: 0 5px;
+    margin: 2px 5px;
     background-color: #91d078;
     color: #ffffff;
     border-top-left-radius: 3px 3px;
@@ -524,8 +525,8 @@ div#recruitment-publish-tags input
 div#recruitment-publish-tags-hot
 {
     margin-top: 10px;
-    height: 28px;
     width: 559px;
+    overflow:hidden;
 }
 div#recruitment-publish-tags-hot span#recruitment-publish-tags-hot-title
 {
@@ -539,10 +540,10 @@ div#recruitment-publish-tags-hot span#recruitment-publish-tags-hot-title
 }
 div#recruitment-publish-tags-hot a.recruitment-publish-tags-hot-item
 {
-    height: 28px;
-    line-height: 28px;
+    height: 24px;
+    line-height: 24px;
     padding: 0 5px;
-    margin: 0 5px;
+    margin: 2px 5px;
     background-color: #7cb5da;
     color: #ffffff;
     border-top-left-radius: 3px 3px;

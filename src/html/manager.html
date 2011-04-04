@@ -32,33 +32,6 @@
                 }
             });
 
-            $("div#jobs-publish-confirm a").click(function () {
-                $.ajax({
-                    type: 'POST',
-                    url: 'post/1',
-                    data: { text: $("div#jobs-publish-text textarea").val() },
-                    success: function (msg) {
-                        if ($.trim(msg) != "0") {
-                            alert(msg);
-                        }
-                        HideJobsPublish();
-                    }
-                });
-            });
-            $("div#recruitment-publish-confirm a").click(function () {
-                $.ajax({
-                    type: 'POST',
-                    url: 'post/2',
-                    data: { text: $("div#recruitment-publish-text textarea").val() },
-                    success: function (msg) {
-                        if ($.trim(msg) != "0") {
-                            alert(msg);
-                        }
-                        HideRecruitmentPublish();
-                    }
-                });
-            });
-
             $("#birthday").datepicker();
             var editor = CKEDITOR.replace('profile-detail', {
                 uiColor: '#d1e9f1',
@@ -330,15 +303,7 @@
             <div id="jobs-publish-text">
                 <textarea>#求职#</textarea>
             </div>
-            <div id="jobs-publish-tags">
-                <span id="jobs-publish-tags-title" class="left">职位标签</span>
-                <input type="text" class="left" />
-                <span id="jobs-publish-tags-ps" class="left">标签之间用空格隔开</span>
-            </div>
             <div id="jobs-publish-tags-hot">
-                <span id="jobs-publish-tags-hot-title" class="left">热门标签</span> <a class="left jobs-publish-tags-hot-item"
-                    title="产品经理">产品经理</a> <a class="left jobs-publish-tags-hot-item" title=".NET开发工程师">.NET开发工程师</a>
-                <a class="left jobs-publish-tags-hot-item" title="UI设计师">UI设计师</a>
             </div>
             <div id="jobs-publish-confirm">
                 <a class="right"></a>
@@ -355,15 +320,7 @@
             <div id="recruitment-publish-text">
                 <textarea>#招聘#</textarea>
             </div>
-            <div id="recruitment-publish-tags">
-                <span id="recruitment-publish-tags-title" class="left">职位标签</span>
-                <input type="text" class="left" />
-                <span id="recruitment-publish-tags-ps" class="left">标签之间用空格隔开</span>
-            </div>
             <div id="recruitment-publish-tags-hot">
-                <span id="recruitment-publish-tags-hot-title" class="left">热门标签</span> <a class="left recruitment-publish-tags-hot-item"
-                    title="产品经理">产品经理</a> <a class="left recruitment-publish-tags-hot-item" title=".NET开发工程师">
-                        .NET开发工程师</a> <a class="left recruitment-publish-tags-hot-item" title="UI设计师">UI设计师</a>
             </div>
             <div id="recruitment-publish-confirm">
                 <a class="right"></a>
