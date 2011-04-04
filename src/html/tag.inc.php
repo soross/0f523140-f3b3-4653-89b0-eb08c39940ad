@@ -57,8 +57,6 @@ function get_hot($num)
 function theme_hot($query)
 {
     $key = (string) $query[1];
-    if(!$key)
-            die("Invalid argument!");
     if($key == "0")
         $content = '<div id="hot">
                 <div class="left-title">
@@ -69,6 +67,8 @@ function theme_hot($query)
         $content = '<span id="jobs-publish-tags-hot-title" class="left">热门标签</span>';
     elseif($key == "2")
         $content = '<span id="recruitment-publish-tags-hot-title" class="left">热门标签</span>';
+    else
+        die("Invalid argument!");
     $hots = get_hot(20);
     foreach($hots as $h)
         if($key == "0")
