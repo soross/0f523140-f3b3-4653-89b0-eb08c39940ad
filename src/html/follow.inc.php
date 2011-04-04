@@ -28,8 +28,7 @@ function following_show()
 {
     $args = func_get_args();
     $key = intval($args[2]);
-    $content = '<div class="left-title">
-                    <span class="left-title-text left">我的关注</span><a class="right left-title-pic" id="concern-pic"></a></div>';
+    $content = '';
     $follows = get_followings($key);
     foreach($follows as $f)
         $content .= '<div class="concern-item concern-item-normal">

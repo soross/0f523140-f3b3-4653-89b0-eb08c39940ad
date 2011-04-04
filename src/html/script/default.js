@@ -395,7 +395,8 @@ function SetSearch(msg, e) {
                             });
                             if (!isTurn) {
                                 nowFirst = $(".microblog-item:first").attr("id");
-                            } $("a.microblog-item-relate").click(function () {
+                            }
+                            $("a.microblog-item-relate").click(function () {
                                 var text = $(this).html();
                                 $.ajax({
                                     type: 'GET',
