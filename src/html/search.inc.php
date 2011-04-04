@@ -174,10 +174,7 @@ function search_history_show()
     $args = func_get_args();
     $key = intval($args[2]);
     $data = get_search_history($key);
-    $content = '<div class="left-title">
-                    <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic">
-                    </a>
-                </div>';
+    $content = '';
     foreach($data as $h)
         $content .= '<div class="history-item">
                     <a>'.$h['search'].'</a></div>';
