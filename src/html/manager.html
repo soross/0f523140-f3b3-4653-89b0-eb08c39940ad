@@ -53,7 +53,7 @@
             });
 
             $("a#profile-preview").click(function () {
-                alert($("#profile-detail").val());
+                alert(editor.document.getBody().getHtml());
             });
         });
 
