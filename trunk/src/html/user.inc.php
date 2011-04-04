@@ -39,16 +39,18 @@ function theme_user($data)
     echo $content;
 }
 
-function get_user_result($key, $num, $page)
+function get_user_result($key, $site, $num, $page)
 {
     connect_db();
     if(!$page)
         $page = "0";
     $page = intval($page) * $num;
     $limit = " LIMIT $page , $num";
-    include_once("login.inc.php");
-    $view = "SELECT tweets.* from tweets, (SELECT user_site_id, site_id FROM accountbindings WHERE user_id = '$key') AS ac WHERE tweets.deleted = 0 AND tweets.user_site_id = ac.user_site_id AND tweets.site_id = ac.site_id ORDER BY tweets.post_datetime DESC$limit";
-    echo $view;
+    #include_once("login.inc.php");
+    if($site)
+        $view = "SELECT * from tweets WHERE deleted = 0 AND user_site_id = '$key' AND site_id = '$site' ORDER BY post_datetime DESC$limit";
+    else
+        $view = "SELECT tweets.* from tweets, (SELECT user_site_id, site_id FROM accountbindings WHERE user_id = '$key') AS ac WHERE tweets.deleted = 0 AND tweets.user_site_id = ac.user_site_id AND tweets.site_id = ac.site_id ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
@@ -59,11 +61,12 @@ function get_user_result($key, $num, $page)
 
 function user_page($query)
 {
-    $page = (string) $query[2];
+    $page = (string) $query[3];
     $key = (string) $query[1];
+    $site = (string) $query[2];
     if(!$key)
         die("Invalid Argument!");
-    $data = get_user_result($key, 10, $page);
+    $data = get_user_result($key, $site, 10, $page);
     theme('user', $data);
 }
 
