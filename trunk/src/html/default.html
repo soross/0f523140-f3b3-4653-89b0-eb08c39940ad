@@ -230,6 +230,13 @@
             $("div#backTop a").click(function () {
                 $(window).scrollTop(0);
             });
+            $("div#backTop").animate({ opacity: 0.6 }, 0);
+            $("div#backTop").mouseover(function () {
+                $("div#backTop").stop().animate({ opacity: 1 }, 200);
+            });
+            $("div#backTop").mouseout(function () {
+                $("div#backTop").stop().animate({ opacity: 0.6 }, 200);
+            });
 
             $(document).scroll(function () {
                 DocumenScroll();
@@ -458,7 +465,7 @@
         </div>
     </div>
     <div id="backTop" class="absolute">
-        <a>回到顶部</a>
+        <a>&lt;回到顶部</a>
     </div>
 </body>
 </html>
