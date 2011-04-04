@@ -49,6 +49,7 @@ function get_user_result($key, $site, $num, $page)
     if($key == "current")
     {
         include_once("login.inc.php");
+        user_ensure_authenticated();
         $key = get_current_user_id();
     }
     if($site)
