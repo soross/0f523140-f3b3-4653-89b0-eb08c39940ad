@@ -11,7 +11,7 @@ function favorites_count()
     include_once('login.inc.php');
     $id = get_current_user_id();
     connect_db();
-    $view = "SELECT COUNT(*) from FROM favorites WHERE user_id='$id' AND deleted = 0";
+    $view = "SELECT COUNT(*) FROM favorites WHERE user_id='$id' AND deleted = 0";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     echo $row[0];
