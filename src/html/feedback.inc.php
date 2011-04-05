@@ -42,7 +42,7 @@ function get_feedbacks($num, $page)
     $i = 0;
     while($row = mysql_fetch_array($list))
         $result[$i++] = $row;
-    if($limit)
+    if(!$limit)
         return $i;
     return $result;
 }
