@@ -95,6 +95,7 @@ function received_apply()
             $source = str_replace("<a ", '<a target="_blank" class="left microblog-item-position"', $r['source']);
         else
             $source = '<a class="left microblog-item-position" target="_blank">'.$r['source'].'</a>';
+        $g = get_received_applies($r['tweet_id'],0,"count");
         $content = '<div class="item" id="'.$r['tweet_id'].'">
                         <div class="item-delete">
                             <a class="right"></a>
@@ -110,7 +111,7 @@ function received_apply()
                             <div class="item-other">
                                 <span class="left item-time">'.time_tran($r['post_datetime']).'</span> '.$source.'
                                 <a class="right item-control delete">删除</a> <a class="right item-control last applys">
-                                    申请数('.get_received_applies($r['tweet_id'],0,"count")[0][0].')</a>
+                                    申请数('.$g[0][0].')</a>
                             </div>
                             <div class="item-applys close">';
     }
