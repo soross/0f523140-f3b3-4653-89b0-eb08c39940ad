@@ -42,8 +42,9 @@ function get_feedbacks($num, $page)
     $i = 0;
     while($row = mysql_fetch_array($list))
         $result[$i++] = $row;
-    if($page == "count")
+    if($page == "count"):
         return $i;
+    endif;
     return $result;
 }
 
@@ -58,7 +59,6 @@ function feedback_show()
         echo $results;
         return;
     }
-    echo $results;
     foreach($results as $r)
     {
         if($r['user_id'])
