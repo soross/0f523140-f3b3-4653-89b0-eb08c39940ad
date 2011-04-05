@@ -58,7 +58,9 @@ function apply_show()
                            <a class="item-blog-name">'.$f['post_screenname'].'</a>：'.$f['content'].'
                        </div>
                        <div class="item-other">
-                           <span class="left item-time">'.$r['post_datetime'].'</span> '.$source;
+                           <span class="left item-time">'.$r['post_datetime'].'</span> '.$source.'
+                           <span class="right item-apply item-apply-name">状态：</span> <span class="right item-apply item-apply-info">'.$r['apply_time'].'</span> <span class="right item-apply item-apply-name">
+                            申请于：</span>';
         if($f['view_time'])
             $content .= '<span class="right item-apply item-apply-info">'.$f['view_time'].'</span>';
         else
@@ -131,7 +133,7 @@ function apply_add()
     {
         applies_delete("", "", $key);
     }
-    $view = "INSERT INTO applications(resume_id, tweet_id, user_id) VALUES ('$id', '$key', '$id')";
+    $view = "INSERT INTO applications(resume_id, tweet_id, user_id, apply_time) VALUES ('$id', '$key', '$id', '".date('Y-m-d H:i:s')."')";
     $list = mysql_query($view) or die("Insert error!");
 }
 
