@@ -24,7 +24,6 @@ function feedback_post($query)
 
 function get_feedbacks($num, $page)
 {
-    include_once('login.inc.php');
     if(!$page)
         $page = "0";
     if($page == "count")
