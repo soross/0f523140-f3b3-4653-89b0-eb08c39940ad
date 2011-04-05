@@ -170,6 +170,7 @@ function search_history_show()
             $search .= '...';
         $content .= '<div class="history-item" title="'.$h['search'].'">
                     <a>'.$search.'</a></div>';
+    }
     $content .= '</div>';
     echo $content;
 }
