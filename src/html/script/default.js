@@ -471,11 +471,12 @@ function SetConcern() {
         $(this).removeClass("concern-item-over");
     });
     $(".concern-item-delete").click(function () {
+        var item = $(this);
         $.ajax({
             type: 'POST',
             url: 'follow/delete/' + $(this).attr("id"),
             success: function () {
-                var text = $(this).next(".concern-item-content").children(".concern-item-content-info").html();
+                var text = item.next(".concern-item-content").children(".concern-item-content-info").html();
                 if (text == SearchResult) {
                     $("a#search-result-concern").attr("class", "left search-result-concern");
                     $("a#search-result-concern").mouseover(function () {
