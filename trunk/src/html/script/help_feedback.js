@@ -33,7 +33,7 @@ $(function () {
     $("div#inner-content a").click(function () {
         $.ajax({
             type: 'POST',
-            url: 'feedback',
+            url: 'feedback_post',
             data: {
                 question: $("#question").val(),
                 description: $("#description").val(),
