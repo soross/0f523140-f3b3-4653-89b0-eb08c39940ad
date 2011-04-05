@@ -123,6 +123,8 @@ function theme_result($result)
     {
         include_once("favorite.inc.php");
         $allfav = get_favorites(0);
+        include_once("apply.inc.php");
+        $allapp = get_applies(0);
     }
     $content = "";
     foreach($result as $r)
@@ -146,10 +148,17 @@ function theme_result($result)
         if(user_is_authenticated())
         {
             $fav = 0;
+            $app = 0;
             foreach($allfav as $f)
                 if($f['tweet_id'] == $r['tweet_id'])
                 {
                     $fav = 1;
+                    break;
+                }
+            foreach($allapp as $f)
+                if($f['tweet_id'] == $r['tweet_id'])
+                {
+                    $app = 1;
                     break;
                 }
             if(!$fav)
@@ -158,9 +167,14 @@ function theme_result($result)
             else
                 $content .= '<a class="right microblog-item-control like" style="display: none;">收藏</a><a class="right microblog-item-control unlike"
                                         >取消收藏</a> ';
-            if($r['type'] != 1)
+            if($r['type'] != 1 and !$app)
                 $content .= '<a class="right microblog-item-control microblog-item-apply apply">
-                                            申请该职位</a>';
+                             申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" style="display: none;">
+                             取消申请</a>';
+            elseif($app)
+                $content .= '<a class="right microblog-item-control microblog-item-apply apply" style="display: none;">
+                             申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply">
+                             取消申请</a>';
         }
         if($tags)
         {
