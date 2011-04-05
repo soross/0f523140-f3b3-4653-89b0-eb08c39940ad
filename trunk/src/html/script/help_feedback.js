@@ -39,7 +39,7 @@ $(function () {
                 description: $("#description").val(),
                 email: $("#email").val()
             },
-            success: function () {
+            success: function (msg) {
                 $("div#feedback-info").dialog("open");
             }
         });
