@@ -42,7 +42,7 @@ function following_show()
 
 function following_delete()
 {
-    include_once('login.php');
+    include_once('login.inc.php');
     $id = get_current_user_id();
     $args = func_get_args();
     $key = $args[2];
