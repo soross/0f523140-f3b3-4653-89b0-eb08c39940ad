@@ -67,13 +67,13 @@ function ShowFavourite() {
             $("a.delete").click(function () {
                 deleteitem = $(this).parent().parent().parent();
                 deleteid = deleteitem.attr("id");
-                deleteurl = 'like/delete';
+                deleteurl = 'like/delete/';
                 $("#delete-dialog").dialog("open");
             });
             $("div.item-delete a").click(function () {
                 deleteitem = $(this).parent().parent();
                 deleteid = $(this).attr("id");
-                deleteurl = 'like/delete';
+                deleteurl = 'like/delete/';
                 $("#delete-dialog").dialog("open");
             });
         }
@@ -87,7 +87,7 @@ function ShowNormal() {
     $("div#ads").show();
     $.ajax({
         type: 'POST',
-        url: 'user/current',
+        url: 'user/current/0/0',
         success: function (msg) {
             $("div#blogsinner").html(msg);
             $("div.item").mouseover(function () {
@@ -96,16 +96,18 @@ function ShowNormal() {
             $("div.item").mouseout(function () {
                 $(this).removeClass("item-over");
             });
-            //            $("a.delete").click(function () {
-            //                deleteitem = $(this).parent().parent().parent();
-            //                deleteid = deleteitem.attr("id");
-            //                $("#delete-dialog").dialog("open");
-            //            });
-            //            $("div.item-delete a").click(function () {
-            //                deleteitem = $(this).parent().parent();
-            //                deleteid = $(this).attr("id");
-            //                $("#delete-dialog").dialog("open");
-            //            });
+            $("a.delete").click(function () {
+                deleteitem = $(this).parent().parent().parent();
+                deleteid = deleteitem.attr("id");
+                deleteurl = 'tweet/delete/';
+                $("#delete-dialog").dialog("open");
+            });
+            $("div.item-delete a").click(function () {
+                deleteitem = $(this).parent().parent();
+                deleteid = $(this).attr("id");
+                deleteurl = 'tweet/delete/';
+                $("#delete-dialog").dialog("open");
+            });
         }
     });
 }
