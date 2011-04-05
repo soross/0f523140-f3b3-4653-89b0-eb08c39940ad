@@ -89,11 +89,15 @@ div#logo-search
 }
 div#logo-search a#logo
 {
-    height: 65px;
-    width: 147px;
-    background-image: url('../images/logo.jpg');
+    height: 72px;
+    width: 181px;
+    background-image: url('../images/logo-beta.jpg');
     margin-top: 17px;
-    margin-left: 60px;
+    margin-left: 20px;
+}
+div#logo-search a#logo:hover
+{
+    background-image: url('../images/logo-goback.jpg');
 }
 
 div#logo-search div#search-bar
