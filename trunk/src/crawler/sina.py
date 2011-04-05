@@ -167,9 +167,7 @@ os.chdir(path)
 import MySQLdb, uuid
 db = MySQLdb.connect("127.0.0.1","apis","apis","apis",charset="utf8")
 c = db.cursor()
-print now() + "FLAG1..."
 d = detect()
-print now() + "FLAG2..."
 _tagid = open("tag_list_withid.dict", "r").read().decode("utf-8").split('\n')
 tagid = {}
 for line in _tagid:
