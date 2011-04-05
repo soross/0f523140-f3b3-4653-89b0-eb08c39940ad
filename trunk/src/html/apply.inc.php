@@ -58,13 +58,14 @@ function apply_show()
                            <a class="item-blog-name">'.$f['post_screenname'].'</a>：'.$f['content'].'
                        </div>
                        <div class="item-other">
-                           <span class="left item-time">'.$r['post_datetime'].'</span> '.$source.'
-                           <span class="right item-apply item-apply-name">状态：</span> <span class="right item-apply item-apply-info">'.$r['apply_time'].'</span> <span class="right item-apply item-apply-name">
-                            申请于：</span>';
+                           <span class="left item-time">'.$r['post_datetime'].'</span> '.$source;
         if($f['view_time'])
             $content .= '<span class="right item-apply item-apply-info">'.$f['view_time'].'</span>';
         else
             $content .= '<span class="right item-apply item-apply-info">未读</span>';
+        $content .= '
+                           <span class="right item-apply item-apply-name">状态：</span> <span class="right item-apply item-apply-info">'.$r['apply_time'].'</span> <span class="right item-apply item-apply-name">
+                            申请于：</span>';
         $content .= '
                        </div>
                    </div>
