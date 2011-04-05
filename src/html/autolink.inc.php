@@ -105,7 +105,7 @@ class Twitter_Autolink {
 	}
 
 	public function autoLinkUsernamesAndLists($tweet) {
-		return preg_replace_callback('$([^a-z0-9_\x80-\xFF-]|^)([@|＠])([a-z0-9_\x80-\xFF-]{1,20})(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
+		return preg_replace_callback('$([^a-z0-9_]|^)([@|＠])([a-z0-9_\x80-\xFF-]{1,20})(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
 									 array($this, 'replacementUsernameAndLists'),
 									 $tweet);
 	}
@@ -122,7 +122,7 @@ class Twitter_Autolink {
 			$replacement .= '<a class="' . $this->urlClass . ' ' . $this->listClass . '" href="' . $this->get_base() .'lists/'. $matches[3] . $matches[4] . '">' . $matches[3] . $matches[4] . '</a>';
 		} else {
 			/* Replace the username */
-			$replacement .= '<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="' . $this->get_base() . 'user/' . $matches[3] . '">' . $matches[3] . '</a>';
+			$replacement .= '<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="' . $this->get_base() . 'profile/' . $matches[3] . '">' . $matches[3] . '</a>';
 		}
 
 		return $replacement;
