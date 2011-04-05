@@ -28,6 +28,12 @@ function theme()
     return call_user_func_array($function, $args);
 }
 
+function theme_template($template)
+{
+    $page = file_get_contents($template);
+    echo $page;
+}
+
 function long_url($shortURL)
 {
 	if (!defined('LONGURL_KEY'))
