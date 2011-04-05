@@ -146,7 +146,6 @@ div#sorts
 {
     height: 289px;
     width: 294px;
-    display: none;
 }
 div#sorts-tag
 {
@@ -164,10 +163,6 @@ a#sorts-name
 {
     width: 60px;
     text-align: center;
-}
-a#sorts-triangle
-{
-    font-family: Webdings;
 }
 div#sorts-content
 {

@@ -67,6 +67,7 @@ function SetSorts() {
         offset: "-5 -10",
         collision: "none none"
     });
+    $("div#sorts").css("top", "78px");
     $.ajax({
         type: "POST",
         url: 'cate',
