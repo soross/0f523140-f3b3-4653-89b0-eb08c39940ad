@@ -14,7 +14,9 @@ function SetPublish() {
     $("div#published-info").dialog({
         autoOpen: false,
         buttons: {
-            "好的，我知道了": function () { }
+            "好的，我知道了": function () {
+                $(this).dialog("close");
+            }
         }
     });
     $("div#jobs-publish").position({
