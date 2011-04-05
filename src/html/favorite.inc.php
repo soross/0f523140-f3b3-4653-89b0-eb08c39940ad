@@ -58,7 +58,7 @@ function favorites_show()
                            <a class="item-blog-name">'.$f['post_screenname'].'</a>：'.$f['content'].'
                        </div>
                        <div class="item-other">
-                           <span class="left item-time">'.$r['post_datetime'].'</span> '.$source.'
+                           <span class="left item-time">'.$f['post_datetime'].'</span> '.$source.'
                            <a class="right item-favourite item-action delete">取消收藏</a> ';
                             if($f['type'] != 1)
                                 $content .= '<a class="right item-favourite item-doapply apply">
