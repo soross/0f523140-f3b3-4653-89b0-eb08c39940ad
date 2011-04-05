@@ -51,7 +51,7 @@ function resume_show()
         $theme = "resumeapi";
     }
     else
-        $theme = "resume";
+        $theme = "resumeshow";
     connect_db();
     $view = "SELECT * FROM resumes WHERE resume_id = '$key'";
     $list = mysql_query($view);
@@ -86,6 +86,63 @@ function theme_resumeapi($data)
     $content =       $data['name'].'|'.$data['sex'].'|'.$data['date_birth']
                 .'|'.$data['live_in_now'].'|'.$data['live_in'].'|'.$data['cellphone']
                 .'|'.$data['email'].'|'.$data['content'];
+    echo $content;
+}
+
+function resume_preview()
+{
+    $data = array(
+        'name' => $_POST['name'],
+        'sex' => $_POST['sex'],
+        'date_birth' => $_POST['date_birth'],
+        'live_in_now' => $_POST['live_in_now'],
+        'live_in' => $_POST['live_in'],
+        'cellphone' => $_POST['cellphone'],
+        'email' => $_POST['email'],
+        'content' => $_POST['content'],
+    );
+    theme('resume', '个人简历预览', $data);
+}
+
+function theme_resumeshow($data)
+{
+    theme('resume', '个人简历', $data);
+}
+
+function theme_resume($title, $data)
+{
+    $content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>'.$title.' - 微招聘</title>
+    <link href="css/profile.css" type="text/css" rel="Stylesheet" />
+</head>
+<body>
+    <div id="head">
+    </div>
+    <div id="content">
+        <div id="basic">
+            <div id="basic1">
+                <img height="83" width="83" alt="" src="images/Thumb.gif" />
+                <span>'.$data['name'].'('.$data['sex'].')</span>
+            </div>
+            <div id="basic2">
+                <span class="right">'.$data['email'].'</span> <span class="right">Email:</span> <span
+                    class="right">&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="right">'.$data['cellphone'].'</span>
+                <span class="right">Tel:</span>
+            </div>
+            <div id="basic3">
+                <span class="right">'.$data['live_in'].'</span> <span class="right">户口地：</span> <span class="right">&nbsp;&nbsp;</span>
+                <span class="right">湖北武汉</span> <span class="right">现居地：'.$data['live_in_now'].'</span> <span class="right">
+                    &nbsp;&nbsp;</span> <span class="right">'.$data['date_birth'].'</span> <span class="right">出生日期：</span>
+            </div>
+        </div>
+        <div id="info">
+            '.$data['content'].'
+        </div>
+    </div>
+</body>
+</html>';
     echo $content;
 }
 
