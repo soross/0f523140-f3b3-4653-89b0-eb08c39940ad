@@ -73,13 +73,13 @@ function feedback_show($query)
                         </div>
                         <div class="left item-content">
                             <div class="item-blog">
-                                <a class="item-blog-name">'.$nick.'</a><a class="item-blog-title">'.r['question'].'</a>
+                                <a class="item-blog-name">'.$nick.'</a><a class="item-blog-title">'.$r['question'].'</a>
                             </div>
                             <div class="item-blog-content close">
-                                '.r['description'].'
+                                '.$r['description'].'
                             </div>
                             <div class="item-other">
-                                <a class="left item-position">'.r['email'].'</a> <a class="right item-control last delete">删除</a>
+                                <a class="left item-position">'.$r['email'].'</a> <a class="right item-control last delete">删除</a>
                             </div>
                         </div>
                         <div class="clear">
