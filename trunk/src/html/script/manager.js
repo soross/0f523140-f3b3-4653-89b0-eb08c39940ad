@@ -4,6 +4,15 @@ var deleteurl;
 var page = 0;
 
 $(function () {
+
+    $("div#profile-info").dialog({
+        autoOpen: false,
+        buttons: {
+            "确定": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
     //    $("div#content-middle-delete a").animate({ opacity: 0.6 }, 0);
     //    $("div#content-middle-delete a").mouseover(function () {
     //        $(this).stop().animate({ opacity: 1 }, 200);
