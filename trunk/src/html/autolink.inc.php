@@ -64,9 +64,12 @@ class Twitter_Autolink {
 		/*return preg_replace('$(^|[^0-9A-Z&/]+)([#＃]+)([0-9A-Z_]*[A-Z_]+[a-z0-9_üÀ-ÖØ-öø-ÿ]*)$iu',
 			'${1}<a href="' . $this->get_base() . 'hash/' . '${3}" title="#${3}" class="' . $this->urlClass . ' ' . $this->hashtagClass . '">${2}${3}</a>',
 							$tweet);*/
-        return preg_replace('$([#＃])([a-z0-9\-_\x{4e00}-\x{9fa5}]{0,20}?)(<span.*?>)?([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20}?)(</span.>)?([a-z0-9\-_\x{4e00}-\x{9fa5}]{0,20}?)([#＃])$iu',
-			'<a title="${2}${4}${6}" class="' . $this->urlClass . ' ' . $this->hashtagClass . '">${1}${2}${3}${4}${5}${6}${7}</a>',
+        $t = preg_replace('$([#＃])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})([#＃])$iu',
+			'<a title="${2}" class="' . $this->urlClass . ' ' . $this->hashtagClass . '">${1}${2}${3}</a>',
 							$tweet);
+        $t = preg_replace('$title="<span.*?>(.*?)</span>$iu',
+			'$title="${1}', $t);
+        return $t;
 	}
 
 	public function autoLinkURLs($tweet) {
