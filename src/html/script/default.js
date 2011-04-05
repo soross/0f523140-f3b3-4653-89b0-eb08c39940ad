@@ -662,87 +662,91 @@ function SetSearch(msg, e) {
                                     }
                                 });
                             });
-                            $("a.like").click(function () {
-                                var item = $(this);
-                                var id = $(this).parent().parent().parent().attr("name");
-                                $.ajax({
-                                    type: "POST",
-                                    url: 'like/add/' + id,
-                                    success: function () {
-                                        item.hide();
-                                        item.next("a.unlike").show();
-                                    }
+                            if (logined) {
+                                $("a.like").click(function () {
+                                    var item = $(this);
+                                    var id = $(this).parent().parent().parent().attr("name");
+                                    $.ajax({
+                                        type: "POST",
+                                        url: 'like/add/' + id,
+                                        success: function () {
+                                            item.hide();
+                                            item.next("a.unlike").show();
+                                        }
+                                    });
                                 });
-                            });
-                            $("a.unlike").click(function () {
-                                var item = $(this);
-                                var id = $(this).parent().parent().parent().attr("name");
-                                $.ajax({
-                                    type: "POST",
-                                    url: 'like/delete/' + id,
-                                    success: function () {
-                                        item.hide();
-                                        item.prev("a.like").show();
-                                    }
+                                $("a.unlike").click(function () {
+                                    var item = $(this);
+                                    var id = $(this).parent().parent().parent().attr("name");
+                                    $.ajax({
+                                        type: "POST",
+                                        url: 'like/delete/' + id,
+                                        success: function () {
+                                            item.hide();
+                                            item.prev("a.like").show();
+                                        }
+                                    });
                                 });
-                            });
-                            $("a.apply").click(function () {
-                                var item = $(this);
-                                var id = $(this).parent().parent().parent().attr("name");
-                                $.ajax({
-                                    type: "POST",
-                                    url: 'apply/add/' + id,
-                                    success: function () {
-                                        item.hide();
-                                        item.next("a.unapply").show();
-                                    }
+                                $("a.apply").click(function () {
+                                    var item = $(this);
+                                    var id = $(this).parent().parent().parent().attr("name");
+                                    $.ajax({
+                                        type: "POST",
+                                        url: 'apply/add/' + id,
+                                        success: function () {
+                                            item.hide();
+                                            item.next("a.unapply").show();
+                                        }
+                                    });
                                 });
-                            });
-                            $("a.unapply").click(function () {
-                                var item = $(this);
-                                var id = $(this).parent().parent().parent().attr("name");
-                                $.ajax({
-                                    type: "POST",
-                                    url: 'apply/delete/' + id,
-                                    success: function () {
-                                        item.hide();
-                                        item.prev("a.apply").show();
-                                    }
+                                $("a.unapply").click(function () {
+                                    var item = $(this);
+                                    var id = $(this).parent().parent().parent().attr("name");
+                                    $.ajax({
+                                        type: "POST",
+                                        url: 'apply/delete/' + id,
+                                        success: function () {
+                                            item.hide();
+                                            item.prev("a.apply").show();
+                                        }
+                                    });
                                 });
-                            });
+                            }
                         });
                     });
                 });
             });
         });
     });
-    $("div#search-result-outer").slideDown(200);
-    $("a#search-result-concern").mouseover(function () {
-        $(this).attr("class", "left search-result-concern-over");
-    });
-    $("a#search-result-concern").mousedown(function () {
-        $(this).attr("class", "left search-result-concern-click");
-    });
-    $("a#search-result-concern").mouseout(function () {
-        $(this).attr("class", "left search-result-concern");
-    });
-    $("div#history").animate({ opacity: 0 }, 200, null, function () {
-        $("div#history").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#history").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#history").height() - 32) / 2) + 'px;" />');
-        $("div#history").animate({ opacity: 1 }, 200, null, function () {
-            $.ajax({
-                type: 'GET',
-                url: 'history/show/5',
-                success: function (msg) {
-                    $("div#history").animate({ opacity: 0 }, 200, null, function () {
-                        $("div#history").html(msg);
-                        SetHistory();
-                        $("div#history").animate({ opacity: 1 }, 200);
-                    });
-                }
+    if (logined) {
+        $("div#search-result-outer").slideDown(200);
+        $("a#search-result-concern").mouseover(function () {
+            $(this).attr("class", "left search-result-concern-over");
+        });
+        $("a#search-result-concern").mousedown(function () {
+            $(this).attr("class", "left search-result-concern-click");
+        });
+        $("a#search-result-concern").mouseout(function () {
+            $(this).attr("class", "left search-result-concern");
+        });
+        $("div#history").animate({ opacity: 0 }, 200, null, function () {
+            $("div#history").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#history").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#history").height() - 32) / 2) + 'px;" />');
+            $("div#history").animate({ opacity: 1 }, 200, null, function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'history/show/5',
+                    success: function (msg) {
+                        $("div#history").animate({ opacity: 0 }, 200, null, function () {
+                            $("div#history").html(msg);
+                            SetHistory();
+                            $("div#history").animate({ opacity: 1 }, 200);
+                        });
+                    }
+                });
             });
         });
-    });
-    SetResult(e);
+        SetResult(e);
+    }
 }
 
 function GetOlderBlogs() {
