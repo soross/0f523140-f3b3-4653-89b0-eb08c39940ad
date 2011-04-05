@@ -43,7 +43,7 @@ function resume_show()
 {
     $args = func_get_args();
     $key = $args[2];
-    include_once('login.php');
+    include_once('login.inc.php');
     $id = get_current_user_id();
     if(!$key)
     {
