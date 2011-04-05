@@ -163,6 +163,17 @@ div.item-applys
     line-height: 24px;
     display:none;
 }
+div.item-page
+{
+    margin-top:5px;
+    line-height: 24px;
+    display:none;
+    padding:0 5px;
+}
+div.item-page a
+{
+    margin:0 5px;
+}
 div.item-applys span.item-applys-time
 {
     margin-left:5px;
