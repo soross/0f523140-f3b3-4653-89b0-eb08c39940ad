@@ -9,6 +9,7 @@ from time import sleep
 from datetime import datetime, timedelta, date, time
 import sys
 from tag_detect import detect
+import os
 
 PAGE = 1
 A = [(u"传统网络 Internet", u"超超Sandy", "d11c25990634d0e486235f1b42a55f9f", "89859ba49065135017b894df5e5a9089"),
@@ -159,8 +160,10 @@ for crawler in enumerate(A):
 	t.setDaemon(True)
 	t.start()
 	sleep(2)
-
+    
 print now() + "Preparing cursors to operate database..."
+path = sys.argv[0]
+os.chdir(path)
 import MySQLdb, uuid
 db = MySQLdb.connect("127.0.0.1","apis","apis","apis",charset="utf8")
 c = db.cursor()
