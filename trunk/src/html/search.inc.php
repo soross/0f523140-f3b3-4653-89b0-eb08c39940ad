@@ -50,7 +50,7 @@ function get_search_result($key, $num, $cate, $time, $page)
     
     //$view = "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('$key') ORDER BY post_datetime DESC";
     //FIXME: Cannot use this syntax.
-    if($key and $key != "all")
+    if($key and $key != "all" and $key != "poiuy")
     {
         $key = explode(" ",$key);
         $key = "%".implode("%",$key)."%";
@@ -111,7 +111,7 @@ function search_page($query)
     $time = (string) $query[3];
     $page = (string) $query[4];
     $key = (string) $query[1];
-    if($key and $key != "all")
+    if($key and $key != "all" and $key != "poiuy")
     {
         include_once('login.inc.php');
         if(user_is_authenticated())

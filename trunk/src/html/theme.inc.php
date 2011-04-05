@@ -219,34 +219,39 @@ function theme_result($result, $keyword = '')
                             <a target="_blank" href="http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'" class="left microblog-item-time">'.time_tran($r['post_datetime']).'</a> '.$source;
         if(user_is_authenticated())
         {
-            $fav = 0;
-            $app = 0;
-            foreach($allfav as $f)
-                if($f['tweet_id'] == $r['tweet_id'])
-                {
-                    $fav = 1;
-                    break;
-                }
-            foreach($allapp as $f)
-                if($f['tweet_id'] == $r['tweet_id'])
-                {
-                    $app = 1;
-                    break;
-                }
-            if(!$fav)
-                $content .= '<a class="right microblog-item-control like">收藏</a><a class="right microblog-item-control unlike"
-                                        style="display: none;">取消收藏</a> ';
+            if($keyword == "poiuy")
+                $content .= '<a class="right item-control last delete">删除</a>';
             else
-                $content .= '<a class="right microblog-item-control like" style="display: none;">收藏</a><a class="right microblog-item-control unlike"
-                                        >取消收藏</a> ';
-            if($r['type'] != 1 and !$app)
-                $content .= '<a class="right microblog-item-control microblog-item-apply apply">
-                             申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" style="display: none;">
-                             取消申请</a>';
-            elseif($app)
-                $content .= '<a class="right microblog-item-control microblog-item-apply apply" style="display: none;">
-                             申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply">
-                             取消申请</a>';
+            {
+                $fav = 0;
+                $app = 0;
+                foreach($allfav as $f)
+                    if($f['tweet_id'] == $r['tweet_id'])
+                    {
+                        $fav = 1;
+                        break;
+                    }
+                foreach($allapp as $f)
+                    if($f['tweet_id'] == $r['tweet_id'])
+                    {
+                        $app = 1;
+                        break;
+                    }
+                if(!$fav)
+                    $content .= '<a class="right microblog-item-control like">收藏</a><a class="right microblog-item-control unlike"
+                                            style="display: none;">取消收藏</a> ';
+                else
+                    $content .= '<a class="right microblog-item-control like" style="display: none;">收藏</a><a class="right microblog-item-control unlike"
+                                            >取消收藏</a> ';
+                if($r['type'] != 1 and !$app)
+                    $content .= '<a class="right microblog-item-control microblog-item-apply apply">
+                                 申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" style="display: none;">
+                                 取消申请</a>';
+                elseif($app)
+                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" style="display: none;">
+                                 申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply">
+                                 取消申请</a>';
+            }
         }
         if($tags)
         {
