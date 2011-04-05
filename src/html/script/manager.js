@@ -55,7 +55,7 @@ function ShowFavourite() {
     $("div#ads").show();
     $.ajax({
         type: 'POST',
-        url: 'like/',
+        url: 'like/show/0',
         success: function (msg) {
             $("div#blogsinner").html(msg);
             $("div.item").mouseover(function () {
