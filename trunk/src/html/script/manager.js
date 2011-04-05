@@ -79,14 +79,14 @@ function ShowProfile() {
     });
 }
 
-function ShowApplys() {
+function ShowApplys(e) {
     $("div#profile").hide();
     $("div#blogs").show();
     $("div#profile-control").hide();
     $("div#ads").show();
     $.ajax({
         type: 'POST',
-        url: 'receive',
+        url: 'received',
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
