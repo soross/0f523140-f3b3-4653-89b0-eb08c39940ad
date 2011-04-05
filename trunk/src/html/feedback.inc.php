@@ -42,9 +42,8 @@ function get_feedbacks($num, $page)
     $i = 0;
     while($row = mysql_fetch_array($list))
         $result[$i++] = $row;
-    //if($page == "count")
-    //    return $i;
-    print (0 == "a");
+    if($limit)
+        return $i;
     return $result;
 }
 
