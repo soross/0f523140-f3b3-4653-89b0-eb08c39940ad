@@ -26,12 +26,152 @@
                 buttons: {
                     "确定": function () {
                         $(this).dialog("close");
+                        var flag = false;
+                        $("div#pages").fadeOut(50);
+                        if (allpage > 1) {
+                            flag = true;
+                        }
                         $.ajax({
                             type: "POST",
-                            url: 'like/delete/' + deleteid,
+                            url: deleteurl + deleteid,
                             success: function () {
                                 deleteitem.animate({ opacity: 0 }, 300, null, function () {
-                                    deleteitem.slideUp(200);
+                                    deleteitem.slideUp(200, null, function () {
+                                        if (type == "apply") {
+                                            if (flag) {
+                                                $.ajax({
+                                                    type: 'POST',
+                                                    url: 'apply/show/' + page,
+                                                    success: function (msg) {
+                                                        var str = '<div class="item newer" style="display:none;"';
+                                                        str += msg.split('<div class="item"')[10];
+                                                        $("div.item:last").after(str);
+                                                        $(".newer:last").slideDown(200);
+                                                        $("div.item").unbind("mouseover");
+                                                        $("div.item").unbind("mouseout");
+                                                        $("div.item-delete a").unbind("click");
+                                                        $("div.item").mouseover(function () {
+                                                            $(this).addClass("item-over");
+                                                        });
+                                                        $("div.item").mouseout(function () {
+                                                            $(this).removeClass("item-over");
+                                                        });
+                                                        $("div.item-delete a").click(function () {
+                                                            deleteitem = $(this).parent().parent();
+                                                            deleteid = deleteitem.attr("id");
+                                                            deleteurl = 'apply/delete/';
+                                                            type = "apply";
+                                                            $("#delete-dialog").dialog("open");
+                                                        });
+                                                    }
+                                                });
+                                            }
+                                            UpdateApply();
+                                        }
+                                        else if (type == "like") {
+                                            if (flag) {
+                                                $.ajax({
+                                                    type: 'POST',
+                                                    url: 'like/show/' + page,
+                                                    success: function (msg) {
+                                                        var str = '<div class="item newer" style="display:none;"';
+                                                        str += msg.split('<div class="item"')[10];
+                                                        $("div.item:last").after(str);
+                                                        $(".newer:last").slideDown(200);
+                                                        $("a.apply").unbind("click");
+                                                        $("a.unapply").unbind("click");
+                                                        $("div.item").unbind("mouseover");
+                                                        $("div.item").unbind("mouseout");
+                                                        $("a.delete").unbind("click");
+                                                        $("div.item-delete a").unbind("click");
+                                                        $("a.apply").click(function () {
+                                                            var item = $(this);
+                                                            var id = $(this).parent().parent().parent().attr("id");
+                                                            $.ajax({
+                                                                type: "POST",
+                                                                url: 'apply/add/' + id,
+                                                                success: function () {
+                                                                    item.hide();
+                                                                    item.next("a.unapply").show();
+                                                                }
+                                                            });
+                                                        });
+                                                        $("a.unapply").click(function () {
+                                                            var item = $(this);
+                                                            var id = $(this).parent().parent().parent().attr("id");
+                                                            $.ajax({
+                                                                type: "POST",
+                                                                url: 'apply/delete/' + id,
+                                                                success: function () {
+                                                                    item.hide();
+                                                                    item.prev("a.apply").show();
+                                                                }
+                                                            });
+                                                        });
+                                                        $("div.item").mouseover(function () {
+                                                            $(this).addClass("item-over");
+                                                        });
+                                                        $("div.item").mouseout(function () {
+                                                            $(this).removeClass("item-over");
+                                                        });
+                                                        $("a.delete").click(function () {
+                                                            deleteitem = $(this).parent().parent().parent();
+                                                            deleteid = deleteitem.attr("id");
+                                                            deleteurl = 'like/delete/';
+                                                            type = "like";
+                                                            $("#delete-dialog").dialog("open");
+                                                        });
+                                                        $("div.item-delete a").click(function () {
+                                                            deleteitem = $(this).parent().parent();
+                                                            deleteid = deleteitem.attr("id");
+                                                            deleteurl = 'like/delete/';
+                                                            type = "like";
+                                                            $("#delete-dialog").dialog("open");
+                                                        });
+                                                    }
+                                                });
+                                            }
+                                            UpdateFavourite();
+                                        }
+                                        else if (type == "tweet") {
+                                            if (flag) {
+                                                $.ajax({
+                                                    type: 'POST',
+                                                    url: 'search/poiuy/0/page/' + page,
+                                                    success: function (msg) {
+                                                        var str = '<div class="item newer" style="display:none;"';
+                                                        str += msg.split('<div class="item"')[10];
+                                                        $("div.item:last").after(str);
+                                                        $(".newer:last").slideDown(200);
+                                                        $("div.item").unbind("mouseover");
+                                                        $("div.item").unbind("mouseout");
+                                                        $("a.delete").unbind("click");
+                                                        $("div.item-delete a").unbind("click");
+                                                        $("div.item").mouseover(function () {
+                                                            $(this).addClass("item-over");
+                                                        });
+                                                        $("div.item").mouseout(function () {
+                                                            $(this).removeClass("item-over");
+                                                        });
+                                                        $("a.delete").click(function () {
+                                                            deleteitem = $(this).parent().parent().parent();
+                                                            deleteid = deleteitem.attr("id");
+                                                            deleteurl = 'tweet/delete/';
+                                                            type = "tweet";
+                                                            $("#delete-dialog").dialog("open");
+                                                        });
+                                                        $("div.item-delete a").click(function () {
+                                                            deleteitem = $(this).parent().parent();
+                                                            deleteid = deleteitem.attr("id");
+                                                            deleteurl = 'tweet/delete/';
+                                                            $("#delete-dialog").dialog("open");
+                                                        });
+                                                    }
+                                                });
+                                            }
+                                            UpdateNormal();
+                                        }
+                                    });
                                 });
                             }
                         });
@@ -66,8 +206,8 @@
     <div id="manager-content" class="inner">
         <div id="content-left" class="left">
             <div id="manager-control">
-                <a class="manager-control left manager-control-choose" onclick="ShowNormal()">信息管理</a>
-                <a class="manager-control left" onclick="ShowFeedback()">意见管理</a> <a class="manager-control left"
+                <a class="manager-control left manager-control-choose" onclick="ShowNormal(0)">信息管理</a>
+                <a class="manager-control left" onclick="ShowFeedback(0)">意见管理</a> <a class="manager-control left"
                     onclick="ShowHot()">热门企业管理</a>
             </div>
             <a id="jobs-publish-button" class="publish-button jobs left"></a><a id="recruitment-publish-button"
