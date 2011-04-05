@@ -718,8 +718,14 @@ function SetSearch(msg, e) {
             });
         });
     });
+    $("div#search-result-outer").slideDown(200);
+    if (!logined) {
+        $("a#search-result-concern").hide();
+    }
+    else {
+        $("a#search-result-concern").show();
+    }
     if (logined) {
-        $("div#search-result-outer").slideDown(200);
         $("a#search-result-concern").mouseover(function () {
             $(this).attr("class", "left search-result-concern-over");
         });
