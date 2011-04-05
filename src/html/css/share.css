@@ -222,15 +222,16 @@ div#company div#companies
     overflow: hidden;
     white-space: nowrap;
     line-height: 38px;
+    position:relative;
 }
 div#company div#companies-inner
 {
     position: relative;
+    height:38px;
 }
 div#company a.company-name
 {
     height: 14px;
-    line-height: 14px;
     color: #496a8a;
     margin-top: 13px;
     padding-left: 10px;
