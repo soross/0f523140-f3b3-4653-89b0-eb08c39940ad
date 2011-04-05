@@ -42,11 +42,9 @@ function get_feedbacks($num, $page)
     $i = 0;
     while($row = mysql_fetch_array($list))
         $result[$i++] = $row;
-    echo $page;
     if($page == "count")
         return $i;
-    else
-        return $result;
+    return $result;
 }
 
 function feedback_show()
