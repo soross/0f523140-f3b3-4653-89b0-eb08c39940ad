@@ -11,6 +11,12 @@ $(function () {
     SetPublish();
 });
 function SetPublish() {
+    $("div#published-info").dialog({
+        autoOpen: false,
+        buttons: {
+            "好的，我知道了": function () { }
+        }
+    });
     $("div#jobs-publish").position({
         of: $("body"),
         my: "center top",
@@ -39,6 +45,7 @@ function SetPublish() {
                     alert(msg);
                 }
                 HideJobsPublish();
+                $("div#published-info").dialog("open");
             }
         });
     });
@@ -52,6 +59,7 @@ function SetPublish() {
                     alert(msg);
                 }
                 HideRecruitmentPublish();
+                $("div#published-info").dialog("open");
             }
         });
     });
