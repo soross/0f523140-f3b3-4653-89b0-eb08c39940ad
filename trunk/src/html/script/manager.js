@@ -65,7 +65,7 @@ function ShowApply(e) {
             });
             $("div.item-delete a").click(function () {
                 deleteitem = $(this).parent().parent();
-                deleteid = $(this).attr("id");
+                deleteid = deleteitem.attr("id");
                 deleteurl = 'apply/delete/';
                 $("#delete-dialog").dialog("open");
             });
@@ -166,7 +166,7 @@ function ShowFavourite(e) {
             });
             $("div.item-delete a").click(function () {
                 deleteitem = $(this).parent().parent();
-                deleteid = $(this).attr("id");
+                deleteid = deleteitem.attr("id");
                 deleteurl = 'like/delete/';
                 $("#delete-dialog").dialog("open");
             });
@@ -268,7 +268,7 @@ function ShowNormal(e) {
             });
             $("div.item-delete a").click(function () {
                 deleteitem = $(this).parent().parent();
-                deleteid = $(this).attr("id");
+                deleteid = deleteitem.attr("id");
                 deleteurl = 'tweet/delete/';
                 $("#delete-dialog").dialog("open");
             });
