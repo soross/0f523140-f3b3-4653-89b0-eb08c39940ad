@@ -81,7 +81,7 @@ function user_page($query)
     if(!$key)
         die("Invalid Argument!");
     $data = get_user_result($key, $site, 10, $page);
-    if($time == "count")
+    if($page == "count")
         theme('page', 'count', $data[0][0]);
     else
         theme('user', $data);
