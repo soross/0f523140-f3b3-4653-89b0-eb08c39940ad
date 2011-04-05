@@ -126,6 +126,7 @@
                             success: function () {
                                 deleteitem.animate({ opacity: 0 }, 300, null, function () {
                                     deleteitem.slideUp(200, null, function () {
+                                        var position = $(window).scrollTop();
                                         if (type == "apply") {
                                             $.ajax({
                                                 type: 'POST',
@@ -134,6 +135,7 @@
                                                     var str = '<div class="item newer" style="display:none;"';
                                                     str += msg.split('<div class="item"')[10];
                                                     $("div#blogsinner").html($("div#blogsinner").html() + str);
+                                                    $(window).scrollTop(position);
                                                     $(".newer").slideDown(200);
                                                     $("div.item").unbind("mouseover");
                                                     $("div.item").unbind("mouseout");
@@ -163,6 +165,7 @@
                                                     var str = '<div class="item newer" style="display:none;"';
                                                     str += msg.split('<div class="item"')[10];
                                                     $("div#blogsinner").html($("div#blogsinner").html() + str);
+                                                    $(window).scrollTop(position);
                                                     $(".newer").slideDown(200);
                                                     $("a.apply").unbind("click");
                                                     $("a.unapply").unbind("click");
@@ -226,6 +229,7 @@
                                                     var str = '<div class="item newer" style="display:none;"';
                                                     str += msg.split('<div class="item"')[10];
                                                     $("div#blogsinner").html($("div#blogsinner").html() + str);
+                                                    $(window).scrollTop(position);
                                                     $(".newer").slideDown(200);
                                                     $("div.item").unbind("mouseover");
                                                     $("div.item").unbind("mouseout");
