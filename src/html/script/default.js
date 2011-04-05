@@ -475,6 +475,7 @@ function SetConcern() {
             type: 'POST',
             url: 'follow/delete/' + $(this).attr("id"),
             success: function () {
+
             }
         });
         $(this).parent().animate({ opacity: 0 }, 200, function () { $(this).slideUp(100); });
