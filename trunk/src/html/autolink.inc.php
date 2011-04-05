@@ -36,6 +36,8 @@ class Twitter_Autolink {
 
 	/* Default CSS class for auto-linked username URLs */
 	protected $usernameClass = "item-blog-link";
+    
+    protected $hashtagClass = "tag";
 
 	/* Default CSS class for auto-linked hashtag URLs */
 
@@ -59,8 +61,11 @@ class Twitter_Autolink {
 
 	public function autoLinkHashtags($tweet) {
 		// TODO Match latin chars with accents
-		return preg_replace('$(^|[^0-9A-Z&/]+)([#＃]+)([0-9A-Z_]*[A-Z_]+[a-z0-9_üÀ-ÖØ-öø-ÿ]*)$iu',
+		/*return preg_replace('$(^|[^0-9A-Z&/]+)([#＃]+)([0-9A-Z_]*[A-Z_]+[a-z0-9_üÀ-ÖØ-öø-ÿ]*)$iu',
 			'${1}<a href="' . $this->get_base() . 'hash/' . '${3}" title="#${3}" class="' . $this->urlClass . ' ' . $this->hashtagClass . '">${2}${3}</a>',
+							$tweet);*/
+        return preg_replace('$([#＃])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})([#＃])$iu',
+			'<a title="${2}" class="' . $this->urlClass . ' ' . $this->hashtagClass . '">${1}${2}${3}</a>',
 							$tweet);
 	}
 
