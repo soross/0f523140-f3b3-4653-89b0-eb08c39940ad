@@ -10,6 +10,51 @@ func_register(array(
     ),
 ));
 
+function get_received_tweets($num, $page)
+{
+    include_once('login.inc.php');
+    $id = get_current_user_id();
+    if(!$page)
+        $page = "0";
+    $page = intval($page) * $num;
+    $limit = " LIMIT $page , $num";
+    connect_db();
+    $view = "SELECT * from tweets, (SELECT * FROM applications WHERE deleted=0) AS ap, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.tweet_id=ap.tweet_id AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
+    $list = mysql_query($view);
+    $result = array();
+    $i = 0;
+    while($row = mysql_fetch_array($list))
+        $result[$i++] = $row;
+    return $result;
+}
+
+function get_received_applies($tweet_id, $num, $page)
+{
+    include_once('login.inc.php');
+    $id = get_current_user_id();
+    if(!$page)
+        $page = "0";
+    if($page == "count")
+    {
+        $limit = "";
+        $select = "COUNT(*)";
+    }
+    else
+    {
+        $select = "*";
+        $page = intval($page) * $num;
+        $limit = " LIMIT $page , $num";
+    }
+    connect_db();
+    $view = "SELECT $select from applications AS ap, (SELECT * FROM tweets WHERE tweet_id='$id' AND deleted=0) AS tweets, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE ap.deleted=0 AND ap.tweet_id='$id' AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
+    $list = mysql_query($view);
+    $result = array();
+    $i = 0;
+    while($row = mysql_fetch_array($list))
+        $result[$i++] = $row;
+    return $result;
+}
+
 function apply_count()
 {
     include_once('login.inc.php');
@@ -65,7 +110,7 @@ function received_apply()
                             <div class="item-other">
                                 <span class="left item-time">'.time_tran($r['post_datetime']).'</span> '.$source.'
                                 <a class="right item-control delete">删除</a> <a class="right item-control last applys">
-                                    申请数(4)</a>
+                                    申请数('.get_received_applies($r['tweet_id'],0,"count")[0][0].')</a>
                             </div>
                             <div class="item-applys close">';
     }
@@ -74,42 +119,6 @@ function received_apply()
                         <div class="clear">
                         </div>
                     </div>';
-}
-
-function get_received_tweets($num, $page)
-{
-    include_once('login.inc.php');
-    $id = get_current_user_id();
-    if(!$page)
-        $page = "0";
-    $page = intval($page) * $num;
-    $limit = " LIMIT $page , $num";
-    connect_db();
-    $view = "SELECT * from tweets, (SELECT * FROM applications WHERE deleted=0) AS ap, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.tweet_id=ap.tweet_id AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
-    $list = mysql_query($view);
-    $result = array();
-    $i = 0;
-    while($row = mysql_fetch_array($list))
-        $result[$i++] = $row;
-    return $result;
-}
-
-function get_received_applies($tweet_id, $num, $page)
-{
-    include_once('login.inc.php');
-    $id = get_current_user_id();
-    if(!$page)
-        $page = "0";
-    $page = intval($page) * $num;
-    $limit = " LIMIT $page , $num";
-    connect_db();
-    $view = "SELECT * from applications AS ap, (SELECT * FROM tweets WHERE tweet_id='$id' AND deleted=0) AS tweets, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE ap.deleted=0 AND ap.tweet_id='$id' AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
-    $list = mysql_query($view);
-    $result = array();
-    $i = 0;
-    while($row = mysql_fetch_array($list))
-        $result[$i++] = $row;
-    return $result;
 }
 
 function apply_show()
