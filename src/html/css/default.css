@@ -191,7 +191,6 @@ div#right div#microblogs
 }
 div#right div#search-result-outer
 {
-    height: 28px;
     border: 1px #d7e7ef solid;
     background-color: #ffffff;
     width: 588px;
@@ -200,7 +199,6 @@ div#right div#search-result-outer
 }
 div#right div#search-result
 {
-    height: 28px;
     background-color: #d7e7ef;
     width: 563px;
     line-height: 28px;

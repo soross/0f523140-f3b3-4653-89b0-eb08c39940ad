@@ -853,7 +853,7 @@ function SetHistory() {
     $(".history-item").mouseover(function () { $(this).addClass("history-item-over"); });
     $(".history-item").mouseout(function () { $(this).removeClass("history-item-over"); });
     $(".history-item").click(function () {
-        var text = $(this).children("a").html();
+        var text = $(this).attr("title");
         $.ajax({
             type: 'GET',
             url: 'search/' + encodeURI(text),
