@@ -146,6 +146,7 @@ div#sorts
 {
     height: 289px;
     width: 294px;
+    display: none;
 }
 div#sorts-tag
 {
