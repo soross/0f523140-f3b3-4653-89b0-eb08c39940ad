@@ -50,6 +50,29 @@ function ShowProfile() {
     $("div#blogs").hide();
     $("div#profile-control").show();
     $("div#ads").hide();
+    $.ajax({
+        type: 'GET',
+        url: 'resume/show',
+        success: function (msg) {
+            $("#u-name").val(msg.split('|')[0]);
+            $("#sex").val(msg.split('|')[1]);
+            $("#birthday").val(msg.split('|')[2]);
+            $("#n-positon").val(msg.split('|')[3]);
+            $("#o-positon").val(msg.split('|')[4]);
+            $("#m-phone").val(msg.split('|')[5]);
+            $("#email").val(msg.split('|')[6]);
+            var str = "";
+            for (s in msg.split('|')) {
+                if (s == 7) {
+                    str += msg.split('|')[s];
+                }
+                else if (s >= 7) {
+                    str += '|' + msg.split('|')[s];
+                }
+            }
+            editor.setData(str);
+        }
+    });
 }
 
 function ShowApplys() {
@@ -77,6 +100,75 @@ function ShowApply(e) {
                 deleteid = deleteitem.attr("id");
                 deleteurl = 'apply/delete/';
                 $("#delete-dialog").dialog("open");
+                $.ajax({
+                    type: "POST",
+                    url: 'apply/count',
+                    success: function (msg) {
+                        msg = $.trim(msg);
+                        $("span#blogs-count").html("共有" + msg + "条记录");
+                        $(document).scrollTop(0);
+                        var allPage;
+                        if (msg % 10 == 0) {
+                            allPage = Math.floor(msg / 10);
+                        }
+                        else {
+                            allPage = Math.floor(msg / 10) + 1;
+                        }
+                        if (allPage > 0) {
+                            prevLess = false;
+                            nextLess = false;
+                            var str = '<div id="pages-inner" class="right">';
+                            if (page != 0) {
+                                str += '<a class="page-control left" id="prevPage">上一页</a>';
+                            }
+                            for (i = 0; i < allPage; i++) {
+                                if (!prevLess && i - page < -2) {
+                                    if (i == 0) {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        prevLess = true;
+                                        str += '<span class="left">...</span>';
+                                    }
+                                }
+                                if (Math.abs(i - page) <= 2) {
+                                    if (i == page) {
+                                        str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                }
+                                if (i == allPage - 1 && i - page > 2) {
+                                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    nextLess = true;
+                                }
+                                if (!nextLess && i - page > 2) {
+                                    nextLess = true;
+                                    str += '<span class="left">...</span>';
+                                }
+                            }
+                            if (page != allPage - 1) {
+                                str += '<a class="page-control left" id="nextPage">下一页</a>';
+                            }
+                            str += '</div>';
+                            $("div#pages").html(str);
+                            $("div#pages").fadeIn(200);
+                            $("a.page-number").click(function () {
+                                page = $(this).html() - 1;
+                                ShowApply(page);
+                            });
+                            $("a#prevPage").click(function () {
+                                page--;
+                                ShowApply(page);
+                            });
+                            $("a#nextPage").click(function () {
+                                page++;
+                                ShowApply(page);
+                            });
+                        }
+                    }
+                });
             });
             $.ajax({
                 type: "POST",
@@ -197,12 +289,150 @@ function ShowFavourite(e) {
                 deleteid = deleteitem.attr("id");
                 deleteurl = 'like/delete/';
                 $("#delete-dialog").dialog("open");
+                $.ajax({
+                    type: "POST",
+                    url: 'like/count',
+                    success: function (msg) {
+                        msg = $.trim(msg);
+                        $("span#blogs-count").html("共有" + msg + "条记录");
+                        $(document).scrollTop(0);
+                        var allPage;
+                        if (msg % 10 == 0) {
+                            allPage = Math.floor(msg / 10);
+                        }
+                        else {
+                            allPage = Math.floor(msg / 10) + 1;
+                        }
+                        if (allPage > 0) {
+                            prevLess = false;
+                            nextLess = false;
+                            var str = '<div id="pages-inner" class="right">';
+                            if (page != 0) {
+                                str += '<a class="page-control left" id="prevPage">上一页</a>';
+                            }
+                            for (i = 0; i < allPage; i++) {
+                                if (!prevLess && i - page < -2) {
+                                    if (i == 0) {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        prevLess = true;
+                                        str += '<span class="left">...</span>';
+                                    }
+                                }
+                                if (Math.abs(i - page) <= 2) {
+                                    if (i == page) {
+                                        str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                }
+                                if (i == allPage - 1 && i - page > 2) {
+                                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    nextLess = true;
+                                }
+                                if (!nextLess && i - page > 2) {
+                                    nextLess = true;
+                                    str += '<span class="left">...</span>';
+                                }
+                            }
+                            if (page != allPage - 1) {
+                                str += '<a class="page-control left" id="nextPage">下一页</a>';
+                            }
+                            str += '</div>';
+                            $("div#pages").html(str);
+                            $("div#pages").fadeIn(200);
+                            $("a.page-number").click(function () {
+                                page = $(this).html() - 1;
+                                ShowFavourite(page);
+                            });
+                            $("a#prevPage").click(function () {
+                                page--;
+                                ShowFavourite(page);
+                            });
+                            $("a#nextPage").click(function () {
+                                page++;
+                                ShowFavourite(page);
+                            });
+                        }
+                    }
+                });
             });
             $("div.item-delete a").click(function () {
                 deleteitem = $(this).parent().parent();
                 deleteid = deleteitem.attr("id");
                 deleteurl = 'like/delete/';
                 $("#delete-dialog").dialog("open");
+                $.ajax({
+                    type: "POST",
+                    url: 'like/count',
+                    success: function (msg) {
+                        msg = $.trim(msg);
+                        $("span#blogs-count").html("共有" + msg + "条记录");
+                        $(document).scrollTop(0);
+                        var allPage;
+                        if (msg % 10 == 0) {
+                            allPage = Math.floor(msg / 10);
+                        }
+                        else {
+                            allPage = Math.floor(msg / 10) + 1;
+                        }
+                        if (allPage > 0) {
+                            prevLess = false;
+                            nextLess = false;
+                            var str = '<div id="pages-inner" class="right">';
+                            if (page != 0) {
+                                str += '<a class="page-control left" id="prevPage">上一页</a>';
+                            }
+                            for (i = 0; i < allPage; i++) {
+                                if (!prevLess && i - page < -2) {
+                                    if (i == 0) {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        prevLess = true;
+                                        str += '<span class="left">...</span>';
+                                    }
+                                }
+                                if (Math.abs(i - page) <= 2) {
+                                    if (i == page) {
+                                        str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                }
+                                if (i == allPage - 1 && i - page > 2) {
+                                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    nextLess = true;
+                                }
+                                if (!nextLess && i - page > 2) {
+                                    nextLess = true;
+                                    str += '<span class="left">...</span>';
+                                }
+                            }
+                            if (page != allPage - 1) {
+                                str += '<a class="page-control left" id="nextPage">下一页</a>';
+                            }
+                            str += '</div>';
+                            $("div#pages").html(str);
+                            $("div#pages").fadeIn(200);
+                            $("a.page-number").click(function () {
+                                page = $(this).html() - 1;
+                                ShowFavourite(page);
+                            });
+                            $("a#prevPage").click(function () {
+                                page--;
+                                ShowFavourite(page);
+                            });
+                            $("a#nextPage").click(function () {
+                                page++;
+                                ShowFavourite(page);
+                            });
+                        }
+                    }
+                });
             });
             $.ajax({
                 type: "POST",
@@ -300,12 +530,150 @@ function ShowNormal(e) {
                 deleteid = deleteitem.attr("id");
                 deleteurl = 'tweet/delete/';
                 $("#delete-dialog").dialog("open");
+                $.ajax({
+                    type: "POST",
+                    url: 'user/current/0/count',
+                    success: function (msg) {
+                        msg = $.trim(msg);
+                        $("span#blogs-count").html("共有" + msg + "条记录");
+                        $(document).scrollTop(0);
+                        var allPage;
+                        if (msg % 10 == 0) {
+                            allPage = Math.floor(msg / 10);
+                        }
+                        else {
+                            allPage = Math.floor(msg / 10) + 1;
+                        }
+                        if (allPage > 0) {
+                            prevLess = false;
+                            nextLess = false;
+                            var str = '<div id="pages-inner" class="right">';
+                            if (page != 0) {
+                                str += '<a class="page-control left" id="prevPage">上一页</a>';
+                            }
+                            for (i = 0; i < allPage; i++) {
+                                if (!prevLess && i - page < -2) {
+                                    if (i == 0) {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        prevLess = true;
+                                        str += '<span class="left">...</span>';
+                                    }
+                                }
+                                if (Math.abs(i - page) <= 2) {
+                                    if (i == page) {
+                                        str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                }
+                                if (i == allPage - 1 && i - page > 2) {
+                                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    nextLess = true;
+                                }
+                                if (!nextLess && i - page > 2) {
+                                    nextLess = true;
+                                    str += '<span class="left">...</span>';
+                                }
+                            }
+                            if (page != allPage - 1) {
+                                str += '<a class="page-control left" id="nextPage">下一页</a>';
+                            }
+                            str += '</div>';
+                            $("div#pages").html(str);
+                            $("div#pages").fadeIn(200);
+                            $("a.page-number").click(function () {
+                                page = $(this).html() - 1;
+                                ShowNormal(page);
+                            });
+                            $("a#prevPage").click(function () {
+                                page--;
+                                ShowNormal(page);
+                            });
+                            $("a#nextPage").click(function () {
+                                page++;
+                                ShowNormal(page);
+                            });
+                        }
+                    }
+                });
             });
             $("div.item-delete a").click(function () {
                 deleteitem = $(this).parent().parent();
                 deleteid = deleteitem.attr("id");
                 deleteurl = 'tweet/delete/';
                 $("#delete-dialog").dialog("open");
+                $.ajax({
+                    type: "POST",
+                    url: 'user/current/0/count',
+                    success: function (msg) {
+                        msg = $.trim(msg);
+                        $("span#blogs-count").html("共有" + msg + "条记录");
+                        $(document).scrollTop(0);
+                        var allPage;
+                        if (msg % 10 == 0) {
+                            allPage = Math.floor(msg / 10);
+                        }
+                        else {
+                            allPage = Math.floor(msg / 10) + 1;
+                        }
+                        if (allPage > 0) {
+                            prevLess = false;
+                            nextLess = false;
+                            var str = '<div id="pages-inner" class="right">';
+                            if (page != 0) {
+                                str += '<a class="page-control left" id="prevPage">上一页</a>';
+                            }
+                            for (i = 0; i < allPage; i++) {
+                                if (!prevLess && i - page < -2) {
+                                    if (i == 0) {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        prevLess = true;
+                                        str += '<span class="left">...</span>';
+                                    }
+                                }
+                                if (Math.abs(i - page) <= 2) {
+                                    if (i == page) {
+                                        str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                }
+                                if (i == allPage - 1 && i - page > 2) {
+                                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    nextLess = true;
+                                }
+                                if (!nextLess && i - page > 2) {
+                                    nextLess = true;
+                                    str += '<span class="left">...</span>';
+                                }
+                            }
+                            if (page != allPage - 1) {
+                                str += '<a class="page-control left" id="nextPage">下一页</a>';
+                            }
+                            str += '</div>';
+                            $("div#pages").html(str);
+                            $("div#pages").fadeIn(200);
+                            $("a.page-number").click(function () {
+                                page = $(this).html() - 1;
+                                ShowNormal(page);
+                            });
+                            $("a#prevPage").click(function () {
+                                page--;
+                                ShowNormal(page);
+                            });
+                            $("a#nextPage").click(function () {
+                                page++;
+                                ShowNormal(page);
+                            });
+                        }
+                    }
+                });
             });
             $.ajax({
                 type: "POST",
