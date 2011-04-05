@@ -3,6 +3,9 @@ func_register(array(
     'user' => array(
         'callback' => 'user_page',
     ),
+    'profile' => array(
+        'callback' => 'profile_page',
+    ),
 ));
 
 function theme_user($data)
@@ -24,7 +27,7 @@ function theme_user($data)
                         </div>
                         <div class="left item-content">
                             <div class="item-blog">
-                                <a class="item-blog-name" target="_blank" href="http://t.sina.com.cn/n/'.$r['post_screenname'].'">'.$r['post_screenname'].'</a>：'.$r['content'].'
+                                <a class="item-blog-name" target="_blank" href="profile/'.$r['post_screenname'].'">'.$r['post_screenname'].'</a>：'.$r['content'].'
                             </div>
                             <div class="item-other">
                                 <span class="left item-time">'.time_tran($r['post_datetime']).'</span>'.$source.'
@@ -87,4 +90,12 @@ function user_page($query)
         theme('user', $data);
 }
 
+function profile_page($query)
+{
+    $key = (string) $query[1];
+    if(!$key)
+        die("Invalid Argument!");
+    header('Location: http://t.sina.com.cn/n/'.$key);
+}
 
+?>
