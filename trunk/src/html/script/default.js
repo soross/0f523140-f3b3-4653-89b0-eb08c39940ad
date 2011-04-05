@@ -157,6 +157,16 @@ $(function () {
             }
         }
     });
+    $("#search-text").keydown(function () {
+        if ($(this).val().length > 32) {
+            $(this).val($(this).val().substring(0, 32));
+        }
+    });
+    $("#search-text").keyup(function () {
+        if ($(this).val().length > 32) {
+            $(this).val($(this).val().substring(0, 32));
+        }
+    });
     $("a#search-button").click(function () {
         if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴") {
             $.ajax({
