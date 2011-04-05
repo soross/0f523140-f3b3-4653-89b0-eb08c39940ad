@@ -17,6 +17,8 @@ $(function () {
             success: function () {
                 page = 0;
                 cate = 0;
+                $("#sort").html($("a#" + cate).html());
+                $("#sorts-name").html($("a#" + cate).html());
                 isTurn = false;
                 SetSearch(msg, text);
             }
@@ -68,6 +70,8 @@ $(function () {
             success: function (msg) {
                 page = 0;
                 cate = cat;
+                $("#sort").html($("a#" + cate).html());
+                $("#sorts-name").html($("a#" + cate).html());
                 isTurn = false;
                 SetSearch(msg, text);
                 setTimeout(function () { GetNewerBlogs(); }, 60000);
