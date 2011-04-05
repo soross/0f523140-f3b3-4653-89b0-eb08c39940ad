@@ -46,6 +46,10 @@ function apply_show()
     $applies = get_applies(10, $page);
     foreach($applies as $f)
     {
+        if(strstr($f['source'], '<'))
+            $source = str_replace("<a ", '<a class="left microblog-item-position"', $f['source']);
+        else
+            $source = '<a class="left microblog-item-position">'.$f['source'].'</a>';
         $content .= '<div class="item" id="'.$f['tweet_id'].'">
                    <div class="item-delete">
                        <a class="right"></a>
