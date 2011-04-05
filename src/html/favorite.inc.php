@@ -117,7 +117,7 @@ function favorites_delete()
 
 function favorites_exist()
 {
-    include_once('login.php');
+    include_once('login.inc.php');
     $id = get_current_user_id();
     $args = func_get_args();
     $key = $args[2];
