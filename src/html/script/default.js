@@ -293,6 +293,7 @@ function SetAllSearch(msg) {
                                     }
                                 });
                             });
+                            $("a.microblog-item-relate").unbind("click");
                             $("a.microblog-item-relate").click(function () {
                                 var text = $(this).html();
                                 $.ajax({
@@ -308,6 +309,7 @@ function SetAllSearch(msg) {
                                     }
                                 });
                             });
+                            $("a.tag").unbind("click");
                             $("a.tag").click(function () {
                                 var text = $(this).attr("title");
                                 $.ajax({
@@ -719,6 +721,7 @@ function SetSearch(msg, e) {
                                     }
                                 });
                             });
+                            $("a.microblog-item-relate").unbind("click");
                             $("a.microblog-item-relate").click(function () {
                                 var text = $(this).html();
                                 $.ajax({
@@ -734,6 +737,7 @@ function SetSearch(msg, e) {
                                     }
                                 });
                             });
+                            $("a.tag").unbind("click");
                             $("a.tag").click(function () {
                                 var text = $(this).attr("title");
                                 $.ajax({
@@ -897,6 +901,22 @@ function DocumenScroll() {
                         }
                     });
                 });
+                $("a.tag").unbind("click");
+                $("a.tag").click(function () {
+                    var text = $(this).attr("title");
+                    $.ajax({
+                        type: 'GET',
+                        url: 'search/' + encodeURI(text),
+                        success: function (msg) {
+                            page = 0;
+                            cate = 0;
+                            $("#sort").html($("a#" + cate).html());
+                            $("#sorts-name").html($("a#" + cate).html());
+                            isTurn = false;
+                            SetSearch(msg, text);
+                        }
+                    });
+                });
                 $("a.like").unbind("click");
                 $("a.unlike").unbind("click");
                 $("a.apply").unbind("click");
@@ -992,6 +1012,22 @@ function GetNewerBlogs() {
                             }
                         });
                     });
+                    $("a.tag").unbind("click");
+                    $("a.tag").click(function () {
+                        var text = $(this).attr("title");
+                        $.ajax({
+                            type: 'GET',
+                            url: 'search/' + encodeURI(text),
+                            success: function (msg) {
+                                page = 0;
+                                cate = 0;
+                                $("#sort").html($("a#" + cate).html());
+                                $("#sorts-name").html($("a#" + cate).html());
+                                isTurn = false;
+                                SetSearch(msg, text);
+                            }
+                        });
+                    });
                     $("a.like").unbind("click");
                     $("a.unlike").unbind("click");
                     $("a.apply").unbind("click");
@@ -1072,6 +1108,22 @@ function GetNewerBlogs() {
                                 $("#sorts-name").html($("a#" + cate).html());
                                 SetSearch(msg, text);
                                 nowFirst = $(".microblog-item:first").attr("id");
+                            }
+                        });
+                    });
+                    $("a.tag").unbind("click");
+                    $("a.tag").click(function () {
+                        var text = $(this).attr("title");
+                        $.ajax({
+                            type: 'GET',
+                            url: 'search/' + encodeURI(text),
+                            success: function (msg) {
+                                page = 0;
+                                cate = 0;
+                                $("#sort").html($("a#" + cate).html());
+                                $("#sorts-name").html($("a#" + cate).html());
+                                isTurn = false;
+                                SetSearch(msg, text);
                             }
                         });
                     });
