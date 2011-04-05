@@ -14,7 +14,7 @@ function apply_count()
     $view = "SELECT COUNT(*) from FROM applications WHERE user_id='$id' AND deleted = 0";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
-    echo $row['COUNT(*)'];
+    echo $row[0];
 }
 
 function get_applies($num, $page)
