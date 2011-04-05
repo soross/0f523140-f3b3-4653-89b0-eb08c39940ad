@@ -17,7 +17,7 @@ function favorites_count()
     echo $row['COUNT(*)'];
 }
 
-function get_favorites($page)
+function get_favorites($num, $page)
 {
     include_once('login.inc.php');
     $id = get_current_user_id();
@@ -43,7 +43,7 @@ function favorites_show()
     else
         $page = "";
     $content = '';
-    $favorites = get_favorites($page);
+    $favorites = get_favorites(10, $page);
     foreach($favorites as $f)
     {
         $content .= '<div class="item" id="'.$f['tweet_id'].'">
