@@ -122,9 +122,9 @@ function theme_result($result)
     if(user_is_authenticated())
     {
         include_once("favorite.inc.php");
-        $allfav = get_favorites(0);
+        $allfav = get_favorites(32767, "");
         include_once("apply.inc.php");
-        $allapp = get_applies(0);
+        $allapp = get_applies(32767, "");
     }
     $content = "";
     foreach($result as $r)
