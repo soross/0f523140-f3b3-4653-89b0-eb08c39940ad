@@ -90,20 +90,39 @@ function ShowApplys(e) {
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
-//            $("div.item").mouseover(function () {
-//                $(this).addClass("item-over");
-//            });
-//            $("div.item").mouseout(function () {
-//                $(this).removeClass("item-over");
-//            });
-//            $("div.item-delete a").click(function () {
-//                deleteitem = $(this).parent().parent();
-//                deleteid = deleteitem.attr("id");
-//                deleteurl = 'apply/delete/';
-//                type = "apply";
-//                $("#delete-dialog").dialog("open");
-//            });
-//            UpdateApply();
+            $("a.applys").click(function () {
+                if (item.hasClass("close")) {
+                    var id = $(this).parent().parent().parent().attr("id");
+                    var item = $(this).parent().next(".item-applys");
+                    $.ajax({
+                        type: 'POST',
+                        url: 'received/apply/' + id + "/0",
+                        success: function (msg) {
+                            item.html(msg);
+                            item.slideDown(200);
+                            item.removeClass("close");
+                        }
+                    });
+                }
+                else {
+                    item.slideUp(200);
+                    item.addClass("close");
+                }
+            });
+            //            $("div.item").mouseover(function () {
+            //                $(this).addClass("item-over");
+            //            });
+            //            $("div.item").mouseout(function () {
+            //                $(this).removeClass("item-over");
+            //            });
+            //            $("div.item-delete a").click(function () {
+            //                deleteitem = $(this).parent().parent();
+            //                deleteid = deleteitem.attr("id");
+            //                deleteurl = 'apply/delete/';
+            //                type = "apply";
+            //                $("#delete-dialog").dialog("open");
+            //            });
+            //            UpdateApply();
         }
     });
 }
