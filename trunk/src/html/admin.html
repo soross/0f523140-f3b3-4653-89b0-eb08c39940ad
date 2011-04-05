@@ -139,31 +139,16 @@
                                                     type: 'POST',
                                                     url: 'search/poiuy/0/page/' + page,
                                                     success: function (msg) {
-                                                        var str = '<div class="item newer" style="display:none;"';
-                                                        str += msg.split('<div class="item"')[10];
-                                                        $("div.item:last").after(str);
+                                                        var str = '<div class="microblog-item newer" style="display:none;"';
+                                                        str += msg.split('<div class="microblog-item"')[10];
+                                                        $("div.microblog-item:last").after(str);
                                                         $(".newer:last").slideDown(200);
-                                                        $("div.item").unbind("mouseover");
-                                                        $("div.item").unbind("mouseout");
                                                         $("a.delete").unbind("click");
-                                                        $("div.item-delete a").unbind("click");
-                                                        $("div.item").mouseover(function () {
-                                                            $(this).addClass("item-over");
-                                                        });
-                                                        $("div.item").mouseout(function () {
-                                                            $(this).removeClass("item-over");
-                                                        });
                                                         $("a.delete").click(function () {
                                                             deleteitem = $(this).parent().parent().parent();
                                                             deleteid = deleteitem.attr("id");
                                                             deleteurl = 'tweet/delete/';
                                                             type = "tweet";
-                                                            $("#delete-dialog").dialog("open");
-                                                        });
-                                                        $("div.item-delete a").click(function () {
-                                                            deleteitem = $(this).parent().parent();
-                                                            deleteid = deleteitem.attr("id");
-                                                            deleteurl = 'tweet/delete/';
                                                             $("#delete-dialog").dialog("open");
                                                         });
                                                     }

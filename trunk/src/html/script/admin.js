@@ -37,21 +37,8 @@ function ShowNormal(e) {
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
-            $("div.item").mouseover(function () {
-                $(this).addClass("item-over");
-            });
-            $("div.item").mouseout(function () {
-                $(this).removeClass("item-over");
-            });
             $("a.delete").click(function () {
                 deleteitem = $(this).parent().parent().parent();
-                deleteid = deleteitem.attr("id");
-                deleteurl = 'tweet/delete/';
-                type = "tweet";
-                $("#delete-dialog").dialog("open");
-            });
-            $("div.item-delete a").click(function () {
-                deleteitem = $(this).parent().parent();
                 deleteid = deleteitem.attr("id");
                 deleteurl = 'tweet/delete/';
                 type = "tweet";
