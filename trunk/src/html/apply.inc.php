@@ -136,7 +136,7 @@ function apply_add()
     $row = mysql_fetch_array($list);
     if($row)
     {
-        applies_delete("", "", $key);
+        apply_delete("", "", $key);
     }
     $view = "INSERT INTO applications(resume_id, tweet_id, user_id, apply_time) VALUES ('$id', '$key', '$id', '".date('Y-m-d H:i:s')."')";
     $list = mysql_query($view) or die("Insert error!");
