@@ -43,3 +43,4 @@ function deal_tweet($query)
         die("Invalid Argument!");
     return call_user_func_array($function, $query);
 }
+?>

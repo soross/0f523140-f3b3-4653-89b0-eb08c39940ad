@@ -160,6 +160,7 @@ for crawler in enumerate(A):
 	t.start()
 	sleep(2)
 
+print now() + "Preparing cursors to operate database..."
 import MySQLdb, uuid
 db = MySQLdb.connect("127.0.0.1","apis","apis","apis",charset="utf8")
 c = db.cursor()

@@ -22,7 +22,7 @@ function post_tweet($query)
     if (isset($msg['error_code']) && isset($msg['error'])){
         echo ('Error_code: '.$msg['error_code'].';  Error: '.$msg['error'] );
         return false;
-    } 
+    }
     include_once("uuid.inc.php");
     $v4uuid = str_replace("-", "", UUID::v4());
     connect_db();
