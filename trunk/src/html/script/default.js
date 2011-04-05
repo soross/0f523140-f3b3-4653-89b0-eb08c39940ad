@@ -60,7 +60,7 @@ $(function () {
                     of: $("div#microblogs"),
                     my: "left top",
                     at: "right top",
-                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 80),
                     collision: "none none"
                 });
                 $("div#backTop").css("position", "fixed");
