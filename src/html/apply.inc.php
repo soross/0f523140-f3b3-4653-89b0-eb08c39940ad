@@ -149,7 +149,7 @@ function received_apply($query)
                                 <a class="right item-control last applys" id="'.$g[0][0].'">
                                     申请数('.$g[0][0].')</a>
                             </div>
-                            <div class="item-applys close"></div>';
+                            <div class="item-applys close"></div><div class="item-page"></div>';
         $content .= '
                         </div>
                         <div class="clear">
