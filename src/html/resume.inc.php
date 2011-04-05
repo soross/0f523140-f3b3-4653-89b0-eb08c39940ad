@@ -62,7 +62,7 @@ function resume_show()
                 $view = "UPDATE applications SET view_time = '".date('Y-m-d H:i:s')."' WHERE resume_id = '$key' AND tweet_id = '".$row['tweet_id']."' AND user_id = '$_id'";
                 $list = mysql_query($view);
             }
-            $view = "SELECT * FROM resumes WHERE resume_id = '$key'"
+            $view = "SELECT * FROM resumes WHERE resume_id = '$key'";
             $list = mysql_query($view);
             $row = mysql_fetch_array($list);
             theme('resume', $row);
