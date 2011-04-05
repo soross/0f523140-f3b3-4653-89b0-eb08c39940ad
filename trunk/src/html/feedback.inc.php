@@ -1,11 +1,5 @@
 <?php
-func_register(array(
-    'feedback_post' => array(
-        'callback' => 'post_feedback',
-    ),
-));
-
-function post_feedback($query)
+function feedback_post($query)
 {
     include_once('login.inc.php');
     if(user_is_authenticated())
