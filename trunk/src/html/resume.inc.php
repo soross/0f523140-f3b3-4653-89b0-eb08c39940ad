@@ -29,12 +29,12 @@ function resume_add()
     $row = mysql_fetch_array($list);
     if($row)
     {
-        $view = "UPDATE resume SET name='$name', sex='$sex', date_birth='$date_birth', live_in_now='$live_in_now', live_in='$live_in', cellphone='$cellphone', email='$email', content='$content' WHERE resume_id = '$resume_id'";
+        $view = "UPDATE resumes SET name='$name', sex='$sex', date_birth='$date_birth', live_in_now='$live_in_now', live_in='$live_in', cellphone='$cellphone', email='$email', content='$content' WHERE resume_id = '$resume_id'";
         $list = mysql_query($view) or die("Update error!");
     }
     else
     {
-        $view = "INSERT INTO resume(user_id, resume_id, name, sex, date_birth, live_in_now, live_in, cellphone, email, content) VALUES('$user_id','$resume_id','$name','$sex','$date_birth','$live_in_now','$live_in','$cellphone','$email','$content')";
+        $view = "INSERT INTO resumes(user_id, resume_id, name, sex, date_birth, live_in_now, live_in, cellphone, email, content) VALUES('$user_id','$resume_id','$name','$sex','$date_birth','$live_in_now','$live_in','$cellphone','$email','$content')";
         $list = mysql_query($view) or die("Update error!");
     }
 }
