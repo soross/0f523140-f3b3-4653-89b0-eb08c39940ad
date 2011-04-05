@@ -48,13 +48,12 @@ function get_feedbacks($num, $page)
         return $result;
 }
 
-function feedback_show($query)
+function feedback_show()
 {
     $args = func_get_args();
     $key = $args[2];
     $content = '';
     $results = get_feedbacks(10, $key);
-    echo $key;
     if($key == "count")
     {
         echo $results;
