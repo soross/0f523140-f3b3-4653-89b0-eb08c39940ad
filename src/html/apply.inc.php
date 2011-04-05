@@ -68,7 +68,7 @@ function apply_show()
             $content .= '<span class="right item-apply item-apply-info">'.time_tran($f['view_time']).'</span>';
         else
             $content .= '<span class="right item-apply item-apply-info">未读</span>';
-        $content .= '<span class="right item-apply item-apply-name">状态：</span> <span class="right item-apply item-apply-info">'.$f['apply_time'].'</span> <span class="right item-apply item-apply-name">
+        $content .= '<span class="right item-apply item-apply-name">状态：</span> <span class="right item-apply item-apply-info">'.time_tran($f['apply_time']).'</span> <span class="right item-apply item-apply-name">
                             申请于：</span>';
         $content .= '
                        </div>
