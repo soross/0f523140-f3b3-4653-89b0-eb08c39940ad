@@ -443,16 +443,12 @@ div#right div#fresh
 div#backTop
 {
     width: 20px;
-    height: 80px;
+    height: 100px;
     line-height: 20px;
     text-align: center;
     background-color: #d7e7ef;
     display: none;
     letter-spacing: 2px;
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    writing-mode: tb-rl;
 }
 div#backTop a:hover
 {
