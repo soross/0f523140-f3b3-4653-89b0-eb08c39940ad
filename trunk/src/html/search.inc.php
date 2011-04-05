@@ -224,7 +224,7 @@ function search_history_add()
     $v4uuid = str_replace("-", "", UUID::v4());
     $current_datetime = date('Y-m-d H:i:s');
     $view = "INSERT INTO searchhistory(history_id, search, user_id, deleted, add_time) VALUES ('$v4uuid', '$key', '$id', '0', '$current_datetime')";
-    $list = mysql_query($view) or die($view."Insert error!");
+    $list = mysql_query($view) or die("Insert error!");
 }
 
 function search_history($query)
