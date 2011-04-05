@@ -45,9 +45,18 @@ function manager_page()
     theme('template', 'manager.html');
 }
 
-function feedback_page()
+function feedback_page($query)
 {
-    theme('template', 'feedback.html');
+    $key = (string) $query[1];
+    if(!$key)
+        theme('template', 'feedback.html');
+    else
+    {
+        $function = 'feedback_'.$key;
+        if (!function_exists($function))
+            die("Invalid Argument!");
+        return call_user_func_array($function, $query);
+    }
 }
 
 function help_page()
