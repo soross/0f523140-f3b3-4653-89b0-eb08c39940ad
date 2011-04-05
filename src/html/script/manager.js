@@ -91,9 +91,9 @@ function ShowApplys(e) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
             $("a.applys").click(function () {
+                var id = $(this).parent().parent().parent().attr("id");
+                var item = $(this).parent().next(".item-applys");
                 if (item.hasClass("close")) {
-                    var id = $(this).parent().parent().parent().attr("id");
-                    var item = $(this).parent().next(".item-applys");
                     $.ajax({
                         type: 'POST',
                         url: 'received/apply/' + id + "/0",
