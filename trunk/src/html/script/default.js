@@ -9,6 +9,20 @@ var isFreshed = false;
 var isTurn = false;
 
 $(function () {
+    $("a.company-name").click(function () {
+        var text = $(this).html();
+        $.ajax({
+            type: 'GET',
+            url: 'search/' + text,
+            success: function () {
+                page = 0;
+                cate = 0;
+                isTurn = false;
+                SetSearch(msg, text);
+            }
+        });
+    });
+
     $("#concern-pic").animate({ opacity: 0.6 }, 0);
     $("#concern-pic").mouseover(function () {
         $(this).animate({ opacity: 1 }, 200);
@@ -47,12 +61,13 @@ $(function () {
     GetNewerCount();
     if ($.query.get("search") != "") {
         var text = $.trim($.query.get("search"));
+        var cat = $.trim($.query.get("cat"));
         $.ajax({
             type: 'GET',
-            url: 'search/' + encodeURI(text),
+            url: 'search/' + encodeURI(text) + '/' + cat,
             success: function (msg) {
                 page = 0;
-                cate = 0;
+                cate = cat;
                 isTurn = false;
                 SetSearch(msg, text);
                 setTimeout(function () { GetNewerBlogs(); }, 60000);
@@ -342,7 +357,7 @@ function GetNewerCount() {
 function SetResult(msg) {
     msg = $.trim(msg);
     SearchResult = msg
-    var str = "";
+    var str = $("a#sort").html() + "中：";
     for (s in msg.split(' ')) {
         if (msg.split(' ')[s] != "") {
             str += '#<a class="keyword">' + msg.split(' ')[s] + '</a>#';
