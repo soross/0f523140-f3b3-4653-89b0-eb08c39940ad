@@ -50,6 +50,7 @@ function ShowApply() {
     $("div#ads").show();
 }
 function ShowFavourite(e) {
+    page = e;
     $("div#profile").hide();
     $("div#blogs").show();
     $("div#profile-control").hide();
@@ -150,15 +151,17 @@ function ShowFavourite(e) {
     });
 }
 
-function ShowNormal() {
+function ShowNormal(e) {
+    page = e;
     $("div#profile").hide();
     $("div#blogs").show();
     $("div#profile-control").hide();
     $("div#ads").show();
     $.ajax({
         type: 'POST',
-        url: 'user/current/0/0',
+        url: 'user/current/0/' + e,
         success: function (msg) {
+            $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
             $("div.item").mouseover(function () {
                 $(this).addClass("item-over");
@@ -177,6 +180,74 @@ function ShowNormal() {
                 deleteid = $(this).attr("id");
                 deleteurl = 'tweet/delete/';
                 $("#delete-dialog").dialog("open");
+            });
+            $.ajax({
+                type: "POST",
+                url: 'user/current/0/count',
+                success: function (msg) {
+                    msg = $.trim(msg);
+                    $(document).scrollTop(0);
+                    var allPage;
+                    if (msg % 10 == 0) {
+                        allPage = Math.floor(msg / 10);
+                    }
+                    else {
+                        allPage = Math.floor(msg / 10) + 1;
+                    }
+                    if (allPage > 0) {
+                        prevLess = false;
+                        nextLess = false;
+                        var str = '<div id="pages-inner" class="right">';
+                        if (page != 0) {
+                            str += '<a class="page-control left" id="prevPage">上一页</a>';
+                        }
+                        for (i = 0; i < allPage; i++) {
+                            if (!prevLess && i - page < -2) {
+                                if (i == 0) {
+                                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                }
+                                else {
+                                    prevLess = true;
+                                    str += '<span class="left">...</span>';
+                                }
+                            }
+                            if (Math.abs(i - page) <= 2) {
+                                if (i == page) {
+                                    str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                                }
+                                else {
+                                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                }
+                            }
+                            if (i == allPage - 1 && i - page > 2) {
+                                str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                nextLess = true;
+                            }
+                            if (!nextLess && i - page > 2) {
+                                nextLess = true;
+                                str += '<span class="left">...</span>';
+                            }
+                        }
+                        if (page != allPage - 1) {
+                            str += '<a class="page-control left" id="nextPage">下一页</a>';
+                        }
+                        str += '</div>';
+                        $("div#pages").html(str);
+                        $("div#pages").fadeIn(200);
+                        $("a.page-number").click(function () {
+                            page = $(this).html() - 1;
+                            ShowNormal(page);
+                        });
+                        $("a#prevPage").click(function () {
+                            page--;
+                            ShowNormal(page);
+                        });
+                        $("a#nextPage").click(function () {
+                            page++;
+                            ShowNormal(page);
+                        });
+                    }
+                }
             });
         }
     });
