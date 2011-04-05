@@ -80,6 +80,14 @@ function parselink($out)
     return $out;
 }
 
+function parsekeyword($keyword, $out)
+{
+    $keyword = explode(" ",$keyword);
+    foreach($keyword as $key)
+        $out = str_replace($key, "<span class='highlight'>$key</span>", $out);
+    return $out;
+}
+
 function theme_page($title, $content) {
     ob_start('ob_gzhandler');
     header('Content-Type: text/html; charset=utf-8');
@@ -167,7 +175,7 @@ function time_tran($the_time){
    }
 }
 
-function theme_result($result)
+function theme_result($result, $keyword = '')
 {
     include_once("login.inc.php");
     include_once("tag.inc.php");
@@ -181,6 +189,10 @@ function theme_result($result)
     $content = "";
     foreach($result as $r)
     {
+        if($keyword)
+            $jg = parsekeyword($keyword, parselink($r['content']));
+        else
+            $jg = parselink($r['content']);
         $tags = get_tags($r['tweet_id']);
         if(strstr($r['source'], '<'))
             $source = str_replace("<a ", '<a class="left microblog-item-position"', $r['source']);
@@ -193,7 +205,8 @@ function theme_result($result)
                     </div>
                     <div class="left microblog-item-content">
                         <div class="microblog-item-blog">
-                            <a class="microblog-item-blog-name" target="_blank" href="'.BASE_URL.'profile/'.$r['post_screenname'].'">'.$r['post_screenname'].'</a>：'.parselink($r['content']).'
+                            <a class="microblog-item-blog-name" target="_blank" href="'.BASE_URL.'profile/'.$r['post_screenname'].'">'
+                            .$r['post_screenname'].'</a>：'.$jg.'
                         </div>
                         <div class="microblog-item-other">
                             <span class="left microblog-item-time">'.time_tran($r['post_datetime']).'</span> '.$source;
