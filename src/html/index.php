@@ -17,15 +17,46 @@ func_register(array(
   '' => array(
     'callback' => 'home_page',
   ),
+  'manager' => array(
+    'callback' => 'manager_page',
+  ),
+  'feedback' => array(
+    'callback' => 'feedback_page',
+  ),
+  'help' => array(
+    'callback' => 'help_page',
+  ),
+  'admin' => array(
+    'callback' => 'admin_page',
+  ),
 ));
 
 function home_page()
 {
-    header("Location: ".BASE_URL."default.html");
+    theme('template', 'default.html');
+    #header("Location: ".BASE_URL."default.html");
     #$content = theme('result', get_newest_result(10));
     #theme('search', '首页', $content);
 }
 
+function manager_page()
+{
+    theme('template', 'manager.html');
+}
+
+function feedback_page()
+{
+    theme('template', 'feedback.html');
+}
+
+function help_page()
+{
+    theme('template', 'help.html');
+}
+
+function admin_page()
+{
+    theme('template', 'admin.html');
+}
 func_execute_active_handler();
 ?>
-
