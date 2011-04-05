@@ -80,6 +80,32 @@ function ShowProfile() {
 }
 
 function ShowApplys() {
+    $("div#profile").hide();
+    $("div#blogs").show();
+    $("div#profile-control").hide();
+    $("div#ads").show();
+    $.ajax({
+        type: 'POST',
+        url: 'receive',
+        success: function (msg) {
+            $("div#pages").fadeOut(50);
+            $("div#blogsinner").html(msg);
+//            $("div.item").mouseover(function () {
+//                $(this).addClass("item-over");
+//            });
+//            $("div.item").mouseout(function () {
+//                $(this).removeClass("item-over");
+//            });
+//            $("div.item-delete a").click(function () {
+//                deleteitem = $(this).parent().parent();
+//                deleteid = deleteitem.attr("id");
+//                deleteurl = 'apply/delete/';
+//                type = "apply";
+//                $("#delete-dialog").dialog("open");
+//            });
+//            UpdateApply();
+        }
+    });
 }
 
 function ShowApply(e) {
