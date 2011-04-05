@@ -45,6 +45,8 @@ function favorites_show()
     $content = '';
     include_once("theme.inc.php");
     $favorites = get_favorites(10, $page);
+    include_once("apply.inc.php");
+    $allapp = get_applies(32767, "");
     foreach($favorites as $f)
     {
         $content .= '<div class="item" id="'.$f['tweet_id'].'">
@@ -61,9 +63,21 @@ function favorites_show()
                        <div class="item-other">
                            <span class="left item-time">'.time_tran($f['post_datetime']).'</span> '.$source.'
                            <a class="right item-favourite item-action delete">取消收藏</a> ';
-                            if($f['type'] != 1)
-                                $content .= '<a class="right item-favourite item-doapply apply">
-                                        申请该职位</a>';
+                            $app = 0;
+                            foreach($allapp as $f)
+                                if($f['tweet_id'] == $r['tweet_id'])
+                                {
+                                    $app = 1;
+                                    break;
+                                }
+                            if($r['type'] != 1 and !$app)
+                                $content .= '<a class="right microblog-item-control microblog-item-apply apply">
+                                             申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" style="display: none;">
+                                             取消申请</a>';
+                            elseif($app)
+                                $content .= '<a class="right microblog-item-control microblog-item-apply apply" style="display: none;">
+                                             申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply">
+                                             取消申请</a>';
         $content .= '
                        </div>
                    </div>
