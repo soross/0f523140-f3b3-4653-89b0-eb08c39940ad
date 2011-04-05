@@ -28,6 +28,58 @@ function theme()
     return call_user_func_array($function, $args);
 }
 
+function long_url($shortURL)
+{
+	if (!defined('LONGURL_KEY'))
+	{
+		return $shortURL;
+	}
+	$url = "http://www.longurlplease.com/api/v1.1?q=" . $shortURL;
+	$curl_handle=curl_init();
+	curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+	curl_setopt($curl_handle,CURLOPT_URL,$url);
+	$url_json = curl_exec($curl_handle);
+	curl_close($curl_handle);
+
+	$url_array = json_decode($url_json,true);
+	
+	$url_long = $url_array["$shortURL"];
+	
+	if ($url_long == null)
+	{
+		return $shortURL;
+	}
+
+	if (substr($url_long,0,4) !== "http")
+	{
+		preg_match("/^(http:\/\/)?([^\/]+)/i", $shortURL, $matches);
+		$host = $matches[2];
+		$url_long="http://".$host."/".$url_long;
+	}
+		
+	return $url_long;
+}
+
+function theme_external_link($url, $content = null)
+{
+	if (!$content) 
+	{	
+		return "<a class='item-blog-link' href='".long_url($url)."' target='_blank'>".$url."</a>";
+	}
+	else
+	{
+		return "<a class='item-blog-link' href='$url' target='_blank'>$content</a>";
+	}
+}
+
+function parselink($out)
+{
+    require_once("autolink.inc.php");
+    $autolink = new Twitter_Autolink();
+    $out = $autolink->autolink($out);
+    return $out;
+}
+
 function theme_page($title, $content) {
     ob_start('ob_gzhandler');
     header('Content-Type: text/html; charset=utf-8');
@@ -141,7 +193,7 @@ function theme_result($result)
                     </div>
                     <div class="left microblog-item-content">
                         <div class="microblog-item-blog">
-                            <a class="microblog-item-blog-name" target="_blank" href="http://t.sina.com.cn/n/'.$r['post_screenname'].'">'.$r['post_screenname'].'</a>：'.$r['content'].'
+                            <a class="microblog-item-blog-name" target="_blank" href="http://t.sina.com.cn/n/'.$r['post_screenname'].'">'.$r['post_screenname'].'</a>：'.parselink($r['content']).'
                         </div>
                         <div class="microblog-item-other">
                             <span class="left microblog-item-time">'.time_tran($r['post_datetime']).'</span> '.$source;
