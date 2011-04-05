@@ -64,7 +64,7 @@ function feedback_show($query)
             $nick = $r['nickname'];
         else
             $nick = "游客";
-        $content .= '<div class="item">
+        $content .= '<div class="item" id="'.$r['feedback_id'].'">
                         <div class="item-delete">
                             <a class="right"></a>
                         </div>
@@ -79,7 +79,9 @@ function feedback_show($query)
                                 '.$r['description'].'
                             </div>
                             <div class="item-other">
-                                <a class="left item-position">'.$r['email'].'</a> <a class="right item-control last delete">删除</a>
+                                <span class="left item-time">'.time_tran($r['post_datetime']).'</span>
+                                <a class="left item-position">'.$r['email'].'</a>
+                                <a class="right item-control last delete">删除</a>
                             </div>
                         </div>
                         <div class="clear">
