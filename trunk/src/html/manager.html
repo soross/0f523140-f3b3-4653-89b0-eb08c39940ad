@@ -73,7 +73,7 @@
                         email: $("#email").val(),
                         content: editor.document.getBody().getHtml()
                     },
-                    success: function () {
+                    success: function (msg) {
                         $("div#profile-info").dialog("open");
                     }
                 });
