@@ -105,7 +105,7 @@ class Twitter_Autolink {
 	}
 
 	public function autoLinkUsernamesAndLists($tweet) {
-		return preg_replace_callback('$([^a-z0-9_]|^)([@|＠])([a-z0-9_\u4e00-\u9fa5]{1,20})(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
+		return preg_replace_callback('$([^a-z0-9_]|^)([@|＠])([a-z0-9_\x{4e00}-\x{9fa5}]{1,20})(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
 									 array($this, 'replacementUsernameAndLists'),
 									 $tweet);
 	}
