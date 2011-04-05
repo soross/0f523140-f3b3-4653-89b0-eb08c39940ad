@@ -133,7 +133,7 @@ function theme_resume($title, $data)
             </div>
             <div id="basic3">
                 <span class="right">'.$data['live_in'].'</span> <span class="right">户口地：</span> <span class="right">&nbsp;&nbsp;</span>
-                <span class="right">湖北武汉</span> <span class="right">现居地：'.$data['live_in_now'].'</span> <span class="right">
+                <span class="right">'.$data['live_in_now'].'</span> <span class="right">现居地：</span> <span class="right">
                     &nbsp;&nbsp;</span> <span class="right">'.$data['date_birth'].'</span> <span class="right">出生日期：</span>
             </div>
         </div>
