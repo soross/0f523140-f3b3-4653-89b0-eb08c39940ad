@@ -32,7 +32,7 @@ img
 }
 div#header
 {
-    width: 980px;
+    width: 962px;
     height: 31px;
     background-color: #d1e9f1;
     line-height: 31px;
@@ -40,7 +40,7 @@ div#header
 }
 div#links
 {
-    padding-left: 50px;
+    padding-left: 10px;
 }
 div#links a
 {
@@ -58,7 +58,7 @@ div#links a.last
 
 div#infos
 {
-    padding-right: 30px;
+    padding-right: 10px;
 }
 div#infos a.logined
 {
@@ -84,7 +84,7 @@ div#infos a#sina-login
 div#logo-search
 {
     height: 100px;
-    width: 980px;
+    width: 962px;
     margin: auto;
 }
 div#logo-search a#logo
