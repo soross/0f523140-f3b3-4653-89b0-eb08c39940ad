@@ -11,7 +11,8 @@ NUM = 17
 def craw(key):
     a = unicode(urllib.urlopen(key).read(), "utf-8")
     while True:
-        <a href="home.php?uid=(\d+)&amp;">韩志国</a>
+        print re.findall("<a href=\"home.php?uid=(\d+)&amp;[^\"]+\">([^<]+)</a>", a)
+        raw_input()
         try:
             nextpage = re.findall("<a href=\"([^\"]+)\">下页</a>", b[-3])[0].replace("&amp;", "&")
         except:
