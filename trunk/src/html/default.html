@@ -45,6 +45,8 @@
                         });
                         $("a.like").unbind("click");
                         $("a.unlike").unbind("click");
+                        $("a.apply").unbind("click");
+                        $("a.unapply").unbind("click");
                         $("a.like").click(function () {
                             var item = $(this);
                             var id = $(this).parent().parent().parent().attr("name");
@@ -66,6 +68,30 @@
                                 success: function () {
                                     item.hide();
                                     item.prev("a.like").show();
+                                }
+                            });
+                        });
+                        $("a.apply").click(function () {
+                            var item = $(this);
+                            var id = $(this).parent().parent().parent().attr("name");
+                            $.ajax({
+                                type: "POST",
+                                url: 'apply/add/' + id,
+                                success: function () {
+                                    item.hide();
+                                    item.next("a.unapply").show();
+                                }
+                            });
+                        });
+                        $("a.unapply").click(function () {
+                            var item = $(this);
+                            var id = $(this).parent().parent().parent().attr("name");
+                            $.ajax({
+                                type: "POST",
+                                url: 'apply/delete/' + id,
+                                success: function () {
+                                    item.hide();
+                                    item.prev("a.apply").show();
                                 }
                             });
                         });
@@ -112,6 +138,8 @@
                             });
                             $("a.like").unbind("click");
                             $("a.unlike").unbind("click");
+                            $("a.apply").unbind("click");
+                            $("a.unapply").unbind("click");
                             $("a.like").click(function () {
                                 var item = $(this);
                                 var id = $(this).parent().parent().parent().attr("name");
@@ -133,6 +161,30 @@
                                     success: function () {
                                         item.hide();
                                         item.prev("a.like").show();
+                                    }
+                                });
+                            });
+                            $("a.apply").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'apply/add/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.next("a.unapply").show();
+                                    }
+                                });
+                            });
+                            $("a.unapply").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'apply/delete/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.prev("a.apply").show();
                                     }
                                 });
                             });
@@ -167,6 +219,8 @@
                             });
                             $("a.like").unbind("click");
                             $("a.unlike").unbind("click");
+                            $("a.apply").unbind("click");
+                            $("a.unapply").unbind("click");
                             $("a.like").click(function () {
                                 var item = $(this);
                                 var id = $(this).parent().parent().parent().attr("name");
@@ -188,6 +242,30 @@
                                     success: function () {
                                         item.hide();
                                         item.prev("a.like").show();
+                                    }
+                                });
+                            });
+                            $("a.apply").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'apply/add/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.next("a.unapply").show();
+                                    }
+                                });
+                            });
+                            $("a.unapply").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'apply/delete/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.prev("a.apply").show();
                                     }
                                 });
                             });

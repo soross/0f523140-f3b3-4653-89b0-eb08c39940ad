@@ -232,6 +232,30 @@ function SetAllSearch(msg) {
                                     }
                                 });
                             });
+                            $("a.apply").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'apply/add/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.next("a.unapply").show();
+                                    }
+                                });
+                            });
+                            $("a.unapply").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'apply/delete/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.prev("a.apply").show();
+                                    }
+                                });
+                            });
                         });
                     });
                 });
@@ -554,6 +578,30 @@ function SetSearch(msg, e) {
                                     success: function () {
                                         item.hide();
                                         item.prev("a.like").show();
+                                    }
+                                });
+                            });
+                            $("a.apply").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'apply/add/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.next("a.unapply").show();
+                                    }
+                                });
+                            });
+                            $("a.unapply").click(function () {
+                                var item = $(this);
+                                var id = $(this).parent().parent().parent().attr("name");
+                                $.ajax({
+                                    type: "POST",
+                                    url: 'apply/delete/' + id,
+                                    success: function () {
+                                        item.hide();
+                                        item.prev("a.apply").show();
                                     }
                                 });
                             });
