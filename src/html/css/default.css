@@ -196,6 +196,7 @@ div#right div#search-result-outer
     width: 588px;
     padding: 1px;
     display: none;
+    overflow: hidden;
 }
 div#right div#search-result
 {
@@ -208,6 +209,7 @@ div#right div#search-result
     padding-left: 25px;
     letter-spacing: 3px;
     font-size: 14px;
+    overflow: hidden;
 }
 div#right a#search-result-concern
 {
