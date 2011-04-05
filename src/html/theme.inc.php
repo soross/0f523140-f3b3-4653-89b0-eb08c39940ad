@@ -202,7 +202,7 @@ function theme_result($result, $keyword = '')
         
         $content .= '<div class="microblog-item" id="'.strtotime($r['post_datetime']).'" name="'.$r['tweet_id'].'">
                     <div class="left microblog-item-pic">
-                        <img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/>
+                        <a href="'.BASE_URL.'profile/'.$r['post_screenname'].'"><img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/></a>
                     </div>
                     <div class="left microblog-item-content">
                         <div class="microblog-item-blog">
@@ -210,7 +210,7 @@ function theme_result($result, $keyword = '')
                             .$r['post_screenname'].'</a>：'.$jg.'
                         </div>
                         <div class="microblog-item-other">
-                            <span class="left microblog-item-time">'.time_tran($r['post_datetime']).'</span> '.$source;
+                            <a href="http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'" class="left microblog-item-time">'.time_tran($r['post_datetime']).'</a> '.$source;
         if(user_is_authenticated())
         {
             $fav = 0;
