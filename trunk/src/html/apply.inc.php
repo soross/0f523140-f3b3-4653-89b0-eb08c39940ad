@@ -27,8 +27,6 @@ function get_received_tweets($num, $page)
         $page = intval($page) * $num;
         $limit = " LIMIT $page , $num";
     }
-    $page = intval($page) * $num;
-    $limit = " LIMIT $page , $num";
     connect_db();
     $view = "SELECT $select from tweets, (SELECT * FROM applications WHERE deleted=0) AS ap, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.tweet_id=ap.tweet_id AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
