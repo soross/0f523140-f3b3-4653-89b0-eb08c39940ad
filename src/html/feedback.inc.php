@@ -61,7 +61,7 @@ function feedback_show($query)
     foreach($results as $r)
     {
         if($r['user_id'])
-            $nick = r['nickname'];
+            $nick = $r['nickname'];
         else
             $nick = "游客";
         $content .= '<div class="item">
