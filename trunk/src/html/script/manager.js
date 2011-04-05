@@ -74,7 +74,7 @@ function ShowApply(e) {
                 url: 'apply/count',
                 success: function (msg) {
                     msg = $.trim(msg);
-                    $("blogs-count").html("共有" + msg + "条记录");
+                    $("span#blogs-count").html("共有" + msg + "条记录");
                     $(document).scrollTop(0);
                     var allPage;
                     if (msg % 10 == 0) {
@@ -200,7 +200,7 @@ function ShowFavourite(e) {
                 url: 'like/count',
                 success: function (msg) {
                     msg = $.trim(msg);
-                    $("blogs-count").html("共有" + msg + "条记录");
+                    $("span#blogs-count").html("共有" + msg + "条记录");
                     $(document).scrollTop(0);
                     var allPage;
                     if (msg % 10 == 0) {
@@ -303,7 +303,7 @@ function ShowNormal(e) {
                 url: 'user/current/0/count',
                 success: function (msg) {
                     msg = $.trim(msg);
-                    $("blogs-count").html("共有" + msg + "条记录");
+                    $("span#blogs-count").html("共有" + msg + "条记录");
                     $(document).scrollTop(0);
                     var allPage;
                     if (msg % 10 == 0) {
