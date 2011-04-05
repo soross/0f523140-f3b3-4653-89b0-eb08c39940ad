@@ -92,10 +92,10 @@ function SetContent(id, datas, item, count) {
             });
             var allpage = 0;
             if (count % 10 == 0) {
-                allpage = count / 10;
+                allpage = Math.floor(count / 10);
             }
             else {
-                allpage = count / 10 + 1;
+                allpage = Math.floor(count / 10) + 1;
             }
             item.next(".item-page").html('');
             if (allpage > 1) {
