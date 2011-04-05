@@ -56,23 +56,25 @@ function ShowProfile() {
         type: 'GET',
         url: 'resume/show',
         success: function (msg) {
-            $("#u-name").val(msg.split('|')[0]);
-            $("#sex").val(msg.split('|')[1]);
-            $("#birthday").val(msg.split('|')[2]);
-            $("#n-positon").val(msg.split('|')[3]);
-            $("#o-positon").val(msg.split('|')[4]);
-            $("#m-phone").val(msg.split('|')[5]);
-            $("#email").val(msg.split('|')[6]);
-            var str = "";
-            for (s in msg.split('|')) {
-                if (s == 7) {
-                    str += msg.split('|')[s];
+            if ($.trim(msg).indexOf('|') != -1) {
+                $("#u-name").val(msg.split('|')[0]);
+                $("#sex").val(msg.split('|')[1]);
+                $("#birthday").val(msg.split('|')[2]);
+                $("#n-positon").val(msg.split('|')[3]);
+                $("#o-positon").val(msg.split('|')[4]);
+                $("#m-phone").val(msg.split('|')[5]);
+                $("#email").val(msg.split('|')[6]);
+                var str = "";
+                for (s in msg.split('|')) {
+                    if (s == 7) {
+                        str += msg.split('|')[s];
+                    }
+                    else if (s >= 7) {
+                        str += '|' + msg.split('|')[s];
+                    }
                 }
-                else if (s >= 7) {
-                    str += '|' + msg.split('|')[s];
-                }
+                editor.setData(str);
             }
-            editor.setData(str);
         }
     });
 }
