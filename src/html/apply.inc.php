@@ -16,10 +16,21 @@ function get_received_tweets($num, $page)
     $id = get_current_user_id();
     if(!$page)
         $page = "0";
+    if($page == "count")
+    {
+        $limit = "";
+        $select = "COUNT(*)";
+    }
+    else
+    {
+        $select = "*";
+        $page = intval($page) * $num;
+        $limit = " LIMIT $page , $num";
+    }
     $page = intval($page) * $num;
     $limit = " LIMIT $page , $num";
     connect_db();
-    $view = "SELECT * from tweets, (SELECT * FROM applications WHERE deleted=0) AS ap, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.tweet_id=ap.tweet_id AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT $select from tweets, (SELECT * FROM applications WHERE deleted=0) AS ap, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.tweet_id=ap.tweet_id AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
@@ -107,7 +118,13 @@ function received_apply($query)
         return received_apply_show($id, $page);
     }
     $content = '';
-    $results = get_received_tweets(10, "");
+    $results = get_received_tweets(10, $key);
+    if($key == "count")
+    {
+        echo $results[0][0];
+        return;
+    }
+
     foreach($results as $r)
     {
         if(strstr($r['source'], '<'))
