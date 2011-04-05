@@ -99,6 +99,10 @@ function ShowApplys(e) {
                         url: 'received/apply/' + id + "/0",
                         success: function (msg) {
                             item.html(msg);
+                            $("a.item-applys-read").each(function () {
+                                $(this).attr("href", "resume/show/" + $(this).parent().attr("id"));
+                                $(this).attr("target", "_blank");
+                            });
                             item.slideDown(200);
                             item.removeClass("close");
                         }
