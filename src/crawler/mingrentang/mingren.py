@@ -9,29 +9,9 @@ q = Queue()
 NUM = 17
 
 def craw(key):
-    a = unicode(urllib.urlopen(key), "utf-8")
+    a = unicode(urllib.urlopen(key).read(), "utf-8")
     while True:
-        b = a.read().split('<div class="c"')
-        for item in b[1:-2]:
-            try:
-                if "转发了" in item:
-                    continue
-                id = re.findall('id="([^"]+)"', item)[0]
-                text = re.findall('<span class="ctt">(.+?)</span>[\[\&]', item)[0]
-                text = re.sub("<.+?>","",text)
-                if text[0] == ':':
-                    text = text[1:]
-                if id in ids:
-                    continue
-                #print id, text
-                results.append((id, unicode(text,'utf-8')))
-                ids.append(id)
-                count += 1
-                print count
-                if count > TARGET:
-                    return
-            except:
-                pass
+        <a href="home.php?uid=(\d+)&amp;">韩志国</a>
         try:
             nextpage = re.findall("<a href=\"([^\"]+)\">下页</a>", b[-3])[0].replace("&amp;", "&")
         except:
