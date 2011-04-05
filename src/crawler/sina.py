@@ -162,7 +162,7 @@ for crawler in enumerate(A):
 	sleep(2)
     
 print now() + "Preparing cursors to operate database..."
-path = os.path.abspath('.')
+path = '/var/www/0f523140-f3b3-4653-89b0-eb08c39940ad/src/crawler'
 os.chdir(path)
 import MySQLdb, uuid
 db = MySQLdb.connect("127.0.0.1","apis","apis","apis",charset="utf8")
