@@ -953,11 +953,11 @@ function GetNewerBlogs() {
                     });
                 }
                 $("div#fresh-blogs").html(msg);
-                $("div#fresh").html('有' + (msg.split("id=").length - 1) + '条更新，点击<a class="keyword">这里</a>刷新');
+                $("div#fresh").html('有' + (msg.split("id=").length - 1) + '条更新，点击查看');
                 $("div#fresh-outer").slideDown(300, null, function () {
                     $("div#fresh-outer").animate({ opacity: 1 }, 200);
                 });
-                $("div#fresh a").click(function () {
+                $("div#fresh").click(function () {
                     isFreshed = false;
                     $("div#fresh-blogs").slideDown(500, null, function () {
                         $("div#fresh-blogs").animate({ opacity: 1 }, 200);
