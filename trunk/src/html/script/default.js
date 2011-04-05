@@ -689,6 +689,21 @@ function SetSearch(msg, e) {
                             if (!isTurn) {
                                 nowFirst = $(".microblog-item:first").attr("id");
                             }
+                            $("a.tag").click(function () {
+                                var text = $(this).attr("title");
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'search/' + encodeURI(text),
+                                    success: function (msg) {
+                                        page = 0;
+                                        cate = 0;
+                                        $("#sort").html($("a#" + cate).html());
+                                        $("#sorts-name").html($("a#" + cate).html());
+                                        isTurn = false;
+                                        SetSearch(msg, text);
+                                    }
+                                });
+                            });
                             $("a.microblog-item-relate").click(function () {
                                 var text = $(this).html();
                                 $.ajax({
