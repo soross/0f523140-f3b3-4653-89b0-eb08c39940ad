@@ -126,6 +126,7 @@
                     "确定": function () {
                         $(this).dialog("close");
                         var flag = false;
+                        $("div#pages").fadeOut(50);
                         if (allpage > 1) {
                             flag = true;
                         }
