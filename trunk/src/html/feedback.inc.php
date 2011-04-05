@@ -11,7 +11,7 @@ function post_feedback($query)
     if(user_is_authenticated())
     {
         $id1 = ', user_id';
-        $id2 = ', \''.get_current_user_id().'\''
+        $id2 = ', \''.get_current_user_id().'\'';
     }
     else
         $id1 = $id2 = "";
