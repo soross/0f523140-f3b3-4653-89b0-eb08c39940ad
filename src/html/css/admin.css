@@ -140,8 +140,8 @@ div.item-blog
     width: 530px;
     line-height: 20px;
     padding: 0 5px;
-    font-size:14px;
-    overflow:hidden;
+    font-size: 14px;
+    overflow: hidden;
 }
 a.item-blog-name
 {
@@ -154,10 +154,11 @@ a.item-blog-link
 }
 div.item-blog-content
 {
-    margin-top:5px;
+    margin-top: 5px;
     line-height: 20px;
-    font-size:14px;
-    display:none;
+    font-size: 14px;
+    display: none;
+    word-wrap: break-word;
 }
 div.item-other
 {
@@ -166,13 +167,13 @@ div.item-other
 }
 div.item-applys
 {
-    margin-top:5px;
+    margin-top: 5px;
     line-height: 24px;
-    display:none;
+    display: none;
 }
 div.item-applys span.item-applys-time
 {
-    margin-left:5px;
+    margin-left: 5px;
 }
 div.item-applys a.item-applys-name
 {
@@ -184,8 +185,8 @@ div.item-applys a.item-applys-read
 }
 div.item-applys div
 {
-    height:24px;
-    padding:0 20px;
+    height: 24px;
+    padding: 0 20px;
 }
 span.item-time
 {
