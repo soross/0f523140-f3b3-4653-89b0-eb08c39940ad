@@ -20,7 +20,6 @@ function get_received_tweets($num, $page)
     $limit = " LIMIT $page , $num";
     connect_db();
     $view = "SELECT * from tweets, (SELECT * FROM applications WHERE deleted=0) AS ap, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.tweet_id=ap.tweet_id AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
-    echo $view;
     $list = mysql_query($view);
     $result = array();
     $i = 0;
@@ -121,6 +120,7 @@ function received_apply()
                         <div class="clear">
                         </div>
                     </div>';
+    echo $content;
 }
 
 function apply_show()
