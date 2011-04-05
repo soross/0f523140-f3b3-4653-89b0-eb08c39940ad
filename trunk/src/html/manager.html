@@ -135,7 +135,7 @@
                                                     var str = '<div class="item newer" style="display:none;"';
                                                     str += msg.split('<div class="item"')[10];
                                                     $("div#blogsinner").html($("div#blogsinner").html() + str);
-                                                    $(window).scrollTop(position);
+                                                    $("html, body").scrollTop(position);
                                                     $(".newer").slideDown(200);
                                                     $("div.item").unbind("mouseover");
                                                     $("div.item").unbind("mouseout");
@@ -165,7 +165,7 @@
                                                     var str = '<div class="item newer" style="display:none;"';
                                                     str += msg.split('<div class="item"')[10];
                                                     $("div#blogsinner").html($("div#blogsinner").html() + str);
-                                                    $(window).scrollTop(position);
+                                                    $("html, body").scrollTop(position);
                                                     $(".newer").slideDown(200);
                                                     $("a.apply").unbind("click");
                                                     $("a.unapply").unbind("click");
@@ -229,7 +229,7 @@
                                                     var str = '<div class="item newer" style="display:none;"';
                                                     str += msg.split('<div class="item"')[10];
                                                     $("div#blogsinner").html($("div#blogsinner").html() + str);
-                                                    $(window).scrollTop(position);
+                                                    $("html, body").scrollTop(position);
                                                     $(".newer").slideDown(200);
                                                     $("div.item").unbind("mouseover");
                                                     $("div.item").unbind("mouseout");
