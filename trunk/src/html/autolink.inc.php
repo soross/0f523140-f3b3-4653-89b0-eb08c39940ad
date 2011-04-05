@@ -67,7 +67,7 @@ class Twitter_Autolink {
         $t = preg_replace('$([#＃])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})([#＃])$iu',
 			'<a title="${2}" class="' . $this->urlClass . ' ' . $this->hashtagClass . '">${1}${2}${3}</a>',
 							$tweet);
-        $t = preg_replace('$title="<[^>]+>([^<]+)</span>$iu',
+        $t = preg_replace('$title="$<[^>]+>([^<]+)</span>$iu',
 			'$title="${1}', $t);
         return $t;
 	}
