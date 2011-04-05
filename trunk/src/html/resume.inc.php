@@ -46,7 +46,7 @@ function resume_show()
     include_once('login.php');
     $id = get_current_user_id();
     connect_db();
-    $view = "SELECT * FROM resumes WHERE resume_id = '$key'"
+    $view = "SELECT * FROM resumes WHERE resume_id = '$key'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     if($row)
