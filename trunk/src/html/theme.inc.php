@@ -88,7 +88,7 @@ function theme_login()
 }
 
 function time_tran($the_time){
-   $now_time = date("Y-m-d H:i:s",time()+8*60*60);
+   $now_time = date("Y-m-d H:i:s",time());
    $now_time = strtotime($now_time);
    $show_time = strtotime($the_time);
    $dur = $now_time - $show_time;
