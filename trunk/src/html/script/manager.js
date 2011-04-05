@@ -115,7 +115,6 @@ function UpdateApply() {
         success: function (msg) {
             msg = $.trim(msg);
             $("span#blogs-count").html("共有" + msg + "条记录");
-            $(document).scrollTop(0);
             var allPage;
             if (msg % 10 == 0) {
                 allPage = Math.floor(msg / 10);
@@ -166,14 +165,17 @@ function UpdateApply() {
                 $("a.page-number").click(function () {
                     page = $(this).html() - 1;
                     ShowApply(page);
+                    $(document).scrollTop(0);
                 });
                 $("a#prevPage").click(function () {
                     page--;
                     ShowApply(page);
+                    $(document).scrollTop(0);
                 });
                 $("a#nextPage").click(function () {
                     page++;
                     ShowApply(page);
+                    $(document).scrollTop(0);
                 });
             }
         }
@@ -248,7 +250,6 @@ function UpdateFavourite() {
         success: function (msg) {
             msg = $.trim(msg);
             $("span#blogs-count").html("共有" + msg + "条记录");
-            $(document).scrollTop(0);
             var allPage;
             if (msg % 10 == 0) {
                 allPage = Math.floor(msg / 10);
@@ -299,14 +300,17 @@ function UpdateFavourite() {
                 $("a.page-number").click(function () {
                     page = $(this).html() - 1;
                     ShowFavourite(page);
+                    $(document).scrollTop(0);
                 });
                 $("a#prevPage").click(function () {
                     page--;
                     ShowFavourite(page);
+                    $(document).scrollTop(0);
                 });
                 $("a#nextPage").click(function () {
                     page++;
                     ShowFavourite(page);
+                    $(document).scrollTop(0);
                 });
             }
         }
@@ -356,7 +360,6 @@ function UpdateTweet() {
         success: function (msg) {
             msg = $.trim(msg);
             $("span#blogs-count").html("共有" + msg + "条记录");
-            $(document).scrollTop(0);
             var allPage;
             if (msg % 10 == 0) {
                 allPage = Math.floor(msg / 10);
@@ -407,14 +410,17 @@ function UpdateTweet() {
                 $("a.page-number").click(function () {
                     page = $(this).html() - 1;
                     ShowNormal(page);
+                    $(document).scrollTop(0);
                 });
                 $("a#prevPage").click(function () {
                     page--;
                     ShowNormal(page);
+                    $(document).scrollTop(0);
                 });
                 $("a#nextPage").click(function () {
                     page++;
                     ShowNormal(page);
+                    $(document).scrollTop(0);
                 });
             }
         }
