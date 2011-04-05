@@ -2,6 +2,7 @@
 var deleteid;
 var deleteurl;
 var page = 0;
+var allpage = 0;
 var type = "";
 
 $(function () {
@@ -115,21 +116,20 @@ function UpdateApply() {
         success: function (msg) {
             msg = $.trim(msg);
             $("span#blogs-count").html("共有" + msg + "条记录");
-            var allPage;
             if (msg % 10 == 0) {
-                allPage = Math.floor(msg / 10);
+                allpage = Math.floor(msg / 10);
             }
             else {
-                allPage = Math.floor(msg / 10) + 1;
+                allpage = Math.floor(msg / 10) + 1;
             }
-            if (allPage > 0) {
+            if (allpage > 0) {
                 prevLess = false;
                 nextLess = false;
                 var str = '<div id="pages-inner" class="right">';
                 if (page != 0) {
                     str += '<a class="page-control left" id="prevPage">上一页</a>';
                 }
-                for (i = 0; i < allPage; i++) {
+                for (i = 0; i < allpage; i++) {
                     if (!prevLess && i - page < -2) {
                         if (i == 0) {
                             str += '<a class="page-number left">' + (i + 1) + '</a>';
@@ -147,7 +147,7 @@ function UpdateApply() {
                             str += '<a class="page-number left">' + (i + 1) + '</a>';
                         }
                     }
-                    if (i == allPage - 1 && i - page > 2) {
+                    if (i == allpage - 1 && i - page > 2) {
                         str += '<a class="page-number left">' + (i + 1) + '</a>';
                         nextLess = true;
                     }
@@ -156,7 +156,7 @@ function UpdateApply() {
                         str += '<span class="left">...</span>';
                     }
                 }
-                if (page != allPage - 1) {
+                if (page != allpage - 1) {
                     str += '<a class="page-control left" id="nextPage">下一页</a>';
                 }
                 str += '</div>';
@@ -250,21 +250,20 @@ function UpdateFavourite() {
         success: function (msg) {
             msg = $.trim(msg);
             $("span#blogs-count").html("共有" + msg + "条记录");
-            var allPage;
             if (msg % 10 == 0) {
-                allPage = Math.floor(msg / 10);
+                allpage = Math.floor(msg / 10);
             }
             else {
-                allPage = Math.floor(msg / 10) + 1;
+                allpage = Math.floor(msg / 10) + 1;
             }
-            if (allPage > 0) {
+            if (allpage > 0) {
                 prevLess = false;
                 nextLess = false;
                 var str = '<div id="pages-inner" class="right">';
                 if (page != 0) {
                     str += '<a class="page-control left" id="prevPage">上一页</a>';
                 }
-                for (i = 0; i < allPage; i++) {
+                for (i = 0; i < allpage; i++) {
                     if (!prevLess && i - page < -2) {
                         if (i == 0) {
                             str += '<a class="page-number left">' + (i + 1) + '</a>';
@@ -282,7 +281,7 @@ function UpdateFavourite() {
                             str += '<a class="page-number left">' + (i + 1) + '</a>';
                         }
                     }
-                    if (i == allPage - 1 && i - page > 2) {
+                    if (i == allpage - 1 && i - page > 2) {
                         str += '<a class="page-number left">' + (i + 1) + '</a>';
                         nextLess = true;
                     }
@@ -291,7 +290,7 @@ function UpdateFavourite() {
                         str += '<span class="left">...</span>';
                     }
                 }
-                if (page != allPage - 1) {
+                if (page != allpage - 1) {
                     str += '<a class="page-control left" id="nextPage">下一页</a>';
                 }
                 str += '</div>';
@@ -360,21 +359,20 @@ function UpdateTweet() {
         success: function (msg) {
             msg = $.trim(msg);
             $("span#blogs-count").html("共有" + msg + "条记录");
-            var allPage;
             if (msg % 10 == 0) {
-                allPage = Math.floor(msg / 10);
+                allpage = Math.floor(msg / 10);
             }
             else {
-                allPage = Math.floor(msg / 10) + 1;
+                allpage = Math.floor(msg / 10) + 1;
             }
-            if (allPage > 0) {
+            if (allpage > 0) {
                 prevLess = false;
                 nextLess = false;
                 var str = '<div id="pages-inner" class="right">';
                 if (page != 0) {
                     str += '<a class="page-control left" id="prevPage">上一页</a>';
                 }
-                for (i = 0; i < allPage; i++) {
+                for (i = 0; i < allpage; i++) {
                     if (!prevLess && i - page < -2) {
                         if (i == 0) {
                             str += '<a class="page-number left">' + (i + 1) + '</a>';
@@ -392,7 +390,7 @@ function UpdateTweet() {
                             str += '<a class="page-number left">' + (i + 1) + '</a>';
                         }
                     }
-                    if (i == allPage - 1 && i - page > 2) {
+                    if (i == allpage - 1 && i - page > 2) {
                         str += '<a class="page-number left">' + (i + 1) + '</a>';
                         nextLess = true;
                     }
@@ -401,7 +399,7 @@ function UpdateTweet() {
                         str += '<span class="left">...</span>';
                     }
                 }
-                if (page != allPage - 1) {
+                if (page != allpage - 1) {
                     str += '<a class="page-control left" id="nextPage">下一页</a>';
                 }
                 str += '</div>';
