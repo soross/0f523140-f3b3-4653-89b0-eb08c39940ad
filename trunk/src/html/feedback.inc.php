@@ -1,6 +1,6 @@
 <?php
 func_register(array(
-    'feedback' => array(
+    'feedback_post' => array(
         'callback' => 'post_feedback',
     ),
 ));
