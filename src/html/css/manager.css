@@ -399,15 +399,15 @@ input.info-content-words
     margin-left: 30px;
     margin-top: 7px;
     margin-bottom: 7px;
-    border: 1px #ffffff solid;
+    border: 1px #c9c9c9 solid;
 }
 input.info-content-words:hover
 {
-    border: 1px #b2b2b2 solid;
+    border: 1px #a8a8a8 solid;
 }
 input.info-content-words-focus
 {
-    border: 1px #b2b2b2 solid;
+    border: 1px #a8a8a8 solid;
 }
 div#info-pic
 {
