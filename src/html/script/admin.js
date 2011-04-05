@@ -39,7 +39,7 @@ function ShowNormal(e) {
             $("div#blogsinner").html(msg);
             $("a.delete").click(function () {
                 deleteitem = $(this).parent().parent().parent();
-                deleteid = deleteitem.attr("id");
+                deleteid = deleteitem.attr("name");
                 deleteurl = 'tweet/delete/';
                 type = "tweet";
                 $("#delete-dialog").dialog("open");
