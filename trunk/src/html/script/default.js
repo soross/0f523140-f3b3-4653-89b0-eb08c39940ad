@@ -308,6 +308,21 @@ function SetAllSearch(msg) {
                                     }
                                 });
                             });
+                            $("a.tag").click(function () {
+                                var text = $(this).attr("title");
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'search/' + encodeURI(text),
+                                    success: function (msg) {
+                                        page = 0;
+                                        cate = 0;
+                                        $("#sort").html($("a#" + cate).html());
+                                        $("#sorts-name").html($("a#" + cate).html());
+                                        isTurn = false;
+                                        SetSearch(msg, text);
+                                    }
+                                });
+                            });
                             $("a.like").click(function () {
                                 var item = $(this);
                                 var id = $(this).parent().parent().parent().attr("name");
@@ -706,6 +721,21 @@ function SetSearch(msg, e) {
                             });
                             $("a.microblog-item-relate").click(function () {
                                 var text = $(this).html();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'search/' + encodeURI(text),
+                                    success: function (msg) {
+                                        page = 0;
+                                        cate = 0;
+                                        $("#sort").html($("a#" + cate).html());
+                                        $("#sorts-name").html($("a#" + cate).html());
+                                        isTurn = false;
+                                        SetSearch(msg, text);
+                                    }
+                                });
+                            });
+                            $("a.tag").click(function () {
+                                var text = $(this).attr("title");
                                 $.ajax({
                                     type: 'GET',
                                     url: 'search/' + encodeURI(text),
