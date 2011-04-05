@@ -84,7 +84,7 @@ function parsekeyword($keyword, $out)
 {
     $keyword = explode(" ",$keyword);
     foreach($keyword as $key)
-        $out = preg_replace('/'.$key.'/i', '<span class=\'highlight\'>${1}</span>', $out);
+        $out = preg_replace('/'.$key.'/i', '<span class=\'highlight\'>'.$key.'</span>', $out);
     return $out;
 }
 
