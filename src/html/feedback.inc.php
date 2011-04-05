@@ -39,7 +39,7 @@ function get_feedbacks($num, $page)
         $limit = " LIMIT $page , $num";
     }
     connect_db();
-    $view = "SELECT * from feedback, (SELECT nickname FROM userinfo) as ui WHERE ui.user_id = feedback.user_id OR feedback.user_id='NULL' ORDER BY post_datetime DESC$limit";
+    $view = "SELECT * from feedback, (SELECT nickname, user_id FROM userinfo) as ui WHERE ui.user_id = feedback.user_id OR feedback.user_id='NULL' ORDER BY post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
