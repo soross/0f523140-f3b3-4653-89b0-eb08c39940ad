@@ -155,7 +155,7 @@ function ShowFavourite(e) {
             $("div#blogsinner").html(msg);
             $("a.apply").click(function () {
                 var item = $(this);
-                var id = $(this).parent().parent().parent().attr("name");
+                var id = $(this).parent().parent().parent().attr("id");
                 $.ajax({
                     type: "POST",
                     url: 'apply/add/' + id,
@@ -167,7 +167,7 @@ function ShowFavourite(e) {
             });
             $("a.unapply").click(function () {
                 var item = $(this);
-                var id = $(this).parent().parent().parent().attr("name");
+                var id = $(this).parent().parent().parent().attr("id");
                 $.ajax({
                     type: "POST",
                     url: 'apply/delete/' + id,
