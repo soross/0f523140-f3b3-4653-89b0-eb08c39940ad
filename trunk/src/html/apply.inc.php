@@ -46,8 +46,8 @@ function get_received_applies($tweet_id, $num, $page)
         $limit = " LIMIT $page , $num";
     }
     connect_db();
-    $view = "SELECT $select from applications AS ap, (SELECT * FROM tweets WHERE tweet_id='$id' AND deleted=0) AS tweets, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE ap.deleted=0 AND ap.tweet_id='$id' AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
-    echo $view;
+    $view = "SELECT $select from applications AS ap, (SELECT * FROM tweets WHERE tweet_id='$tweet_id' AND deleted=0) AS tweets, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE ap.deleted=0 AND ap.tweet_id='$tweet_id' AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
+    #echo $view;
     $list = mysql_query($view);
     $result = array();
     $i = 0;
