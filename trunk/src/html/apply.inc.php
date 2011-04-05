@@ -26,7 +26,7 @@ function get_applies($num, $page)
     $page = intval($page) * $num;
     $limit = " LIMIT $page , $num";
     connect_db();
-    $view = "SELECT tweets.* from tweets, (SELECT * FROM applications WHERE user_id='$id' AND deleted=0) as applications WHERE tweets.tweet_id=applications.tweet_id ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT * from tweets, (SELECT * FROM applications WHERE user_id='$id' AND deleted=0) as applications WHERE tweets.tweet_id=applications.tweet_id ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
@@ -58,11 +58,11 @@ function apply_show()
                            <a class="item-blog-name">'.$f['post_screenname'].'</a>：'.$f['content'].'
                        </div>
                        <div class="item-other">
-                           <span class="left item-time">'.$r['post_datetime'].'</span> '.$source.'
-                           <a class="right item-favourite item-action delete">取消收藏</a> ';
-                            if($f['type'] != 1)
-                                $content .= '<a class="right item-favourite item-doapply apply">
-                                        申请该职位</a>';
+                           <span class="left item-time">'.$r['post_datetime'].'</span> '.$source
+        if($f['view_time'])
+            $content .= '<span class="right item-apply item-apply-info">'.$f['view_time'].'</span>';
+        else
+            $content .= '<span class="right item-apply item-apply-info">未读</span>';
         $content .= '
                        </div>
                    </div>
