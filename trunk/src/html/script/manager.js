@@ -1,6 +1,7 @@
 ﻿var deleteitem;
 var deleteid;
 var deleteurl;
+var page = 0;
 
 $(function () {
     $("div#content-middle-delete a").animate({ opacity: 0.6 }, 0);
@@ -84,11 +85,11 @@ function ShowFavourite(e) {
                     msg = $.trim(msg);
                     $(document).scrollTop(0);
                     var allPage;
-                    if (msg % 50 == 0) {
-                        allPage = Math.floor(msg / 50);
+                    if (msg % 10 == 0) {
+                        allPage = Math.floor(msg / 10);
                     }
                     else {
-                        allPage = Math.floor(msg / 50) + 1;
+                        allPage = Math.floor(msg / 10) + 1;
                     }
                     if (allPage > 1) {
                         prevLess = false;
@@ -132,36 +133,15 @@ function ShowFavourite(e) {
                         $("div#pages").animate({ opacity: 1 }, 200);
                         $("a.page-number").click(function () {
                             page = $(this).html() - 1;
-                            $.ajax({
-                                type: 'GET',
-                                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
-                                success: function (msg) {
-                                    isTurn = true;
-                                    SetSearch(msg, SearchResult);
-                                }
-                            });
+                            ShowFavourite(page);
                         });
                         $("a#prevPage").click(function () {
                             page--;
-                            $.ajax({
-                                type: 'GET',
-                                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
-                                success: function (msg) {
-                                    isTurn = true;
-                                    SetSearch(msg, SearchResult);
-                                }
-                            });
+                            ShowFavourite(page);
                         });
                         $("a#nextPage").click(function () {
                             page++;
-                            $.ajax({
-                                type: 'GET',
-                                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
-                                success: function (msg) {
-                                    isTurn = true;
-                                    SetSearch(msg, SearchResult);
-                                }
-                            });
+                            ShowFavourite(page);
                         });
                     }
                 }
