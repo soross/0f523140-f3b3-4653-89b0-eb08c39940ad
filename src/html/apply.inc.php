@@ -114,12 +114,12 @@ function received_apply()
                                     申请数('.$g[0][0].')</a>
                             </div>
                             <div class="item-applys close"></div>';
-    }
-    $content .= '
+        $content .= '
                         </div>
                         <div class="clear">
                         </div>
                     </div>';
+    }
     echo $content;
 }
 
