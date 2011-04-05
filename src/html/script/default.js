@@ -94,7 +94,7 @@ function SetAllSearch(msg) {
     $("div#fresh-blogs").animate({ opacity: 0 }, 0);
     $("div#fresh-blogs").hide();
     count = 0;
-    $("div#pages").animate({ opacity: 0 }, 50);
+    $("div#pages").fadeOut(50);
     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
         $("div#blogs").slideUp(100, null, function () {
             $("div#blogs").html('<img src="images/loading.gif" style="margin-left:280px;" />');
@@ -156,7 +156,7 @@ function SetAllSearch(msg) {
                                     }
                                     str += '</div>';
                                     $("div#pages").html(str);
-                                    $("div#pages").animate({ opacity: 1 }, 200);
+                                    $("div#pages").fadeIn(200);
                                     $("a.page-number").click(function () {
                                         page = $(this).html() - 1;
                                         $.ajax({
@@ -416,7 +416,7 @@ function SetSearch(msg, e) {
     $("div#fresh-blogs").hide();
     count = 0;
     SearchResult = e;
-    $("div#pages").animate({ opacity: 0 }, 50);
+    $("div#pages").fadeOut(50);
     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
         $("div#blogs").slideUp(100, null, function () {
             $("div#blogs").html('<img src="images/loading.gif" style="margin-left:280px;" />');
@@ -480,7 +480,7 @@ function SetSearch(msg, e) {
                                         }
                                         str += '</div>';
                                         $("div#pages").html(str);
-                                        $("div#pages").animate({ opacity: 1 }, 200);
+                                        $("div#pages").fadeIn(200);
                                         $("a.page-number").click(function () {
                                             page = $(this).html() - 1;
                                             $.ajax({

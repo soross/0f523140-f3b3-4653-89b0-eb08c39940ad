@@ -58,7 +58,7 @@ function ShowFavourite(e) {
         type: 'POST',
         url: 'like/show/' + e,
         success: function (msg) {
-            $("div#pages").animate({ opacity: 0 }, 50);
+            $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
             $("div.item").mouseover(function () {
                 $(this).addClass("item-over");
@@ -91,7 +91,7 @@ function ShowFavourite(e) {
                     else {
                         allPage = Math.floor(msg / 10) + 1;
                     }
-                    if (allPage > 1) {
+                    if (allPage > 0) {
                         prevLess = false;
                         nextLess = false;
                         var str = '<div id="pages-inner" class="right">';
@@ -130,7 +130,7 @@ function ShowFavourite(e) {
                         }
                         str += '</div>';
                         $("div#pages").html(str);
-                        $("div#pages").animate({ opacity: 1 }, 200);
+                        $("div#pages").fadeIn(200);
                         $("a.page-number").click(function () {
                             page = $(this).html() - 1;
                             ShowFavourite(page);
