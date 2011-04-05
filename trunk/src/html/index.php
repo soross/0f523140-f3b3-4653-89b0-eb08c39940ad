@@ -12,6 +12,7 @@ include_once('user.inc.php');
 include_once('tweet.inc.php');
 include_once('resume.inc.php');
 include_once('apply.inc.php');
+include_once('feedback.inc.php');
 
 func_register(array(
   '' => array(
