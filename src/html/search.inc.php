@@ -165,7 +165,7 @@ function search_history_show()
     $content = '';
     foreach($data as $h)
     {
-        $search = mb_substr($h['search'], 0, 20);
+        $search = mb_substr($h['search'], 0, 20, "utf8");
         if($search != $h['search'])
             $search .= '...';
         $content .= '<div class="history-item" title="'.$h['search'].'">
