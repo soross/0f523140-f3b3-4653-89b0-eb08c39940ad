@@ -196,13 +196,13 @@ function theme_result($result, $keyword = '')
             $jg = parselink($r['content']);
         $tags = get_tags($r['tweet_id']);
         if(strstr($r['source'], '<'))
-            $source = str_replace("<a ", '<a class="left microblog-item-position"', $r['source']);
+            $source = str_replace("<a ", '<a target="_blank" class="left microblog-item-position"', $r['source']);
         else
-            $source = '<a class="left microblog-item-position">'.$r['source'].'</a>';
+            $source = '<a class="left microblog-item-position" target="_blank">'.$r['source'].'</a>';
         
         $content .= '<div class="microblog-item" id="'.strtotime($r['post_datetime']).'" name="'.$r['tweet_id'].'">
                     <div class="left microblog-item-pic">
-                        <a href="'.BASE_URL.'profile/'.$r['post_screenname'].'"><img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/></a>
+                        <a target="_blank" href="'.BASE_URL.'profile/'.$r['post_screenname'].'"><img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/></a>
                     </div>
                     <div class="left microblog-item-content">
                         <div class="microblog-item-blog">
@@ -210,7 +210,7 @@ function theme_result($result, $keyword = '')
                             .$r['post_screenname'].'</a>：'.$jg.'
                         </div>
                         <div class="microblog-item-other">
-                            <a href="http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'" class="left microblog-item-time">'.time_tran($r['post_datetime']).'</a> '.$source;
+                            <a target="_blank" href="http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'" class="left microblog-item-time">'.time_tran($r['post_datetime']).'</a> '.$source;
         if(user_is_authenticated())
         {
             $fav = 0;
