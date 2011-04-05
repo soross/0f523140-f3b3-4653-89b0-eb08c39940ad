@@ -44,8 +44,17 @@ function get_user_result($key, $site, $num, $page)
     connect_db();
     if(!$page)
         $page = "0";
-    $page = intval($page) * $num;
-    $limit = " LIMIT $page , $num";
+    if($page == "count")
+    {
+        $limit = "";
+        $select = "COUNT(*)";
+    }
+    else
+    {
+        $select = "*";
+        $page = intval($page) * $num;
+        $limit = " LIMIT $page , $num";
+    }
     if($key == "current")
     {
         include_once("login.inc.php");
@@ -53,9 +62,9 @@ function get_user_result($key, $site, $num, $page)
         $key = get_current_user_id();
     }
     if($site)
-        $view = "SELECT * from tweets WHERE deleted = 0 AND user_site_id = '$key' AND site_id = '$site' ORDER BY post_datetime DESC$limit";
+        $view = "SELECT $select from tweets WHERE deleted = 0 AND user_site_id = '$key' AND site_id = '$site' ORDER BY post_datetime DESC$limit";
     else
-        $view = "SELECT tweets.* from tweets, (SELECT user_site_id, site_id FROM accountbindings WHERE user_id = '$key') AS ac WHERE tweets.deleted = 0 AND tweets.user_site_id = ac.user_site_id AND tweets.site_id = ac.site_id ORDER BY tweets.post_datetime DESC$limit";
+        $view = "SELECT $select from tweets, (SELECT user_site_id, site_id FROM accountbindings WHERE user_id = '$key') AS ac WHERE tweets.deleted = 0 AND tweets.user_site_id = ac.user_site_id AND tweets.site_id = ac.site_id ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
@@ -72,7 +81,10 @@ function user_page($query)
     if(!$key)
         die("Invalid Argument!");
     $data = get_user_result($key, $site, 10, $page);
-    theme('user', $data);
+    if($time == "count")
+        theme('page', 'count', $data[0][0]);
+    else
+        theme('user', $data);
 }
 
 
