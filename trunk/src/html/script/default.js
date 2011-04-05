@@ -371,7 +371,7 @@ function SetResult(msg) {
                                 $("div#concern").animate({ opacity: 1 }, 200, null, function () {
                                     $.ajax({
                                         type: 'POST',
-                                        url: 'follow/show/5',
+                                        url: 'follow/show',
                                         success: function (msg) {
                                             $("div#concern").animate({ opacity: 0 }, 200, null, function () {
                                                 $("#concern").html(msg);
@@ -503,7 +503,7 @@ function SetConcern() {
                                     $("div#concern").animate({ opacity: 1 }, 200, null, function () {
                                         $.ajax({
                                             type: 'POST',
-                                            url: 'follow/show/5',
+                                            url: 'follow/show',
                                             success: function (msg) {
                                                 $("div#concern").animate({ opacity: 0 }, 200, null, function () {
                                                     $("#concern").html(msg);
@@ -1062,7 +1062,7 @@ function AfterLogin() {
             $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;" />');
             $.ajax({
                 type: 'POST',
-                url: 'follow/show/5',
+                url: 'follow/show',
                 success: function (msg) {
                     $("#concern").animate({ opacity: 0 }, 200, null, function () {
                         $("#concern").slideUp(100, null, function () {
