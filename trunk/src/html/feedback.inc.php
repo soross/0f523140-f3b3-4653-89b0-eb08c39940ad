@@ -52,6 +52,7 @@ function feedback_show($query)
 {
     $args = func_get_args();
     $key = $args[2];
+    echo $key;
     $content = '';
     $results = get_feedbacks(10, $key);
     if($key == "count")
@@ -59,7 +60,6 @@ function feedback_show($query)
         echo $results;
         return;
     }
-    echo $results;
     foreach($results as $r)
     {
         if($r['user_id'])
