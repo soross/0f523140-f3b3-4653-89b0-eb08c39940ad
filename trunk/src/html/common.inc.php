@@ -17,7 +17,12 @@ function func_register($items) {
 function func_execute_active_handler() {
 	if(isset($_GET['q']))
 	{
-		$query = (array) explode('/', $_GET['q']);
+        $q = $_GET['q'];
+        $q = str_replace("'", "", $q);
+        $q = str_replace("\"", "", $q);
+        $q = str_replace("<", "", $q);
+        $q = str_replace(">", "", $q);
+		$query = (array) explode('/', $q);
 		$GLOBALS['page'] = $query[0];
 	}
 	else
