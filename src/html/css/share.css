@@ -620,3 +620,7 @@ div#copyright
 {
     display: none;
 }
+.highlight
+{
+    color: #ff0000;
+}
