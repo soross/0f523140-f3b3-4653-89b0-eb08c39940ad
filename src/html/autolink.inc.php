@@ -97,9 +97,9 @@ class Twitter_Autolink {
 	private function replacementURLs($matches) {
 		$replacement  = $matches[2];
 		if (substr($matches[3], 0, 7) == 'http://' || substr($matches[3], 0, 8) == 'https://') {
-			$replacement .= '<a class="' . $this->urlClass . ' href="' . $matches[3] . '" target="_blank">' . $matches[3] . '</a>';
+			$replacement .= '<a class="' . $this->urlClass . '" href="' . $matches[3] . '" target="_blank">' . $matches[3] . '</a>';
 		} else {
-			$replacement .= '<a class="' . $this->urlClass . ' href="http://' . $matches[3] . '" target="_blank">' . $matches[3] . '</a>';
+			$replacement .= '<a class="' . $this->urlClass . '" href="http://' . $matches[3] . '" target="_blank">' . $matches[3] . '</a>';
 		}
 		return $replacement;
 	}
