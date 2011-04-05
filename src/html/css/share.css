@@ -159,6 +159,8 @@ div#sorts-tag
     text-align: center;
     color: #527299;
     padding-left: 5px;
+    border: 1px #9c9c9c solid;
+    border-bottom: none;
 }
 a#sorts-name
 {
