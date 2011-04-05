@@ -103,6 +103,26 @@
                 });
                 //                alert(editor.document.getBody().getHtml());
             });
+            $("a#profile-preview").click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'resume/preview',
+                    data: {
+                        name: $("#u-name").val(),
+                        sex: $("#sex").val(),
+                        date_birth: $("#birthday").val(),
+                        live_in_now: $("#n-positon").val(),
+                        live_in: $("#o-positon").val(),
+                        cellphone: $("#m-phone").val(),
+                        email: $("#email").val(),
+                        content: editor.document.getBody().getHtml()
+                    },
+                    success: function (msg) {
+                        var obj = window.open("about:blank");
+                        obj.document.write(msg);
+                    }
+                });
+            });
 
             $("a.applys").click(function () {
                 var item = $(this).parent().next(".item-applys");
