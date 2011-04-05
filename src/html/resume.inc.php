@@ -119,6 +119,7 @@ function theme_resume($title, $data)
 </head>
 <body>
     <div id="head">
+      <a id="logo" href="/"></a>
     </div>
     <div id="content">
         <div id="basic">

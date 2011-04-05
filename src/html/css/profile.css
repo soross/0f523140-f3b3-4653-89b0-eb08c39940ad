@@ -18,6 +18,11 @@
     height: 71px;
     background-image: url('../images/resume-logo-beta.jpg');
     background-repeat: no-repeat;
+    float: left;
+}
+#logo:hover
+{
+    background-image: url('../images/resume-logo-goback.jpg');
 }
 #content
 {
