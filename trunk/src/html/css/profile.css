@@ -9,10 +9,15 @@
 {
     height: 71px;
     width: 826px;
-    background-image: url('../images/resume-logo-beta.jpg');
-    background-repeat: no-repeat;
     margin: auto;
     margin-top: 20px;
+}
+#logo
+{
+    width: 185px;
+    height: 71px;
+    background-image: url('../images/resume-logo-beta.jpg');
+    background-repeat: no-repeat;
 }
 #content
 {
