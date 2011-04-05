@@ -14,7 +14,7 @@ $(function () {
         $.ajax({
             type: 'GET',
             url: 'search/' + text,
-            success: function () {
+            success: function (msg) {
                 page = 0;
                 cate = 0;
                 $("#sort").html($("a#" + cate).html());
