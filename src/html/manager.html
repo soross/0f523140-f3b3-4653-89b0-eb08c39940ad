@@ -120,6 +120,10 @@
                 buttons: {
                     "确定": function () {
                         $(this).dialog("close");
+                        var flag = false;
+                        if (allpage > 1) {
+                            flag = true;
+                        }
                         $.ajax({
                             type: "POST",
                             url: deleteurl + deleteid,
@@ -127,7 +131,7 @@
                                 deleteitem.animate({ opacity: 0 }, 300, null, function () {
                                     deleteitem.slideUp(200, null, function () {
                                         if (type == "apply") {
-                                            if (allpage > 1) {
+                                            if (flag) {
                                                 $.ajax({
                                                     type: 'POST',
                                                     url: 'apply/show/' + page,
@@ -158,7 +162,7 @@
                                             UpdateApply();
                                         }
                                         else if (type == "like") {
-                                            if (allpage > 1) {
+                                            if (flag) {
                                                 $.ajax({
                                                     type: 'POST',
                                                     url: 'like/show/' + page,
@@ -223,7 +227,7 @@
                                             UpdateFavourite();
                                         }
                                         else if (type == "tweet") {
-                                            if (allpage > 1) {
+                                            if (flag) {
                                                 $.ajax({
                                                     type: 'POST',
                                                     url: 'user/current/0/' + page,
