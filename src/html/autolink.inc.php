@@ -119,10 +119,10 @@ class Twitter_Autolink {
 
 		if (isset($matches[4])) {
 			/* Replace the list and username */
-			$replacement .= '<a class="' . $this->urlClass . ' ' . $this->listClass . '" href="' . $this->get_base() .'lists/'. $matches[3] . $matches[4] . '">' . $matches[3] . $matches[4] . '</a>';
+			$replacement .= '<a class="' . $this->urlClass . ' ' . $this->listClass . '" href="' . $this->get_base() .'lists/'. $matches[3] . $matches[4] . '" target="_blank">' . $matches[3] . $matches[4] . '</a>';
 		} else {
 			/* Replace the username */
-			$replacement .= '<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="' . $this->get_base() . 'profile/' . $matches[3] . '">' . $matches[3] . '</a>';
+			$replacement .= '<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="' . $this->get_base() . 'profile/' . $matches[3] . '" target="_blank">' . $matches[3] . '</a>';
 		}
 
 		return $replacement;
