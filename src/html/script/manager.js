@@ -43,11 +43,102 @@ function ShowProfile() {
     $("div#ads").hide();
 }
 
-function ShowApply() {
+function ShowApplys() { 
+}
+
+function ShowApply(e) {
     $("div#profile").hide();
     $("div#blogs").show();
     $("div#profile-control").hide();
     $("div#ads").show();
+    $.ajax({
+        type: 'POST',
+        url: 'apply/show/' + e,
+        success: function (msg) {
+            $("div#pages").fadeOut(50);
+            $("div#blogsinner").html(msg);
+            $("div.item").mouseover(function () {
+                $(this).addClass("item-over");
+            });
+            $("div.item").mouseout(function () {
+                $(this).removeClass("item-over");
+            });
+            $("div.item-delete a").click(function () {
+                deleteitem = $(this).parent().parent();
+                deleteid = $(this).attr("id");
+                deleteurl = 'apply/delete/';
+                $("#delete-dialog").dialog("open");
+            });
+            $.ajax({
+                type: "POST",
+                url: 'apply/count',
+                success: function (msg) {
+                    msg = $.trim(msg);
+                    $(document).scrollTop(0);
+                    var allPage;
+                    if (msg % 10 == 0) {
+                        allPage = Math.floor(msg / 10);
+                    }
+                    else {
+                        allPage = Math.floor(msg / 10) + 1;
+                    }
+                    if (allPage > 0) {
+                        prevLess = false;
+                        nextLess = false;
+                        var str = '<div id="pages-inner" class="right">';
+                        if (page != 0) {
+                            str += '<a class="page-control left" id="prevPage">上一页</a>';
+                        }
+                        for (i = 0; i < allPage; i++) {
+                            if (!prevLess && i - page < -2) {
+                                if (i == 0) {
+                                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                }
+                                else {
+                                    prevLess = true;
+                                    str += '<span class="left">...</span>';
+                                }
+                            }
+                            if (Math.abs(i - page) <= 2) {
+                                if (i == page) {
+                                    str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                                }
+                                else {
+                                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                }
+                            }
+                            if (i == allPage - 1 && i - page > 2) {
+                                str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                nextLess = true;
+                            }
+                            if (!nextLess && i - page > 2) {
+                                nextLess = true;
+                                str += '<span class="left">...</span>';
+                            }
+                        }
+                        if (page != allPage - 1) {
+                            str += '<a class="page-control left" id="nextPage">下一页</a>';
+                        }
+                        str += '</div>';
+                        $("div#pages").html(str);
+                        $("div#pages").fadeIn(200);
+                        $("a.page-number").click(function () {
+                            page = $(this).html() - 1;
+                            ShowApply(page);
+                        });
+                        $("a#prevPage").click(function () {
+                            page--;
+                            ShowApply(page);
+                        });
+                        $("a#nextPage").click(function () {
+                            page++;
+                            ShowApply(page);
+                        });
+                    }
+                }
+            });
+        }
+    });
 }
 function ShowFavourite(e) {
     page = e;
