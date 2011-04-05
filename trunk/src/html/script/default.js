@@ -410,13 +410,13 @@ function SetResult(msg) {
         url: 'follow/exist/' + encodeURI(msg),
         success: function (e) {
             if (e[0] == '0') {
-                $("a#search-result-concern").attr("class", "left search-result-concern");
+                $("a#search-result-concern").attr("class", "right search-result-concern");
                 $("a#search-result-concern").click(function () {
                     $.ajax({
                         type: 'POST',
                         url: 'follow/add/' + encodeURI(SearchResult),
                         success: function () {
-                            $("a#search-result-concern").attr("class", "left search-result-concern-have");
+                            $("a#search-result-concern").attr("class", "right search-result-concern-have");
                             $("a#search-result-concern").unbind("mouseover");
                             $("a#search-result-concern").unbind("mousedown");
                             $("a#search-result-concern").unbind("mouseout");
@@ -442,7 +442,7 @@ function SetResult(msg) {
                 });
             }
             else {
-                $("a#search-result-concern").attr("class", "left search-result-concern-have");
+                $("a#search-result-concern").attr("class", "right search-result-concern-have");
                 $("a#search-result-concern").unbind("mouseover");
                 $("a#search-result-concern").unbind("mousedown");
                 $("a#search-result-concern").unbind("mouseout");
@@ -533,22 +533,22 @@ function SetConcern() {
             success: function () {
                 var text = item.next(".concern-item-content").children(".concern-item-content-info").html();
                 if (text == SearchResult) {
-                    $("a#search-result-concern").attr("class", "left search-result-concern");
+                    $("a#search-result-concern").attr("class", "right search-result-concern");
                     $("a#search-result-concern").mouseover(function () {
-                        $(this).attr("class", "left search-result-concern-over");
+                        $(this).attr("class", "right search-result-concern-over");
                     });
                     $("a#search-result-concern").mousedown(function () {
-                        $(this).attr("class", "left search-result-concern-click");
+                        $(this).attr("class", "right search-result-concern-click");
                     });
                     $("a#search-result-concern").mouseout(function () {
-                        $(this).attr("class", "left search-result-concern");
+                        $(this).attr("class", "right search-result-concern");
                     });
                     $("a#search-result-concern").click(function () {
                         $.ajax({
                             type: 'POST',
                             url: 'follow/add/' + encodeURI(SearchResult),
                             success: function () {
-                                $("a#search-result-concern").attr("class", "left search-result-concern-have");
+                                $("a#search-result-concern").attr("class", "right search-result-concern-have");
                                 $("a#search-result-concern").unbind("mouseover");
                                 $("a#search-result-concern").unbind("mousedown");
                                 $("a#search-result-concern").unbind("mouseout");
@@ -812,13 +812,13 @@ function SetSearch(msg, e) {
     $("div#search-result-outer").slideDown(200);
     if (logined) {
         $("a#search-result-concern").mouseover(function () {
-            $(this).attr("class", "left search-result-concern-over");
+            $(this).attr("class", "right search-result-concern-over");
         });
         $("a#search-result-concern").mousedown(function () {
-            $(this).attr("class", "left search-result-concern-click");
+            $(this).attr("class", "right search-result-concern-click");
         });
         $("a#search-result-concern").mouseout(function () {
-            $(this).attr("class", "left search-result-concern");
+            $(this).attr("class", "right search-result-concern");
         });
         $("div#history").animate({ opacity: 0 }, 200, null, function () {
             $("div#history").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#history").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#history").height() - 32) / 2) + 'px;" />');
