@@ -19,3 +19,29 @@
         }
     });
 }
+
+$(function () {
+    $("div#feedback-info").dialog({
+        autoOpen: false,
+        buttons: {
+            "确定": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+
+    $("div#inner-content a").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: 'feedback',
+            data: {
+                question: $("#question").val(),
+                description: $("#description").val(),
+                email: $("#email").val()
+            },
+            success: function () {
+                $("div#feedback-info").dialog("open");
+            }
+        });
+    });
+});
