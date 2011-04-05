@@ -10,7 +10,7 @@ var isTurn = false;
 
 $(function () {
     $("a.company-name").click(function () {
-        var text = $(this).html();
+        var text = $.trim($(this).html());
         $.ajax({
             type: 'GET',
             url: 'search/' + text,
