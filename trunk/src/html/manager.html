@@ -78,7 +78,6 @@
                         $("div#profile-info").dialog("open");
                     }
                 });
-                //                alert(editor.document.getBody().getHtml());
             });
             $("a#profile-preview").click(function () {
                 $.ajax({
@@ -129,13 +128,132 @@
                                     deleteitem.slideUp(200);
                                 });
                                 if (type == "apply") {
-                                    UpdateApply();
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: 'apply/show/' + e,
+                                        success: function (msg) {
+                                            var str = '<div class="item newer" style="display:none;"';
+                                            str += msg.split('<div class="item"')[10];
+                                            $("div#blogsinner").html($("div#blogsinner").html() + str);
+                                            $(".newer").slideDown(200);
+                                            $("div.item").unbind("mouseover");
+                                            $("div.item").unbind("mouseout");
+                                            $("div.item-delete a").unbind("click");
+                                            $("div.item").mouseover(function () {
+                                                $(this).addClass("item-over");
+                                            });
+                                            $("div.item").mouseout(function () {
+                                                $(this).removeClass("item-over");
+                                            });
+                                            $("div.item-delete a").click(function () {
+                                                deleteitem = $(this).parent().parent();
+                                                deleteid = deleteitem.attr("id");
+                                                deleteurl = 'apply/delete/';
+                                                type = "apply";
+                                                $("#delete-dialog").dialog("open");
+                                            });
+                                            UpdateApply();
+                                        }
+                                    });
                                 }
                                 else if (type == "like") {
-                                    UpdateFavourite();
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: 'like/show/' + e,
+                                        success: function (msg) {
+                                            var str = '<div class="item newer" style="display:none;"';
+                                            str += msg.split('<div class="item"')[10];
+                                            $("div#blogsinner").html($("div#blogsinner").html() + str);
+                                            $(".newer").slideDown(200);
+                                            $("a.apply").unbind("click");
+                                            $("a.unapply").unbind("click");
+                                            $("div.item").unbind("mouseover");
+                                            $("div.item").unbind("mouseout");
+                                            $("a.delete").unbind("click");
+                                            $("div.item-delete a").unbind("click");
+                                            $("a.apply").click(function () {
+                                                var item = $(this);
+                                                var id = $(this).parent().parent().parent().attr("id");
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: 'apply/add/' + id,
+                                                    success: function () {
+                                                        item.hide();
+                                                        item.next("a.unapply").show();
+                                                    }
+                                                });
+                                            });
+                                            $("a.unapply").click(function () {
+                                                var item = $(this);
+                                                var id = $(this).parent().parent().parent().attr("id");
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: 'apply/delete/' + id,
+                                                    success: function () {
+                                                        item.hide();
+                                                        item.prev("a.apply").show();
+                                                    }
+                                                });
+                                            });
+                                            $("div.item").mouseover(function () {
+                                                $(this).addClass("item-over");
+                                            });
+                                            $("div.item").mouseout(function () {
+                                                $(this).removeClass("item-over");
+                                            });
+                                            $("a.delete").click(function () {
+                                                deleteitem = $(this).parent().parent().parent();
+                                                deleteid = deleteitem.attr("id");
+                                                deleteurl = 'like/delete/';
+                                                type = "like";
+                                                $("#delete-dialog").dialog("open");
+                                            });
+                                            $("div.item-delete a").click(function () {
+                                                deleteitem = $(this).parent().parent();
+                                                deleteid = deleteitem.attr("id");
+                                                deleteurl = 'like/delete/';
+                                                type = "like";
+                                                $("#delete-dialog").dialog("open");
+                                            });
+                                            UpdateFavourite();
+                                        }
+                                    });
                                 }
                                 else if (type == "tweet") {
-                                    UpdateTweet();
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: 'user/current/0/' + e,
+                                        success: function (msg) {
+                                            var str = '<div class="item newer" style="display:none;"';
+                                            str += msg.split('<div class="item"')[10];
+                                            $("div#blogsinner").html($("div#blogsinner").html() + str);
+                                            $(".newer").slideDown(200);
+                                            $("div.item").unbind("mouseover");
+                                            $("div.item").unbind("mouseout");
+                                            $("a.delete").unbind("click");
+                                            $("div.item-delete a").unbind("click");
+                                            $("div.item").mouseover(function () {
+                                                $(this).addClass("item-over");
+                                            });
+                                            $("div.item").mouseout(function () {
+                                                $(this).removeClass("item-over");
+                                            });
+                                            $("a.delete").click(function () {
+                                                deleteitem = $(this).parent().parent().parent();
+                                                deleteid = deleteitem.attr("id");
+                                                deleteurl = 'tweet/delete/';
+                                                type = "tweet";
+                                                $("#delete-dialog").dialog("open");
+                                            });
+                                            $("div.item-delete a").click(function () {
+                                                deleteitem = $(this).parent().parent();
+                                                deleteid = deleteitem.attr("id");
+                                                deleteurl = 'tweet/delete/';
+                                                $("#delete-dialog").dialog("open");
+                                            });
+                                            UpdateTweet();
+                                        }
+                                    });
                                 }
                             }
                         });
