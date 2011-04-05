@@ -45,6 +45,13 @@ function resume_show()
     $key = $args[2];
     include_once('login.php');
     $id = get_current_user_id();
+    if(!$key)
+    {
+        $key = $id;
+        $theme = "resumeapi";
+    }
+    else
+        $theme = "resume";
     connect_db();
     $view = "SELECT * FROM resumes WHERE resume_id = '$key'";
     $list = mysql_query($view);
@@ -65,13 +72,21 @@ function resume_show()
             $view = "SELECT * FROM resumes WHERE resume_id = '$key'";
             $list = mysql_query($view);
             $row = mysql_fetch_array($list);
-            theme('resume', $row);
+            theme($theme, $row);
         }
         else
             die("Not authorized");
     }
     else
         die("Resume not found");
+}
+
+function theme_resumeapi($data)
+{
+    $content = "";
+    foreach($data as $d)
+        $content .= $d.'|';
+    echo $content;
 }
 
 function deal_resume($query)
