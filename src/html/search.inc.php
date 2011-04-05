@@ -118,7 +118,7 @@ function search_page($query)
         search_history_add("", "", $key);
     }
     $data = get_search_result($key, 10, $cate, $time, $page);
-    $content = theme('result', $data);
+    $content = theme('result', $data, $key);
     if($time == "count")
         theme('page', 'count', $data[0][0]);
     else
