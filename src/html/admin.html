@@ -37,101 +37,40 @@
                             success: function () {
                                 deleteitem.animate({ opacity: 0 }, 300, null, function () {
                                     deleteitem.slideUp(200, null, function () {
-                                        if (type == "apply") {
+                                        if (type == "feedback") {
                                             if (flag) {
                                                 $.ajax({
                                                     type: 'POST',
-                                                    url: 'apply/show/' + page,
+                                                    url: 'feedback/show/' + page,
                                                     success: function (msg) {
                                                         var str = '<div class="item newer" style="display:none;"';
                                                         str += msg.split('<div class="item"')[10];
                                                         $("div.item:last").after(str);
                                                         $(".newer:last").slideDown(200);
-                                                        $("div.item").unbind("mouseover");
-                                                        $("div.item").unbind("mouseout");
-                                                        $("div.item-delete a").unbind("click");
-                                                        $("div.item").mouseover(function () {
-                                                            $(this).addClass("item-over");
-                                                        });
-                                                        $("div.item").mouseout(function () {
-                                                            $(this).removeClass("item-over");
-                                                        });
-                                                        $("div.item-delete a").click(function () {
-                                                            deleteitem = $(this).parent().parent();
-                                                            deleteid = deleteitem.attr("id");
-                                                            deleteurl = 'apply/delete/';
-                                                            type = "apply";
-                                                            $("#delete-dialog").dialog("open");
-                                                        });
-                                                    }
-                                                });
-                                            }
-                                            UpdateApply();
-                                        }
-                                        else if (type == "like") {
-                                            if (flag) {
-                                                $.ajax({
-                                                    type: 'POST',
-                                                    url: 'like/show/' + page,
-                                                    success: function (msg) {
-                                                        var str = '<div class="item newer" style="display:none;"';
-                                                        str += msg.split('<div class="item"')[10];
-                                                        $("div.item:last").after(str);
-                                                        $(".newer:last").slideDown(200);
-                                                        $("a.apply").unbind("click");
-                                                        $("a.unapply").unbind("click");
-                                                        $("div.item").unbind("mouseover");
-                                                        $("div.item").unbind("mouseout");
                                                         $("a.delete").unbind("click");
-                                                        $("div.item-delete a").unbind("click");
-                                                        $("a.apply").click(function () {
-                                                            var item = $(this);
-                                                            var id = $(this).parent().parent().parent().attr("id");
-                                                            $.ajax({
-                                                                type: "POST",
-                                                                url: 'apply/add/' + id,
-                                                                success: function () {
-                                                                    item.hide();
-                                                                    item.next("a.unapply").show();
-                                                                }
-                                                            });
-                                                        });
-                                                        $("a.unapply").click(function () {
-                                                            var item = $(this);
-                                                            var id = $(this).parent().parent().parent().attr("id");
-                                                            $.ajax({
-                                                                type: "POST",
-                                                                url: 'apply/delete/' + id,
-                                                                success: function () {
-                                                                    item.hide();
-                                                                    item.prev("a.apply").show();
-                                                                }
-                                                            });
-                                                        });
-                                                        $("div.item").mouseover(function () {
-                                                            $(this).addClass("item-over");
-                                                        });
-                                                        $("div.item").mouseout(function () {
-                                                            $(this).removeClass("item-over");
-                                                        });
+                                                        $(".item-blog-title").unbind("click");
                                                         $("a.delete").click(function () {
                                                             deleteitem = $(this).parent().parent().parent();
                                                             deleteid = deleteitem.attr("id");
-                                                            deleteurl = 'like/delete/';
-                                                            type = "like";
+                                                            deleteurl = 'feedback/delete/';
+                                                            type = "feedback";
                                                             $("#delete-dialog").dialog("open");
                                                         });
-                                                        $("div.item-delete a").click(function () {
-                                                            deleteitem = $(this).parent().parent();
-                                                            deleteid = deleteitem.attr("id");
-                                                            deleteurl = 'like/delete/';
-                                                            type = "like";
-                                                            $("#delete-dialog").dialog("open");
+                                                        $(".item-blog-title").click(function () {
+                                                            var item = $(this).parent().next(".item-blog-content");
+                                                            if (item.hasClass("close")) {
+                                                                item.slideDown(200);
+                                                                item.removeClass("close");
+                                                            }
+                                                            else {
+                                                                item.slideUp(200);
+                                                                item.addClass("close");
+                                                            }
                                                         });
                                                     }
                                                 });
                                             }
-                                            UpdateFavourite();
+                                            UpdateFeedback();
                                         }
                                         else if (type == "tweet") {
                                             if (flag) {
@@ -201,47 +140,6 @@
         <div id="content-middle" class="left">
             <div id="blogs">
                 <div id="blogsinner">
-                    <div class="item">
-                        <div class="item-delete">
-                            <a class="right"></a>
-                        </div>
-                        <div class="left item-pic">
-                            <img alt="" width="50" height="50" />
-                        </div>
-                        <div class="left item-content">
-                            <div class="item-blog">
-                                <a class="item-blog-name">赶集网</a>：赶集网招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。
-                                （3）简历发送至 nihongtao@ganji.com&nbsp; 欢迎同学们骚扰 <a class="item-blog-link">http://sinaurl.cn/ht7Wa5</a>
-                            </div>
-                            <div class="item-other">
-                                <span class="left item-time">5分钟前</span> <a class="left item-position">新浪微博</a>
-                                <a class="right item-control last delete">删除</a>
-                            </div>
-                        </div>
-                        <div class="clear">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item-delete">
-                            <a class="right"></a>
-                        </div>
-                        <div class="left item-pic">
-                            <img alt="" width="50" height="50" />
-                        </div>
-                        <div class="left item-content">
-                            <div class="item-blog">
-                                <a class="item-blog-name">用户名：</a><a class="item-blog-title">问题标题</a>
-                            </div>
-                            <div class="item-blog-content close">
-                                问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容
-                            </div>
-                            <div class="item-other">
-                                <a class="left item-position">Email</a> <a class="right item-control last delete">删除</a>
-                            </div>
-                        </div>
-                        <div class="clear">
-                        </div>
-                    </div>
                 </div>
                 <div id="pages">
                 </div>
