@@ -59,7 +59,24 @@
                 finder.popup();
             });
 
-            $("a#profile-preview").click(function () {
+            $("a#profile-save").click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'resume/add',
+                    data: {
+                        name: $("#u-name").val(),
+                        sex: $("#sex").val(),
+                        date_birth: $("#birthday").val(),
+                        live_in_now: $("#n-positon").val(),
+                        live_in: $("#o-positon").val(),
+                        cellphone: $("#m-phone").val(),
+                        email: $("#email").val(),
+                        content: editor.document.getBody().getHtml()
+                    },
+                    success: function () {
+                        $("div#profile-info").dialog("open");
+                    }
+                });
                 //                alert(editor.document.getBody().getHtml());
             });
 
@@ -169,7 +186,8 @@
         <div id="content-middle" class="left">
             <div id="blogs">
                 <div id="content-middle-delete">
-                    <span id="blogs-count" class="left"></span><!--<a class="right">删除全部</a>-->
+                    <span id="blogs-count" class="left"></span>
+                    <!--<a class="right">删除全部</a>-->
                 </div>
                 <div id="blogsinner">
                     <!--<div class="item">
@@ -418,8 +436,14 @@
         </div>
     </div>
     <div id="published-info" title="发布成功">
-        <p>信息发布成功！</p>
-        <p>您发布的信息将在一段时间之后显示在网站中，请不要重复发布。</p>
+        <p>
+            信息发布成功！</p>
+        <p>
+            您发布的信息将在一段时间之后显示在网站中，请不要重复发布。</p>
+    </div>
+    <div id="profile-info" title="保存成功">
+        <p>
+            简历保存成功！</p>
     </div>
 </body>
 </html>
