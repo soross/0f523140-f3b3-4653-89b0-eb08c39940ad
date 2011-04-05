@@ -37,6 +37,7 @@ function get_applies($num, $page)
 
 function apply_show()
 {
+    include_once("theme.inc.php");
     $args = func_get_args();
     if($args[2])
         $page = intval($args[2]);
@@ -62,7 +63,7 @@ function apply_show()
                            <a class="item-blog-name">'.$f['post_screenname'].'</a>：'.$f['content'].'
                        </div>
                        <div class="item-other">
-                           <span class="left item-time">'.$f['post_datetime'].'</span> '.$source;
+                           <span class="left item-time">'.time_tran($f['post_datetime']).'</span> '.$source;
         if($f['view_time'])
             $content .= '<span class="right item-apply item-apply-info">'.$f['view_time'].'</span>';
         else
