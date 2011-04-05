@@ -449,7 +449,6 @@ div#backTop
     background-color: #d7e7ef;
     display: none;
     letter-spacing: 2px;
-    writing-mode: tb-rl;
 }
 div#backTop a:hover
 {
