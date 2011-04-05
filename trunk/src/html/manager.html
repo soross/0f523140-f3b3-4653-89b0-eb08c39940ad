@@ -23,6 +23,7 @@
     <script src="script/DMshare.js" type="text/javascript"></script>
     <script src="script/manager.js" type="text/javascript"></script>
     <script type="text/javascript">
+        var editor;
         $(function () {
             $("#search-text").keypress(function (e) {
                 if (e.which == 13) {
@@ -41,7 +42,7 @@
                 changeMonth: true,
                 changeYear: true
             });
-            var editor = CKEDITOR.replace('profile-detail', {
+            editor = CKEDITOR.replace('profile-detail', {
                 uiColor: '#d1e9f1',
                 language: 'zh-cn',
                 toolbar: [['NewPage', 'Save', 'Preview', '-', 'Templates'], ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'], ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], '/', ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak'], '/', ['Styles', 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor']],
@@ -78,7 +79,7 @@
                             str += '|' + msg.split('|')[s];
                         }
                     }
-                    CKEDITOR.instances.content.setData(str);
+                    editor.setData(str);
                 }
             });
 
