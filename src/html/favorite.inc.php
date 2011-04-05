@@ -74,9 +74,11 @@ function favorites_show()
                                     }
                                 if(!$app)
                                     $content .= '<a class="right item-favourite item-doapply apply">
-                                            申请该职位</a>';
+                                            申请该职位</a><a class="right item-favourite item-doapply unapply" style="display: none;">
+                                            取消申请</a>';
                                 else
-                                    $content .= '<a class="right item-favourite item-doapply unapply">
+                                    $content .= '<a class="right item-favourite item-doapply apply" style="display: none;">
+                                            申请该职位</a><a class="right item-favourite item-doapply unapply">
                                             取消申请</a>';
                             }
         $content .= '
