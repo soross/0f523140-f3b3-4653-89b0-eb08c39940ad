@@ -271,16 +271,16 @@ function theme_rss($result)
     $content = '<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
   <channel>
-    <title>'.$GLOBALS['search'].'最新职位订阅-微招聘</title>
+    <title>'.$GLOBALS['search'].'最新职位订阅-歪伯乐</title>
     <link>'.BASE_URL.'search/'.$GLOBALS['search'].'</link> 
     <description>Latest 10 threads of all jobs</description>
-    <copyright>Copyright(C) 微招聘</copyright> 
-    <generator>DiggJob by GNG.</generator>
+    <copyright>Copyright(C) 歪伯乐</copyright> 
+    <generator>YBole by GNG.</generator>
     <lastBuildDate>'.date(DATE_RSS).'</lastBuildDate> 
     <ttl>30</ttl>
     <image> 
       <url>'.BASE_URL.'images/logo.gif</url> 
-      <title>'.$GLOBALS['search'].'最新职位订阅-微招聘</title> 
+      <title>'.$GLOBALS['search'].'最新职位订阅-歪伯乐</title> 
       <link>'.BASE_URL.'search/'.$GLOBALS['search'].'</link> 
     </image>';
     foreach($result as $r)
