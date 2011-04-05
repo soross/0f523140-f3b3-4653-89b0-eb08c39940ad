@@ -52,9 +52,9 @@ function feedback_show($query)
 {
     $args = func_get_args();
     $key = $args[2];
-    echo $key;
     $content = '';
     $results = get_feedbacks(10, $key);
+    echo $key;
     if($key == "count")
     {
         echo $results;
