@@ -169,12 +169,12 @@ div#sorts-content
 {
     width: 294px;
     background-color: #f8fcff;
-    border-top-left-radius: 5px 5px;
     border-top-right-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
     border-bottom-right-radius: 5px 5px;
     padding-top: 10px;
     border: 1px #9c9c9c solid;
+    border-top: none;
 }
 div.sorts-item
 {
