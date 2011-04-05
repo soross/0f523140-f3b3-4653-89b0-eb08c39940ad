@@ -6,6 +6,7 @@ var allpage = 0;
 var type = "";
 
 $(function () {
+    ShowNormal(0);
     $("a.manager-control").click(function () {
         $("a.manager-control").removeClass("manager-control-choose");
         $(this).addClass("manager-control-choose");
@@ -136,5 +137,5 @@ function UpdateNormal() {
 function ShowFeedback(e) {
 }
 
-function ShowHot() { 
+function ShowHot() {
 }
