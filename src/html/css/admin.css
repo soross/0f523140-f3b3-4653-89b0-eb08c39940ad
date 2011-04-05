@@ -506,7 +506,7 @@ a#profile-save
     background-image: url('../images/profile-save.jpg');
     background-repeat: no-repeat;
 }
-div#right div.microblog-item
+div.microblog-item
 {
     margin-top: 5px;
     border-bottom: 1px #dedede dashed;
@@ -515,7 +515,7 @@ div#right div.microblog-item
     padding-bottom: 5px;
     overflow: hidden;
 }
-div#right div.microblog-item-pic
+div.microblog-item-pic
 {
     height: 50px;
     width: 50px;
@@ -523,57 +523,57 @@ div#right div.microblog-item-pic
     border: 1px #ececec solid;
     background-color: #ffffff;
 }
-div#right div.microblog-item-content
+div.microblog-item-content
 {
     width: 530px;
 }
-div#right div.microblog-item-blog
+div.microblog-item-blog
 {
     width: 530px;
     line-height: 20px;
     padding: 0 5px;
     font-size: 14px;
 }
-div#right a.microblog-item-blog-name
+a.microblog-item-blog-name
 {
     color: #6f93ab;
     font-weight: bold;
 }
-div#right a.item-blog-link
+a.item-blog-link
 {
     color: #0084b4;
 }
-div#right div.microblog-item-other
+div.microblog-item-other
 {
     height: 24px;
     line-height: 24px;
 }
-div#right div.microblog-item-other1
+div.microblog-item-other1
 {
     height: 24px;
     line-height: 24px;
     border-top: 1px #a3a3a3 dashed;
 }
-div#right a.microblog-item-time
+a.microblog-item-time
 {
     color: #7ba5d7;
     padding: 0 5px;
 }
-div#right a.microblog-item-time
+a.microblog-item-time
 {
     color: #a3a3a3;
     padding: 0 5px;
 }
-div#right a.microblog-item-position
+a.microblog-item-position
 {
     color: #7ba5d7;
     margin: 0 10px;
 }
-div#right a.microblog-item-relate
+a.microblog-item-relate
 {
     margin: 0 5px;
 }
-div#right a.microblog-item-control
+a.microblog-item-control
 {
     color: #ea7f37;
     letter-spacing: 2px;
@@ -582,7 +582,7 @@ div#right a.microblog-item-control
     height: 14px;
     margin-top: 5px;
 }
-div#right a.microblog-item-control1
+a.microblog-item-control1
 {
     color: #7ba5d7;
     letter-spacing: 2px;
@@ -591,7 +591,7 @@ div#right a.microblog-item-control1
     height: 14px;
     margin-top: 5px;
 }
-div#right a.microblog-item-apply
+a.microblog-item-apply
 {
     border-right: 1px #ea7f37 solid;
 }
