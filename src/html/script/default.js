@@ -475,7 +475,48 @@ function SetConcern() {
             type: 'POST',
             url: 'follow/delete/' + $(this).attr("id"),
             success: function () {
-
+                var text = $(this).next(".concern-item-content").children(".concern-item-content-info").html();
+                if (text == SearchResult) {
+                    $("a#search-result-concern").attr("class", "left search-result-concern");
+                    $("a#search-result-concern").mouseover(function () {
+                        $(this).attr("class", "left search-result-concern-over");
+                    });
+                    $("a#search-result-concern").mousedown(function () {
+                        $(this).attr("class", "left search-result-concern-click");
+                    });
+                    $("a#search-result-concern").mouseout(function () {
+                        $(this).attr("class", "left search-result-concern");
+                    });
+                    $("a#search-result-concern").click(function () {
+                        $.ajax({
+                            type: 'POST',
+                            url: 'follow/add/' + encodeURI(SearchResult),
+                            success: function () {
+                                $("a#search-result-concern").attr("class", "left search-result-concern-have");
+                                $("a#search-result-concern").unbind("mouseover");
+                                $("a#search-result-concern").unbind("mousedown");
+                                $("a#search-result-concern").unbind("mouseout");
+                                $("a#search-result-concern").unbind("click");
+                                $("div#concern").animate({ opacity: 0 }, 200, null, function () {
+                                    $("div#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#concern").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#concern").height() - 32) / 2) + 'px;" />');
+                                    $("div#concern").animate({ opacity: 1 }, 200, null, function () {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'follow/show/5',
+                                            success: function (msg) {
+                                                $("div#concern").animate({ opacity: 0 }, 200, null, function () {
+                                                    $("#concern").html(msg);
+                                                    SetConcern();
+                                                    $("div#concern").animate({ opacity: 1 }, 200);
+                                                });
+                                            }
+                                        });
+                                    });
+                                });
+                            }
+                        });
+                    });
+                }
             }
         });
         $(this).parent().animate({ opacity: 0 }, 200, function () { $(this).slideUp(100); });
