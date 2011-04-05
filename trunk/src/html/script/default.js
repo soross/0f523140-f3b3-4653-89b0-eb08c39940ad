@@ -13,7 +13,7 @@ $(function () {
         var text = $.trim($(this).html());
         $.ajax({
             type: 'GET',
-            url: 'search/' + text,
+            url: 'search/' + encodeURI(text),
             success: function (msg) {
                 page = 0;
                 cate = 0;
