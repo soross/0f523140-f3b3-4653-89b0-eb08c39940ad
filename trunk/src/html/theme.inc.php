@@ -217,11 +217,11 @@ function theme_result($result, $keyword = '')
                         </div>
                         <div class="microblog-item-other">
                             <a target="_blank" href="http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'" class="left microblog-item-time">'.time_tran($r['post_datetime']).'</a> '.$source;
-        if(user_is_authenticated())
+        if($keyword == "poiuy")
+            $content .= '<a class="right item-control last delete">删除</a>';
+        else
         {
-            if($keyword == "poiuy")
-                $content .= '<a class="right item-control last delete">删除</a>';
-            else
+            if(user_is_authenticated())
             {
                 $fav = 0;
                 $app = 0;
@@ -252,13 +252,13 @@ function theme_result($result, $keyword = '')
                                  申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply">
                                  取消申请</a>';
             }
-        }
-        if($tags)
-        {
-            $content.='</div><div class="microblog-item-other1">
-                            <span class="left microblog-item-time">相关职位：</span> ';
-            foreach($tags as $t)
-                $content.='<a class="left keyword microblog-item-relate">'.$t.'</a>';
+            if($tags)
+            {
+                $content.='</div><div class="microblog-item-other1">
+                                <span class="left microblog-item-time">相关职位：</span> ';
+                foreach($tags as $t)
+                    $content.='<a class="left keyword microblog-item-relate">'.$t.'</a>';
+            }
         }
         $content .= '
                         </div>
