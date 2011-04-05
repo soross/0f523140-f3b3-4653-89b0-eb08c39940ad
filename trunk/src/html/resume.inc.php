@@ -83,9 +83,9 @@ function resume_show()
 
 function theme_resumeapi($data)
 {
-    $content =       $data[0]['name'].'|'.$data[0]['sex'].'|'.$data[0]['date_birth']
-                .'|'.$data[0]['live_in_now'].'|'.$data[0]['live_in'].'|'.$data[0]['cellphone']
-                .'|'.$data[0]['email'].'|'.$data[0]['content'];
+    $content =       $data['name'].'|'.$data['sex'].'|'.$data['date_birth']
+                .'|'.$data['live_in_now'].'|'.$data['live_in'].'|'.$data['cellphone']
+                .'|'.$data['email'].'|'.$data['content'];
     echo $content;
 }
 
