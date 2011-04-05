@@ -46,7 +46,7 @@ div#left a.left-title-pic
 div#left a#concern-pic
 {
     background-image: url('../images/concern-rss.jpg');
-    display:none;
+    display: none;
 }
 div#left div.concern-item
 {
@@ -439,6 +439,7 @@ div#right div#fresh
     background-repeat: no-repeat;
     padding-left: 25px;
     letter-spacing: 3px;
+    cursor: pointer;
 }
 
 div#backTop
