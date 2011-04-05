@@ -183,7 +183,7 @@ function theme_result($result)
             foreach($tags as $t)
                 $content.='<a class="left keyword microblog-item-relate">'.$t.'</a>';
         }
-        $content .='
+        $content .= '
                         </div>
                     </div>
                     <div class="clear">

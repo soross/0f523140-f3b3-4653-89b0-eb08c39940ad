@@ -38,14 +38,13 @@ function get_applies($num, $page)
 function apply_show()
 {
     $args = func_get_args();
-    $key = intval($args[2]);
-    if($args[3])
-        $page = intval($args[3]);
+    if($args[2])
+        $page = intval($args[2]);
     else
         $page = "";
     $content = '';
-    $favorites = get_applies($key, $page);
-    foreach($favorites as $f)
+    $applies = get_applies(10, $page);
+    foreach($applies as $f)
     {
         $content .= '<div class="item" id="'.$f['tweet_id'].'">
                    <div class="item-delete">
