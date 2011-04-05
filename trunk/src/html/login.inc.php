@@ -228,6 +228,15 @@ function role($query)
     return call_user_func_array($function, $query);
 }
 
+function get_nick_by_id($id)
+{
+    connect_db();
+    $view = "SELECT nickname FROM userinfo WHERE user_id='".$id."'";
+    $list = mysql_query($view);
+    $row = mysql_fetch_array($list);
+    return $row[0];
+}
+
 function role_set()
 {
     $id = get_current_user_id();

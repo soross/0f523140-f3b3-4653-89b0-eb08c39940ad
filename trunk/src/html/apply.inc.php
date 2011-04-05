@@ -84,9 +84,28 @@ function get_applies($num, $page)
     return $result;
 }
 
-function received_apply()
+function received_apply_show($tweet_id, $page)
 {
     include_once("theme.inc.php");
+    $content = '';
+    $applies = get_received_applies($tweet_id, 10, $page);
+    foreach($applies as $r)
+        $content .= '<div id="'.$r['resume_id'].'">
+<span class="left">申请自：</span><a class="left item-applys-name">'.get_nick_by_id($r['user_id']).'</a><span class="left item-applys-time">于'.time_tran($r['apply_time']).'</span><a
+                class="right item-applys-read">查看简历</a></div>';
+    echo $content;
+}
+
+function received_apply($query)
+{
+    include_once("theme.inc.php");
+    $key = (string) $query[1];
+    if($key == "apply")
+    {
+        $id = (string) $query[2];
+        $page = (string) $query[3];
+        return received_apply_show($id, $page);
+    }
     $content = '';
     $results = get_received_tweets(10, "");
     foreach($results as $r)
