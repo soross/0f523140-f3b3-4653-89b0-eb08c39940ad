@@ -44,7 +44,7 @@ function get_feedbacks($num, $page)
         $result[$i++] = $row;
     //if($page == "count")
     //    return $i;
-    print ($page == "count");
+    print ($page);
     return $result;
 }
 
