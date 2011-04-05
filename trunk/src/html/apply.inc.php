@@ -96,7 +96,7 @@ function received_apply()
         else
             $source = '<a class="left microblog-item-position" target="_blank">'.$r['source'].'</a>';
         $g = get_received_applies($r['tweet_id'],0,"count");
-        $content = '<div class="item" id="'.$r['tweet_id'].'">
+        $content .= '<div class="item" id="'.$r['tweet_id'].'">
                         <div class="item-delete">
                             <a class="right"></a>
                         </div>
@@ -113,9 +113,9 @@ function received_apply()
                                 <a class="right item-control delete">删除</a> <a class="right item-control last applys">
                                     申请数('.$g[0][0].')</a>
                             </div>
-                            <div class="item-applys close">';
+                            <div class="item-applys close"></div>';
     }
-    $content .= '</div>
+    $content .= '
                         </div>
                         <div class="clear">
                         </div>
