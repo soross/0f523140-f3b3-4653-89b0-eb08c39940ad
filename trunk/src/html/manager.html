@@ -130,7 +130,7 @@
                                 if (type == "apply") {
                                     $.ajax({
                                         type: 'POST',
-                                        url: 'apply/show/' + e,
+                                        url: 'apply/show/' + page,
                                         success: function (msg) {
                                             var str = '<div class="item newer" style="display:none;"';
                                             str += msg.split('<div class="item"')[10];
@@ -159,7 +159,7 @@
                                 else if (type == "like") {
                                     $.ajax({
                                         type: 'POST',
-                                        url: 'like/show/' + e,
+                                        url: 'like/show/' + page,
                                         success: function (msg) {
                                             var str = '<div class="item newer" style="display:none;"';
                                             str += msg.split('<div class="item"')[10];
@@ -222,7 +222,7 @@
                                 else if (type == "tweet") {
                                     $.ajax({
                                         type: 'POST',
-                                        url: 'user/current/0/' + e,
+                                        url: 'user/current/0/' + page,
                                         success: function (msg) {
                                             var str = '<div class="item newer" style="display:none;"';
                                             str += msg.split('<div class="item"')[10];
