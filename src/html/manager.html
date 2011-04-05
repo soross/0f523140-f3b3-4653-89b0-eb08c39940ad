@@ -134,7 +134,7 @@
                                                     var str = '<div class="item newer" style="display:none;"';
                                                     str += msg.split('<div class="item"')[10];
                                                     $("div.item:last").after(str);
-                                                    $(".newer").slideDown(200);
+                                                    $(".newer:last").slideDown(200);
                                                     $("div.item").unbind("mouseover");
                                                     $("div.item").unbind("mouseout");
                                                     $("div.item-delete a").unbind("click");
@@ -163,7 +163,7 @@
                                                     var str = '<div class="item newer" style="display:none;"';
                                                     str += msg.split('<div class="item"')[10];
                                                     $("div.item:last").after(str);
-                                                    $(".newer").slideDown(200);
+                                                    $(".newer:last").slideDown(200);
                                                     $("a.apply").unbind("click");
                                                     $("a.unapply").unbind("click");
                                                     $("div.item").unbind("mouseover");
@@ -226,7 +226,7 @@
                                                     var str = '<div class="item newer" style="display:none;"';
                                                     str += msg.split('<div class="item"')[10];
                                                     $("div.item:last").after(str);
-                                                    $(".newer").slideDown(200);
+                                                    $(".newer:last").slideDown(200);
                                                     $("div.item").unbind("mouseover");
                                                     $("div.item").unbind("mouseout");
                                                     $("a.delete").unbind("click");
