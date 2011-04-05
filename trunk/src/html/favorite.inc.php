@@ -43,6 +43,7 @@ function favorites_show()
     else
         $page = "";
     $content = '';
+    include_once("theme.inc.php");
     $favorites = get_favorites(10, $page);
     foreach($favorites as $f)
     {
@@ -58,7 +59,7 @@ function favorites_show()
                            <a class="item-blog-name">'.$f['post_screenname'].'</a>：'.$f['content'].'
                        </div>
                        <div class="item-other">
-                           <span class="left item-time">'.$f['post_datetime'].'</span> '.$source.'
+                           <span class="left item-time">'.time_tran($f['post_datetime']).'</span> '.$source.'
                            <a class="right item-favourite item-action delete">取消收藏</a> ';
                             if($f['type'] != 1)
                                 $content .= '<a class="right item-favourite item-doapply apply">
