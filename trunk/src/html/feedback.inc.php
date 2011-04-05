@@ -49,7 +49,8 @@ function get_feedbacks($num, $page)
 
 function feedback_show($query)
 {
-    $key = (string) $query[1];
+    $args = func_get_args();
+    $key = $args[2];
     $content = '';
     $results = get_received_tweets(10, $key);
     if($key == "count")
