@@ -196,7 +196,7 @@ function search_history_delete()
 
 function search_history_deleteall()
 {
-    include_once('login.php');
+    include_once('login.inc.php');
     $id = get_current_user_id();
     connect_db();
     $view = "UPDATE searchhistory SET deleted='1' WHERE user_id='$id'";
@@ -206,7 +206,7 @@ function search_history_deleteall()
 
 function search_history_add()
 {
-    include_once('login.php');
+    include_once('login.inc.php');
     $id = get_current_user_id();
     $args = func_get_args();
     $key = $args[2];
