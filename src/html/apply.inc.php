@@ -4,6 +4,10 @@ func_register(array(
         'callback' => 'user_apply',
         'security' => 'true',
     ),
+    'received' => array(
+        'callback' => 'received_apply',
+        'security' => 'true',
+    ),
 ));
 
 function apply_count()
@@ -27,6 +31,79 @@ function get_applies($num, $page)
     $limit = " LIMIT $page , $num";
     connect_db();
     $view = "SELECT * from tweets, (SELECT * FROM applications WHERE user_id='$id' AND deleted=0) as applications WHERE tweets.tweet_id=applications.tweet_id ORDER BY tweets.post_datetime DESC$limit";
+    $list = mysql_query($view);
+    $result = array();
+    $i = 0;
+    while($row = mysql_fetch_array($list))
+        $result[$i++] = $row;
+    return $result;
+}
+
+function received_apply()
+{
+    include_once("theme.inc.php");
+    $content = '';
+    $results = get_received_tweets(10, "");
+    foreach($results as $r)
+    {
+        if(strstr($r['source'], '<'))
+            $source = str_replace("<a ", '<a target="_blank" class="left microblog-item-position"', $r['source']);
+        else
+            $source = '<a class="left microblog-item-position" target="_blank">'.$r['source'].'</a>';
+        $content = '<div class="item" id="'.$r['tweet_id'].'">
+                        <div class="item-delete">
+                            <a class="right"></a>
+                        </div>
+                        <div class="left item-pic">
+                            <a target="_blank" href="'.BASE_URL.'profile/'.$r['post_screenname'].'"><img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/></a>
+                        </div>
+                        <div class="left item-content">
+                            <div class="item-blog">
+                                <a class="microblog-item-blog-name" target="_blank" href="'.BASE_URL.'profile/'.$r['post_screenname'].'">'
+                                .$r['post_screenname'].'</a>：'.parselink($r['content']).'
+                            </div>
+                            <div class="item-other">
+                                <span class="left item-time">'.time_tran($r['post_datetime']).'</span> '.$source.'
+                                <a class="right item-control delete">删除</a> <a class="right item-control last applys">
+                                    申请数(4)</a>
+                            </div>
+                            <div class="item-applys close">';
+    }
+    $content .= '</div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>';
+}
+
+function get_received_tweets($num, $page)
+{
+    include_once('login.inc.php');
+    $id = get_current_user_id();
+    if(!$page)
+        $page = "0";
+    $page = intval($page) * $num;
+    $limit = " LIMIT $page , $num";
+    connect_db();
+    $view = "SELECT * from tweets, (SELECT * FROM applications WHERE deleted=0) AS ap, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.tweet_id=ap.tweet_id AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
+    $list = mysql_query($view);
+    $result = array();
+    $i = 0;
+    while($row = mysql_fetch_array($list))
+        $result[$i++] = $row;
+    return $result;
+}
+
+function get_received_applies($tweet_id, $num, $page)
+{
+    include_once('login.inc.php');
+    $id = get_current_user_id();
+    if(!$page)
+        $page = "0";
+    $page = intval($page) * $num;
+    $limit = " LIMIT $page , $num";
+    connect_db();
+    $view = "SELECT * from applications AS ap, (SELECT * FROM tweets WHERE tweet_id='$id' AND deleted=0) AS tweets, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE ap.deleted=0 AND ap.tweet_id='$id' AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
