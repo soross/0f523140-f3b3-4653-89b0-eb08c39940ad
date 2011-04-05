@@ -193,7 +193,7 @@ function theme_result($result)
                     </div>
                     <div class="left microblog-item-content">
                         <div class="microblog-item-blog">
-                            <a class="microblog-item-blog-name" target="_blank" href="http://t.sina.com.cn/n/'.$r['post_screenname'].'">'.$r['post_screenname'].'</a>：'.parselink($r['content']).'
+                            <a class="microblog-item-blog-name" target="_blank" href="'.BASE_URL.'profile/'.$r['post_screenname'].'">'.$r['post_screenname'].'</a>：'.parselink($r['content']).'
                         </div>
                         <div class="microblog-item-other">
                             <span class="left microblog-item-time">'.time_tran($r['post_datetime']).'</span> '.$source;
