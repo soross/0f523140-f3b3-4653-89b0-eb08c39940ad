@@ -46,6 +46,7 @@ div#left a.left-title-pic
 div#left a#concern-pic
 {
     background-image: url('../images/concern-rss.jpg');
+    display:none;
 }
 div#left div.concern-item
 {
