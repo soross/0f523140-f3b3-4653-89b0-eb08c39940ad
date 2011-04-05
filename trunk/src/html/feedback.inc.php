@@ -59,6 +59,7 @@ function feedback_show($query)
         echo $results;
         return;
     }
+    echo $results;
     foreach($results as $r)
     {
         if($r['user_id'])
