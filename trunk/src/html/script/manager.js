@@ -121,7 +121,7 @@ function SetContent(id, datas, item, count) {
     });
 }
 
-function UpdateApply() {
+function UpdateApplys() {
     $.ajax({
         type: "POST",
         url: 'received/count',
