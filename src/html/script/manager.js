@@ -79,6 +79,48 @@ function ShowProfile() {
     });
 }
 
+function SetContent(id, datas, item, count) {
+    var current = datas.attr("name");
+    $.ajax({
+        type: 'POST',
+        url: 'received/apply/' + id + "/" + current,
+        success: function (msg) {
+            item.html(msg);
+            $("a.item-applys-read").each(function () {
+                $(this).attr("href", "resume/show/" + $(this).parent().attr("id"));
+                $(this).attr("target", "_blank");
+            });
+            var allpage = 0;
+            if (count % 10 == 0) {
+                allpage = count / 10;
+            }
+            else {
+                allpage = count / 10 + 1;
+            }
+            item.next(".item-page").html('');
+            if (allpage > 1) {
+                if (current != allpage - 1) {
+                    item.next(".item-page").html('<a class="right">下一页</a>');
+                    item.next(".item-page").children("a:first").click(function () {
+                        datas.attr("name", current + 1);
+                        SetContent(id, datas, item, count);
+                    });
+                }
+                if (current != 0) {
+                    item.next(".item-page").html(item.next(".item-page").html() + '<a class="right">上一页</a>');
+                    item.next(".item-page").children("a:last").click(function () {
+                        datas.attr("name", current - 1);
+                        SetContent(id, datas, item, count);
+                    });
+                }
+            }
+            item.slideDown(200);
+            item.next(".item-page").slideUp(200);
+            item.removeClass("close");
+        }
+    });
+}
+
 function ShowApplys(e) {
     $("div#profile").hide();
     $("div#blogs").show();
@@ -91,25 +133,17 @@ function ShowApplys(e) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
             $("a.applys").click(function () {
+                var datas = $(this);
+                var count = $(this).attr("id");
+                $(this).attr("name", "0");
                 var id = $(this).parent().parent().parent().attr("id");
                 var item = $(this).parent().next(".item-applys");
                 if (item.hasClass("close")) {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'received/apply/' + id + "/0",
-                        success: function (msg) {
-                            item.html(msg);
-                            $("a.item-applys-read").each(function () {
-                                $(this).attr("href", "resume/show/" + $(this).parent().attr("id"));
-                                $(this).attr("target", "_blank");
-                            });
-                            item.slideDown(200);
-                            item.removeClass("close");
-                        }
-                    });
+                    SetContent(id, datas, item, count);
                 }
                 else {
                     item.slideUp(200);
+                    item.next(".item-page").slideUp(200);
                     item.addClass("close");
                 }
             });
