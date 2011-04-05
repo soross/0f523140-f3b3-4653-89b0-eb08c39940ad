@@ -4,13 +4,13 @@ var deleteurl;
 var page = 0;
 
 $(function () {
-    $("div#content-middle-delete a").animate({ opacity: 0.6 }, 0);
-    $("div#content-middle-delete a").mouseover(function () {
-        $(this).stop().animate({ opacity: 1 }, 200);
-    });
-    $("div#content-middle-delete a").mouseout(function () {
-        $(this).stop().animate({ opacity: 0.6 }, 200);
-    });
+    //    $("div#content-middle-delete a").animate({ opacity: 0.6 }, 0);
+    //    $("div#content-middle-delete a").mouseover(function () {
+    //        $(this).stop().animate({ opacity: 1 }, 200);
+    //    });
+    //    $("div#content-middle-delete a").mouseout(function () {
+    //        $(this).stop().animate({ opacity: 0.6 }, 200);
+    //    });
 
     $("a.manager-control").click(function () {
         $("a.manager-control").removeClass("manager-control-choose");
@@ -43,7 +43,7 @@ function ShowProfile() {
     $("div#ads").hide();
 }
 
-function ShowApplys() { 
+function ShowApplys() {
 }
 
 function ShowApply(e) {

@@ -86,6 +86,68 @@ $(function () {
             }
         });
     }
+
+    $.ajax({
+        type: 'POST',
+        url: 'hot/',
+        success: function (msg) {
+            $("div#hot").html(msg);
+            $("a.hot-content-item").click(function () {
+                var text = $(this).html().split('(')[0];
+                $.ajax({
+                    type: 'GET',
+                    url: 'search/' + encodeURI(text),
+                    success: function (msg) {
+                        page = 0;
+                        cate = 0;
+                        isTurn = false;
+                        SetSearch(msg, text);
+                    }
+                });
+            });
+        }
+    });
+    $("div#backTop a").click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 1000);
+    });
+    $("div#backTop").animate({ opacity: 0.6 }, 0);
+    $("div#backTop").mouseover(function () {
+        $("div#backTop").stop().animate({ opacity: 1 }, 200);
+    });
+    $("div#backTop").mouseout(function () {
+        $("div#backTop").stop().animate({ opacity: 0.6 }, 200);
+    });
+
+    $(document).scroll(function () {
+        DocumenScroll();
+    });
+
+    $("#search-text").keypress(function (e) {
+        if (e.which == 13) {
+            if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴") {
+                $.ajax({
+                    type: 'GET',
+                    url: 'search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate,
+                    success: function (msg) {
+                        isTurn = false;
+                        SetSearch(msg, $("#search-text").val());
+                    }
+                });
+            }
+        }
+    });
+    $("a#search-button").click(function () {
+        if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴") {
+            $.ajax({
+                type: 'GET',
+                url: 'search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate,
+                success: function (msg) {
+                    isTurn = false;
+                    SetSearch(msg, $("#search-text").val());
+                }
+            });
+        }
+    });
 });
 
 function SetAllSearch(msg) {
@@ -658,5 +720,324 @@ function SetHistory() {
                 SetSearch(msg, text);
             }
         });
+    });
+}
+
+
+function DocumenScroll() {
+    if ($(window).scrollTop() != 0) {
+        $("div#backTop").fadeIn(200)
+    }
+    else {
+        $("div#backTop").fadeOut(200);
+    }
+    if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4) {
+        $(document).unbind("scroll");
+        count++;
+        $.ajax({
+            type: 'GET',
+            url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
+            success: function (msg) {
+                $("div#blogs").html($("div#blogs").html() + msg);
+                $("a.microblog-item-relate").unbind("click");
+                $("a.microblog-item-relate").click(function () {
+                    var text = $(this).html();
+                    $.ajax({
+                        type: 'GET',
+                        url: 'search/' + encodeURI(text),
+                        success: function (msg) {
+                            page = 0;
+                            cate = 0;
+                            SetSearch(msg, text);
+                            nowFirst = $(".microblog-item:first").attr("id");
+                        }
+                    });
+                });
+                $("a.like").unbind("click");
+                $("a.unlike").unbind("click");
+                $("a.apply").unbind("click");
+                $("a.unapply").unbind("click");
+                $("a.like").click(function () {
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                        type: "POST",
+                        url: 'like/add/' + id,
+                        success: function () {
+                            item.hide();
+                            item.next("a.unlike").show();
+                        }
+                    });
+                });
+                $("a.unlike").click(function () {
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                        type: "POST",
+                        url: 'like/delete/' + id,
+                        success: function () {
+                            item.hide();
+                            item.prev("a.like").show();
+                        }
+                    });
+                });
+                $("a.apply").click(function () {
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                        type: "POST",
+                        url: 'apply/add/' + id,
+                        success: function () {
+                            item.hide();
+                            item.next("a.unapply").show();
+                        }
+                    });
+                });
+                $("a.unapply").click(function () {
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                        type: "POST",
+                        url: 'apply/delete/' + id,
+                        success: function () {
+                            item.hide();
+                            item.prev("a.apply").show();
+                        }
+                    });
+                });
+                $(document).scroll(function () {
+                    DocumenScroll();
+                });
+            }
+        });
+    }
+}
+
+function GetNewerBlogs() {
+    $.ajax({
+        type: 'GET',
+        url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + nowFirst,
+        success: function (msg) {
+            if (msg != "") {
+                $.ajax({
+                    type: 'POST',
+                    url: 'count/',
+                    success: function (msg) {
+                        if (!issearch) {
+                            $("div#radio").html("本周新增职位" + msg.split(',')[0] + "个，今日新增职位" + msg.split(',')[1] + "个");
+                        }
+                    }
+                });
+                if (!isFreshed) {
+                    $("div#blogs").html($("div#fresh-blogs").html() + $("div#blogs").html());
+                    $("div#fresh-blogs").hide();
+                    isFreshed = true;
+                    $("a.microblog-item-relate").unbind("click");
+                    $("a.microblog-item-relate").click(function () {
+                        var text = $(this).html();
+                        $.ajax({
+                            type: 'GET',
+                            url: 'search/' + encodeURI(text),
+                            success: function (msg) {
+                                page = 0;
+                                cate = 0;
+                                SetSearch(msg, text);
+                                nowFirst = $(".microblog-item:first").attr("id");
+                            }
+                        });
+                    });
+                    $("a.like").unbind("click");
+                    $("a.unlike").unbind("click");
+                    $("a.apply").unbind("click");
+                    $("a.unapply").unbind("click");
+                    $("a.like").click(function () {
+                        var item = $(this);
+                        var id = $(this).parent().parent().parent().attr("name");
+                        $.ajax({
+                            type: "POST",
+                            url: 'like/add/' + id,
+                            success: function () {
+                                item.hide();
+                                item.next("a.unlike").show();
+                            }
+                        });
+                    });
+                    $("a.unlike").click(function () {
+                        var item = $(this);
+                        var id = $(this).parent().parent().parent().attr("name");
+                        $.ajax({
+                            type: "POST",
+                            url: 'like/delete/' + id,
+                            success: function () {
+                                item.hide();
+                                item.prev("a.like").show();
+                            }
+                        });
+                    });
+                    $("a.apply").click(function () {
+                        var item = $(this);
+                        var id = $(this).parent().parent().parent().attr("name");
+                        $.ajax({
+                            type: "POST",
+                            url: 'apply/add/' + id,
+                            success: function () {
+                                item.hide();
+                                item.next("a.unapply").show();
+                            }
+                        });
+                    });
+                    $("a.unapply").click(function () {
+                        var item = $(this);
+                        var id = $(this).parent().parent().parent().attr("name");
+                        $.ajax({
+                            type: "POST",
+                            url: 'apply/delete/' + id,
+                            success: function () {
+                                item.hide();
+                                item.prev("a.apply").show();
+                            }
+                        });
+                    });
+                }
+                $("div#fresh-blogs").html(msg);
+                $("div#fresh").html('有' + (msg.split("id=").length - 1) + '条更新，点击<a class="keyword">这里</a>刷新');
+                $("div#fresh-outer").slideDown(300, null, function () {
+                    $("div#fresh-outer").animate({ opacity: 1 }, 200);
+                });
+                $("div#fresh a").click(function () {
+                    isFreshed = false;
+                    $("div#fresh-blogs").slideDown(500, null, function () {
+                        $("div#fresh-blogs").animate({ opacity: 1 }, 200);
+                    });
+                    nowFirst = $(".microblog-item:first").attr("id");
+                    $("div#fresh-outer").animate({ opacity: 0 }, 0, null, function () {
+                        $("div#fresh-outer").slideUp(300);
+                    });
+                    $("a.microblog-item-relate").unbind("click");
+                    $("a.microblog-item-relate").click(function () {
+                        var text = $(this).html();
+                        $.ajax({
+                            type: 'GET',
+                            url: 'search/' + encodeURI(text),
+                            success: function (msg) {
+                                page = 0;
+                                cate = 0;
+                                SetSearch(msg, text);
+                                nowFirst = $(".microblog-item:first").attr("id");
+                            }
+                        });
+                    });
+                    $("a.like").unbind("click");
+                    $("a.unlike").unbind("click");
+                    $("a.apply").unbind("click");
+                    $("a.unapply").unbind("click");
+                    $("a.like").click(function () {
+                        var item = $(this);
+                        var id = $(this).parent().parent().parent().attr("name");
+                        $.ajax({
+                            type: "POST",
+                            url: 'like/add/' + id,
+                            success: function () {
+                                item.hide();
+                                item.next("a.unlike").show();
+                            }
+                        });
+                    });
+                    $("a.unlike").click(function () {
+                        var item = $(this);
+                        var id = $(this).parent().parent().parent().attr("name");
+                        $.ajax({
+                            type: "POST",
+                            url: 'like/delete/' + id,
+                            success: function () {
+                                item.hide();
+                                item.prev("a.like").show();
+                            }
+                        });
+                    });
+                    $("a.apply").click(function () {
+                        var item = $(this);
+                        var id = $(this).parent().parent().parent().attr("name");
+                        $.ajax({
+                            type: "POST",
+                            url: 'apply/add/' + id,
+                            success: function () {
+                                item.hide();
+                                item.next("a.unapply").show();
+                            }
+                        });
+                    });
+                    $("a.unapply").click(function () {
+                        var item = $(this);
+                        var id = $(this).parent().parent().parent().attr("name");
+                        $.ajax({
+                            type: "POST",
+                            url: 'apply/delete/' + id,
+                            success: function () {
+                                item.hide();
+                                item.prev("a.apply").show();
+                            }
+                        });
+                    });
+                });
+            }
+        }
+    });
+    setTimeout(function () { GetNewerBlogs(); }, 60000);
+}
+
+function AfterLogin() {
+    $.ajax({
+        type: 'POST',
+        url: 'info/',
+        success: function (msg) {
+            $(".logined").fadeIn(300);
+            $("a#name").html(msg.split(',')[0]);
+            var type = msg.split(',')[1];
+            if (type == 0) {
+                $("div#cover").fadeIn(200);
+                $("div#role-choose").fadeIn(200);
+            }
+            else if (type == 1) {
+                $(".jobs").fadeIn(300);
+                $(".recruitment").hide();
+            }
+            else {
+                $(".recruitment").fadeIn(300);
+                $(".jobs").hide();
+            }
+            $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;" />');
+            $.ajax({
+                type: 'POST',
+                url: 'follow/show/5',
+                success: function (msg) {
+                    $("#concern").animate({ opacity: 0 }, 200, null, function () {
+                        $("#concern").slideUp(100, null, function () {
+                            $("#concern").html(msg);
+                            SetConcern();
+                            $("#concern").slideDown(100, null, function () {
+                                $("#concern").animate({ opacity: 1 }, 200);
+                            });
+                        });
+                    });
+                }
+            });
+            $("#history").html('<img src="images/loading.gif" style="margin-left:134px;" />');
+            $.ajax({
+                type: 'GET',
+                url: 'history/show/5',
+                success: function (msg) {
+                    $("#history").animate({ opacity: 0 }, 200, null, function () {
+                        $("#history").slideUp(100, null, function () {
+                            $("#history").html(msg);
+                            SetHistory();
+                            $("#history").slideDown(100, null, function () {
+                                $("#history").animate({ opacity: 1 }, 200);
+                            });
+                        });
+                    });
+                }
+            });
+        }
     });
 }
