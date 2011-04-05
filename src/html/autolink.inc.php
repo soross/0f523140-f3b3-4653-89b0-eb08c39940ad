@@ -97,15 +97,15 @@ class Twitter_Autolink {
 	private function replacementURLs($matches) {
 		$replacement  = $matches[2];
 		if (substr($matches[3], 0, 7) == 'http://' || substr($matches[3], 0, 8) == 'https://') {
-			$replacement .= '<a href="' . $matches[3] . '" target="_blank">' . $matches[3] . '</a>';
+			$replacement .= '<a class="' . $this->urlClass . ' href="' . $matches[3] . '" target="_blank">' . $matches[3] . '</a>';
 		} else {
-			$replacement .= '<a href="http://' . $matches[3] . '" target="_blank">' . $matches[3] . '</a>';
+			$replacement .= '<a class="' . $this->urlClass . ' href="http://' . $matches[3] . '" target="_blank">' . $matches[3] . '</a>';
 		}
 		return $replacement;
 	}
 
 	public function autoLinkUsernamesAndLists($tweet) {
-		return preg_replace_callback('$([^a-z0-9_]|^)([@|＠])([a-z0-9_\x80-\xFF-]{1,20})(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
+		return preg_replace_callback('$([^a-z0-9_\x80-\xFF-]|^)([@|＠])([a-z0-9_\x80-\xFF-]{1,20})(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
 									 array($this, 'replacementUsernameAndLists'),
 									 $tweet);
 	}
