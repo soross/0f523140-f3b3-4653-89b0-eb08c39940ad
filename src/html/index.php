@@ -11,6 +11,7 @@ include_once('tag.inc.php');
 include_once('user.inc.php');
 include_once('tweet.inc.php');
 include_once('resume.inc.php');
+include_once('apply.inc.php');
 
 func_register(array(
   '' => array(
