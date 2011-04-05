@@ -119,6 +119,8 @@ $(function () {
                     success: function (msg) {
                         page = 0;
                         cate = 0;
+                        $("#sort").html($("a#" + cate).html());
+                        $("#sorts-name").html($("a#" + cate).html());
                         isTurn = false;
                         SetSearch(msg, text);
                     }
@@ -284,6 +286,8 @@ function SetAllSearch(msg) {
                                     success: function (msg) {
                                         page = 0;
                                         cate = 0;
+                                        $("#sort").html($("a#" + cate).html());
+                                        $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
                                         SetSearch(msg, text);
                                     }
@@ -550,6 +554,8 @@ function SetConcern() {
             success: function (msg) {
                 page = 0;
                 cate = 0;
+                $("#sort").html($("a#" + cate).html());
+                $("#sorts-name").html($("a#" + cate).html());
                 isTurn = false;
                 SetSearch(msg, text);
             }
@@ -676,6 +682,8 @@ function SetSearch(msg, e) {
                                     success: function (msg) {
                                         page = 0;
                                         cate = 0;
+                                        $("#sort").html($("a#" + cate).html());
+                                        $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
                                         SetSearch(msg, text);
                                     }
@@ -788,6 +796,8 @@ function SetHistory() {
             success: function (msg) {
                 cate = 0;
                 page = 0;
+                $("#sort").html($("a#" + cate).html());
+                $("#sorts-name").html($("a#" + cate).html());
                 isTurn = false;
                 SetSearch(msg, text);
             }
@@ -820,6 +830,8 @@ function DocumenScroll() {
                         success: function (msg) {
                             page = 0;
                             cate = 0;
+                            $("#sort").html($("a#" + cate).html());
+                            $("#sorts-name").html($("a#" + cate).html());
                             SetSearch(msg, text);
                             nowFirst = $(".microblog-item:first").attr("id");
                         }
@@ -913,6 +925,8 @@ function GetNewerBlogs() {
                             success: function (msg) {
                                 page = 0;
                                 cate = 0;
+                                $("#sort").html($("a#" + cate).html());
+                                $("#sorts-name").html($("a#" + cate).html());
                                 SetSearch(msg, text);
                                 nowFirst = $(".microblog-item:first").attr("id");
                             }
@@ -994,6 +1008,8 @@ function GetNewerBlogs() {
                             success: function (msg) {
                                 page = 0;
                                 cate = 0;
+                                $("#sort").html($("a#" + cate).html());
+                                $("#sorts-name").html($("a#" + cate).html());
                                 SetSearch(msg, text);
                                 nowFirst = $(".microblog-item:first").attr("id");
                             }
