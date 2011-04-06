@@ -474,14 +474,14 @@ function SetRolePicker() {
         of: $("div#role-choose"),
         my: "left top",
         at: "left top",
-        offset: "51 57",
+        offset: "48 54",
         collision: "none none"
     });
     $("a#role-recruitment").position({
         of: $("div#role-choose"),
         my: "left top",
         at: "left top",
-        offset: "331 57",
+        offset: "328 54",
         collision: "none none"
     });
     $("a#role-confirm").position({
