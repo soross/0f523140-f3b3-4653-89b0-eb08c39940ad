@@ -123,6 +123,23 @@ $(function () {
     else {
         $("#errormsg").html(decodeURI($.query.get("errormsg")));
         $("#error-info").dialog("open");
+        $.ajax({
+            type: 'GET',
+            url: 'search/all/0',
+            success: function (msg) {
+                isTurn = false;
+                SetAllSearch(msg);
+                $("div#backTop").position({
+                    of: $("div#microblogs"),
+                    my: "left top",
+                    at: "right top",
+                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                    collision: "none none"
+                });
+                $("div#backTop").css("position", "fixed");
+                setTimeout(function () { GetNewerBlogs(); }, 60000);
+            }
+        });
     }
 
     $.ajax({
