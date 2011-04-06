@@ -267,6 +267,7 @@ function ShowApply(e) {
                 type = "apply";
                 $("#delete-dialog").dialog("open");
             });
+            $(".job-closed").animate({ opacity: 0.4 }, 0);
             UpdateApply();
         }
     });
