@@ -74,7 +74,7 @@ $(function () {
         }
     });
 
-    if ($.query.get("errormsg") != "") {
+    if ($.query.get("errormsg") == "") {
         if ($.query.get("search") != "") {
             var text = $.trim($.query.get("search"));
             var cat = $.trim($.query.get("cat"));
