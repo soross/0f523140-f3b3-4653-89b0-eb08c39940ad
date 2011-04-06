@@ -39,6 +39,14 @@ function resume_add()
     }
 }
 
+function resume_current()
+{
+    include_once('login.php');
+    $user_id = get_current_user_id();
+    $resume_id = $user_id;
+    echo $resume_id;
+}
+
 function resume_show()
 {
     $args = func_get_args();
