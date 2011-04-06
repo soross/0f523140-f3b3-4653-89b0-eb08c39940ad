@@ -16,7 +16,7 @@ $(function () {
         }, 30000);
     }
     else {
-        $("#radio").fadeOut(200);
+        $("#radio").hide();
     }
 
     $("a.company-name").click(function () {
