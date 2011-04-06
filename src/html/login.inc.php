@@ -171,7 +171,7 @@ function oauth_sina_callback()
         die("Cound not get data from Sina API");
     $view = "SELECT * FROM accountbindings WHERE site_id='1' AND user_site_id='".$me['id']."'";
     $list = mysql_query($view);
-    $row = mysql_fetch_array($list); 
+    $row = mysql_fetch_array($list);
     if(!$row)
     {
         include_once("uuid.inc.php");
@@ -249,7 +249,7 @@ function role_set()
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     $role = $row['role_id'];
-    if($role != 0)
+    if($role != -1)
         die('Already set role!');
     $view = "UPDATE userinfo SET role_id=".$key." WHERE user_id='".$id."'";
     $list = mysql_query($view) or die("Update error!");
