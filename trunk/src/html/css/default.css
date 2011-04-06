@@ -269,6 +269,7 @@ div#right div.microblog-item-blog
     padding: 0 5px;
     font-size: 14px;
     word-wrap: break-word;
+    white-space:pre-wrap;
 }
 div#right a.microblog-item-blog-name
 {
