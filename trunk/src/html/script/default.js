@@ -218,7 +218,6 @@ function SetAllSearch(msg) {
     $("div#fresh-outer").hide();
     $("div#fresh-blogs").animate({ opacity: 0 }, 0);
     $("div#fresh-blogs").hide();
-    count = 0;
     $("div#pages").fadeOut(50);
     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
         $("div#blogs").slideUp(100, null, function () {
@@ -234,6 +233,7 @@ function SetAllSearch(msg) {
                                 $(document).scroll(function () {
                                     DocumenScroll();
                                 });
+                                count = 0;
                             });
                             $.ajax({
                                 type: "POST",
@@ -646,7 +646,6 @@ function SetSearch(msg, e) {
     $("div#fresh-outer").hide();
     $("div#fresh-blogs").animate({ opacity: 0 }, 0);
     $("div#fresh-blogs").hide();
-    count = 0;
     SearchResult = e;
     $("div#pages").fadeOut(50);
     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
@@ -663,6 +662,7 @@ function SetSearch(msg, e) {
                                 $(document).scroll(function () {
                                     DocumenScroll();
                                 });
+                                count = 0;
                             });
                             $.ajax({
                                 type: "POST",
