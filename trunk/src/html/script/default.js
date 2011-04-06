@@ -504,6 +504,9 @@ function SetResult(msg) {
                                         success: function (msg) {
                                             $("div#concern").animate({ opacity: 0 }, 200, null, function () {
                                                 $("#concern").html(msg);
+                                                if (msg == "") {
+                                                    $("#concern").html("你还未添加关注");
+                                                }
                                                 SetConcern();
                                                 $("div#concern").animate({ opacity: 1 }, 200);
                                             });
@@ -1278,6 +1281,9 @@ function AfterLogin() {
                     $("#concern").animate({ opacity: 0 }, 200, null, function () {
                         $("#concern").slideUp(100, null, function () {
                             $("#concern").html(msg);
+                            if (msg == "") {
+                                $("#concern").html("你还未添加关注");
+                            }
                             SetConcern();
                             $("#concern").slideDown(100, null, function () {
                                 $("#concern").animate({ opacity: 1 }, 200);
