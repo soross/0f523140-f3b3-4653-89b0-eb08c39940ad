@@ -141,6 +141,7 @@ div.item-blog
     line-height: 20px;
     padding: 0 5px;
     font-size:14px;
+    word-wrap: break-word;
     overflow:hidden;
 }
 a.item-blog-name

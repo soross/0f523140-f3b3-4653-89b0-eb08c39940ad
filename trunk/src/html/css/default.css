@@ -268,6 +268,7 @@ div#right div.microblog-item-blog
     line-height: 20px;
     padding: 0 5px;
     font-size: 14px;
+    word-wrap: break-word;
 }
 div#right a.microblog-item-blog-name
 {
