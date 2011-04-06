@@ -228,12 +228,12 @@ function SetAllSearch(msg) {
                     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
                         $("div#blogs").slideUp(100, null, function () {
                             $("div#blogs").html(msg);
-                            $(document).unbind("scroll");
-                            $(document).scroll(function () {
-                                DocumenScroll();
-                            });
                             $("div#blogs").slideDown(100, null, function () {
                                 $("div#blogs").animate({ opacity: 1 }, 200);
+                                $(document).unbind("scroll");
+                                $(document).scroll(function () {
+                                    DocumenScroll();
+                                });
                             });
                             $.ajax({
                                 type: "POST",
@@ -657,12 +657,12 @@ function SetSearch(msg, e) {
                     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
                         $("div#blogs").slideUp(100, null, function () {
                             $("div#blogs").html(msg);
-                            $(document).unbind("scroll");
-                            $(document).scroll(function () {
-                                DocumenScroll();
-                            });
                             $("div#blogs").slideDown(100, null, function () {
                                 $("div#blogs").animate({ opacity: 1 }, 200);
+                                $(document).unbind("scroll");
+                                $(document).scroll(function () {
+                                    DocumenScroll();
+                                });
                             });
                             $.ajax({
                                 type: "POST",
