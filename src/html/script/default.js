@@ -175,10 +175,6 @@ $(function () {
         $("div#backTop").stop().animate({ opacity: 0.6 }, 200);
     });
 
-    $(document).scroll(function () {
-        DocumenScroll();
-    });
-
     $("#search-text").keypress(function (e) {
         if (e.which == 13) {
             if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴") {
@@ -232,6 +228,10 @@ function SetAllSearch(msg) {
                     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
                         $("div#blogs").slideUp(100, null, function () {
                             $("div#blogs").html(msg);
+                            $(document).unbind("scroll");
+                            $(document).scroll(function () {
+                                DocumenScroll();
+                            });
                             $("div#blogs").slideDown(100, null, function () {
                                 $("div#blogs").animate({ opacity: 1 }, 200);
                             });
@@ -657,6 +657,10 @@ function SetSearch(msg, e) {
                     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
                         $("div#blogs").slideUp(100, null, function () {
                             $("div#blogs").html(msg);
+                            $(document).unbind("scroll");
+                            $(document).scroll(function () {
+                                DocumenScroll();
+                            });
                             $("div#blogs").slideDown(100, null, function () {
                                 $("div#blogs").animate({ opacity: 1 }, 200);
                             });
