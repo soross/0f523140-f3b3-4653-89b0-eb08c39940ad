@@ -24,7 +24,7 @@ $(function () {
                         $("#apply-info p:first").html('歪伯乐将自动帮您生成简历页面并投递到招聘者的收件箱，您可以点击<a target="_blank" class="keyword" href="resume/show/' + msg + '">这里</a>预览简历。');
                     }
                     else {
-                        $("#apply-info p:first").html('歪伯乐将自动帮您生成简历页面并投递到招聘者的收件箱，您目前还没有创建简历，您可以点击<a class="keyword" href="/manager">这里</a>创建简历。');
+                        $("#apply-info p:first").html('歪伯乐将自动帮您生成简历页面并投递到招聘者的收件箱，您目前还没有创建简历，您可以点击<a class="keyword" href="/manager?type=profile">这里</a>创建简历。');
                     }
                 }
             })
