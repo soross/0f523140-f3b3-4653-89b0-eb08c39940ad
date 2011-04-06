@@ -44,10 +44,40 @@ function user_is_authenticated()
         return true;
 }
 
+function get_current_user_id()
+{
+    return $GLOBALS['user']['id'];
+}
+
+function get_current_user_nickname()
+{
+    return $GLOBALS['user']['nickname'];
+}
+
+function get_current_user_role()
+{
+    return $GLOBALS['user']['role'];
+}
+
+function user_is_admin()
+{
+    $role = get_current_user_role();
+    if($role==="0")
+        return true;
+    return false;
+}
+
 function user_ensure_authenticated()
 {
     if(!user_is_authenticated())
         header("Location: ".BASE_URL."login");
+}
+
+function user_ensure_admin()
+{
+    user_ensure_authenticated();
+    if(!user_is_admin())
+        header("Location: ".BASE_URL."?errormsg=".urlencode("不要做坏事哟^o^"));
 }
 
 function sina_get_credentials()
@@ -131,21 +161,6 @@ function save_cookie($stay_logged_in = 1)
         $duration = time() + (3600 * 24 * 365);
     }
     setcookie('USER_AUTH', $cookie, $duration, '/');
-}
-
-function get_current_user_id()
-{
-    return $GLOBALS['user']['id'];
-}
-
-function get_current_user_nickname()
-{
-    return $GLOBALS['user']['nickname'];
-}
-
-function get_current_user_role()
-{
-    return $GLOBALS['user']['role'];
 }
 
 function oauth_sina()
