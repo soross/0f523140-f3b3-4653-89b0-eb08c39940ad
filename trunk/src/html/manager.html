@@ -296,6 +296,8 @@
             var sort = $.query.get("type");
             if (sort == "profile") {
                 ShowProfile();
+                $("a.manager-control").removeClass("manager-control-choose");
+                $("#myprofile").addClass("manager-control-choose");
             }
             else {
                 ShowNormal(0);
@@ -362,7 +364,7 @@
                 <a class="manager-control left jobs manager-control-choose" onclick="ShowNormal(0)">
                     我发布的信息</a> <a class="manager-control left jobs" onclick="ShowApply(0)">申请记录</a>
                 <a class="manager-control left jobs" onclick="ShowFavourite(0)">职位收藏</a> <a class="manager-control left jobs"
-                    onclick="ShowProfile()">个人简历</a> <a class="manager-control left recruitment manager-control-choose"
+                    onclick="ShowProfile()" id="myprofile">个人简历</a> <a class="manager-control left recruitment manager-control-choose"
                         onclick="ShowNormal(0)">我发布的信息</a><a class="manager-control left recruitment" onclick="ShowApplys(0)">收到的职位申请</a><a
                             class="manager-control left recruitment" onclick="ShowFavourite(0)">职位收藏</a>
             </div>
