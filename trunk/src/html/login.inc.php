@@ -77,7 +77,7 @@ function user_ensure_admin()
 {
     user_ensure_authenticated();
     if(!user_is_admin())
-        header("Location: ".BASE_URL."?errormsg=".get_current_user_role().urlencode("不要做坏事哟^o^"));
+        header("Location: ".BASE_URL."?errormsg=".urlencode("不要做坏事哟^o^"));
 }
 
 function sina_get_credentials()
