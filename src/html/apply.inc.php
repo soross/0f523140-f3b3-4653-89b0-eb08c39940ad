@@ -84,7 +84,7 @@ function get_applies($num, $page)
     $page = intval($page) * $num;
     $limit = " LIMIT $page , $num";
     connect_db();
-    $view = "SELECT * from tweets, (SELECT * FROM applications WHERE user_id='$id' AND deleted=0) as applications WHERE tweets.deleted=0 AND tweets.tweet_id=applications.tweet_id ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT * from tweets, (SELECT * FROM applications WHERE user_id='$id' AND deleted=0) as applications WHERE tweets.tweet_id=applications.tweet_id ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
@@ -173,7 +173,11 @@ function apply_show()
             $source = str_replace("<a ", '<a class="left microblog-item-position"', $f['source']);
         else
             $source = '<a class="left microblog-item-position">'.$f['source'].'</a>';
-        $content .= '<div class="item" id="'.$f['tweet_id'].'">
+        if($f['deleted'])
+            $temp = " job-closed";
+        else
+            $temp = "";
+        $content .= '<div class="item'.$temp.'" id="'.$f['tweet_id'].'">
                    <div class="item-delete">
                        <a class="right"></a>
                    </div>
@@ -186,7 +190,9 @@ function apply_show()
                        </div>
                        <div class="item-other">
                            <span class="left item-time">'.time_tran($f['post_datetime']).'</span> '.$source;
-        if($f['view_time'])
+        if($f['deleted'])
+            $content .= '<span class="right item-apply item-apply-info">已关闭</span>';
+        elseif($f['view_time'])
             $content .= '<span class="right item-apply item-apply-info">'.time_tran($f['view_time']).'</span>';
         else
             $content .= '<span class="right item-apply item-apply-info">未读</span>';
