@@ -124,7 +124,7 @@ function theme_resume($title, $data)
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>'.$title.' - 微招聘</title>
-    <link href="css/profile.css" type="text/css" rel="Stylesheet" />
+    <link href='.BASE_URL.'"css/profile.css" type="text/css" rel="Stylesheet" />
 </head>
 <body>
     <div id="head">
