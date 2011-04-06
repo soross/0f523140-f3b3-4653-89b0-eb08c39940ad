@@ -176,7 +176,7 @@ function oauth_sina_callback()
     {
         include_once("uuid.inc.php");
         $v4uuid = str_replace("-", "", UUID::v4());
-        $add = "INSERT INTO userinfo(nickname, email, microblogs, user_id, role_id) VALUES ('".$me['name']."', '', '1', '$v4uuid', '0')";
+        $add = "INSERT INTO userinfo(nickname, email, microblogs, user_id, role_id) VALUES ('".$me['name']."', '', '1', '$v4uuid', '-1')";
         $added = mysql_query($add) or die("Could not add entry 1");
         $add = "INSERT INTO accountbindings(user_id, user_site_id, site_id, secret1, secret2) VALUES ('$v4uuid', '".$me['id']."', 1, '".$GLOBALS['user']['sinakey']['oauth_token']."', '".$GLOBALS['user']['sinakey']['oauth_token_secret']."')";
         $added = mysql_query($add) or die("Could not add entry 2");
