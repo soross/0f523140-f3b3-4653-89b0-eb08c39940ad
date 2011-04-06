@@ -601,10 +601,12 @@ function AfterLogin() {
             if (type == 1) {
                 $(".jobs").fadeIn(300);
                 $(".recruitment").hide();
+                $(".admin").hide();
             }
             else if (type == 2) {
                 $(".recruitment").fadeIn(300);
                 $(".jobs").hide();
+                $(".admin").hide();
             }
             else if (type == 0) {
                 $(".admin").show();

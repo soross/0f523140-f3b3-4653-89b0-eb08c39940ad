@@ -11,10 +11,12 @@
             if (type == 1) {
                 $(".jobs").show();
                 $(".recruitment").hide();
+                $(".admin").hide();
             }
             else if (type == 2) {
                 $(".jobs").hide();
                 $(".recruitment").show();
+                $(".admin").hide();
             }
             else if (type == 0) {
                 $(".admin").show();
