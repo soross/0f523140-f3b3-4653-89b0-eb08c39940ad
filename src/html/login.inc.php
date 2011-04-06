@@ -242,7 +242,7 @@ function role_set()
     $id = get_current_user_id();
     $args = func_get_args();
     $key = $args[2];
-    if(!$key or ($key != "1" and $key != "2"))
+    if($key == "" or ($key != "1" and $key != "2"))
         die("Invalid argument!");
     connect_db();
     $view = "SELECT role_id FROM userinfo WHERE user_id='".$id."'";
