@@ -19,10 +19,13 @@ function tweet_delete()
     $view = "SELECT tweets.* FROM tweets, (SELECT user_id, user_site_id, site_id FROM accountbindings) AS ac WHERE tweets.user_site_id = ac.user_site_id AND ac.user_id='$id' AND ac.site_id = tweets.site_id AND tweets.tweet_id='$key' AND tweets.deleted='0'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
-    if($row)
+    if($row or user_is_admin())
     {
-        $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
-        $msg = $c -> destroy($row['tweet_site_id']);
+        if($row)
+        {
+            $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
+            $msg = $c -> destroy($row['tweet_site_id']);
+        }
         $view = "UPDATE tweets SET deleted='1' WHERE tweet_id='$key'";
         $list = mysql_query($view) or die("Delete error!");
     }
