@@ -951,10 +951,12 @@ function DocumenScroll() {
     if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4) {
         $(document).unbind("scroll");
         count++;
+        $("#flower").fadeIn(200);
         $.ajax({
             type: 'GET',
             url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
             success: function (msg) {
+                $("#flower").fadeOut(200);
                 $("div#blogs").html($("div#blogs").html() + msg);
                 $("a.microblog-item-relate").unbind("click");
                 $("a.microblog-item-relate").click(function () {
