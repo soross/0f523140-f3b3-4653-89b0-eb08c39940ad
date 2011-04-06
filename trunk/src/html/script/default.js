@@ -9,7 +9,7 @@ var isFreshed = false;
 var isTurn = false;
 
 $(function () {
-    if ($.cookie("athere") != null) {
+    if ($.cookie("athere") == null) {
         $.cookie("athere", "here", { path: '/' });
         setTimeout(function () {
             $("#radio").slideUp(200);
