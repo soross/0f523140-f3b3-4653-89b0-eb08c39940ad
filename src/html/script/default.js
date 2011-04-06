@@ -577,6 +577,9 @@ function SetRolePicker() {
                 type: 'POST',
                 url: 'role/set/1',
                 success: function (msg) {
+                    if (msg == "") {
+                        $("#concern").html("<div style=\"text-align:center;\">您还未添加关注</div>");
+                    }
                 }
             });
         }
@@ -608,6 +611,13 @@ function SetConcern() {
             type: 'POST',
             url: 'follow/delete/' + $(this).attr("id"),
             success: function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'follow/show',
+                    success: function (msg) {
+                     
+                    }
+                });
                 var text = item.next(".concern-item-content").children(".concern-item-content-info").html();
                 if (text == SearchResult) {
                     $("a#search-result-concern").attr("class", "right search-result-concern");
