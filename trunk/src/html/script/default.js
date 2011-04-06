@@ -636,6 +636,9 @@ function SetConcern() {
                                             success: function (msg) {
                                                 $("div#concern").animate({ opacity: 0 }, 200, null, function () {
                                                     $("#concern").html(msg);
+                                                    if (msg == "") {
+                                                        $("#concern").html("你还未添加关注");
+                                                    }
                                                     SetConcern();
                                                     $("div#concern").animate({ opacity: 1 }, 200);
                                                 });
