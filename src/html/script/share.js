@@ -13,6 +13,8 @@ $(function () {
 function SetPublish() {
     $("div#published-info").dialog({
         autoOpen: false,
+        draggable: false,
+        resizable: false,
         buttons: {
             "好的，我知道了": function () {
                 $(this).dialog("close");

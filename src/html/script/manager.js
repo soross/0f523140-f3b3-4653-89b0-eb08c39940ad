@@ -9,6 +9,8 @@ $(function () {
 
     $("div#profile-info").dialog({
         autoOpen: false,
+        draggable: false,
+        resizable: false,
         buttons: {
             "确定": function () {
                 $(this).dialog("close");

@@ -61,49 +61,68 @@ $(function () {
     });
     SetRolePicker();
     GetNewerCount();
-    if ($.query.get("search") != "") {
-        var text = $.trim($.query.get("search"));
-        var cat = $.trim($.query.get("cat"));
-        $.ajax({
-            type: 'GET',
-            url: 'search/' + encodeURI(text) + '/' + cat,
-            success: function (msg) {
-                page = 0;
-                cate = cat;
-                $("#sort").html($("a#" + cate).html());
-                $("#sorts-name").html($("a#" + cate).html());
-                isTurn = false;
-                SetSearch(msg, text);
-                setTimeout(function () { GetNewerBlogs(); }, 60000);
-                $("div#backTop").position({
-                    of: $("div#microblogs"),
-                    my: "left top",
-                    at: "right top",
-                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                    collision: "none none"
-                });
-                $("div#backTop").css("position", "fixed");
+
+    $("#error-info").dialog({
+        autoOpen: false,
+        draggable: false,
+        resizable: false,
+        modal: true,
+        buttons: {
+            "确定": function () {
+                $(this).dialog("close");
             }
-        });
+        }
+    });
+
+    if ($.query.get("errormsg") != "") {
+        if ($.query.get("search") != "") {
+            var text = $.trim($.query.get("search"));
+            var cat = $.trim($.query.get("cat"));
+            $.ajax({
+                type: 'GET',
+                url: 'search/' + encodeURI(text) + '/' + cat,
+                success: function (msg) {
+                    page = 0;
+                    cate = cat;
+                    $("#sort").html($("a#" + cate).html());
+                    $("#sorts-name").html($("a#" + cate).html());
+                    isTurn = false;
+                    SetSearch(msg, text);
+                    setTimeout(function () { GetNewerBlogs(); }, 60000);
+                    $("div#backTop").position({
+                        of: $("div#microblogs"),
+                        my: "left top",
+                        at: "right top",
+                        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                        collision: "none none"
+                    });
+                    $("div#backTop").css("position", "fixed");
+                }
+            });
+        }
+        else {
+            $.ajax({
+                type: 'GET',
+                url: 'search/all/0',
+                success: function (msg) {
+                    isTurn = false;
+                    SetAllSearch(msg);
+                    $("div#backTop").position({
+                        of: $("div#microblogs"),
+                        my: "left top",
+                        at: "right top",
+                        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                        collision: "none none"
+                    });
+                    $("div#backTop").css("position", "fixed");
+                    setTimeout(function () { GetNewerBlogs(); }, 60000);
+                }
+            });
+        }
     }
     else {
-        $.ajax({
-            type: 'GET',
-            url: 'search/all/0',
-            success: function (msg) {
-                isTurn = false;
-                SetAllSearch(msg);
-                $("div#backTop").position({
-                    of: $("div#microblogs"),
-                    my: "left top",
-                    at: "right top",
-                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                    collision: "none none"
-                });
-                $("div#backTop").css("position", "fixed");
-                setTimeout(function () { GetNewerBlogs(); }, 60000);
-            }
-        });
+        $("#errormsg").html(decodeURI($.query.get("errormsg")));
+        $("#error-info").dialog("open");
     }
 
     $.ajax({
