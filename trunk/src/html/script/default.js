@@ -7,6 +7,9 @@ var nextLess = false;
 var nowFirst = "";
 var isFreshed = false;
 var isTurn = false;
+var name = "";
+var item;
+var id;
 
 $(function () {
     if ($.cookie("athere") == null) {
@@ -79,6 +82,28 @@ $(function () {
         modal: true,
         buttons: {
             "确定": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+
+    $("#apply-info").dialog({
+        autoOpen: false,
+        draggable: false,
+        resizable: false,
+        buttons: {
+            "确定": function () {
+                $.ajax({
+                    type: "POST",
+                    url: 'apply/add/' + id,
+                    success: function () {
+                        item.hide();
+                        item.next("a.unapply").show();
+                    }
+                });
+                $(this).dialog("close");
+            },
+            "取消": function () {
                 $(this).dialog("close");
             }
         }
@@ -406,16 +431,9 @@ function SetAllSearch(msg) {
                                 });
                             });
                             $("a.apply").click(function () {
-                                var item = $(this);
-                                var id = $(this).parent().parent().parent().attr("name");
-                                $.ajax({
-                                    type: "POST",
-                                    url: 'apply/add/' + id,
-                                    success: function () {
-                                        item.hide();
-                                        item.next("a.unapply").show();
-                                    }
-                                });
+                                item = $(this);
+                                id = $(this).parent().parent().parent().attr("name");
+                                $("#apply-info").dialog("open");
                             });
                             $("a.unapply").click(function () {
                                 var item = $(this);
@@ -839,16 +857,9 @@ function SetSearch(msg, e) {
                                     });
                                 });
                                 $("a.apply").click(function () {
-                                    var item = $(this);
-                                    var id = $(this).parent().parent().parent().attr("name");
-                                    $.ajax({
-                                        type: "POST",
-                                        url: 'apply/add/' + id,
-                                        success: function () {
-                                            item.hide();
-                                            item.next("a.unapply").show();
-                                        }
-                                    });
+                                    item = $(this);
+                                    id = $(this).parent().parent().parent().attr("name");
+                                    $("#apply-info").dialog("open");
                                 });
                                 $("a.unapply").click(function () {
                                     var item = $(this);
@@ -1006,16 +1017,9 @@ function DocumenScroll() {
                     });
                 });
                 $("a.apply").click(function () {
-                    var item = $(this);
-                    var id = $(this).parent().parent().parent().attr("name");
-                    $.ajax({
-                        type: "POST",
-                        url: 'apply/add/' + id,
-                        success: function () {
-                            item.hide();
-                            item.next("a.unapply").show();
-                        }
-                    });
+                    item = $(this);
+                    id = $(this).parent().parent().parent().attr("name");
+                    $("#apply-info").dialog("open");
                 });
                 $("a.unapply").click(function () {
                     var item = $(this);
@@ -1117,16 +1121,9 @@ function GetNewerBlogs() {
                         });
                     });
                     $("a.apply").click(function () {
-                        var item = $(this);
-                        var id = $(this).parent().parent().parent().attr("name");
-                        $.ajax({
-                            type: "POST",
-                            url: 'apply/add/' + id,
-                            success: function () {
-                                item.hide();
-                                item.next("a.unapply").show();
-                            }
-                        });
+                        item = $(this);
+                        id = $(this).parent().parent().parent().attr("name");
+                        $("#apply-info").dialog("open");
                     });
                     $("a.unapply").click(function () {
                         var item = $(this);
@@ -1216,16 +1213,9 @@ function GetNewerBlogs() {
                         });
                     });
                     $("a.apply").click(function () {
-                        var item = $(this);
-                        var id = $(this).parent().parent().parent().attr("name");
-                        $.ajax({
-                            type: "POST",
-                            url: 'apply/add/' + id,
-                            success: function () {
-                                item.hide();
-                                item.next("a.unapply").show();
-                            }
-                        });
+                        item = $(this);
+                        id = $(this).parent().parent().parent().attr("name");
+                        $("#apply-info").dialog("open");
                     });
                     $("a.unapply").click(function () {
                         var item = $(this);
@@ -1253,6 +1243,7 @@ function AfterLogin() {
         success: function (msg) {
             $(".logined").fadeIn(300);
             $("a#name").html(msg.split(',')[0]);
+            name = msg.split(',')[0];
             $("div#links a:last").attr("href", "profile/" + msg.split(',')[0]);
             var type = msg.split(',')[1];
             if (type == -1) {
