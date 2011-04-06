@@ -9,6 +9,16 @@ var isFreshed = false;
 var isTurn = false;
 
 $(function () {
+    if ($.cookie("athere") != null) {
+        $.cookie("athere", "here", { path: '/' });
+        setTimeout(function () {
+            $("#radio").slideUp(200);
+        }, 30000);
+    }
+    else {
+        $("#radio").fadeOut(200);
+    }
+
     $("a.company-name").click(function () {
         var text = $.trim($(this).html());
         $.ajax({
