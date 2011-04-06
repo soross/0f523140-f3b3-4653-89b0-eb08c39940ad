@@ -222,12 +222,12 @@ div#company div#companies
     overflow: hidden;
     white-space: nowrap;
     line-height: 38px;
-    position:relative;
+    position: relative;
 }
 div#company div#companies-inner
 {
     position: relative;
-    height:38px;
+    height: 38px;
 }
 div#company a.company-name
 {
@@ -626,4 +626,8 @@ div#copyright
 .highlight
 {
     color: #ff0000;
+}
+.admin
+{
+    display: none;
 }
