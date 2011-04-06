@@ -49,6 +49,7 @@ function get_feedbacks($num, $page)
 
 function feedback_show()
 {
+    user_ensure_admin();
     $args = func_get_args();
     $key = $args[2];
     $content = '';
