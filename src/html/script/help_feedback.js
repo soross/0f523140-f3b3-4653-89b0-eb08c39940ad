@@ -12,7 +12,12 @@
                 $(".jobs").show();
                 $(".recruitment").hide();
             }
-            else {
+            else if (type == 2) {
+                $(".jobs").hide();
+                $(".recruitment").show();
+            }
+            else if (type == 0) {
+                $(".admin").show();
                 $(".jobs").hide();
                 $(".recruitment").show();
             }

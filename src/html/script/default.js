@@ -1253,9 +1253,14 @@ function AfterLogin() {
                 $(".jobs").fadeIn(300);
                 $(".recruitment").hide();
             }
-            else {
+            else if (type == 2) {
                 $(".recruitment").fadeIn(300);
                 $(".jobs").hide();
+            }
+            else if (type == 0) {
+                $(".admin").show();
+                $(".jobs").hide();
+                $(".recruitment").show();
             }
             $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;" />');
             $.ajax({
