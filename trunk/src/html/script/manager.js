@@ -4,6 +4,7 @@ var deleteurl;
 var page = 0;
 var allpage = 0;
 var type = "";
+var editor;
 
 $(function () {
 
@@ -47,6 +48,282 @@ $(function () {
             $(this).val($(this).attr("title"));
         }
     });
+    $("#search-text").keydown(function () {
+        if ($(this).val().length > 32) {
+            $(this).val($(this).val().substring(0, 32));
+        }
+    });
+    $("#search-text").keyup(function () {
+        if ($(this).val().length > 32) {
+            $(this).val($(this).val().substring(0, 32));
+        }
+    });
+
+    $("#search-text").keypress(function (e) {
+        if (e.which == 13) {
+            if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴") {
+                location = "/?search=" + encodeURI($("#search-text").val()) + "&cat=" + cate;
+            }
+        }
+    });
+    $("a#search-button").click(function () {
+        if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴") {
+            location = "/?search=" + encodeURI($("#search-text").val()) + "&cat=" + cate;
+        }
+    });
+
+    $("a.company-name").click(function () {
+        var text = $(this).html();
+        location = "/?search=" + encodeURI(text) + "&cat=0";
+    });
+
+    $("#birthday").datepicker({
+        changeMonth: true,
+        changeYear: true
+    });
+    editor = CKEDITOR.replace('profile-detail', {
+        uiColor: '#d1e9f1',
+        language: 'zh-cn',
+        toolbar: [['NewPage', 'Save', 'Preview', '-', 'Templates'], ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'], ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], '/', ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink', 'Anchor'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak'], '/', ['Styles', 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor']],
+        resize_enabled: false,
+        filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: 'ckfinder/ckfinder.html?Type=Images',
+        filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+    });
+    CKFinder.setupCKEditor(editor, "ckfinder/");
+
+    $("div#info-pic a").click(function () {
+        var finder = new CKFinder();
+        finder.basePath = 'ckfinder/';
+        finder.selectActionFunction = SetFileField;
+        finder.popup();
+    });
+
+    $("a#profile-save").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: 'resume/add',
+            data: {
+                name: $("#u-name").val(),
+                sex: $("#sex").val(),
+                date_birth: $("#birthday").val(),
+                live_in_now: $("#n-positon").val(),
+                live_in: $("#o-positon").val(),
+                cellphone: $("#m-phone").val(),
+                email: $("#email").val(),
+                content: editor.document.getBody().getHtml()
+            },
+            success: function (msg) {
+                $("div#profile-info").dialog("open");
+            }
+        });
+    });
+    $("a#profile-preview").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: 'resume/preview',
+            data: {
+                name: $("#u-name").val(),
+                sex: $("#sex").val(),
+                date_birth: $("#birthday").val(),
+                live_in_now: $("#n-positon").val(),
+                live_in: $("#o-positon").val(),
+                cellphone: $("#m-phone").val(),
+                email: $("#email").val(),
+                content: editor.document.getBody().getHtml()
+            },
+            success: function (msg) {
+                var obj = window.open("/resume");
+                obj.document.write(msg);
+            }
+        });
+    });
+
+    $("a.applys").click(function () {
+        var item = $(this).parent().next(".item-applys");
+        if (item.hasClass("close")) {
+            item.slideDown(200);
+            item.removeClass("close");
+        }
+        else {
+            item.slideUp(200);
+            item.addClass("close");
+        }
+    });
+
+    $("#delete-dialog").dialog({
+        autoOpen: false,
+        draggable: false,
+        resizable: false,
+        width: 180,
+        buttons: {
+            "确定": function () {
+                $(this).dialog("close");
+                var flag = false;
+                $("div#pages").fadeOut(50);
+                if (allpage > 1) {
+                    flag = true;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: deleteurl + deleteid,
+                    success: function () {
+                        deleteitem.animate({ opacity: 0 }, 300, null, function () {
+                            deleteitem.slideUp(200, null, function () {
+                                if (type == "apply") {
+                                    if (flag) {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'apply/show/' + page,
+                                            success: function (msg) {
+                                                var str = '<div class="item newer" style="display:none;"';
+                                                str += msg.split('<div class="item"')[10];
+                                                $("div.item:last").after(str);
+                                                $(".newer:last").slideDown(200);
+                                                $("div.item").unbind("mouseover");
+                                                $("div.item").unbind("mouseout");
+                                                $("div.item-delete a").unbind("click");
+                                                $("div.item").mouseover(function () {
+                                                    $(this).addClass("item-over");
+                                                });
+                                                $("div.item").mouseout(function () {
+                                                    $(this).removeClass("item-over");
+                                                });
+                                                $("div.item-delete a").click(function () {
+                                                    deleteitem = $(this).parent().parent();
+                                                    deleteid = deleteitem.attr("id");
+                                                    deleteurl = 'apply/delete/';
+                                                    type = "apply";
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                            }
+                                        });
+                                    }
+                                    UpdateApply();
+                                }
+                                else if (type == "like") {
+                                    if (flag) {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'like/show/' + page,
+                                            success: function (msg) {
+                                                var str = '<div class="item newer" style="display:none;"';
+                                                str += msg.split('<div class="item"')[10];
+                                                $("div.item:last").after(str);
+                                                $(".newer:last").slideDown(200);
+                                                $("a.apply").unbind("click");
+                                                $("a.unapply").unbind("click");
+                                                $("div.item").unbind("mouseover");
+                                                $("div.item").unbind("mouseout");
+                                                $("a.delete").unbind("click");
+                                                $("div.item-delete a").unbind("click");
+                                                $("a.apply").click(function () {
+                                                    var item = $(this);
+                                                    var id = $(this).parent().parent().parent().attr("id");
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: 'apply/add/' + id,
+                                                        success: function () {
+                                                            item.hide();
+                                                            item.next("a.unapply").show();
+                                                        }
+                                                    });
+                                                });
+                                                $("a.unapply").click(function () {
+                                                    var item = $(this);
+                                                    var id = $(this).parent().parent().parent().attr("id");
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: 'apply/delete/' + id,
+                                                        success: function () {
+                                                            item.hide();
+                                                            item.prev("a.apply").show();
+                                                        }
+                                                    });
+                                                });
+                                                $("div.item").mouseover(function () {
+                                                    $(this).addClass("item-over");
+                                                });
+                                                $("div.item").mouseout(function () {
+                                                    $(this).removeClass("item-over");
+                                                });
+                                                $("a.delete").click(function () {
+                                                    deleteitem = $(this).parent().parent().parent();
+                                                    deleteid = deleteitem.attr("id");
+                                                    deleteurl = 'like/delete/';
+                                                    type = "like";
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                                $("div.item-delete a").click(function () {
+                                                    deleteitem = $(this).parent().parent();
+                                                    deleteid = deleteitem.attr("id");
+                                                    deleteurl = 'like/delete/';
+                                                    type = "like";
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                            }
+                                        });
+                                    }
+                                    UpdateFavourite();
+                                }
+                                else if (type == "tweet") {
+                                    if (flag) {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'user/current/0/' + page,
+                                            success: function (msg) {
+                                                var str = '<div class="item newer" style="display:none;"';
+                                                str += msg.split('<div class="item"')[10];
+                                                $("div.item:last").after(str);
+                                                $(".newer:last").slideDown(200);
+                                                $("div.item").unbind("mouseover");
+                                                $("div.item").unbind("mouseout");
+                                                $("a.delete").unbind("click");
+                                                $("div.item-delete a").unbind("click");
+                                                $("div.item").mouseover(function () {
+                                                    $(this).addClass("item-over");
+                                                });
+                                                $("div.item").mouseout(function () {
+                                                    $(this).removeClass("item-over");
+                                                });
+                                                $("a.delete").click(function () {
+                                                    deleteitem = $(this).parent().parent().parent();
+                                                    deleteid = deleteitem.attr("id");
+                                                    deleteurl = 'tweet/delete/';
+                                                    type = "tweet";
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                                $("div.item-delete a").click(function () {
+                                                    deleteitem = $(this).parent().parent();
+                                                    deleteid = deleteitem.attr("id");
+                                                    deleteurl = 'tweet/delete/';
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                            }
+                                        });
+                                    }
+                                    UpdateTweet();
+                                }
+                            });
+                        });
+                    }
+                });
+            },
+            "取消": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+
+    var sort = $.query.get("type");
+    if (sort == "profile") {
+        ShowProfile();
+        $("a.manager-control").removeClass("manager-control-choose");
+        $("#myprofile").addClass("manager-control-choose");
+    }
+    else {
+        ShowNormal(0);
+    }
 });
 
 function ShowProfile() {
@@ -615,4 +892,8 @@ function AfterLogin() {
             }
         }
     });
+}
+
+function SetFileField(fileUrl) {
+    $("div#info-pic img").attr("src", fileUrl);
 }
