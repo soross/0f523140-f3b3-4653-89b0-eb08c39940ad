@@ -38,6 +38,9 @@ function func_execute_active_handler() {
   
     if (isset($page['security']) && $page['security'])
         user_ensure_authenticated();
+        
+    if (isset($page['admin']) && $page['admin'])
+        user_ensure_admin();
 
     if (function_exists('config_log_request'))
         config_log_request();

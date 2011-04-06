@@ -20,6 +20,7 @@ func_register(array(
   ),
   'manager' => array(
     'callback' => 'manager_page',
+    'security' => 'true',
   ),
   'feedback' => array(
     'callback' => 'feedback_page',
@@ -29,6 +30,7 @@ func_register(array(
   ),
   'admin' => array(
     'callback' => 'admin_page',
+    'admin' => 'true',
   ),
 ));
 
