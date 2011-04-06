@@ -608,15 +608,6 @@ function SetConcern() {
             type: 'POST',
             url: 'follow/delete/' + $(this).attr("id"),
             success: function () {
-                $.ajax({
-                    type: 'POST',
-                    url: 'follow/show',
-                    success: function (msg) {
-                        if (msg == "") {
-                            $("#concern").html("<div style=\"text-align:center;\">您还未添加关注</div>");
-                        }
-                    }
-                });
                 var text = item.next(".concern-item-content").children(".concern-item-content-info").html();
                 if (text == SearchResult) {
                     $("a#search-result-concern").attr("class", "right search-result-concern");
@@ -664,7 +655,19 @@ function SetConcern() {
                 }
             }
         });
-        $(this).parent().animate({ opacity: 0 }, 200, function () { $(this).slideUp(100); });
+        $(this).parent().animate({ opacity: 0 }, 200, function () {
+            $(this).slideUp(100, null, function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'follow/show',
+                    success: function (msg) {
+                        if (msg == "") {
+                            $("#concern").html("<div style=\"text-align:center;\">您还未添加关注</div>");
+                        }
+                    }
+                });
+            });
+        });
     });
     $(".concern-item-content").click(function () {
         var text = $(this).children(".concern-item-content-info").html();
