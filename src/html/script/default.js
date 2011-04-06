@@ -12,6 +12,25 @@ var item;
 var id;
 
 $(function () {
+    $.ajax({
+        type: 'POST',
+        url: 'resume/current',
+        success: function (msg) {
+            $.ajax({
+                type: 'POST',
+                url: 'resume/show/' + msg,
+                success: function (e) {
+                    if (e.indexOf('<html>') != -1) {
+                        $("#apply-info p:first").html('歪伯乐将自动帮您生成简历页面并投递到招聘者的收件箱，您可以点击<a target="_blank" class="keyword" href="resume/show/' + msg + '">这里</a>预览简历。');
+                    }
+                    else {
+                        $("#apply-info p:first").html('歪伯乐将自动帮您生成简历页面并投递到招聘者的收件箱，您目前还没有创建简历，您可以点击<a target="_blank" class="keyword" href="/manager">这里</a>创建简历。');
+                    }
+                }
+            })
+        }
+    });
+
     if ($.cookie("athere") == null) {
         $.cookie("athere", "here", { path: '/' });
         setTimeout(function () {
