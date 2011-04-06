@@ -1205,7 +1205,7 @@ function AfterLogin() {
             $("a#name").html(msg.split(',')[0]);
             $("div#links a:last").attr("href", "profile/" + msg.split(',')[0]);
             var type = msg.split(',')[1];
-            if (type == 0) {
+            if (type == -1) {
                 $("div#cover").fadeIn(200);
                 $("div#role-choose").fadeIn(200);
             }
