@@ -12,6 +12,95 @@ $(function () {
         $(this).addClass("manager-control-choose");
     });
     $(".logined").show();
+
+
+    $("#delete-dialog").dialog({
+        autoOpen: false,
+        draggable: false,
+        resizable: false,
+        width: 180,
+        buttons: {
+            "确定": function () {
+                $(this).dialog("close");
+                var flag = false;
+                $("div#pages").fadeOut(50);
+                if (allpage > 1) {
+                    flag = true;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: deleteurl + deleteid,
+                    success: function () {
+                        deleteitem.animate({ opacity: 0 }, 300, null, function () {
+                            deleteitem.slideUp(200, null, function () {
+                                if (type == "feedback") {
+                                    if (flag) {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'feedback/show/' + page,
+                                            success: function (msg) {
+                                                var str = '<div class="item newer" style="display:none;"';
+                                                str += msg.split('<div class="item"')[10];
+                                                $("div.item:last").after(str);
+                                                $(".newer:last").slideDown(200);
+                                                $("a.delete").unbind("click");
+                                                $(".item-blog-title").unbind("click");
+                                                $("a.delete").click(function () {
+                                                    deleteitem = $(this).parent().parent().parent();
+                                                    deleteid = deleteitem.attr("id");
+                                                    deleteurl = 'feedback/delete/';
+                                                    type = "feedback";
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                                $(".item-blog-title").click(function () {
+                                                    var item = $(this).parent().next(".item-blog-content");
+                                                    if (item.hasClass("close")) {
+                                                        item.slideDown(200);
+                                                        item.removeClass("close");
+                                                    }
+                                                    else {
+                                                        item.slideUp(200);
+                                                        item.addClass("close");
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                    UpdateFeedback();
+                                }
+                                else if (type == "tweet") {
+                                    if (flag) {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'search/poiuy/0/page/' + page,
+                                            success: function (msg) {
+                                                var str = '<div class="microblog-item newer" style="display:none;"';
+                                                str += msg.split('<div class="microblog-item"')[10];
+                                                $("div.microblog-item:last").after(str);
+                                                $(".newer:last").slideDown(200);
+                                                $("a.delete").unbind("click");
+                                                $("a.delete").click(function () {
+                                                    deleteitem = $(this).parent().parent().parent();
+                                                    deleteid = deleteitem.attr("name");
+                                                    deleteurl = 'tweet/delete/';
+                                                    type = "tweet";
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                            }
+                                        });
+                                    }
+                                    UpdateNormal();
+                                }
+                            });
+                        });
+                    }
+                });
+            },
+            "取消": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
 });
 
 function ShowNormal(e) {
