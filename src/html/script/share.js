@@ -6,6 +6,12 @@ var position = 0;
 var cate = 0;
 
 $(function () {
+    $("a#logo").mouseover(function () {
+        $(this).html("回首页");
+    });
+    $("a#logo").mouseout(function () {
+        $(this).html("测试版");
+    });
     Init();
     CoverResize();
     SetPublish();

@@ -6,6 +6,12 @@ var allpage = 0;
 var type = "";
 
 $(function () {
+    $("a#logo").mouseover(function () {
+        $(this).html("回首页");
+    });
+    $("a#logo").mouseout(function () {
+        $(this).html("测试版");
+    });
     ShowNormal(0);
     $("a.manager-control").click(function () {
         $("a.manager-control").removeClass("manager-control-choose");
