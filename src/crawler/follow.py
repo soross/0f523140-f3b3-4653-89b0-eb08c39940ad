@@ -10,7 +10,6 @@ import os
 from crawler_id import idlist as A
 from weibopy.error import WeibopError
 
-MAX = 60
 B = []
 
 def now():
@@ -70,8 +69,6 @@ def working():
     test = SinaFollow()
     test.setToken(crawler[1][2], crawler[1][3])
     for user, cats in B:
-        if count > MAX:
-            break
         if crawler[0] in cats:
             count += 1
             sleep(0.5)
