@@ -80,7 +80,8 @@ for i in range(NUM):
     t.setDaemon(True)
     t.start()
     
-for ntag1, tag1 in enumerate(C):
+for ntagt, tag1 in enumerate(C[2:]):
+    ntag1 = ntagt + 2
     print now() + "Seeking",tag1,"..."
     try:
         os.mkdir(tag1)
@@ -94,14 +95,17 @@ for ntag1, tag1 in enumerate(C):
         except:
             print now() + "Seeking",tag1,"failed, Retrying..."
             sleep(TIMEOUT)
-    b = re.findall("<a href=\"(/dpool/ttt/v2star.php\?cat=1&amp;ta[^\"]+)\">([^<]+)</a>", a)
+    b = re.findall("<a href=\"(/dpool/ttt/v2star.php\?cat=%d&amp;ta[^\"]+)\">([^<]+)</a>" % (ntag1 + 1,), a)
+    if(len(b)) == 0:
+        b = [[url, tag1]]
     for (url, tag2) in b:
         print now() + "Seeking",tag1,tag2,"..."
         try:
             os.mkdir(tag1 + os.sep + tag2)
         except:
             pass
-        url = 'http://t.sina.cn' + url.replace('&amp;', '&')
+        if url[0] == '/':
+            url = 'http://t.sina.cn' + url.replace('&amp;', '&')
         while True:
             try:
                 a = unicode(urllib.urlopen(url).read(), "utf-8")
@@ -109,7 +113,7 @@ for ntag1, tag1 in enumerate(C):
             except:
                 print now() + "Seeking",tag1,tag2,"failed, Retrying..."
                 sleep(TIMEOUT)
-        b2 = re.findall("<a href=\"(/dpool/ttt/v2star.php\?cat=1&amp;su[^\"]+)\">([^<]+)</a>", a)
+        b2 = re.findall("<a href=\"(/dpool/ttt/v2star.php\?cat=%d&amp;su[^\"]+)\">([^<]+)</a>" % (ntag1 + 1,), a)
         for (url, tag3) in b2:
             q.put(('http://t.sina.cn' + url.replace('&amp;', '&'), tag1, tag2, tag3))
 q.join()
