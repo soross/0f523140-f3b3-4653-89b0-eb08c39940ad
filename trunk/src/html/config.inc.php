@@ -1,6 +1,6 @@
 <?php
 
-$db_host = '205.185.126.152';
+$db_host = '127.0.0.1';
 $db_name = 'apis';
 $db_user = 'apis';
 $db_pass = 'G2WvPRsxGEr77wEd';
