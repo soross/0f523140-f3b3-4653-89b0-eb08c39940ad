@@ -207,7 +207,7 @@ function oauth_sina_callback()
         $view = "SELECT * FROM userinfo WHERE user_id='$id'";
         $list = mysql_query($view);
         $row = mysql_fetch_array($list); 
-        $role = $row['role_id'];
+        $role = intval($row['role_id']);
         $nick = $row['nickname'];
     }
     $GLOBALS['user']['nickname'] = $nick;
