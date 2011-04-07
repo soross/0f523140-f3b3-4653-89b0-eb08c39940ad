@@ -62,7 +62,7 @@ function get_current_user_role()
 function user_is_admin()
 {
     $role = get_current_user_role();
-    if($role==0)
+    if($role===0)
         return true;
     return false;
 }
@@ -196,7 +196,7 @@ function oauth_sina_callback()
         $add = "INSERT INTO accountbindings(user_id, user_site_id, site_id, secret1, secret2) VALUES ('$v4uuid', '".$me['id']."', 1, '".$GLOBALS['user']['sinakey']['oauth_token']."', '".$GLOBALS['user']['sinakey']['oauth_token_secret']."')";
         $added = mysql_query($add) or die("Could not add entry 2");
         $id = $v4uuid;
-        $role = 0;
+        $role = -1;
         $nick = $me['name'];
     }
     else
