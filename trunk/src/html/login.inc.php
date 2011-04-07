@@ -147,7 +147,7 @@ function _user_decrypt_cookie($crypt_text) {
         ) = explode(':', $plain_text);
     $GLOBALS['user']['nickname'] = urldecode($GLOBALS['user']['nickname']);
     $GLOBALS['user']['id'] = urldecode($GLOBALS['user']['id']);
-    $GLOBALS['user']['role'] = urldecode($GLOBALS['user']['role']);
+    $GLOBALS['user']['role'] = intval(urldecode($GLOBALS['user']['role']));
     $GLOBALS['user']['sinakey']['oauth_token'] = urldecode($GLOBALS['user']['sinakey']['oauth_token']);
     $GLOBALS['user']['sinakey']['oauth_token_secret'] = urldecode($GLOBALS['user']['sinakey']['oauth_token_secret']);
 }
@@ -207,7 +207,7 @@ function oauth_sina_callback()
         $view = "SELECT * FROM userinfo WHERE user_id='$id'";
         $list = mysql_query($view);
         $row = mysql_fetch_array($list); 
-        $role = intval($row['role_id']);
+        $role = $row['role_id'];
         $nick = $row['nickname'];
     }
     $GLOBALS['user']['nickname'] = $nick;
