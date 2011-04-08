@@ -987,7 +987,7 @@ function DocumenScroll() {
     else {
         $("div#backTop").fadeOut(200);
     }
-    if (($(window).scrollTop() + $(window).height()) >= $(window).height() - 200 && count < 4) {
+    if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4) {
         $(window).unbind("scroll");
         count++;
         $("#flower").fadeIn(200);
