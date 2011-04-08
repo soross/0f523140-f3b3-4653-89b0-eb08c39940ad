@@ -51,13 +51,13 @@ $(function () {
 
     $("a.company-name").click(function () {
         var text = $.trim($(this).html());
-        StartSearch('search/' + encodeURI(text), function (msg) {
+        StartSearch('search/' + encodeURI(text), function (msg, thissearch) {
                 page = 0;
                 cate = 0;
                 $("#sort").html($("a#" + cate).html());
                 $("#sorts-name").html($("a#" + cate).html());
                 isTurn = false;
-                SetSearch(msg, text);
+                SetSearch(msg, text, thissearch);
             });
     });
 
@@ -136,13 +136,13 @@ $(function () {
         if ($.query.get("search") != "") {
             var text = $.trim($.query.get("search"));
             var cat = $.trim($.query.get("cat"));
-            StartSearch('search/' + encodeURI(text) + '/' + cat, function (msg) {
+            StartSearch('search/' + encodeURI(text) + '/' + cat, function (msg, thissearch) {
                     page = 0;
                     cate = cat;
                     $("#sort").html($("a#" + cate).html());
                     $("#sorts-name").html($("a#" + cate).html());
                     isTurn = false;
-                    SetSearch(msg, text);
+                    SetSearch(msg, text, thissearch);
                     setTimeout(function () { GetNewerBlogs(); }, 60000);
                     $("div#backTop").position({
                         of: $("div#microblogs"),
@@ -203,13 +203,13 @@ $(function () {
             $("div#hot").html(msg);
             $("a.hot-content-item").click(function () {
                 var text = $(this).html().split('(')[0];
-                StartSearch('search/' + encodeURI(text), function (msg) {
+                StartSearch('search/' + encodeURI(text), function (msg, thissearch) {
                         page = 0;
                         cate = 0;
                         $("#sort").html($("a#" + cate).html());
                         $("#sorts-name").html($("a#" + cate).html());
                         isTurn = false;
-                        SetSearch(msg, text);
+                        SetSearch(msg, text, thissearch);
                 });
             });
         }
@@ -228,9 +228,9 @@ $(function () {
     $("#search-text").keypress(function (e) {
         if (e.which == 13) {
             if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
-                StartSearch('search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate, function (msg) {
+                StartSearch('search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate, function (msg, thissearch) {
                         isTurn = false;
-                        SetSearch(msg, $("#search-text").val());
+                        SetSearch(msg, $("#search-text").val(), thissearch);
                 });
             }
         }
@@ -253,9 +253,9 @@ $(function () {
     });
     $("a#search-button").click(function () {
         if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
-            StartSearch('search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate, function (msg) {
+            StartSearch('search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate, function (msg, thissearch) {
                     isTurn = false;
-                    SetSearch(msg, $("#search-text").val());
+                    SetSearch(msg, $("#search-text").val(), thissearch);
             });
         }
     });
@@ -378,38 +378,38 @@ function SetAllSearch(msg) {
                                 $.ajax({
                                     type: 'GET',
                                     url: 'search/' + encodeURI(text),
-                                    success: function (msg) {
+                                    success: function (msg, thissearch) {
                                         page = 0;
                                         cate = 0;
                                         $("#sort").html($("a#" + cate).html());
                                         $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
-                                        SetSearch(msg, text);
+                                        SetSearch(msg, text, thissearch);
                                     }
                                 });
                             });
                             $("a.microblog-item-relate").unbind("click");
                             $("a.microblog-item-relate").click(function () {
                                 var text = $(this).html();
-                                StartSearch('search/' + encodeURI(text), function (msg) {
+                                StartSearch('search/' + encodeURI(text), function (msg, thissearch) {
                                         page = 0;
                                         cate = 0;
                                         $("#sort").html($("a#" + cate).html());
                                         $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
-                                        SetSearch(msg, text);
+                                        SetSearch(msg, text, thissearch);
                                 });
                             });
                             $("a.tag").unbind("click");
                             $("a.tag").click(function () {
                                 var text = $(this).attr("title");
-                                StartSearch('search/' + encodeURI(text), function (msg) {
+                                StartSearch('search/' + encodeURI(text), function (msg, thissearch) {
                                         page = 0;
                                         cate = 0;
                                         $("#sort").html($("a#" + cate).html());
                                         $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
-                                        SetSearch(msg, text);
+                                        SetSearch(msg, text, thissearch);
                                 });
                             });
                             $("a.like").click(function () {
@@ -680,20 +680,26 @@ function SetConcern() {
     $(".concern-item-content").click(function () {
         var text = $(this).children(".concern-item-content-info").html();
         $(this).children(".concern-item-content-number").fadeOut(200, function () { $(this).parent().removeClass("concern-item-content-new"); });
-        StartSearch('search/' + encodeURI(text), function (msg) {
+        StartSearch('search/' + encodeURI(text), function (msg, thissearch) {
                 page = 0;
                 cate = 0;
                 $("#sort").html($("a#" + cate).html());
                 $("#sorts-name").html($("a#" + cate).html());
                 isTurn = false;
-                SetSearch(msg, text);
+                SetSearch(msg, text, thissearch);
         });
     });
 }
 
 var countpage = 100;
 
+function wrapperfunc(msg, func)
+    func
+
 function StartSearch(url, func) {
+    var thissearch;
+    currentsearch = guidGenerator();
+    thissearch = currentsearch;
     $("div#fresh-outer").animate({ opacity: 0 }, 0);
     $("div#fresh-outer").hide();
     $("div#fresh-blogs").animate({ opacity: 0 }, 0);
@@ -705,17 +711,20 @@ function StartSearch(url, func) {
             $("div#blogs").html('<img src="images/loading.gif" style="margin-left:280px;" />');
         });
     });
-     $.ajax({
+    $.ajax({
                 type: "GET",
                 url: url,
-                success: func
+                success: function (msg){
+                    func(msg, thissearch);
+                }
             }
     );
 }
 
-function SetSearch(msg, e) {
+function SetSearch(msg, e, thissearch) {
     scrollflag = false;
     SearchResult = e;
+    if(currentsearch != thissearch)return;
             $("div#blogs").slideDown(100, null, function () {
                 $("div#blogs").animate({ opacity: 1 }, 200, null, function () {
                     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
@@ -733,6 +742,7 @@ function SetSearch(msg, e) {
                                 type: "POST",
                                 url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
                                 success: function (msg) {
+                                    if(currentsearch != thissearch)return;
                                     $(window).scrollTop(0);
                                     $("div#search-result div.left").html($("div#search-result div.left").html() + "，共有" + msg + "条结果");
                                     var allPage;
@@ -786,25 +796,25 @@ function SetSearch(msg, e) {
                                         $("a.page-number").click(function () {
                                             page = $(this).html() - 1;
                                             StartSearch('search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
-                                                function (msg) {
+                                                function (msg, thissearch) {
                                                     isTurn = true;
-                                                    SetSearch(msg, SearchResult);
+                                                    SetSearch(msg, SearchResult, thissearch);
                                             });
                                         });
                                         $("a#prevPage").click(function () {
                                             page--;
                                             StartSearch('search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
-                                                function (msg) {
+                                                function (msg, thissearch) {
                                                     isTurn = true;
-                                                    SetSearch(msg, SearchResult);
+                                                    SetSearch(msg, SearchResult, thissearch);
                                             });
                                         });
                                         $("a#nextPage").click(function () {
                                             page++;
                                             StartSearch('search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
-                                                function (msg) {
+                                                function (msg, thissearch) {
                                                     isTurn = true;
-                                                    SetSearch(msg, SearchResult);
+                                                    SetSearch(msg, SearchResult, thissearch);
                                             });
                                         });
                                     }
@@ -816,39 +826,39 @@ function SetSearch(msg, e) {
                             $("a.tag").click(function () {
                                 var text = $(this).attr("title");
                                 StartSearch('search/' + encodeURI(text),
-                                    function (msg) {
+                                    function (msg, thissearch) {
                                         page = 0;
                                         cate = 0;
                                         $("#sort").html($("a#" + cate).html());
                                         $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
-                                        SetSearch(msg, text);
+                                        SetSearch(msg, text, thissearch);
                                 });
                             });
                             $("a.microblog-item-relate").unbind("click");
                             $("a.microblog-item-relate").click(function () {
                                 var text = $(this).html();
                                 StartSearch('search/' + encodeURI(text),
-                                    function (msg) {
+                                    function (msg, thissearch) {
                                         page = 0;
                                         cate = 0;
                                         $("#sort").html($("a#" + cate).html());
                                         $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
-                                        SetSearch(msg, text);
+                                        SetSearch(msg, text, thissearch);
                                 });
                             });
                             $("a.tag").unbind("click");
                             $("a.tag").click(function () {
                                 var text = $(this).attr("title");
                                 StartSearch('search/' + encodeURI(text),
-                                    function (msg) {
+                                    function (msg, thissearch) {
                                         page = 0;
                                         cate = 0;
                                         $("#sort").html($("a#" + cate).html());
                                         $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
-                                        SetSearch(msg, text);
+                                        SetSearch(msg, text, thissearch);
                                 });
                             });
                             if (logined) {
@@ -944,13 +954,13 @@ function SetHistory() {
     $(".history-item").click(function () {
         var text = $(this).attr("title");
         StartSearch('search/' + encodeURI(text),
-            function (msg) {
+            function (msg, thissearch) {
                 cate = 0;
                 page = 0;
                 $("#sort").html($("a#" + cate).html());
                 $("#sorts-name").html($("a#" + cate).html());
                 isTurn = false;
-                SetSearch(msg, text);
+                SetSearch(msg, text, thissearch);
         });
     });
 }
@@ -983,12 +993,12 @@ function DocumenScroll() {
                     $.ajax({
                         type: 'GET',
                         url: 'search/' + encodeURI(text),
-                        success: function (msg) {
+                        success: function (msg, thissearch) {
                             page = 0;
                             cate = 0;
                             $("#sort").html($("a#" + cate).html());
                             $("#sorts-name").html($("a#" + cate).html());
-                            SetSearch(msg, text);
+                            SetSearch(msg, text, thissearch);
                             nowFirst = $(".microblog-item:first").attr("id");
                         }
                     });
@@ -997,13 +1007,13 @@ function DocumenScroll() {
                 $("a.tag").click(function () {
                     var text = $(this).attr("title");
                     StartSearch('search/' + encodeURI(text),
-                        function (msg) {
+                        function (msg, thissearch) {
                             page = 0;
                             cate = 0;
                             $("#sort").html($("a#" + cate).html());
                             $("#sorts-name").html($("a#" + cate).html());
                             isTurn = false;
-                            SetSearch(msg, text);
+                            SetSearch(msg, text, thissearch);
                     });
                 });
                 $("a.like").unbind("click");
@@ -1079,12 +1089,12 @@ function GetNewerBlogs() {
                     $("a.microblog-item-relate").click(function () {
                         var text = $(this).html();
                         StartSearch('search/' + encodeURI(text),
-                            function (msg) {
+                            function (msg, thissearch) {
                                 page = 0;
                                 cate = 0;
                                 $("#sort").html($("a#" + cate).html());
                                 $("#sorts-name").html($("a#" + cate).html());
-                                SetSearch(msg, text);
+                                SetSearch(msg, text, thissearch);
                                 nowFirst = $(".microblog-item:first").attr("id");
                         });
                     });
@@ -1092,13 +1102,13 @@ function GetNewerBlogs() {
                     $("a.tag").click(function () {
                         var text = $(this).attr("title");
                         StartSearch('search/' + encodeURI(text),
-                            function (msg) {
+                            function (msg, thissearch) {
                                 page = 0;
                                 cate = 0;
                                 $("#sort").html($("a#" + cate).html());
                                 $("#sorts-name").html($("a#" + cate).html());
                                 isTurn = false;
-                                SetSearch(msg, text);
+                                SetSearch(msg, text, thissearch);
                         });
                     });
                     $("a.like").unbind("click");
@@ -1165,12 +1175,12 @@ function GetNewerBlogs() {
                     $("a.microblog-item-relate").click(function () {
                         var text = $(this).html();
                         StartSearch('search/' + encodeURI(text),
-                            function (msg) {
+                            function (msg, thissearch) {
                                 page = 0;
                                 cate = 0;
                                 $("#sort").html($("a#" + cate).html());
                                 $("#sorts-name").html($("a#" + cate).html());
-                                SetSearch(msg, text);
+                                SetSearch(msg, text, thissearch);
                                 nowFirst = $(".microblog-item:first").attr("id");
                         });
                     });
@@ -1178,13 +1188,13 @@ function GetNewerBlogs() {
                     $("a.tag").click(function () {
                         var text = $(this).attr("title");
                         StartSearch('search/' + encodeURI(text),
-                            function (msg) {
+                            function (msg, thissearch) {
                                 page = 0;
                                 cate = 0;
                                 $("#sort").html($("a#" + cate).html());
                                 $("#sorts-name").html($("a#" + cate).html());
                                 isTurn = false;
-                                SetSearch(msg, text);
+                                SetSearch(msg, text, thissearch);
                         });
                     });
                     $("a.like").unbind("click");
