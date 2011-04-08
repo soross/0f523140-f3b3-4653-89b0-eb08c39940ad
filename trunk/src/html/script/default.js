@@ -1290,7 +1290,7 @@ function AfterLogin() {
                 $(".logined:not(.recruitment .admin)").fadeIn(300);
             }
             else if (type == 2) {
-                $(".logined:not(.jobs .admin)").fadeIn(300);
+                $(".logined:not(.jobs.admin)").fadeIn(300);
             }
             else if (type == 0) {
                 $(".logined:not(.jobs)").fadeIn(300);
