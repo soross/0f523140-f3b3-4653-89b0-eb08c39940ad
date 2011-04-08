@@ -693,9 +693,6 @@ function SetConcern() {
 
 var countpage = 100;
 
-function wrapperfunc(msg, func)
-    func
-
 function StartSearch(url, func) {
     var thissearch;
     currentsearch = guidGenerator();
