@@ -116,19 +116,19 @@ function SetPublish() {
 }
 
 function UpdateJobsText() {
-    if (140 - $("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2 >= 0) {
-        $("div#jobs-publish-remain").html("还可输入" + (140 - $("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2) + "个字");
+    if (140 - Math.ceil($("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2) >= 0) {
+        $("div#jobs-publish-remain").html("还可输入" + (140 - Math.ceil($("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2)) + "个字");
     }
     else {
-        $("div#jobs-publish-remain").html("已超出" + ($("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2 - 140) + "个字");
+        $("div#jobs-publish-remain").html("已超出" + (Math.ceil($("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2 - 140)) + "个字");
     }
 }
 function UpdateRecruitmentText() {
-    if (140 - $("div#recruitment-publish-text textarea").val().length >= 0) {
-        $("div#recruitment-publish-remain").html("还可输入" + (140 - $("div#recruitment-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2) + "个字");
+    if (140 - Math.ceil($("div#recruitment-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2) >= 0) {
+        $("div#recruitment-publish-remain").html("还可输入" + (140 - Math.ceil($("div#recruitment-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2)) + "个字");
     }
     else {
-        $("div#recruitment-publish-remain").html("已超出" + ($("div#recruitment-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2 - 140) + "个字");
+        $("div#recruitment-publish-remain").html("已超出" + (Math.ceil($("div#recruitment-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2 - 140)) + "个字");
     }
 }
 function ShowJobsPublish() {
