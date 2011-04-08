@@ -1,4 +1,5 @@
-﻿var issearch = false;
+﻿var currentsearch = 0;
+var issearch = false;
 var SearchResult = "all";
 var count = 0;
 var page = 0;
@@ -10,6 +11,13 @@ var isTurn = false;
 var name = "";
 var item;
 var id;
+
+function guidGenerator() {
+    var S4 = function() {
+       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    };
+    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+}
 
 $(function () {
     $.ajax({
@@ -43,18 +51,14 @@ $(function () {
 
     $("a.company-name").click(function () {
         var text = $.trim($(this).html());
-        $.ajax({
-            type: 'GET',
-            url: 'search/' + encodeURI(text),
-            success: function (msg) {
+        StartSearch('search/' + encodeURI(text), function (msg) {
                 page = 0;
                 cate = 0;
                 $("#sort").html($("a#" + cate).html());
                 $("#sorts-name").html($("a#" + cate).html());
                 isTurn = false;
                 SetSearch(msg, text);
-            }
-        });
+            });
     });
 
     $("#concern-pic").animate({ opacity: 0.6 }, 0);
@@ -230,7 +234,7 @@ $(function () {
     });
 
     $("#search-text").keypress(function (e) {
-        if (e.which == 13) {
+        if (e.which == 13 and) {
             if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
                 $.ajax({
                     type: 'GET',
@@ -717,17 +721,29 @@ function SetConcern() {
 
 var countpage = 100;
 
-function SetSearch(msg, e) {
-    scrollflag = false;
+function StartSearch(url, func) {
     $("div#fresh-outer").animate({ opacity: 0 }, 0);
     $("div#fresh-outer").hide();
     $("div#fresh-blogs").animate({ opacity: 0 }, 0);
     $("div#fresh-blogs").hide();
-    SearchResult = e;
+    
     $("div#pages").fadeOut(50);
     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
         $("div#blogs").slideUp(100, null, function () {
             $("div#blogs").html('<img src="images/loading.gif" style="margin-left:280px;" />');
+        }
+    }
+     $.ajax({
+                type: "GET",
+                url: url,
+                success: func
+            }
+    );
+}
+
+function SetSearch(msg, e) {
+    scrollflag = false;
+    SearchResult = e;
             $("div#blogs").slideDown(100, null, function () {
                 $("div#blogs").animate({ opacity: 1 }, 200, null, function () {
                     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
@@ -928,8 +944,6 @@ function SetSearch(msg, e) {
                     });
                 });
             });
-        });
-    });
     $("div#search-result-outer").slideDown(200);
     if (logined) {
         $("a#search-result-concern").mouseover(function () {
