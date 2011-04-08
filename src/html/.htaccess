@@ -1,6 +1,21 @@
+# Resource Cache
+<IfModule header_module>
+	<FilesMatch "\.(png|ico|jpg|gif|css|js)$">
+	Header set Cache-Control "max-age=604800, public"
+	</FilesMatch>
+</IfModule>
+
+# Gzip Cache
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule (.*.css$|.*.js$) gzip.php?$1 [L]
+</IfModule>
+
 # URL rewriting
+<IfModule mod_rewrite.c>
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
-
+</IfModule>
