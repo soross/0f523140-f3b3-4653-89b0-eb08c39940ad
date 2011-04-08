@@ -1001,7 +1001,7 @@ function DocumenScroll() {
             type: 'GET',
             url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
             success: function (msg) {
-                if (msg == "") {
+                if (msg == "" || msg.split('"microblog-item"').length < 11) {
                     scrollflag = true;
                 }
                 $("#flower").fadeOut(200);
