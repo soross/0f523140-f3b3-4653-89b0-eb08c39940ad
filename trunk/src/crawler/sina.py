@@ -26,7 +26,10 @@ LOCK = '/var/lock/sinacrawler.lock'
 
 if os.path.isfile(LOCK):
     f = open(LOCK, "r").read()
-    os.kill(f, SIGTERM)
+    try:
+        os.kill(int(f), SIGTERM)
+    except:
+        pass
 pid = os.getpid()
 f = open(LOCK, "w")
 f.write("%d"%(pid))
