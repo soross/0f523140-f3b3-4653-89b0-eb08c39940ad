@@ -731,7 +731,7 @@ function StartSearch(url, func) {
     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
         $("div#blogs").slideUp(100, null, function () {
             $("div#blogs").html('<img src="images/loading.gif" style="margin-left:280px;" />');
-        }
+        });
     });
      $.ajax({
                 type: "GET",
