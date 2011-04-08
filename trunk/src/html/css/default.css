@@ -273,7 +273,6 @@ div#right div.microblog-item-blog
 div#right a.microblog-item-blog-name
 {
     color: #6f93ab;
-    font-weight: bold;
 }
 div#right a.item-blog-link
 {
@@ -483,4 +482,8 @@ a.keyword
 {
     color: #2972a4;
     font-weight: bold;
+}
+.microblog-item a.keyword
+{
+    color: #2972a4;
 }
