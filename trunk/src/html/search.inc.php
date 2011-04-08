@@ -65,7 +65,7 @@ function get_search_result($key, $num, $cate, $time, $page)
     }
     else
     {
-        $cate1 = ",(SELECT * from cat_relationship WHERE cat_id!=7) AS cate";
+        $cate1 = ",(SELECT * from cat_relationship WHERE cat_id!=8) AS cate";
         $cate2 = " AND tweets.tweet_id=cate.tweet_id";
         #$cate1 = $cate2 = "";
     }
