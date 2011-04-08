@@ -106,12 +106,18 @@ class Twitter_Autolink {
 		$replacement  = $matches[2];
         //Workaround for [smile]
         if (substr($matches[3], -1, 1) == "[")
+        {
             $matches[3] = substr($matches[3], 0, -1);
+            $append = "[";
+        }
+        else
+            $append = "";
 		if (substr($matches[3], 0, 7) == 'http://' || substr($matches[3], 0, 8) == 'https://') {
 			$replacement .= '<a class="' . $this->urlClass . '" href="' . $matches[3] . '" target="_blank">' . $matches[3] . '</a>';
 		} else {
 			$replacement .= '<a class="' . $this->urlClass . '" href="http://' . $matches[3] . '" target="_blank">' . $matches[3] . '</a>';
 		}
+        $replacement .= $append;
 		return $replacement;
 	}
 
