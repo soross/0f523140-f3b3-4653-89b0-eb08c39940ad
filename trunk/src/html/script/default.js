@@ -283,8 +283,8 @@ function SetAllSearch(msg) {
                             $("div#blogs").html(msg);
                             $("div#blogs").slideDown(100, null, function () {
                                 $("div#blogs").animate({ opacity: 1 }, 200);
-                                $(document).unbind("scroll");
-                                $(document).scroll(function () {
+                                $(window).unbind("scroll");
+                                $(window).scroll(function () {
                                     DocumenScroll();
                                 });
                                 count = 0;
@@ -293,7 +293,7 @@ function SetAllSearch(msg) {
                                 type: "POST",
                                 url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
                                 success: function (msg) {
-                                    $(document).scrollTop(0);
+                                    $(window).scrollTop(0);
                                     prevLess = false;
                                     nextLess = false;
                                     var allPage;
@@ -725,8 +725,8 @@ function SetSearch(msg, e) {
                             $("div#blogs").html(msg);
                             $("div#blogs").slideDown(100, null, function () {
                                 $("div#blogs").animate({ opacity: 1 }, 200);
-                                $(document).unbind("scroll");
-                                $(document).scroll(function () {
+                                $(window).unbind("scroll");
+                                $(window).scroll(function () {
                                     DocumenScroll();
                                 });
                                 count = 0;
@@ -735,7 +735,7 @@ function SetSearch(msg, e) {
                                 type: "POST",
                                 url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
                                 success: function (msg) {
-                                    $(document).scrollTop(0);
+                                    $(window).scrollTop(0);
                                     $("div#search-result div.left").html($("div#search-result div.left").html() + "，共有" + msg + "条结果");
                                     var allPage;
                                     if (msg % 50 == 0) {
@@ -987,8 +987,8 @@ function DocumenScroll() {
     else {
         $("div#backTop").fadeOut(200);
     }
-    if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4) {
-        $(document).unbind("scroll");
+    if (($(window).scrollTop() + $(window).height()) >= $(window).height() - 200 && count < 4) {
+        $(window).unbind("scroll");
         count++;
         $("#flower").fadeIn(200);
         $.ajax({
@@ -1074,7 +1074,7 @@ function DocumenScroll() {
                         }
                     });
                 });
-                $(document).scroll(function () {
+                $(window).scroll(function () {
                     DocumenScroll();
                 });
             }
