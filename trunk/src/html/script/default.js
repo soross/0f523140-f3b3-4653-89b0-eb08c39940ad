@@ -590,8 +590,7 @@ function SetRolePicker() {
     });
     $("a#role-confirm").click(function () {
         if (rolekind == "jobs") {
-            $(".jobs").show();
-            $(".recruitment").hide();
+            $(".logined.jobs").fadeIn(300);
             $.ajax({
                 type: 'POST',
                 url: 'role/set/1',
@@ -600,8 +599,7 @@ function SetRolePicker() {
             });
         }
         else if (rolekind == "recruitment") {
-            $(".jobs").hide();
-            $(".recruitment").show();
+            $(".logined.recruitment").fadeIn(300);
             $.ajax({
                 type: 'POST',
                 url: 'role/set/2',
@@ -1280,7 +1278,6 @@ function AfterLogin() {
         type: 'POST',
         url: 'info/',
         success: function (msg) {
-            $(".logined").fadeIn(300);
             $("a#name").html(msg.split(',')[0]);
             name = msg.split(',')[0];
             $("div#links a:last").attr("href", "profile/" + msg.split(',')[0]);
@@ -1290,19 +1287,14 @@ function AfterLogin() {
                 $("div#role-choose").fadeIn(200);
             }
             else if (type == 1) {
-                $(".jobs").fadeIn(300);
-                $(".recruitment").hide();
-                $(".admin").hide();
+                $(".logined.jobs").fadeIn(300);
             }
             else if (type == 2) {
-                $(".recruitment").fadeIn(300);
-                $(".jobs").hide();
-                $(".admin").hide();
+                $(".logined.recruitment").fadeIn(300);
             }
             else if (type == 0) {
-                $(".admin").show();
-                $(".jobs").hide();
-                $(".recruitment").show();
+                $(".logined.admin").fadeIn(300);
+                $(".logined.recruitment").show();
             }
             $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;" />');
             $.ajax({
