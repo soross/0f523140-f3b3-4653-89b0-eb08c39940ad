@@ -231,10 +231,10 @@ $(function () {
 
     $("#search-text").keypress(function (e) {
         if (e.which == 13) {
-            if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴") {
+            if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
                 $.ajax({
                     type: 'GET',
-                    url: 'search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate,
+                    url: 'search/' + encodeURI($.trim($("#search-text").val()).replace("#","").replace("&","").replace("?","")) + '/' + cate,
                     success: function (msg) {
                         isTurn = false;
                         SetSearch(msg, $("#search-text").val());
@@ -292,7 +292,7 @@ function SetAllSearch(msg) {
                             });
                             $.ajax({
                                 type: "POST",
-                                url: 'search/' + encodeURI(SearchResult.replace("#","").replace("&","").replace("?","")) + '/' + cate + '/count',
+                                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
                                 success: function (msg) {
                                     $(window).scrollTop(0);
                                     prevLess = false;
