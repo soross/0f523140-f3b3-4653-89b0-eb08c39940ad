@@ -56,7 +56,7 @@ class Twitter_Autolink {
 	}
 
 	public function autolink($tweet) {
-		return $this->autoLinkUsernamesAndLists($this->autoLinkURLs($this->autoLinkHashtags($tweet)));
+		return $this->autoLinkUsernamesAndLists($this->autoLinkURLs($this->autoLinkHashtags($this->autoLinkEmail($tweet))));
 	}
 
 	public function autoLinkHashtags($tweet) {
@@ -69,6 +69,12 @@ class Twitter_Autolink {
 							$tweet);
         return $t;
 	}
+    
+    public function autoLinkEmail($tweet) {
+        $t = preg_replace('/([a-zA-Z0-9_\.]+([@|＠|#]|\[at\])[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4})/',
+                          '<a href="mailto:$(1)">$(1)</a>', $tweet);
+        return $t;
+    }
 
 	public function autoLinkURLs($tweet) {
 		  $URL_VALID_PRECEEDING_CHARS = "(?:[^/\"':!=]|^|\\:)";
