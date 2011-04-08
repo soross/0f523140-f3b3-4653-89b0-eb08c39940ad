@@ -18,8 +18,6 @@ function func_execute_active_handler() {
 	if(isset($_GET['q']))
 	{
         $q = $_GET['q'];
-        echo $q;
-        exit(1);
         $q = str_replace("'", "", $q);
         $q = str_replace("\"", "", $q);
         $q = str_replace("<", "", $q);
