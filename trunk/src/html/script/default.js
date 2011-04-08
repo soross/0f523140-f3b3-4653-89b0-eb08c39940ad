@@ -247,6 +247,7 @@ $(function () {
         if ($(this).val().length > 32) {
             $(this).val($(this).val().substring(0, 32));
         }
+        $(this).val($(this).val().replace("#","").replace("&","").replace("?",""));
     });
     $("#search-text").keyup(function () {
         if ($(this).val().length > 32) {
