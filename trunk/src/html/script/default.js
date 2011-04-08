@@ -723,11 +723,16 @@ function SetSearch(msg, e, thissearch) {
     SearchResult = e;
     if(currentsearch != thissearch)return;
             $("div#blogs").slideDown(100, null, function () {
+                if(currentsearch != thissearch)return;
                 $("div#blogs").animate({ opacity: 1 }, 200, null, function () {
+                    if(currentsearch != thissearch)return;
                     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
+                        if(currentsearch != thissearch)return;
                         $("div#blogs").slideUp(100, null, function () {
+                            if(currentsearch != thissearch)return;
                             $("div#blogs").html(msg);
                             $("div#blogs").slideDown(100, null, function () {
+                                if(currentsearch != thissearch)return;
                                 $("div#blogs").animate({ opacity: 1 }, 200);
                                 $(window).unbind("scroll");
                                 $(window).scroll(function () {
