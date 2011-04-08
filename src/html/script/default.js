@@ -136,10 +136,7 @@ $(function () {
         if ($.query.get("search") != "") {
             var text = $.trim($.query.get("search"));
             var cat = $.trim($.query.get("cat"));
-            $.ajax({
-                type: 'GET',
-                url: 'search/' + encodeURI(text) + '/' + cat,
-                success: function (msg) {
+            StartSearch('search/' + encodeURI(text) + '/' + cat, function (msg) {
                     page = 0;
                     cate = cat;
                     $("#sort").html($("a#" + cate).html());
@@ -155,8 +152,8 @@ $(function () {
                         collision: "none none"
                     });
                     $("div#backTop").css("position", "fixed");
-                }
-            });
+                });
+            };
         }
         else {
             $.ajax({
@@ -207,17 +204,13 @@ $(function () {
             $("div#hot").html(msg);
             $("a.hot-content-item").click(function () {
                 var text = $(this).html().split('(')[0];
-                $.ajax({
-                    type: 'GET',
-                    url: 'search/' + encodeURI(text),
-                    success: function (msg) {
+                StartSearch('search/' + encodeURI(text), function (msg) {
                         page = 0;
                         cate = 0;
                         $("#sort").html($("a#" + cate).html());
                         $("#sorts-name").html($("a#" + cate).html());
                         isTurn = false;
                         SetSearch(msg, text);
-                    }
                 });
             });
         }
@@ -236,13 +229,9 @@ $(function () {
     $("#search-text").keypress(function (e) {
         if (e.which == 13) {
             if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
-                $.ajax({
-                    type: 'GET',
-                    url: 'search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate,
-                    success: function (msg) {
+                StartSearch('search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate, function (msg) {
                         isTurn = false;
                         SetSearch(msg, $("#search-text").val());
-                    }
                 });
             }
         }
@@ -265,13 +254,9 @@ $(function () {
     });
     $("a#search-button").click(function () {
         if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
-            $.ajax({
-                type: 'GET',
-                url: 'search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate,
-                success: function (msg) {
+            StartSearch('search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate, function (msg) {
                     isTurn = false;
                     SetSearch(msg, $("#search-text").val());
-                }
             });
         }
     });
@@ -407,33 +392,25 @@ function SetAllSearch(msg) {
                             $("a.microblog-item-relate").unbind("click");
                             $("a.microblog-item-relate").click(function () {
                                 var text = $(this).html();
-                                $.ajax({
-                                    type: 'GET',
-                                    url: 'search/' + encodeURI(text),
-                                    success: function (msg) {
+                                StartSearch('search/' + encodeURI(text), function (msg) {
                                         page = 0;
                                         cate = 0;
                                         $("#sort").html($("a#" + cate).html());
                                         $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
                                         SetSearch(msg, text);
-                                    }
                                 });
                             });
                             $("a.tag").unbind("click");
                             $("a.tag").click(function () {
                                 var text = $(this).attr("title");
-                                $.ajax({
-                                    type: 'GET',
-                                    url: 'search/' + encodeURI(text),
-                                    success: function (msg) {
+                                StartSearch('search/' + encodeURI(text), function (msg) {
                                         page = 0;
                                         cate = 0;
                                         $("#sort").html($("a#" + cate).html());
                                         $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
                                         SetSearch(msg, text);
-                                    }
                                 });
                             });
                             $("a.like").click(function () {
@@ -704,17 +681,13 @@ function SetConcern() {
     $(".concern-item-content").click(function () {
         var text = $(this).children(".concern-item-content-info").html();
         $(this).children(".concern-item-content-number").fadeOut(200, function () { $(this).parent().removeClass("concern-item-content-new"); });
-        $.ajax({
-            type: 'GET',
-            url: 'search/' + encodeURI(text),
-            success: function (msg) {
+        StartSearch('search/' + encodeURI(text), function (msg) {
                 page = 0;
                 cate = 0;
                 $("#sort").html($("a#" + cate).html());
                 $("#sorts-name").html($("a#" + cate).html());
                 isTurn = false;
                 SetSearch(msg, text);
-            }
         });
     });
 }
@@ -813,35 +786,26 @@ function SetSearch(msg, e) {
                                         $("div#pages").fadeIn(200);
                                         $("a.page-number").click(function () {
                                             page = $(this).html() - 1;
-                                            $.ajax({
-                                                type: 'GET',
-                                                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
-                                                success: function (msg) {
+                                            StartSearch('search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                                                function (msg) {
                                                     isTurn = true;
                                                     SetSearch(msg, SearchResult);
-                                                }
                                             });
                                         });
                                         $("a#prevPage").click(function () {
                                             page--;
-                                            $.ajax({
-                                                type: 'GET',
-                                                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
-                                                success: function (msg) {
+                                            StartSearch('search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                                                function (msg) {
                                                     isTurn = true;
                                                     SetSearch(msg, SearchResult);
-                                                }
                                             });
                                         });
                                         $("a#nextPage").click(function () {
                                             page++;
-                                            $.ajax({
-                                                type: 'GET',
-                                                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
-                                                success: function (msg) {
+                                            StartSearch('search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                                                function (msg) {
                                                     isTurn = true;
                                                     SetSearch(msg, SearchResult);
-                                                }
                                             });
                                         });
                                     }
@@ -852,49 +816,40 @@ function SetSearch(msg, e) {
                             }
                             $("a.tag").click(function () {
                                 var text = $(this).attr("title");
-                                $.ajax({
-                                    type: 'GET',
-                                    url: 'search/' + encodeURI(text),
-                                    success: function (msg) {
+                                StartSearch('search/' + encodeURI(text),
+                                    function (msg) {
                                         page = 0;
                                         cate = 0;
                                         $("#sort").html($("a#" + cate).html());
                                         $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
                                         SetSearch(msg, text);
-                                    }
                                 });
                             });
                             $("a.microblog-item-relate").unbind("click");
                             $("a.microblog-item-relate").click(function () {
                                 var text = $(this).html();
-                                $.ajax({
-                                    type: 'GET',
-                                    url: 'search/' + encodeURI(text),
-                                    success: function (msg) {
+                                StartSearch('search/' + encodeURI(text),
+                                    function (msg) {
                                         page = 0;
                                         cate = 0;
                                         $("#sort").html($("a#" + cate).html());
                                         $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
                                         SetSearch(msg, text);
-                                    }
                                 });
                             });
                             $("a.tag").unbind("click");
                             $("a.tag").click(function () {
                                 var text = $(this).attr("title");
-                                $.ajax({
-                                    type: 'GET',
-                                    url: 'search/' + encodeURI(text),
-                                    success: function (msg) {
+                                StartSearch('search/' + encodeURI(text),
+                                    function (msg) {
                                         page = 0;
                                         cate = 0;
                                         $("#sort").html($("a#" + cate).html());
                                         $("#sorts-name").html($("a#" + cate).html());
                                         isTurn = false;
                                         SetSearch(msg, text);
-                                    }
                                 });
                             });
                             if (logined) {
@@ -989,17 +944,14 @@ function SetHistory() {
     $(".history-item").mouseout(function () { $(this).removeClass("history-item-over"); });
     $(".history-item").click(function () {
         var text = $(this).attr("title");
-        $.ajax({
-            type: 'GET',
-            url: 'search/' + encodeURI(text),
-            success: function (msg) {
+        StartSearch('search/' + encodeURI(text),
+            function (msg) {
                 cate = 0;
                 page = 0;
                 $("#sort").html($("a#" + cate).html());
                 $("#sorts-name").html($("a#" + cate).html());
                 isTurn = false;
                 SetSearch(msg, text);
-            }
         });
     });
 }
@@ -1045,17 +997,14 @@ function DocumenScroll() {
                 $("a.tag").unbind("click");
                 $("a.tag").click(function () {
                     var text = $(this).attr("title");
-                    $.ajax({
-                        type: 'GET',
-                        url: 'search/' + encodeURI(text),
-                        success: function (msg) {
+                    StartSearch('search/' + encodeURI(text),
+                        function (msg) {
                             page = 0;
                             cate = 0;
                             $("#sort").html($("a#" + cate).html());
                             $("#sorts-name").html($("a#" + cate).html());
                             isTurn = false;
                             SetSearch(msg, text);
-                        }
                     });
                 });
                 $("a.like").unbind("click");
@@ -1065,13 +1014,10 @@ function DocumenScroll() {
                 $("a.like").click(function () {
                     var item = $(this);
                     var id = $(this).parent().parent().parent().attr("name");
-                    $.ajax({
-                        type: "POST",
-                        url: 'like/add/' + id,
-                        success: function () {
+                    StartSearch('like/add/' + id,
+                        function () {
                             item.hide();
                             item.next("a.unlike").show();
-                        }
                     });
                 });
                 $("a.unlike").click(function () {
@@ -1133,33 +1079,27 @@ function GetNewerBlogs() {
                     $("a.microblog-item-relate").unbind("click");
                     $("a.microblog-item-relate").click(function () {
                         var text = $(this).html();
-                        $.ajax({
-                            type: 'GET',
-                            url: 'search/' + encodeURI(text),
-                            success: function (msg) {
+                        StartSearch('search/' + encodeURI(text),
+                            function (msg) {
                                 page = 0;
                                 cate = 0;
                                 $("#sort").html($("a#" + cate).html());
                                 $("#sorts-name").html($("a#" + cate).html());
                                 SetSearch(msg, text);
                                 nowFirst = $(".microblog-item:first").attr("id");
-                            }
                         });
                     });
                     $("a.tag").unbind("click");
                     $("a.tag").click(function () {
                         var text = $(this).attr("title");
-                        $.ajax({
-                            type: 'GET',
-                            url: 'search/' + encodeURI(text),
-                            success: function (msg) {
+                        StartSearch('search/' + encodeURI(text),
+                            function (msg) {
                                 page = 0;
                                 cate = 0;
                                 $("#sort").html($("a#" + cate).html());
                                 $("#sorts-name").html($("a#" + cate).html());
                                 isTurn = false;
                                 SetSearch(msg, text);
-                            }
                         });
                     });
                     $("a.like").unbind("click");
@@ -1225,33 +1165,27 @@ function GetNewerBlogs() {
                     $("a.microblog-item-relate").unbind("click");
                     $("a.microblog-item-relate").click(function () {
                         var text = $(this).html();
-                        $.ajax({
-                            type: 'GET',
-                            url: 'search/' + encodeURI(text),
-                            success: function (msg) {
+                        StartSearch('search/' + encodeURI(text),
+                            function (msg) {
                                 page = 0;
                                 cate = 0;
                                 $("#sort").html($("a#" + cate).html());
                                 $("#sorts-name").html($("a#" + cate).html());
                                 SetSearch(msg, text);
                                 nowFirst = $(".microblog-item:first").attr("id");
-                            }
                         });
                     });
                     $("a.tag").unbind("click");
                     $("a.tag").click(function () {
                         var text = $(this).attr("title");
-                        $.ajax({
-                            type: 'GET',
-                            url: 'search/' + encodeURI(text),
-                            success: function (msg) {
+                        StartSearch('search/' + encodeURI(text),
+                            function (msg) {
                                 page = 0;
                                 cate = 0;
                                 $("#sort").html($("a#" + cate).html());
                                 $("#sorts-name").html($("a#" + cate).html());
                                 isTurn = false;
                                 SetSearch(msg, text);
-                            }
                         });
                     });
                     $("a.like").unbind("click");
