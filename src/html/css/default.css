@@ -397,6 +397,7 @@ div#role-choose
     display: none;
     width: 552px;
     height: 372px;
+    background-color: #ffffff;
 }
 div.role-jobs
 {
@@ -410,23 +411,23 @@ a#role-jobs
 {
     width: 170px;
     height: 190px;
-    border:3px transparent solid;
-    border-radius:5px 5px;
+    border: 3px transparent solid;
+    border-radius: 5px 5px;
 }
 a#role-jobs:hover
 {
-    border:3px #425d7a solid;
+    border: 3px #425d7a solid;
 }
 a#role-recruitment
 {
     width: 166px;
     height: 190px;
-    border:3px transparent solid;
-    border-radius:5px 5px;
+    border: 3px transparent solid;
+    border-radius: 5px 5px;
 }
 a#role-recruitment:hover
 {
-    border:3px #678432 solid;
+    border: 3px #678432 solid;
 }
 a#role-confirm
 {
