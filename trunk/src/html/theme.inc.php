@@ -98,6 +98,8 @@ function parsekeyword($keyword, $out)
                 'href="${1}${2}${3}"', $out);
             $out = preg_replace('$title=\\"([^<]*)<span[^>]+>([^<]+)</span>([^<]*)\\"$i',
                 'title="${1}${2}${3}"', $out);
+            $out = preg_replace('$class=\\"([^<]*)<span[^>]+>([^<]+)</span>([^<]*)\\"$i',
+                'title="${1}${2}${3}"', $out);
         }
     return $out;
 }
