@@ -247,7 +247,7 @@ $(function () {
         if ($(this).val().length > 32) {
             $(this).val($(this).val().substring(0, 32));
         }
-        if($(this).val().indexOf("#") || $(this).val().indexOf("&") || $(this).val().indexOf("?")){
+        if($(this).val().indexOf("#") > -1 || $(this).val().indexOf("&") > -1 || $(this).val().indexOf("?") > -1){
             $(this).val($(this).val().replace("#","").replace("&","").replace("?",""));
         }
     });
@@ -255,7 +255,7 @@ $(function () {
         if ($(this).val().length > 32) {
             $(this).val($(this).val().substring(0, 32));
         }
-        if($(this).val().indexOf("#") || $(this).val().indexOf("&") || $(this).val().indexOf("?")){
+        if($(this).val().indexOf("#") > -1 || $(this).val().indexOf("&") > -1 || $(this).val().indexOf("?") > -1){
             $(this).val($(this).val().replace("#","").replace("&","").replace("?",""));
         }
     });
