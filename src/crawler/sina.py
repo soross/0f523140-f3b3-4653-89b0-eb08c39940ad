@@ -29,7 +29,7 @@ if os.path.isfile(LOCK):
     os.kill(f, signal(SIGTERM))
 pid = os.getpid()
 f = open(LOCK, "w")
-f.write(pid)
+f.write("%d"%(pid))
 f.close()
 
 def now():
