@@ -123,8 +123,9 @@ function theme_resume($title, $data)
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>'.$title.' - 微招聘</title>
+    <title>'.$title.' - 歪伯乐微招聘 - 微博招聘、求职、简历信息，一站聚合、定制</title>
     <link href="'.BASE_URL.'css/profile.css" type="text/css" rel="Stylesheet" />
+    <link rel="shortcut icon" href="/favicon.ico" />
 </head>
 <body>
     <div id="head">
