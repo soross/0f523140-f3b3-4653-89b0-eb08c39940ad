@@ -91,7 +91,8 @@ function parsekeyword($keyword, $out)
     $keyword = explode(" ",$keyword);
     foreach($keyword as $key)
         if($key and $key !== "all" and $key !== "poiuy")
-            $out = preg_replace('/(>.*?)('.$key.')(.*?<)/i', '${1}<span class=\'highlight\'>${2}</span>${3}', $out);
+            #$out = preg_replace('/(>.*?)('.$key.')(.*?<)/i', '${1}<span class=\'highlight\'>${2}</span>${3}', $out);
+            $out = preg_replace('/('.$key.')/i', '<span class=\'highlight\'>${1}</span>', $out);
     return $out;
 }
 
@@ -197,7 +198,8 @@ function theme_result($result, $keyword = '')
     foreach($result as $r)
     {
         if($keyword)
-            $jg = parsekeyword($keyword, parselink($r['content']));
+            #$jg = parsekeyword($keyword, parselink($r['content']));
+            $jg = parselink(parsekeyword($keyword, $r['content']));
         else
             $jg = parselink($r['content']);
         $tags = get_tags($r['tweet_id']);
