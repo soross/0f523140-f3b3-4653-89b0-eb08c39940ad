@@ -70,7 +70,7 @@ function get_search_result($key, $num, $cate, $time, $page)
         #$cate1 = $cate2 = "";
     }
     $limit = " LIMIT 0 , $num";
-    $content = "tweets.*";
+    $content = "DISTINCT tweets.*";
     if($time == "page")
     {
         $page = intval($page) * $num;
@@ -79,7 +79,7 @@ function get_search_result($key, $num, $cate, $time, $page)
     }
     elseif($time == "count")
     {
-        $content = "COUNT(*)";
+        $content = "COUNT(DISTINCT tweets.*)";
         $limit = "";
         $time = "";
     }
