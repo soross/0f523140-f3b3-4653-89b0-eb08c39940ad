@@ -125,6 +125,7 @@ function theme_resume($title, $data)
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>'.$title.' - 歪伯乐微招聘 - 微博招聘、求职、简历信息，一站聚合、定制</title>
     <link href="'.BASE_URL.'css/profile.css" type="text/css" rel="Stylesheet" />
+    <link rel="icon" href="favicon_big.png" sizes="128x128">
     <link rel="shortcut icon" href="/favicon.ico" />
 </head>
 <body>
