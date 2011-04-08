@@ -590,7 +590,7 @@ function SetRolePicker() {
     });
     $("a#role-confirm").click(function () {
         if (rolekind == "jobs") {
-            $(".logined.jobs").fadeIn(300);
+            $(".logined:not(.recruitment .admin)").fadeIn(300);
             $.ajax({
                 type: 'POST',
                 url: 'role/set/1',
@@ -599,7 +599,7 @@ function SetRolePicker() {
             });
         }
         else if (rolekind == "recruitment") {
-            $(".logined.recruitment").fadeIn(300);
+            $(".logined:not(.jobs .admin)").fadeIn(300);
             $.ajax({
                 type: 'POST',
                 url: 'role/set/2',
