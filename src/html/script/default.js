@@ -590,7 +590,9 @@ function SetRolePicker() {
     });
     $("a#role-confirm").click(function () {
         if (rolekind == "jobs") {
-            $(".logined:not(.recruitment .admin)").fadeIn(300);
+            $(".logined").fadeIn(300);
+            $(".recruitment").hide();
+            $(".admin").hide();
             $.ajax({
                 type: 'POST',
                 url: 'role/set/1',
@@ -599,7 +601,9 @@ function SetRolePicker() {
             });
         }
         else if (rolekind == "recruitment") {
-            $(".logined:not(.jobs .admin)").fadeIn(300);
+            $(".logined").fadeIn(300);
+            $(".jobs").hide();
+            $(".admin").hide();
             $.ajax({
                 type: 'POST',
                 url: 'role/set/2',
@@ -1287,7 +1291,9 @@ function AfterLogin() {
                 $("div#role-choose").fadeIn(200);
             }
             else if (type == 1) {
-                $(".logined:not(.recruitment .admin)").fadeIn(300);
+                $(".logined").fadeIn(300);
+                $(".recruitment").hide();
+                $(".admin").hide();
             }
             else if (type == 2) {
                 $(".logined").fadeIn(300);
@@ -1295,7 +1301,8 @@ function AfterLogin() {
                 $(".admin").hide();
             }
             else if (type == 0) {
-                $(".logined:not(.jobs)").fadeIn(300);
+                $(".logined").fadeIn(300);
+                $(".jobs").hide();
             }
             $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;" />');
             $.ajax({
