@@ -467,6 +467,10 @@ div#backTop
     display: none;
     letter-spacing: 2px;
 }
+div#backTop:hover
+{
+    cursor: pointer;
+}
 div#backTop a:hover
 {
     text-decoration: none;
