@@ -79,7 +79,7 @@ function get_search_result($key, $num, $cate, $time, $page)
     }
     elseif($time == "count")
     {
-        $content = "COUNT(DISTINCT tweets.*)";
+        $content = "DISTINCT COUNT(tweets.*)";
         $limit = "";
         $time = "";
     }
