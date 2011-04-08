@@ -1287,14 +1287,13 @@ function AfterLogin() {
                 $("div#role-choose").fadeIn(200);
             }
             else if (type == 1) {
-                $(".logined.jobs").fadeIn(300);
+                $(".logined:not(.recruitment .admin)").fadeIn(300);
             }
             else if (type == 2) {
-                $(".logined.recruitment").fadeIn(300);
+                $(".logined:not(.jobs .admin)").fadeIn(300);
             }
             else if (type == 0) {
-                $(".logined.admin").fadeIn(300);
-                $(".logined.recruitment").show();
+                $(".logined:not(.jobs)").fadeIn(300);
             }
             $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;" />');
             $.ajax({
