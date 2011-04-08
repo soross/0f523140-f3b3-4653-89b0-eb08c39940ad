@@ -70,7 +70,7 @@ function get_search_result($key, $num, $cate, $time, $page)
         #$cate1 = $cate2 = "";
     }
     $limit = " LIMIT 0 , $num";
-    $content = "DISTINCT tweets.*";
+    $content = "*";
     if($time == "page")
     {
         $page = intval($page) * $num;
@@ -79,7 +79,7 @@ function get_search_result($key, $num, $cate, $time, $page)
     }
     elseif($time == "count")
     {
-        $content = "DISTINCT COUNT(tweets.*)";
+        $content = "COUNT(*)";
         $limit = "";
         $time = "";
     }
@@ -94,7 +94,7 @@ function get_search_result($key, $num, $cate, $time, $page)
         }
         $time = " AND tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
     }
-    $view = "SELECT $content FROM tweets$cate1 WHERE deleted = 0$key$cate2$time ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT DISTINCT $content FROM tweets$cate1 WHERE tweets.deleted = 0$key$cate2$time ORDER BY tweets.post_datetime DESC$limit";
     //FIXME: Low performance!
     
     $list = mysql_query($view);
