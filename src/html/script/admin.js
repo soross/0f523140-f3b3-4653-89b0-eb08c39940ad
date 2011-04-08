@@ -188,17 +188,17 @@ function UpdateNormal() {
                 $("a.page-number").click(function () {
                     page = $(this).html() - 1;
                     ShowNormal(page);
-                    $(document).scrollTop(0);
+                    $(window).scrollTop(0);
                 });
                 $("a#prevPage").click(function () {
                     page--;
                     ShowNormal(page);
-                    $(document).scrollTop(0);
+                    $(window).scrollTop(0);
                 });
                 $("a#nextPage").click(function () {
                     page++;
                     ShowNormal(page);
-                    $(document).scrollTop(0);
+                    $(window).scrollTop(0);
                 });
             }
         }
@@ -295,17 +295,17 @@ function UpdateFeedback() {
                 $("a.page-number").click(function () {
                     page = $(this).html() - 1;
                     ShowFeedback(page);
-                    $(document).scrollTop(0);
+                    $(window).scrollTop(0);
                 });
                 $("a#prevPage").click(function () {
                     page--;
                     ShowFeedback(page);
-                    $(document).scrollTop(0);
+                    $(window).scrollTop(0);
                 });
                 $("a#nextPage").click(function () {
                     page++;
                     ShowFeedback(page);
-                    $(document).scrollTop(0);
+                    $(window).scrollTop(0);
                 });
             }
         }
