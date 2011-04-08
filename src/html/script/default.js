@@ -234,7 +234,7 @@ $(function () {
     });
 
     $("#search-text").keypress(function (e) {
-        if (e.which == 13 and) {
+        if (e.which == 13) {
             if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
                 $.ajax({
                     type: 'GET',
