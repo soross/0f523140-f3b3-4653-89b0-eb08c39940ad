@@ -64,7 +64,11 @@ function get_search_result($key, $num, $cate, $time, $page)
         $cate2 = " AND tweets.tweet_id=cate.tweet_id";
     }
     else
-        $cate1 = $cate2 = "";
+    {
+        $cate1 = ",(SELECT * from cat_relationship WHERE cat_id!=7) AS cate";
+        $cate2 = " AND tweets.tweet_id=cate.tweet_id";
+        #$cate1 = $cate2 = "";
+    }
     $limit = " LIMIT 0 , $num";
     $content = "tweets.*";
     if($time == "page")
