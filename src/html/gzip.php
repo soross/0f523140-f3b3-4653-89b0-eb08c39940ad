@@ -3,7 +3,7 @@
 define('ABSPATH', dirname(__FILE__).'/');
 
 $cache = true;//Gzip压缩开关
-$cachedir = 'wp-cache/';//存放gz文件的目录，确保可写
+$cachedir = 'cache/';//存放gz文件的目录，确保可写
 
 $gzip = strstr($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip');
 $deflate = strstr($_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate');
