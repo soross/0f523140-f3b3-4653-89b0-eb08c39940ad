@@ -90,7 +90,7 @@ function parsekeyword($keyword, $out)
 {
     $keyword = explode(" ",$keyword);
     foreach($keyword as $key)
-        if($key)
+        if($key and $key !== "all" and $key !== "poiuy")
             $out = preg_replace('/('.$key.')/i', '<span class=\'highlight\'>${1}</span>', $out);
     return $out;
 }
