@@ -94,14 +94,14 @@ div#logo-search a#logo
     background-image: url('../images/logo-beta.jpg');
     margin-top: 17px;
     margin-left: 60px;
-    text-align:right;
-    padding-right:9px;
-    line-height:24px;
-    color:#697686;
+    text-align: right;
+    padding-right: 9px;
+    line-height: 24px;
+    color: #697686;
 }
 div#logo-search a#logo:hover
 {
-    text-decoration:none;
+    text-decoration: none;
 }
 
 div#logo-search div#search-bar
@@ -417,6 +417,14 @@ div#jobs-publish-confirm
     width: 529px;
     padding-right: 30px;
 }
+div#jobs-publish-confirm span
+{
+    color: #577a4a;
+    line-height: 36px;
+    height: 36px;
+    margin-right: 30px;
+    letter-spacing: 1px;
+}
 div#jobs-publish-confirm a
 {
     height: 36px;
@@ -565,6 +573,14 @@ div#recruitment-publish-confirm
     height: 36px;
     width: 529px;
     padding-right: 30px;
+}
+div#recruitment-publish-confirm span
+{
+    color: #435c79;
+    line-height: 36px;
+    height: 36px;
+    margin-right: 30px;
+    letter-spacing: 1px;
 }
 div#recruitment-publish-confirm a
 {
