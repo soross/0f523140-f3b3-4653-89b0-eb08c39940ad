@@ -10,6 +10,7 @@ from datetime import datetime, timedelta, date, time
 import sys
 from tag_detect import detect
 import os
+from signal import signal, SIGTERM
 from crawler_id import idlist as A
 
 PAGE = 1
@@ -20,6 +21,16 @@ try:
 	PAGE = int(sys.argv[1])
 except IndexError:
 	pass
+
+LOCK = '/var/lock/sinacrawler.lock'
+
+if os.path.isfile(LOCK):
+    f = open(LOCK, "r").read()
+    os.kill(f, signal(SIGTERM))
+pid = os.getpid()
+f = open(LOCK, "w")
+f.write(pid)
+f.close()
 
 def now():
 	return str(datetime.now()) + " "
@@ -279,3 +290,4 @@ c.execute("UPDATE counts SET count = %s WHERE type = %s", (count, "tweets_thiswe
 db.commit()
 c.close()
 print now() + "Wrote Database."
+os.unlink(LOCK)

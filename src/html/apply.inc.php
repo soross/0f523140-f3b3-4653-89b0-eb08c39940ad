@@ -19,16 +19,16 @@ function get_received_tweets($num, $page)
     if($page == "count")
     {
         $limit = "";
-        $select = "COUNT(DISTINCT *)";
+        $select = "COUNT(*)";
     }
     else
     {
-        $select = "DISTINCT *";
+        $select = "*";
         $page = intval($page) * $num;
         $limit = " LIMIT $page , $num";
     }
     connect_db();
-    $view = "SELECT $select from tweets, (SELECT * FROM applications WHERE deleted=0) AS ap, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.deleted=0 AND tweets.tweet_id=ap.tweet_id AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT DISTINCT $select from tweets, (SELECT * FROM applications WHERE deleted=0) AS ap, (SELECT * from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.deleted=0 AND tweets.tweet_id=ap.tweet_id AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id AND ab.user_id = '$id' ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
@@ -55,7 +55,7 @@ function get_received_applies($tweet_id, $num, $page)
         $limit = " LIMIT $page , $num";
     }
     connect_db();
-    $view = "SELECT $select from applications AS ap, (SELECT * FROM tweets WHERE tweet_id='$tweet_id' AND deleted=0) AS tweets, (SELECT user_site_id, site_id from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.deleted=0 AND ap.deleted=0 AND ap.tweet_id='$tweet_id' AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT DISTINCT $select from applications AS ap, (SELECT * FROM tweets WHERE tweet_id='$tweet_id' AND deleted=0) AS tweets, (SELECT user_site_id, site_id from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.deleted=0 AND ap.deleted=0 AND ap.tweet_id='$tweet_id' AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
