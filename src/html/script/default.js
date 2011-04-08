@@ -709,7 +709,7 @@ function SetConcern() {
     });
 }
 
-var countpage = 0;
+var countpage = 100;
 
 function SetSearch(msg, e) {
     scrollflag = false;
@@ -748,7 +748,7 @@ function SetSearch(msg, e) {
                                     else {
                                         allPage = Math.floor(msg / 50) + 1;
                                     }
-                                    countpage = allPage;
+                                    countpage = Math.floor(msg);
                                     if (allPage > 1) {
                                         prevLess = false;
                                         nextLess = false;
