@@ -116,24 +116,25 @@ function SetPublish() {
 }
 
 function UpdateJobsText() {
-    if (140 - Math.ceil($("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2) >= 0) {
-        $("div#jobs-publish-remain").html("还可输入" + (140 - Math.ceil($("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2)) + "个字");
+    if (140 - Math.ceil($("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g, "**").length / 2) >= 0) {
+        $("div#jobs-publish-remain").html("还可输入" + (140 - Math.ceil($("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g, "**").length / 2)) + "个字");
     }
     else {
-        $("div#jobs-publish-remain").html("已超出" + (Math.ceil($("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2 - 140)) + "个字");
+        $("div#jobs-publish-remain").html("已超出" + (Math.ceil($("div#jobs-publish-text textarea").val().replace(/[^\x00-\xff]/g, "**").length / 2 - 140)) + "个字");
     }
 }
 function UpdateRecruitmentText() {
-    if (140 - Math.ceil($("div#recruitment-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2) >= 0) {
-        $("div#recruitment-publish-remain").html("还可输入" + (140 - Math.ceil($("div#recruitment-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2)) + "个字");
+    if (140 - Math.ceil($("div#recruitment-publish-text textarea").val().replace(/[^\x00-\xff]/g, "**").length / 2) >= 0) {
+        $("div#recruitment-publish-remain").html("还可输入" + (140 - Math.ceil($("div#recruitment-publish-text textarea").val().replace(/[^\x00-\xff]/g, "**").length / 2)) + "个字");
     }
     else {
-        $("div#recruitment-publish-remain").html("已超出" + (Math.ceil($("div#recruitment-publish-text textarea").val().replace(/[^\x00-\xff]/g,"**").length/2 - 140)) + "个字");
+        $("div#recruitment-publish-remain").html("已超出" + (Math.ceil($("div#recruitment-publish-text textarea").val().replace(/[^\x00-\xff]/g, "**").length / 2 - 140)) + "个字");
     }
 }
 function ShowJobsPublish() {
     $("div#cover").fadeIn(200);
     $("div#jobs-publish").fadeIn(200);
+    $("div#jobs-publish-text textarea").focus();
 }
 function HideJobsPublish() {
     $("div#cover").fadeOut(200);
@@ -142,6 +143,7 @@ function HideJobsPublish() {
 function ShowRecruitmentPublish() {
     $("div#cover").fadeIn(200);
     $("div#recruitment-publish").fadeIn(200);
+    $("div#recruitment-publish-text textarea").focus();
 }
 function HideRecruitmentPublish() {
     $("div#cover").fadeOut(200);
