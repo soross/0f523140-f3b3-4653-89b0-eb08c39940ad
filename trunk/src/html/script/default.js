@@ -568,11 +568,13 @@ function SetRolePicker() {
     $("a#role-jobs").click(function () {
         $("div#role-choose").removeClass("role-recruitment");
         $("div#role-choose").addClass("role-jobs");
+        $("div#recruitment-publish-text textarea").focus();
         rolekind = "jobs";
     });
     $("a#role-recruitment").click(function () {
         $("div#role-choose").removeClass("role-jobs");
         $("div#role-choose").addClass("role-recruitment");
+        $("div#recruitment-publish-text textarea").focus();
         rolekind = "recruitment";
     });
     $("a#role-confirm").click(function () {
