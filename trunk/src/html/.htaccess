@@ -1,7 +1,7 @@
 # Resource Cache
 <IfModule header_module>
 	<FilesMatch "\.(png|ico|jpg|gif|css|js)$">
-	Header set Cache-Control "max-age=604800, public"
+	Header set Cache-Control "max-age=31536000, public"
 	</FilesMatch>
 </IfModule>
 
