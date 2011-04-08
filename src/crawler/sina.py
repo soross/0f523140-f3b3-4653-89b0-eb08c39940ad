@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, date, time
 import sys
 from tag_detect import detect
 import os
-from signal import signal, SIGTERM
+from signal import SIGTERM
 from crawler_id import idlist as A
 
 PAGE = 1
@@ -26,7 +26,7 @@ LOCK = '/var/lock/sinacrawler.lock'
 
 if os.path.isfile(LOCK):
     f = open(LOCK, "r").read()
-    os.kill(f, signal(SIGTERM))
+    os.kill(f, SIGTERM)
 pid = os.getpid()
 f = open(LOCK, "w")
 f.write("%d"%(pid))
