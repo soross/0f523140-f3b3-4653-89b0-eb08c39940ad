@@ -292,7 +292,7 @@ function SetAllSearch(msg) {
                             });
                             $.ajax({
                                 type: "POST",
-                                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
+                                url: 'search/' + encodeURI(SearchResult.replace("#","").replace("&","").replace("?","")) + '/' + cate + '/count',
                                 success: function (msg) {
                                     $(window).scrollTop(0);
                                     prevLess = false;
