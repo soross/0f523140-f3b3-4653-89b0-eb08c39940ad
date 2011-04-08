@@ -214,7 +214,7 @@ $(function () {
             });
         }
     });
-    $("div#backTop a").click(function () {
+    $("div#backTop").click(function () {
         $("html, body").animate({ scrollTop: 0 }, 1000);
     });
     $("div#backTop").animate({ opacity: 0.6 }, 0);
