@@ -96,7 +96,7 @@ function parsekeyword($keyword, $out)
             $out = preg_replace('/('.$key.')/i', '<span class=\'highlight\'>${1}</span>', $out);
             $out = preg_replace('$href=\\"([^<]{0,20})<span[^>]+>([^<]{1,20})</span>([^<]{0,20})\\"$i',
                 'href="${1}${2}${3}"', $out);
-            $out = preg_replace('$title=\\"([^<]{0,20})<span[^>]+>([^<]{1,20})</span>([^<]{0,20})\\"$i',
+            $out = preg_replace('$title=\\"([^<]*)<span[^>]+>([^<]+)</span>([^<]*)\\"$i',
                 'title="${1}${2}${3}"', $out);
         }
     return $out;
