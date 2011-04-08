@@ -152,8 +152,7 @@ $(function () {
                         collision: "none none"
                     });
                     $("div#backTop").css("position", "fixed");
-                });
-            };
+            });
         }
         else {
             $.ajax({
