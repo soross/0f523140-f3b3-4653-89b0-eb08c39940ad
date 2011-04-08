@@ -268,6 +268,7 @@ $(function () {
 });
 
 function SetAllSearch(msg) {
+    scrollflag = false;
     $("div#fresh-outer").animate({ opacity: 0 }, 0);
     $("div#fresh-outer").hide();
     $("div#fresh-blogs").animate({ opacity: 0 }, 0);
@@ -708,7 +709,10 @@ function SetConcern() {
     });
 }
 
+var countpage = 0;
+
 function SetSearch(msg, e) {
+    scrollflag = false;
     $("div#fresh-outer").animate({ opacity: 0 }, 0);
     $("div#fresh-outer").hide();
     $("div#fresh-blogs").animate({ opacity: 0 }, 0);
@@ -744,6 +748,7 @@ function SetSearch(msg, e) {
                                     else {
                                         allPage = Math.floor(msg / 50) + 1;
                                     }
+                                    countpage = allPage;
                                     if (allPage > 1) {
                                         prevLess = false;
                                         nextLess = false;
@@ -979,6 +984,7 @@ function SetHistory() {
     });
 }
 
+var scrollflag = false;
 
 function DocumenScroll() {
     if ($(window).scrollTop() != 0) {
@@ -987,7 +993,7 @@ function DocumenScroll() {
     else {
         $("div#backTop").fadeOut(200);
     }
-    if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4) {
+    if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4 && !scrollflag && countpage >= 10) {
         $(window).unbind("scroll");
         count++;
         $("#flower").fadeIn(200);
@@ -995,6 +1001,9 @@ function DocumenScroll() {
             type: 'GET',
             url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
             success: function (msg) {
+                if (msg == "") {
+                    scrollflag = true;
+                }
                 $("#flower").fadeOut(200);
                 $("div#blogs").html($("div#blogs").html() + msg);
                 $("a.microblog-item-relate").unbind("click");
