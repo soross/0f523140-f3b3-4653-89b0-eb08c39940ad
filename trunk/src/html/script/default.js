@@ -709,11 +709,13 @@ function StartSearch(url, func) {
         if(currentsearch != thissearch)return;
         $("div#blogs").slideUp(100, null, function () {
             if(currentsearch != thissearch)return;
-            $("div#blogs").html('<img src="images/loading.gif" style="margin-left:280px;" />');
-            $("div#blogs").slideDown(100, null, function () {
-                if(currentsearch != thissearch)return;
-                $("div#blogs").animate({ opacity: 1 }, 200, null, function () {
+            $("div#search-result-outer").slideUp(100, null, function() {
+                $("div#blogs").html('<img src="images/loading.gif" style="margin-left:280px;" />');
+                $("div#blogs").slideDown(100, null, function () {
                     if(currentsearch != thissearch)return;
+                    $("div#blogs").animate({ opacity: 1 }, 200, null, function () {
+                        if(currentsearch != thissearch)return;
+                    });
                 });
             });
         });
@@ -732,6 +734,7 @@ function SetSearch(msg, e, thissearch) {
     scrollflag = false;
     SearchResult = e;
     if(currentsearch != thissearch)return;
+    SetResult(e);
                     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
                         if(currentsearch != thissearch)return;
                         $("div#blogs").slideUp(100, null, function () {
@@ -942,7 +945,6 @@ function SetSearch(msg, e, thissearch) {
             });
         });
     }
-    SetResult(e);
     if (!logined) {
         $("a#search-result-concern").hide();
     }
