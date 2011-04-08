@@ -705,17 +705,14 @@ function StartSearch(url, func) {
         $("div#fresh-blogs").hide();
         
         $("div#pages").fadeOut(50);
+        
+        if(currentsearch != thissearch)return;
         $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
-            if(currentsearch != thissearch)return;
             $("div#blogs").slideUp(100, null, function () {
-                if(currentsearch != thissearch)return;
                 $("div#search-result-outer").slideUp(100, null, function() {
-                    if(currentsearch != thissearch)return;
                     $("div#blogs").html('<img src="images/loading.gif" style="margin-left:280px;" />');
                     $("div#blogs").slideDown(100, null, function () {
-                        if(currentsearch != thissearch)return;
                         $("div#blogs").animate({ opacity: 1 }, 200, null, function () {
-                            if(currentsearch != thissearch)return;
                         });
                     });
                 });
@@ -739,12 +736,9 @@ function SetSearch(msg, e, thissearch) {
     if(currentsearch != thissearch)return;
     SetResult(e);
                     $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
-                        if(currentsearch != thissearch)return;
                         $("div#blogs").slideUp(100, null, function () {
-                            if(currentsearch != thissearch)return;
                             $("div#blogs").html(msg);
                             $("div#blogs").slideDown(100, null, function () {
-                                if(currentsearch != thissearch)return;
                                 $("div#blogs").animate({ opacity: 1 }, 200);
                                 $(window).unbind("scroll");
                                 $(window).scroll(function () {
@@ -920,6 +914,7 @@ function SetSearch(msg, e, thissearch) {
                             }
                         });
                     });
+                    if(currentsearch != thissearch)return;
     $("div#search-result-outer").slideDown(200);
     if (logined) {
         $("a#search-result-concern").mouseover(function () {
