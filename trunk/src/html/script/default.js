@@ -706,24 +706,27 @@ function StartSearch(url, func) {
         
         $("div#pages").fadeOut(50);
         $("div#blogs").animate({ opacity: 0 }, 200, null, function () {
-        if(currentsearch != thissearch)return;
-        $("div#blogs").slideUp(100, null, function () {
             if(currentsearch != thissearch)return;
-            $("div#search-result-outer").slideUp(100, null, function() {
-                $("div#blogs").html('<img src="images/loading.gif" style="margin-left:280px;" />');
-                $("div#blogs").slideDown(100, null, function () {
+            $("div#blogs").slideUp(100, null, function () {
+                if(currentsearch != thissearch)return;
+                $("div#search-result-outer").slideUp(100, null, function() {
                     if(currentsearch != thissearch)return;
-                    $("div#blogs").animate({ opacity: 1 }, 200, null, function () {
+                    $("div#blogs").html('<img src="images/loading.gif" style="margin-left:280px;" />');
+                    $("div#blogs").slideDown(100, null, function () {
                         if(currentsearch != thissearch)return;
+                        $("div#blogs").animate({ opacity: 1 }, 200, null, function () {
+                            if(currentsearch != thissearch)return;
+                        });
                     });
                 });
             });
         });
-    });
+    if(currentsearch != thissearch)return;
     $.ajax({
                 type: "GET",
                 url: url,
                 success: function (msg){
+                    if(currentsearch != thissearch)return;
                     func(msg, thissearch);
                 }
             }
