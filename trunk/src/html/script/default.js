@@ -914,7 +914,6 @@ function SetSearch(msg, e, thissearch) {
                             }
                         });
                     });
-                });
     $("div#search-result-outer").slideDown(200);
     if (logined) {
         $("a#search-result-concern").mouseover(function () {
