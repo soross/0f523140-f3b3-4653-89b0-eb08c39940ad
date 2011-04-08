@@ -39,7 +39,7 @@ class Twitter_Autolink {
     
     protected $hashtagClass = "tag";
     
-    protected $emailClass = "";
+    protected $emailClass = "email";
 
 	/* Default CSS class for auto-linked hashtag URLs */
 
