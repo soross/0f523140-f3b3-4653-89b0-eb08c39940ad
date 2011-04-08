@@ -38,6 +38,8 @@ class Twitter_Autolink {
 	protected $usernameClass = "item-blog-link";
     
     protected $hashtagClass = "tag";
+    
+    protected $emailClass = "";
 
 	/* Default CSS class for auto-linked hashtag URLs */
 
@@ -71,8 +73,8 @@ class Twitter_Autolink {
 	}
     
     public function autoLinkEmail($tweet) {
-        $t = preg_replace('/([a-zA-Z0-9_\.]+([@|＠|#]|\[at\])[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4})/',
-                          '<img src="/images/mail.png" height=16 width=16 /><a class="' . $this->urlClass . '" href="mailto:${1}">${1}</a>', $tweet);
+        $t = preg_replace('/([a-zA-Z0-9_\.]+)([@|＠|#]|\[at\])([a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4})/',
+                          '<a class="' . $this->urlClass . ' ' . $this->emailClass . '" href="mailto:${1}@${3}">${1}${2}${3}</a>', $tweet);
         return $t;
     }
 
