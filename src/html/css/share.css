@@ -5,7 +5,7 @@
     background-image: url('../images/background.jpg');
     background-repeat: repeat-x;
     overflow-y: scroll;
-    font-family: Arial,Helvetica,sans-serif;
+    font-family: 微软雅黑, 宋体;
 }
 body, a, input, span, img
 {
