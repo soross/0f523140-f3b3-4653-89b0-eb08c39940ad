@@ -22,6 +22,9 @@ function func_execute_active_handler() {
         $q = str_replace("\"", "", $q);
         $q = str_replace("<", "", $q);
         $q = str_replace(">", "", $q);
+        $q = str_replace("#", "", $q);
+        $q = str_replace("?", "", $q);
+        $q = str_replace("=", "", $q);
 		$query = (array) explode('/', $q);
 		$GLOBALS['page'] = $query[0];
 	}
