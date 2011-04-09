@@ -269,6 +269,7 @@ function apply_add()
     $view = "INSERT INTO applications(resume_id, tweet_id, user_id, apply_time) VALUES ('$id', '$key', '$id', '".date('Y-m-d H:i:s')."')";
     $list = mysql_query($view) or die("Insert error!");
     $content = $_POST['text'];
+    echo $content;
     $view = "SELECT tweet_site_id FROM tweets WHERE tweet_id='$key'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
