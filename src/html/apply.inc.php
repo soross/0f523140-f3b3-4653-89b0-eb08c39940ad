@@ -276,7 +276,11 @@ function apply_add()
     {
         $tweet_site_id = $row[0];
         $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
-        $c -> comment($content.' http://www.ybole.com/resume/show/'.$id, $tweet_site_id);
+        $msg = $c -> send_comment($content.' http://www.ybole.com/resume/show/'.$id, $tweet_site_id, null);
+        if ($msg === false || $msg === null){
+            echo "Error occured";
+            return false;
+        }
     }
 }
 
