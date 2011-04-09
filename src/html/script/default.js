@@ -167,29 +167,7 @@ $(function () {
             }
         }
     });
-
-    $("#apply-info").dialog({
-        autoOpen: false,
-        draggable: false,
-        resizable: false,
-        buttons: {
-            "确定": function () {
-                $.ajax({
-                    type: "POST",
-                    url: 'apply/add/' + id,
-                    success: function () {
-                        item.hide();
-                        item.next("a.unapply").show();
-                    }
-                });
-                $(this).dialog("close");
-            },
-            "取消": function () {
-                $(this).dialog("close");
-            }
-        }
-    });
-
+    
     if ($.query.get("errormsg") == "") {
         if ($.query.get("search") != "") {
             var text = $.trim($.query.get("search"));
