@@ -482,6 +482,9 @@ function SetAllSearch(msg) {
                                     ShowNoresume();
                                 }
                             });
+                            if (rolekind != "jobs") {
+                                $("a.apply").hide();
+                            }
                             $("a.unapply").click(function () {
                                 var item = $(this);
                                 var id = $(this).parent().parent().parent().attr("name");
@@ -941,6 +944,9 @@ function SetSearch(msg, e, thissearch) {
                         ShowNoresume();
                     }
                 });
+                if (rolekind != "jobs") {
+                    $("a.apply").hide();
+                }
                 $("a.unapply").click(function () {
                     var item = $(this);
                     var id = $(this).parent().parent().parent().attr("name");
@@ -1099,6 +1105,9 @@ function DocumenScroll() {
                         ShowNoresume();
                     }
                 });
+                if (rolekind != "jobs") {
+                    $("a.apply").hide();
+                }
                 $("a.unapply").click(function () {
                     var item = $(this);
                     var id = $(this).parent().parent().parent().attr("name");
@@ -1202,6 +1211,9 @@ function GetNewerBlogs() {
                             ShowNoresume();
                         }
                     });
+                    if (rolekind != "jobs") {
+                        $("a.apply").hide();
+                    }
                     $("a.unapply").click(function () {
                         var item = $(this);
                         var id = $(this).parent().parent().parent().attr("name");
@@ -1293,6 +1305,9 @@ function GetNewerBlogs() {
                             ShowNoresume();
                         }
                     });
+                    if (rolekind != "jobs") {
+                        $("a.apply").hide();
+                    }
                     $("a.unapply").click(function () {
                         var item = $(this);
                         var id = $(this).parent().parent().parent().attr("name");
@@ -1329,15 +1344,18 @@ function AfterLogin() {
                 $(".logined").fadeIn(300);
                 $(".recruitment").hide();
                 $(".admin").hide();
+                rolekind = "jobs";
             }
             else if (type == 2) {
                 $(".logined").fadeIn(300);
                 $(".jobs").hide();
                 $(".admin").hide();
+                rolekind = "recruitment";
             }
             else if (type == 0) {
                 $(".logined").fadeIn(300);
                 $(".jobs").hide();
+                rolekind = "admin";
             }
             $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;" />');
             $.ajax({
