@@ -105,7 +105,7 @@ $(function () {
             url: 'resume/add',
             data: {
                 name: $("#u-name").val(),
-                sex: $("#sex").val(),
+                sex: $("input[name='sex']:checked").val(),
                 date_birth: $("#birthday").val(),
                 live_in_now: $("#n-positon").val(),
                 live_in: $("#o-positon").val(),
@@ -124,7 +124,7 @@ $(function () {
             url: 'resume/preview',
             data: {
                 name: $("#u-name").val(),
-                sex: $("#sex").val(),
+                sex: $("input[name='sex']:checked").val(),
                 date_birth: $("#birthday").val(),
                 live_in_now: $("#n-positon").val(),
                 live_in: $("#o-positon").val(),
@@ -337,7 +337,7 @@ function ShowProfile() {
         success: function (msg) {
             if ($.trim(msg).indexOf('|') != -1) {
                 $("#u-name").val(msg.split('|')[0]);
-                $("#sex").val(msg.split('|')[1]);
+                $("input[name='sex']").val(msg.split('|')[1]);
                 $("#birthday").val(msg.split('|')[2]);
                 $("#n-positon").val(msg.split('|')[3]);
                 $("#o-positon").val(msg.split('|')[4]);
