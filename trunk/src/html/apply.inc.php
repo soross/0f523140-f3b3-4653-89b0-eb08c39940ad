@@ -84,7 +84,7 @@ function get_applies($num, $page)
     $page = intval($page) * $num;
     $limit = " LIMIT $page , $num";
     connect_db();
-    $view = "SELECT * from tweets, (SELECT * FROM applications WHERE user_id='$id' AND deleted=0) as applications WHERE tweets.tweet_id=applications.tweet_id ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT * from tweets, (SELECT * FROM applications WHERE user_id='$id' AND deleted=0) as applications WHERE tweets.deleted=0 AND tweets.tweet_id=applications.tweet_id ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
