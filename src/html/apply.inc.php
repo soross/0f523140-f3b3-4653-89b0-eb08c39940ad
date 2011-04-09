@@ -283,6 +283,10 @@ function apply_add()
             echo "Error occured";
             return false;
         }
+        if (isset($msg['error_code']) && isset($msg['error'])){
+            echo ('Error_code: '.$msg['error_code'].';  Error: '.$msg['error'] );
+            return false;
+        } 
     }
 }
 
