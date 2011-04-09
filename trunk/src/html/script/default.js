@@ -51,6 +51,15 @@ function HideResume() {
     $("div#msgBox_resume").fadeOut(200);
 }
 
+function UpdateApply(e) {
+    if (140 - Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2) >= 0) {
+        $(".info span:last").html("还可输入" + (140 - Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2)) + "个字");
+    }
+    else {
+        $(".info span:last").html("已超出" + (Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2 - 140)) + "个字");
+    }
+}
+
 $(function () {
     $("div#msgBox_noresume").position({
         of: $(window),
