@@ -19,7 +19,7 @@ function get_received_tweets($num, $page)
     if($page == "count")
     {
         $limit = "";
-        $select = "COUNT(*)";
+        $select = "COUNT(DISTINCT tweets.tweet_id)";
     }
     else
     {
