@@ -269,8 +269,15 @@ function apply_add()
     $view = "INSERT INTO applications(resume_id, tweet_id, user_id, apply_time) VALUES ('$id', '$key', '$id', '".date('Y-m-d H:i:s')."')";
     $list = mysql_query($view) or die("Insert error!");
     $content = $_POST['text'];
-    $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
-    $c -> comment($content.' http://www.ybole.com/resume/show/'.$id, $key);
+    $view = "SELECT tweet_site_id FROM tweets WHERE tweet_id='$key'";
+    $list = mysql_query($view);
+    $row = mysql_fetch_array($list);
+    if($row)
+    {
+        $tweet_site_id = $row[0];
+        $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
+        $c -> comment($content.' http://www.ybole.com/resume/show/'.$id, $tweet_site_id);
+    }
 }
 
 function theme_apply($content)
