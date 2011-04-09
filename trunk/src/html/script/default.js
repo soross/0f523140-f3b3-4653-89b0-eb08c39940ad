@@ -25,7 +25,10 @@ function ApplyJob() {
         type: "POST",
         url: 'apply/add/' + id,
         data: { text: $("#msgBox_resume .content textarea").val() },
-        success: function () {
+        success: function (msg) {
+            if (msg != "") {
+                alert(msg);
+            }
             item.hide();
             item.next("a.unapply").show();
         }
@@ -167,7 +170,7 @@ $(function () {
             }
         }
     });
-    
+
     if ($.query.get("errormsg") == "") {
         if ($.query.get("search") != "") {
             var text = $.trim($.query.get("search"));
