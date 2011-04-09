@@ -55,11 +55,11 @@ function HideResume() {
 }
 
 function UpdateApply(e) {
-    if (140 - Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2) >= 0) {
-        $(".info span:last").html("还可输入" + (140 - Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2)) + "个字");
+    if (115 - Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2) >= 0) {
+        $(".info span:last").html("还可输入" + (115 - Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2)) + "个字");
     }
     else {
-        $(".info span:last").html("已超出" + (Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2 - 140)) + "个字");
+        $(".info span:last").html("已超出" + (Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2 - 115)) + "个字");
     }
 }
 
