@@ -34,13 +34,6 @@ function ApplyJob() {
 }
 
 function ShowNoresume() {
-    $("div#msgBox_noresume").position({
-        of: $(window),
-        my: "center top",
-        at: "center top",
-        offset: "0 130",
-        collision: "none none"
-    });
     $("div#cover").fadeIn(200);
     $("div#msgBox_noresume").fadeIn(200);
 }
@@ -49,13 +42,7 @@ function HideNoresume() {
     $("div#msgBox_noresume").fadeOut(200);
 }
 function ShowResume() {
-    $("div#msgBox_resume").position({
-        of: $(window),
-        my: "center top",
-        at: "center top",
-        offset: "0 130",
-        collision: "none none"
-    });
+    $(".info span:first").html("@" + item.parent().prev(".microblog-item-blog").children(".microblog-item-blog-name").html());
     $("div#cover").fadeIn(200);
     $("div#msgBox_resume").fadeIn(200);
 }
@@ -65,6 +52,22 @@ function HideResume() {
 }
 
 $(function () {
+    $("div#msgBox_noresume").position({
+        of: $(window),
+        my: "center top",
+        at: "center top",
+        offset: "0 130",
+        collision: "none none"
+    });
+    $("div#msgBox_resume").position({
+        of: $(window),
+        my: "center top",
+        at: "center top",
+        offset: "0 130",
+        collision: "none none"
+    });
+    $("div#msgBox_noresume").css("position", "fixed");
+    $("div#msgBox_resume").css("position", "fixed");
     $.ajax({
         type: 'POST',
         url: 'resume/current',
