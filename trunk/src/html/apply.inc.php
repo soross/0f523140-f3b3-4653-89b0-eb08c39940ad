@@ -278,7 +278,7 @@ function apply_add()
         include_once("sinaoauth.php");
         $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
         $content = $content.' http://www.ybole.com/resume/show/'.$id;
-        $msg = $c -> send_comment($content, $tweet_site_id, null);
+        $msg = $c -> send_comment($content, $tweet_site_id);
         if ($msg === false || $msg === null){
             echo "Error occured";
             return false;
