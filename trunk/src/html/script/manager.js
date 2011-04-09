@@ -7,6 +7,13 @@ var type = "";
 var editor;
 
 $(function () {
+    $.ajax({
+        type: 'POST',
+        url: 'avatar/',
+        success: function (msg) {
+            $("#headpic").attr("src", msg);
+        }
+    });
 
     $("div#profile-info").dialog({
         autoOpen: false,
@@ -92,12 +99,12 @@ $(function () {
     });
     CKFinder.setupCKEditor(editor, "ckfinder/");
 
-//    $("div#info-pic a").click(function () {
-//        var finder = new CKFinder();
-//        finder.basePath = 'ckfinder/';
-//        finder.selectActionFunction = SetFileField;
-//        finder.popup();
-//    });
+    //    $("div#info-pic a").click(function () {
+    //        var finder = new CKFinder();
+    //        finder.basePath = 'ckfinder/';
+    //        finder.selectActionFunction = SetFileField;
+    //        finder.popup();
+    //    });
 
     $("a#profile-save").click(function () {
         $.ajax({
