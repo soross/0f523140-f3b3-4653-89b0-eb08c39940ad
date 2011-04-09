@@ -92,12 +92,12 @@ $(function () {
     });
     CKFinder.setupCKEditor(editor, "ckfinder/");
 
-    $("div#info-pic a").click(function () {
-        var finder = new CKFinder();
-        finder.basePath = 'ckfinder/';
-        finder.selectActionFunction = SetFileField;
-        finder.popup();
-    });
+//    $("div#info-pic a").click(function () {
+//        var finder = new CKFinder();
+//        finder.basePath = 'ckfinder/';
+//        finder.selectActionFunction = SetFileField;
+//        finder.popup();
+//    });
 
     $("a#profile-save").click(function () {
         $.ajax({
