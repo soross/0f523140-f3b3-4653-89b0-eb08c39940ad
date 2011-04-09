@@ -11,6 +11,7 @@ var isTurn = false;
 var name = "";
 var item;
 var id;
+var haveResume = false;
 
 function guidGenerator() {
     var S4 = function () {
@@ -19,8 +20,20 @@ function guidGenerator() {
     return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
 }
 
-$(function () {
+function ApplyJob() {
+    $.ajax({
+        type: "POST",
+        url: 'apply/add/' + id,
+        data: { text: $("#msgBox_resume .content textarea").val() },
+        success: function () {
+            item.hide();
+            item.next("a.unapply").show();
+        }
+    });
+    HideResume();
+}
 
+function ShowNoresume() {
     $("div#msgBox_noresume").position({
         of: $(window),
         my: "center top",
@@ -28,6 +41,14 @@ $(function () {
         offset: "0 130",
         collision: "none none"
     });
+    $("div#cover").fadeIn(200);
+    $("div#msgBox_noresume").fadeIn(200);
+}
+function HideNoresume() {
+    $("div#cover").fadeOut(200);
+    $("div#msgBox_noresume").fadeOut(200);
+}
+function ShowResume() {
     $("div#msgBox_resume").position({
         of: $(window),
         my: "center top",
@@ -35,7 +56,15 @@ $(function () {
         offset: "0 130",
         collision: "none none"
     });
+    $("div#cover").fadeIn(200);
+    $("div#msgBox_resume").fadeIn(200);
+}
+function HideResume() {
+    $("div#cover").fadeOut(200);
+    $("div#msgBox_resume").fadeOut(200);
+}
 
+$(function () {
     $.ajax({
         type: 'POST',
         url: 'resume/current',
@@ -45,10 +74,11 @@ $(function () {
                 url: 'resume/show/' + msg,
                 success: function (e) {
                     if (e.indexOf('<html') != -1) {
-                        $("#apply-info p:first").html('歪伯乐将自动帮您生成简历页面并投递到招聘者的收件箱，您可以点击<a target="_blank" class="keyword" href="resume/show/' + msg + '">这里</a>预览简历。');
+                        haveResume = true;
+                        $("#msgBox_resume .content a:first").attr("href", "resume/show/" + msg);
                     }
                     else {
-                        $("#apply-info p:first").html('歪伯乐将自动帮您生成简历页面并投递到招聘者的收件箱，您目前还没有创建简历，您可以点击<a class="keyword" href="/manager?type=profile">这里</a>创建简历。');
+                        haveResume = false;
                     }
                 }
             })
@@ -455,7 +485,12 @@ function SetAllSearch(msg) {
                             $("a.apply").click(function () {
                                 item = $(this);
                                 id = $(this).parent().parent().parent().attr("name");
-                                $("#apply-info").dialog("open");
+                                if (haveResume) {
+                                    ShowResume();
+                                }
+                                else {
+                                    ShowNoresume();
+                                }
                             });
                             $("a.unapply").click(function () {
                                 var item = $(this);
@@ -909,7 +944,12 @@ function SetSearch(msg, e, thissearch) {
                 $("a.apply").click(function () {
                     item = $(this);
                     id = $(this).parent().parent().parent().attr("name");
-                    $("#apply-info").dialog("open");
+                    if (haveResume) {
+                        ShowResume();
+                    }
+                    else {
+                        ShowNoresume();
+                    }
                 });
                 $("a.unapply").click(function () {
                     var item = $(this);
@@ -1062,7 +1102,12 @@ function DocumenScroll() {
                 $("a.apply").click(function () {
                     item = $(this);
                     id = $(this).parent().parent().parent().attr("name");
-                    $("#apply-info").dialog("open");
+                    if (haveResume) {
+                        ShowResume();
+                    }
+                    else {
+                        ShowNoresume();
+                    }
                 });
                 $("a.unapply").click(function () {
                     var item = $(this);
@@ -1160,7 +1205,12 @@ function GetNewerBlogs() {
                     $("a.apply").click(function () {
                         item = $(this);
                         id = $(this).parent().parent().parent().attr("name");
-                        $("#apply-info").dialog("open");
+                        if (haveResume) {
+                            ShowResume();
+                        }
+                        else {
+                            ShowNoresume();
+                        }
                     });
                     $("a.unapply").click(function () {
                         var item = $(this);
@@ -1246,7 +1296,12 @@ function GetNewerBlogs() {
                     $("a.apply").click(function () {
                         item = $(this);
                         id = $(this).parent().parent().parent().attr("name");
-                        $("#apply-info").dialog("open");
+                        if (haveResume) {
+                            ShowResume();
+                        }
+                        else {
+                            ShowNoresume();
+                        }
                     });
                     $("a.unapply").click(function () {
                         var item = $(this);

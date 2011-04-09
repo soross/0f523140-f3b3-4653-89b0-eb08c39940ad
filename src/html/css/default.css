@@ -576,6 +576,7 @@ div#msgBox_resume
     font-size: 14px;
     color: black;
     position:absolute;
+    display: none;
 }
 div#msgBox_resume .boxcontent
 {
