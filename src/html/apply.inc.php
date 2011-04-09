@@ -268,6 +268,9 @@ function apply_add()
     }
     $view = "INSERT INTO applications(resume_id, tweet_id, user_id, apply_time) VALUES ('$id', '$key', '$id', '".date('Y-m-d H:i:s')."')";
     $list = mysql_query($view) or die("Insert error!");
+    $content = $_POST['text'];
+    $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
+    $c -> comment($content.' http://www.ybole.com/resume/show/'.$id, $key);
 }
 
 function theme_apply($content)
