@@ -275,6 +275,7 @@ function apply_add()
     if($row)
     {
         $tweet_site_id = $row[0];
+        include_once("sinaoauth.php");
         $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
         $content = $content.' http://www.ybole.com/resume/show/'.$id;
         echo $content;
