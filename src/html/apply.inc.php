@@ -81,6 +81,7 @@ function get_applies($num, $page)
     {
         $select = "COUNT(*)";
         $limit = "";
+    }
     else
     {
         $select = "*";
