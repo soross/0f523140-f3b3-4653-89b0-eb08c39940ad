@@ -269,18 +269,15 @@ function apply_add()
     $view = "INSERT INTO applications(resume_id, tweet_id, user_id, apply_time) VALUES ('$id', '$key', '$id', '".date('Y-m-d H:i:s')."')";
     $list = mysql_query($view) or die("Insert error!");
     $content = $_POST['text'];
-    echo $content;
     $view = "SELECT tweet_site_id FROM tweets WHERE tweet_id='$key'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     if($row)
     {
         $tweet_site_id = $row[0];
-        echo $tweet_site_id;
         include_once("sinaoauth.php");
         $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
         $content = $content.' http://www.ybole.com/resume/show/'.$id;
-        echo $content;
         $msg = $c -> send_comment($content, $tweet_site_id, null);
         if ($msg === false || $msg === null){
             echo "Error occured";
