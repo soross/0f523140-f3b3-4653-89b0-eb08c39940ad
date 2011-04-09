@@ -67,12 +67,8 @@ function get_received_applies($tweet_id, $num, $page)
 function apply_count()
 {
     include_once('login.inc.php');
-    $id = get_current_user_id();
-    connect_db();
-    $view = "SELECT COUNT(*) FROM applications WHERE user_id='$id' AND deleted = 0";
-    $list = mysql_query($view);
-    $row = mysql_fetch_array($list);
-    echo $row[0];
+    $num = get_applies(0, "count");
+    echo $num[0][0];
 }
 
 function get_applies($num, $page)
@@ -81,10 +77,18 @@ function get_applies($num, $page)
     $id = get_current_user_id();
     if(!$page)
         $page = "0";
-    $page = intval($page) * $num;
-    $limit = " LIMIT $page , $num";
+    elseif($page == "count")
+    {
+        $select = "COUNT(*)";
+        $limit = "";
+    else
+    {
+        $select = "*";
+        $page = intval($page) * $num;
+        $limit = " LIMIT $page , $num";
+    }
     connect_db();
-    $view = "SELECT * from tweets, (SELECT * FROM applications WHERE user_id='$id' AND deleted=0) as applications WHERE tweets.deleted=0 AND tweets.tweet_id=applications.tweet_id ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT DISTINCT $select from tweets, (SELECT * FROM applications WHERE user_id='$id' AND deleted=0) as applications WHERE tweets.deleted=0 AND tweets.tweet_id=applications.tweet_id ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
