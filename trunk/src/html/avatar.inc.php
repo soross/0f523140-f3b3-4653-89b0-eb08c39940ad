@@ -15,17 +15,14 @@ function avatar_show()
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     if($row)
-    {
-        return $row[0];
-    }
-    else
-    {
-        $me = sina_get_credentials();
-        $avatar = $me['profile_image_url'];
-        $view = "UPDATE userinfo SET avatar_url='".$avatar."' WHERE user_id='$id'";
-        $list = mysql_query($view);
-        return $avatar;
-    }
+        if($row[0])
+            return $row[0];
+    
+    $me = sina_get_credentials();
+    $avatar = $me['profile_image_url'];
+    $view = "UPDATE userinfo SET avatar_url='".$avatar."' WHERE user_id='$id'";
+    $list = mysql_query($view);
+    return $avatar;
 }
 
 function deal_avatar($query)
