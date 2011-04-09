@@ -199,6 +199,10 @@ while True:
 				  (site_id, tweet_id, user_site_id, content, post_datetime,
 				   type_, tweet_site_id, 0, 0,
 				   post_screenname, profile_image_url, source))
+		c.execute("""INSERT INTO cat_relationship (
+					 tweet_id, cat_id, content)
+				     VALUES (%s, %s)""",
+				  (tweet_id, 0,))
 		for tag in d.Split(content)[:]:
 			try:
 				c.execute("""INSERT INTO tag_relationship (
