@@ -20,6 +20,22 @@ function guidGenerator() {
 }
 
 $(function () {
+
+    $("div#msgBox_noresume").position({
+        of: $(window),
+        my: "center top",
+        at: "center top",
+        offset: "0 130",
+        collision: "none none"
+    });
+    $("div#msgBox_resume").position({
+        of: $(window),
+        my: "center top",
+        at: "center top",
+        offset: "0 130",
+        collision: "none none"
+    });
+
     $.ajax({
         type: 'POST',
         url: 'resume/current',
