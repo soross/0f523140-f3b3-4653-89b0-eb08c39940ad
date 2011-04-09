@@ -16,13 +16,16 @@ function avatar_show()
     $row = mysql_fetch_array($list);
     if($row)
         if($row[0])
-            return $row[0];
+        {
+            echo $row[0];
+            return;
+        }
     
     $me = sina_get_credentials();
     $avatar = $me['profile_image_url'];
     $view = "UPDATE userinfo SET avatar_url='".$avatar."' WHERE user_id='$id'";
     $list = mysql_query($view);
-    return $avatar;
+    echo $avatar;
 }
 
 function deal_avatar($query)
