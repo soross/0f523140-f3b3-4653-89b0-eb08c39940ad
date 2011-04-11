@@ -136,7 +136,7 @@ function theme_resume($title, $data)
     <div id="content">
         <div id="basic">
             <div id="basic1">
-                <img height="83" width="83" alt="" src="'.get_avatar($data['user_id'], 180).'" />
+                <img height="83" width="83" alt="" src="'.get_avatar($data['user_id'], "big").'" />
                 <span>'.$data['name'].'('.$data['sex'].')</span>
             </div>
             <div id="basic2">
