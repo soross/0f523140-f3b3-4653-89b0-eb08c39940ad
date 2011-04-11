@@ -13,28 +13,31 @@ function resizeavatar($url, $size)
     return $url;
 }
 
-function avatar_show()
+function get_avatar($id, $size)
 {
-    include_once("login.inc.php");
-    $id = get_current_user_id();
-    $args = func_get_args();
-    $size = $args[2];
-    connect_db();
+	connect_db();
     $view = "SELECT avatar_url FROM userinfo WHERE user_id='$id'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     if($row)
         if($row[0])
-        {
-            echo resizeavatar($row[0], $size);
-            return;
-        }
-    
+            return resizeavatar($row[0], $size);
     $me = sina_get_credentials();
     $avatar = $me['profile_image_url'];
     $view = "UPDATE userinfo SET avatar_url='".$avatar."' WHERE user_id='$id'";
     $list = mysql_query($view);
-    echo resizeavatar($avatar, $size);
+    return resizeavatar($avatar, $size);
+}
+
+function avatar_show()
+{
+    include_once("login.inc.php");
+    $args = func_get_args();
+    $id = $args[2];
+    if($id == "current")
+		$id = get_current_user_id();
+    $size = $args[3];
+    echo get_avatar($id, $size) 
 }
 
 function deal_avatar($query)

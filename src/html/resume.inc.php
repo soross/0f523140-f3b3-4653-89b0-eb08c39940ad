@@ -119,6 +119,7 @@ function theme_resumeshow($data)
 
 function theme_resume($title, $data)
 {
+    include_once("avatar.inc.php");
     $content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -135,7 +136,7 @@ function theme_resume($title, $data)
     <div id="content">
         <div id="basic">
             <div id="basic1">
-                <img height="83" width="83" alt="" src="images/Thumb.gif" />
+                <img height="83" width="83" alt="" src="'.get_avatar($data['user_id'], 180).'" />
                 <span>'.$data['name'].'('.$data['sex'].')</span>
             </div>
             <div id="basic2">
