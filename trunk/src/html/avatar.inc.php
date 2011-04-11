@@ -37,7 +37,7 @@ function avatar_show()
     if($id == "current")
 		$id = get_current_user_id();
     $size = $args[3];
-    echo get_avatar($id, $size) 
+    echo get_avatar($id, $size);
 }
 
 function deal_avatar($query)
