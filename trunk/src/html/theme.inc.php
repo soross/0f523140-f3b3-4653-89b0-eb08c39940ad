@@ -36,46 +36,46 @@ function theme_template($template)
 
 function long_url($shortURL)
 {
-	if (!defined('LONGURL_KEY'))
-	{
-		return $shortURL;
-	}
-	$url = "http://www.longurlplease.com/api/v1.1?q=" . $shortURL;
-	$curl_handle=curl_init();
-	curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
-	curl_setopt($curl_handle,CURLOPT_URL,$url);
-	$url_json = curl_exec($curl_handle);
-	curl_close($curl_handle);
+    if (!defined('LONGURL_KEY'))
+    {
+        return $shortURL;
+    }
+    $url = "http://www.longurlplease.com/api/v1.1?q=" . $shortURL;
+    $curl_handle=curl_init();
+    curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($curl_handle,CURLOPT_URL,$url);
+    $url_json = curl_exec($curl_handle);
+    curl_close($curl_handle);
 
-	$url_array = json_decode($url_json,true);
-	
-	$url_long = $url_array["$shortURL"];
-	
-	if ($url_long == null)
-	{
-		return $shortURL;
-	}
+    $url_array = json_decode($url_json,true);
+    
+    $url_long = $url_array["$shortURL"];
+    
+    if ($url_long == null)
+    {
+        return $shortURL;
+    }
 
-	if (substr($url_long,0,4) !== "http")
-	{
-		preg_match("/^(http:\/\/)?([^\/]+)/i", $shortURL, $matches);
-		$host = $matches[2];
-		$url_long="http://".$host."/".$url_long;
-	}
-		
-	return $url_long;
+    if (substr($url_long,0,4) !== "http")
+    {
+        preg_match("/^(http:\/\/)?([^\/]+)/i", $shortURL, $matches);
+        $host = $matches[2];
+        $url_long="http://".$host."/".$url_long;
+    }
+        
+    return $url_long;
 }
 
 function theme_external_link($url, $content = null)
 {
-	if (!$content) 
-	{	
-		return "<a class='item-blog-link' href='".long_url($url)."' target='_blank'>".$url."</a>";
-	}
-	else
-	{
-		return "<a class='item-blog-link' href='$url' target='_blank'>$content</a>";
-	}
+    if (!$content) 
+    {    
+        return "<a class='item-blog-link' href='".long_url($url)."' target='_blank'>".$url."</a>";
+    }
+    else
+    {
+        return "<a class='item-blog-link' href='$url' target='_blank'>$content</a>";
+    }
 }
 
 function parselink($out)
