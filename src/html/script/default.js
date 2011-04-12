@@ -642,6 +642,30 @@ function SetRolePicker() {
                 type: 'POST',
                 url: 'role/set/1',
                 success: function (msg) {
+                    $("#manager-tips").position({
+                        of: $("#manager-center"),
+                        my: "center top",
+                        at: "center bottom",
+                        offset: "0 0",
+                        collision: "none none"
+                    });
+                    $("#concern-tips").position({
+                        of: $("#concern-title"),
+                        my: "left center",
+                        at: "right center",
+                        offset: "0 0",
+                        collision: "none none"
+                    });
+                    $("#apply-tips").position({
+                        of: $(".apply:first"),
+                        my: "center bottom",
+                        at: "center top",
+                        offset: "0 0",
+                        collision: "none none"
+                    });
+                    $("#manager-tips").fadeIn(200);
+                    $("#concern-tips").fadeIn(200);
+                    $("#apply-tips").fadeIn(200);
                 }
             });
         }
@@ -653,6 +677,22 @@ function SetRolePicker() {
                 type: 'POST',
                 url: 'role/set/2',
                 success: function (msg) {
+                    $("#manager-tips").position({
+                        of: $("#manager-center"),
+                        my: "center top",
+                        at: "center bottom",
+                        offset: "0 0",
+                        collision: "none none"
+                    });
+                    $("#concern-tips").position({
+                        of: $("#concern-title"),
+                        my: "left center",
+                        at: "right center",
+                        offset: "0 0",
+                        collision: "none none"
+                    });
+                    $("#manager-tips").fadeIn(200);
+                    $("#concern-tips").fadeIn(200);
                 }
             });
         }
@@ -1359,27 +1399,6 @@ function AfterLogin() {
                 $(".recruitment").hide();
                 $(".admin").hide();
                 rolekind = "jobs";
-                $("#manager-tips").position({
-                    of: $("#manager-center"),
-                    my: "center top",
-                    at: "center bottom",
-                    offset: "0 0",
-                    collision: "none none"
-                });
-                $("#concern-tips").position({
-                    of: $("#concern-title"),
-                    my: "left center",
-                    at: "right center",
-                    offset: "0 0",
-                    collision: "none none"
-                });
-                $("#apply-tips").position({
-                    of: $(".apply:first"),
-                    my: "center bottom",
-                    at: "center top",
-                    offset: "0 0",
-                    collision: "none none"
-                });
             }
             else if (type == 2) {
                 $(".logined").fadeIn(300);
