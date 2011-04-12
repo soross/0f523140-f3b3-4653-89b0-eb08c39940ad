@@ -437,8 +437,8 @@ a#role-confirm
 div#right div#fresh-outer
 {
     height: 28px;
-    border: 1px #d7e7ef solid;
-    background-color: #ffffff;
+    border: 1px #fff2dc solid;
+    background-color: #fff2dc;
     width: 588px;
     padding: 1px;
     display: none;
@@ -446,15 +446,15 @@ div#right div#fresh-outer
 div#right div#fresh
 {
     height: 28px;
-    background-color: #d7e7ef;
+    background-color: #fff2dc;
     width: 563px;
     line-height: 28px;
-    background-image: url('../images/search-result-pic.jpg');
     background-position: 5px center;
     background-repeat: no-repeat;
-    padding-left: 25px;
+    padding-left: 10px;
     letter-spacing: 3px;
     cursor: pointer;
+    color: #ff9646;
 }
 
 div#backTop
@@ -499,7 +499,7 @@ div#msgBox_noresume
     color: black;
     height: 179px;
     width: 308px;
-    position:absolute;
+    position: absolute;
     display: none;
 }
 div#msgBox_noresume .bg
@@ -575,7 +575,7 @@ div#msgBox_resume
     font-family: 宋体, 微软雅黑;
     font-size: 14px;
     color: black;
-    position:absolute;
+    position: absolute;
     display: none;
 }
 div#msgBox_resume .boxcontent
@@ -647,9 +647,9 @@ div#msgBox_resume .content
 }
 div#msgBox_resume .content .info
 {
-    color:#6f93ab;
-    line-height:25px;
-    height:25px;
+    color: #6f93ab;
+    line-height: 25px;
+    height: 25px;
 }
 div#msgBox_resume .content a
 {
@@ -683,41 +683,41 @@ div#manager-tips
 {
     height: 34px;
     width: 173px;
-    background-image:url('../images/manager-tips.png');
-    display:none;
+    background-image: url('../images/manager-tips.png');
+    display: none;
 }
 div#manager-tips a
 {
-    height:14px;
-    width:14px;
-    margin-top:15px;
-    margin-right:5px;
+    height: 14px;
+    width: 14px;
+    margin-top: 15px;
+    margin-right: 5px;
 }
 div#concern-tips
 {
     height: 25px;
     width: 171px;
-    background-image:url('../images/concern-tips.png');
-    display:none;
+    background-image: url('../images/concern-tips.png');
+    display: none;
 }
 div#concern-tips a
 {
-    height:14px;
-    width:14px;
-    margin-top:6px;
-    margin-right:5px;
+    height: 14px;
+    width: 14px;
+    margin-top: 6px;
+    margin-right: 5px;
 }
 div#apply-tips
 {
     height: 34px;
     width: 193px;
-    background-image:url('../images/apply-tips.png');
-    display:none;
+    background-image: url('../images/apply-tips.png');
+    display: none;
 }
 div#apply-tips a
 {
-    height:14px;
-    width:14px;
-    margin-top:6px;
-    margin-right:5px;
+    height: 14px;
+    width: 14px;
+    margin-top: 6px;
+    margin-right: 5px;
 }
