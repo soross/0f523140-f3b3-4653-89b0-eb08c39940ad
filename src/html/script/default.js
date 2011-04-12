@@ -13,6 +13,17 @@ var item;
 var id;
 var haveResume = false;
 
+function CloseMTips() {
+    $("#manager-tips").fadeOut(200);
+}
+function CloseCTips() {
+    $("#concern-tips").fadeOut(200);
+}
+function CloseATips() {
+    $("#apply-tips").fadeOut(200);
+}
+
+
 function guidGenerator() {
     var S4 = function () {
         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -1348,6 +1359,27 @@ function AfterLogin() {
                 $(".recruitment").hide();
                 $(".admin").hide();
                 rolekind = "jobs";
+                $("#manager-tips").position({
+                    of: $("#manager-center"),
+                    my: "center top",
+                    at: "center bottom",
+                    offset: "0 0",
+                    collision: "none none"
+                });
+                $("#concern-tips").position({
+                    of: $("#concern-title"),
+                    my: "left center",
+                    at: "right center",
+                    offset: "0 0",
+                    collision: "none none"
+                });
+                $("#apply-tips").position({
+                    of: $(".apply:first"),
+                    my: "center bottom",
+                    at: "center top",
+                    offset: "0 0",
+                    collision: "none none"
+                });
             }
             else if (type == 2) {
                 $(".logined").fadeIn(300);

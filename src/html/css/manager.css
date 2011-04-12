@@ -293,7 +293,7 @@ div#pages span
 div#content-right
 {
     background-color: #ebf1fe;
-    width: 166px;
+    width: 160px;
     overflow: hidden;
 }
 div#right-title
@@ -506,3 +506,4 @@ a#profile-save
     background-image: url('../images/profile-save.jpg');
     background-repeat: no-repeat;
 }
+

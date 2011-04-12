@@ -43,7 +43,7 @@
         </div>
         <div class="right" id="infos">
             <a class="left selected logined" id="name" href="/"></a><a class="left orange logined"
-                href="/manager">管理中心</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a
+                href="/manager" id="manager-center">管理中心</a> <a class="left logined jobs" id="jobs-publish-quick">发布求职信息</a><a
                     class="left logined recruitment" id="recruitment-publish-quick">发布招聘信息</a><a class="left logined admin"
                         href="/admin">管理员入口</a> <a class="left logined" href="logout/">退出</a>
             <a class="left logouted" id="sina-login" href="login/"></a>
@@ -79,7 +79,7 @@
             <div id="blank">
             </div>
             <div class="left-title left-title-first logined">
-                <span class="left-title-text left">我的关注</span> <a class="right left-title-pic" id="concern-pic">
+                <span class="left-title-text left" id="concern-title">我的关注</span> <a class="right left-title-pic" id="concern-pic">
                 </a>
             </div>
             <div id="concern" class="logined">
@@ -246,6 +246,15 @@
             <div class="rt">
             </div>
         </div>
+    </div>
+    <div id="manager-tips">
+        <a class="right" onclick="CloseMTips()"></a>
+    </div>
+    <div id="concern-tips">
+        <a class="right" onclick="CloseCTips()"></a>
+    </div>
+    <div id="apply-tips">
+        <a class="right" onclick="CloseATips()"></a>
     </div>
 </body>
 </html>
