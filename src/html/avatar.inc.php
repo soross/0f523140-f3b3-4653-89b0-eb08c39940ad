@@ -15,7 +15,7 @@ function resizeavatar($url, $size)
 
 function get_avatar($id, $size)
 {
-	connect_db();
+    connect_db();
     $view = "SELECT avatar_url FROM userinfo WHERE user_id='$id'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
@@ -35,7 +35,7 @@ function avatar_show()
     $args = func_get_args();
     $id = $args[2];
     if($id == "current")
-		$id = get_current_user_id();
+        $id = get_current_user_id();
     $size = $args[3];
     echo get_avatar($id, $size);
 }

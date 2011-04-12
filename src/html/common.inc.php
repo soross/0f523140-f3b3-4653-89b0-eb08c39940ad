@@ -15,8 +15,8 @@ function func_register($items) {
 }
 
 function func_execute_active_handler() {
-	if(isset($_GET['q']))
-	{
+    if(isset($_GET['q']))
+    {
         $q = $_GET['q'];
         $q = str_replace("'", "", $q);
         $q = str_replace("\"", "", $q);
@@ -25,14 +25,14 @@ function func_execute_active_handler() {
         $q = str_replace("#", "", $q);
         $q = str_replace("?", "", $q);
         $q = str_replace("=", "", $q);
-		$query = (array) explode('/', $q);
-		$GLOBALS['page'] = $query[0];
-	}
-	else
-	{
-		$query = "";
-		$GLOBALS['page'] = "";
-	}
+        $query = (array) explode('/', $q);
+        $GLOBALS['page'] = $query[0];
+    }
+    else
+    {
+        $query = "";
+        $GLOBALS['page'] = "";
+    }
     $page = $GLOBALS['func_registry'][$GLOBALS['page']];
     if (!$page) {
         header('HTTP/1.0 404 Not Found');

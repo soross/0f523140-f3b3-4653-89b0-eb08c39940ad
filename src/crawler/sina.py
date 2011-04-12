@@ -18,9 +18,9 @@ PAGE = 1
 B = []
 
 try:
-	PAGE = int(sys.argv[1])
+    PAGE = int(sys.argv[1])
 except IndexError:
-	pass
+    pass
 
 LOCK = '/var/lock/sinacrawler.lock'
 
@@ -36,64 +36,64 @@ f.write("%d"%(pid))
 f.close()
 
 def now():
-	return str(datetime.now()) + " "
+    return str(datetime.now()) + " "
 print now() + "Initializing..."
 
 def iszhaopin(s):
-	keywords = [(u"招聘", ),
-				(u"诚聘", ),
-				(u"急聘", ),
-				(u"需要", u"人员"),
-				(u"寻人", ),
-				(u"加盟", ),
-				(u"招人", ),
-				(u"招", u"人员"),
-				(u"找人", ),
-				(u"挖角", ),
-				(u"跳槽", ),
-				(u"急招", ),
-				(u"伯乐奖", ),
-				(u"招兵买马", ),
-				(u"发送简历", ),
-				(u"email简历", ),
-				(u"岗位", u"空缺"),
-				(u"职位", u"名"),
-				(u"推荐", u"人才"),
-				(u"荐才", u"注明应聘"),
-				(u"内推", u"实习生"),
-				(u"内部推荐", u"精英"),
-				(u"换工作", u"高手"),
-				(u"猎头", u"牛人"),
-				(u"换跑道", u"千里马"),
-				(u"欢迎加入我们", ),
-				(u"兼职招聘", ),
-				(u"创业招聘", ),
-			]
-	declinekeywords = [(u"智联招聘", ),
-					   (u"寻人启事", ),
-					   (r"//@", ),
-					  ]
-	match = False
-	for keywordset in keywords:
-		match2 = True
-		for key in keywordset:
-			if key not in s:
-				match2 = False
-				break
-		if match2:
-			match = True
-			break
-	if not match:
-		return False
-	for keywordset in declinekeywords:
-		match = True
-		for key in keywordset:
-			if key not in s:
-				match = False
-				break
-		if match:
-			return False
-	return True
+    keywords = [(u"招聘", ),
+                (u"诚聘", ),
+                (u"急聘", ),
+                (u"需要", u"人员"),
+                (u"寻人", ),
+                (u"加盟", ),
+                (u"招人", ),
+                (u"招", u"人员"),
+                (u"找人", ),
+                (u"挖角", ),
+                (u"跳槽", ),
+                (u"急招", ),
+                (u"伯乐奖", ),
+                (u"招兵买马", ),
+                (u"发送简历", ),
+                (u"email简历", ),
+                (u"岗位", u"空缺"),
+                (u"职位", u"名"),
+                (u"推荐", u"人才"),
+                (u"荐才", u"注明应聘"),
+                (u"内推", u"实习生"),
+                (u"内部推荐", u"精英"),
+                (u"换工作", u"高手"),
+                (u"猎头", u"牛人"),
+                (u"换跑道", u"千里马"),
+                (u"欢迎加入我们", ),
+                (u"兼职招聘", ),
+                (u"创业招聘", ),
+            ]
+    declinekeywords = [(u"智联招聘", ),
+                       (u"寻人启事", ),
+                       (r"//@", ),
+                      ]
+    match = False
+    for keywordset in keywords:
+        match2 = True
+        for key in keywordset:
+            if key not in s:
+                match2 = False
+                break
+        if match2:
+            match = True
+            break
+    if not match:
+        return False
+    for keywordset in declinekeywords:
+        match = True
+        for key in keywordset:
+            if key not in s:
+                match = False
+                break
+        if match:
+            return False
+    return True
 
 class SinaFetch():
     consumer_key= "961495784"
@@ -106,8 +106,8 @@ class SinaFetch():
         try:
             return self.obj.__getattribute__(key)
         except Exception, e:
-			print e
-			return ''
+            print e
+            return ''
         
     def getAttValue(self, obj, key):
         try:
@@ -150,22 +150,22 @@ class SinaFetch():
 q = Queue()
 
 def working():
-	global B
-	crawler = q.get()
-	test = SinaFetch()
-	test.setToken(crawler[1][2], crawler[1][3])	
-	for page in range(1, PAGE + 1):
-		result = test.friends_timeline(page)
-		B += [(crawler[0] + 1, result)]
-		print now() + "Crawler %d/%d page %d/%d Done." % (crawler[0] + 1, len(A), page, PAGE)
-	q.task_done()
+    global B
+    crawler = q.get()
+    test = SinaFetch()
+    test.setToken(crawler[1][2], crawler[1][3])    
+    for page in range(1, PAGE + 1):
+        result = test.friends_timeline(page)
+        B += [(crawler[0] + 1, result)]
+        print now() + "Crawler %d/%d page %d/%d Done." % (crawler[0] + 1, len(A), page, PAGE)
+    q.task_done()
 
 for crawler in enumerate(A):
-	q.put(crawler)
-	t = Thread(target=working)
-	t.setDaemon(True)
-	t.start()
-	sleep(2)
+    q.put(crawler)
+    t = Thread(target=working)
+    t.setDaemon(True)
+    t.start()
+    sleep(2)
     
 print now() + "Preparing cursors to operate database..."
 path = '/var/www/0f523140-f3b3-4653-89b0-eb08c39940ad/src/crawler'
@@ -178,120 +178,120 @@ d = detect()
 _tagid = open("tag_list_withid.dict", "r").read().decode("utf-8").split('\n')
 tagid = {}
 for line in _tagid:
-	tag_id, tag = line.split()
-	tagid[tag] = tag_id
+    tag_id, tag = line.split()
+    tagid[tag] = tag_id
 print now() + "Dealing with pending tweets..."
 c.execute("SELECT * FROM pending_tweets LIMIT 0 , 1")
 while True:
-	try:
-		tweet_site_id, post_screenname, profile_image_url, source, post_datetime, content, type_, user_site_id, tweet_id, site_id = c.fetchone()
-		c.execute("DELETE FROM pending_tweets WHERE tweet_id = %s", (tweet_id,))
-		c.execute("SELECT * FROM tweets WHERE site_id = %s AND tweet_site_id = %s", (site_id, tweet_site_id))
-		if c.fetchone() != None:
-			print now() + "Dulplicate pending item:", tweet_site_id
-			c.execute("SELECT * FROM pending_tweets LIMIT 0 , 1")
-			continue
-		c.execute("""INSERT INTO tweets (
-					 site_id, tweet_id, user_site_id, content, post_datetime,
-					 type, tweet_site_id, favorite_count, application_count,
-					 post_screenname, profile_image_url, source)
-				     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
-				  (site_id, tweet_id, user_site_id, content, post_datetime,
-				   type_, tweet_site_id, 0, 0,
-				   post_screenname, profile_image_url, source))
-		c.execute("""INSERT INTO cat_relationship (
-					 tweet_id, cat_id)
-				     VALUES (%s, %s)""",
-				  (tweet_id, 0,))
-		for tag in d.Split(content)[:]:
-			try:
-				c.execute("""INSERT INTO tag_relationship (
-							 tag_id, tweet_id)
-							 VALUES (%s, %s)""",
-						 (tagid[tag], tweet_id))
-				c.execute("SELECT count, tag_group FROM tags WHERE tag_id = %s", (tagid[tag],))
-				t = c.fetchone()
-				if t == None:
-					print now() + "Error updating count: No tag %s found!" % (tag, )
-				else:
-					count = t[0] + 1
-					tag_group = t[1]
-					if tag_group != 0:
-						#print tag_group, "Tag group detected!"
-						c.execute("UPDATE tags SET count = %s WHERE tag_group = %s", (count, tag_group))
-					else:
-						c.execute("UPDATE tags SET count = %s WHERE tag_id = %s", (count, tagid[tag]))
-			except KeyError:
-				print now() + "Error updating tag: No tag %s found!" % (tag, )
-		print now() + "Inserted pending item:", tweet_site_id
-		c.execute("SELECT * FROM pending_tweets LIMIT 0 , 1")
-	except:
-		break
+    try:
+        tweet_site_id, post_screenname, profile_image_url, source, post_datetime, content, type_, user_site_id, tweet_id, site_id = c.fetchone()
+        c.execute("DELETE FROM pending_tweets WHERE tweet_id = %s", (tweet_id,))
+        c.execute("SELECT * FROM tweets WHERE site_id = %s AND tweet_site_id = %s", (site_id, tweet_site_id))
+        if c.fetchone() != None:
+            print now() + "Dulplicate pending item:", tweet_site_id
+            c.execute("SELECT * FROM pending_tweets LIMIT 0 , 1")
+            continue
+        c.execute("""INSERT INTO tweets (
+                     site_id, tweet_id, user_site_id, content, post_datetime,
+                     type, tweet_site_id, favorite_count, application_count,
+                     post_screenname, profile_image_url, source)
+                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+                  (site_id, tweet_id, user_site_id, content, post_datetime,
+                   type_, tweet_site_id, 0, 0,
+                   post_screenname, profile_image_url, source))
+        c.execute("""INSERT INTO cat_relationship (
+                     tweet_id, cat_id)
+                     VALUES (%s, %s)""",
+                  (tweet_id, 0,))
+        for tag in d.Split(content)[:]:
+            try:
+                c.execute("""INSERT INTO tag_relationship (
+                             tag_id, tweet_id)
+                             VALUES (%s, %s)""",
+                         (tagid[tag], tweet_id))
+                c.execute("SELECT count, tag_group FROM tags WHERE tag_id = %s", (tagid[tag],))
+                t = c.fetchone()
+                if t == None:
+                    print now() + "Error updating count: No tag %s found!" % (tag, )
+                else:
+                    count = t[0] + 1
+                    tag_group = t[1]
+                    if tag_group != 0:
+                        #print tag_group, "Tag group detected!"
+                        c.execute("UPDATE tags SET count = %s WHERE tag_group = %s", (count, tag_group))
+                    else:
+                        c.execute("UPDATE tags SET count = %s WHERE tag_id = %s", (count, tagid[tag]))
+            except KeyError:
+                print now() + "Error updating tag: No tag %s found!" % (tag, )
+        print now() + "Inserted pending item:", tweet_site_id
+        c.execute("SELECT * FROM pending_tweets LIMIT 0 , 1")
+    except:
+        break
 q.join()
 print now() + "Craw Complete."
 for cat, items in B:
-	for userid, name, avatar, mid, text, posttime, source in items:
-		tweet_id = uuid.uuid4().hex
-		c.execute("SELECT * FROM tweets WHERE tweet_site_id = %s", (mid,))
-		if c.fetchone() != None:
-			print now() + "Dulplicate item: %d, %d" % (cat, mid)
-			continue
-		c.execute("""INSERT INTO tweets (
-					 site_id, tweet_id, user_site_id, content, post_datetime,
-					 type, tweet_site_id, favorite_count, application_count,
-					 post_screenname, profile_image_url, source)
-				     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
-				  (1, tweet_id, userid, text, posttime,
-				   2, mid, 0, 0,
-				   name, avatar, source))
-		c.execute("""INSERT INTO cat_relationship (
-					 cat_id, tweet_id)
-					 VALUES (%s, %s)""",
-				  (cat, tweet_id))
-		for tag in d.Split(text)[:]:
-			try:
-				c.execute("""INSERT INTO tag_relationship (
-							 tag_id, tweet_id)
-							 VALUES (%s, %s)""",
-						 (tagid[tag], tweet_id))
-				c.execute("SELECT count, tag_group FROM tags WHERE tag_id = %s", (tagid[tag],))
-				t = c.fetchone()
-				if t == None:
-					print now() + "Error updating count: No tag %s found!" % (tag, )
-				else:
-					count = t[0] + 1
-					tag_group = t[1]
-					if tag_group != 0:
-						#print tag_group, "Tag group detected!"
-						c.execute("UPDATE tags SET count = %s WHERE tag_group = %s", (count, tag_group))
-					else:
-						c.execute("UPDATE tags SET count = %s WHERE tag_id = %s", (count, tagid[tag]))
-			except KeyError:
-				print now() + "Error updating tag: No tag %s found!" % (tag, )
-		c.execute("SELECT count FROM categories WHERE cat_id = %s", (cat,))
-		t = c.fetchone()
-		if t == None:
-			print now() + "Error updating count: No category %d found!" % (cat, )
-		else:
-			count = t[0] + 1
-			c.execute("UPDATE categories SET count = %s WHERE cat_id = %s", (count, cat))
-		print now() + "Inserted item: %d, %d" % (cat, mid)
-		
+    for userid, name, avatar, mid, text, posttime, source in items:
+        tweet_id = uuid.uuid4().hex
+        c.execute("SELECT * FROM tweets WHERE tweet_site_id = %s", (mid,))
+        if c.fetchone() != None:
+            print now() + "Dulplicate item: %d, %d" % (cat, mid)
+            continue
+        c.execute("""INSERT INTO tweets (
+                     site_id, tweet_id, user_site_id, content, post_datetime,
+                     type, tweet_site_id, favorite_count, application_count,
+                     post_screenname, profile_image_url, source)
+                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+                  (1, tweet_id, userid, text, posttime,
+                   2, mid, 0, 0,
+                   name, avatar, source))
+        c.execute("""INSERT INTO cat_relationship (
+                     cat_id, tweet_id)
+                     VALUES (%s, %s)""",
+                  (cat, tweet_id))
+        for tag in d.Split(text)[:]:
+            try:
+                c.execute("""INSERT INTO tag_relationship (
+                             tag_id, tweet_id)
+                             VALUES (%s, %s)""",
+                         (tagid[tag], tweet_id))
+                c.execute("SELECT count, tag_group FROM tags WHERE tag_id = %s", (tagid[tag],))
+                t = c.fetchone()
+                if t == None:
+                    print now() + "Error updating count: No tag %s found!" % (tag, )
+                else:
+                    count = t[0] + 1
+                    tag_group = t[1]
+                    if tag_group != 0:
+                        #print tag_group, "Tag group detected!"
+                        c.execute("UPDATE tags SET count = %s WHERE tag_group = %s", (count, tag_group))
+                    else:
+                        c.execute("UPDATE tags SET count = %s WHERE tag_id = %s", (count, tagid[tag]))
+            except KeyError:
+                print now() + "Error updating tag: No tag %s found!" % (tag, )
+        c.execute("SELECT count FROM categories WHERE cat_id = %s", (cat,))
+        t = c.fetchone()
+        if t == None:
+            print now() + "Error updating count: No category %d found!" % (cat, )
+        else:
+            count = t[0] + 1
+            c.execute("UPDATE categories SET count = %s WHERE cat_id = %s", (count, cat))
+        print now() + "Inserted item: %d, %d" % (cat, mid)
+        
 #counting
 c.execute("SELECT COUNT(*) FROM tweets WHERE post_datetime > %s", (datetime.combine(date.today(), time()),))
 t = c.fetchone()
 if t == None:
-	count = 0
+    count = 0
 else:
-	count = t[0]
+    count = t[0]
 c.execute("UPDATE counts SET count = %s WHERE type = %s", (count, "tweets_today"))
 
 c.execute("SELECT COUNT(*) FROM tweets WHERE post_datetime > %s", (datetime.combine(date.today(), time()) - timedelta(days = datetime.now().isoweekday() - 1),))
 t = c.fetchone()
 if t == None:
-	count = 0
+    count = 0
 else:
-	count = t[0]
+    count = t[0]
 c.execute("UPDATE counts SET count = %s WHERE type = %s", (count, "tweets_thisweek"))
 
 db.commit()

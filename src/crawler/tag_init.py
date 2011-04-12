@@ -1,7 +1,7 @@
 import sys, uuid
 from datetime import datetime
 def now():
-	return str(datetime.now()) + " "
+    return str(datetime.now()) + " "
     
 dic = open("tag_list.dict", "r")
 result = []
