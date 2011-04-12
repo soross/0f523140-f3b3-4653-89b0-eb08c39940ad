@@ -678,3 +678,43 @@ div#msgBox_resume .msgBtn
     float: right;
     margin-right: 5px;
 }
+
+div#manager-tips
+{
+    height: 34px;
+    width: 173px;
+    background-image:url('../images/manager-tips.png');
+}
+div#manager-tips a
+{
+    height:14px;
+    width:14px;
+    margin-top:15px;
+    margin-right:5px;
+}
+div#concern-tips
+{
+    height: 25px;
+    width: 171px;
+    background-image:url('../images/concern-tips.png');
+}
+div#concern-tips a
+{
+    height:14px;
+    width:14px;
+    margin-top:6px;
+    margin-right:5px;
+}
+div#apply-tips
+{
+    height: 34px;
+    width: 193px;
+    background-image:url('../images/apply-tips.png');
+}
+div#apply-tips a
+{
+    height:14px;
+    width:14px;
+    margin-top:6px;
+    margin-right:5px;
+}
