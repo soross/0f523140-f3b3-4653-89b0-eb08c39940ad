@@ -268,9 +268,7 @@ function apply_add()
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     if($row)
-    {
-        apply_delete("", "", $key);
-    }
+        die('Dulplicate Error');
     $view = "INSERT INTO applications(resume_id, tweet_id, user_id, apply_time) VALUES ('$id', '$key', '$id', '".date('Y-m-d H:i:s')."')";
     $list = mysql_query($view) or die("Insert error!");
     $content = $_POST['text'];
