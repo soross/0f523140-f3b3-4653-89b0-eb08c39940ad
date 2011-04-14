@@ -224,7 +224,10 @@
 
                             if (!noresult) {
                                 content = $.trim(content);
-                                var result = $("a#sort").html() + "中：";
+                                var result = "";
+                                if ($("a#sort").attr("title") != "全部分类") {
+                                    result = $("a#sort").attr("title") + "中：";
+                                }
                                 for (s in content.split(' ')) {
                                     if (content.split(' ')[s] != "") {
                                         result += '#<a class="keyword">' + content.split(' ')[s] + '</a>#';
