@@ -150,16 +150,39 @@
 
         //Search Event - default.js
         var concernFlag = true;
+        var searchContent = "";
+        var cateContent = 0;
         var page = 0;
 
-        function SearchConcernMouseOver(item)
-        { }
-        function SearchConcernMouseOut(item)
-        { }
-        function SearchConcernMouseDown(item)
-        { }
-        function SearchConcernClick()
-        { }
+        function SearchConcernMouseOver(item) {
+            if (!concernFlag) {
+                $(item).attr("class", "right search-result-concern-over");
+            }
+        }
+        function SearchConcernMouseOut(item) {
+            if (!concernFlag) {
+                $(item).attr("class", "right search-result-concern");
+            }
+        }
+        function SearchConcernMouseDown(item) {
+            if (!concernFlag) {
+                $(item).attr("class", "right search-result-concern-click");
+            }
+        }
+        function SearchConcernClick() {
+            if (!concernFlag) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'follow/add' + cateContent,
+                    data: { search: searchContent },
+                    success: function (msg) {
+                        $("#search-result-concern").attr("class", "right search-result-concern-have");
+                        concernFlag = true;
+                        RefreshConcern();
+                    }
+                });
+            }
+        }
         function SearchContent(noresult, content, cate, pagenum) {
             $("#blogs").html('<img src="images/loading.gif" style="margin-left:275px;margin-top:' + (($("#blogs").height() - 32) / 2) + 'px;margin-bottom:' + (($("#blogs").height() - 32) / 2) + 'px;" />');
             $.ajax({
@@ -167,6 +190,8 @@
                 url: 'search/' + cate,
                 data: { search: encodeURI(content), page: pagenum },
                 success: function (msg) {
+                    searchContent = content;
+                    cateContent = cate;
                     $("#blogs").html(msg);
                     page = pagenum / 5;
                     $.ajax({
@@ -235,6 +260,22 @@
                                 }
                                 result += "的搜索结果，共有" + msg + "条结果";
                                 $("div#search-result div.left").html(result);
+
+                                $.ajax({
+                                    type: 'GET',
+                                    url: 'follow/exist/' + cateContent,
+                                    data: { search: content },
+                                    success: function (e) {
+                                        if (e[0] == '0') {
+                                            concernFlag = false;
+                                        }
+                                        else {
+                                            concernFlag = true;
+                                            $("#search-result-concern").attr("class", "right search-result-concern-have");
+                                        }
+                                    }
+                                });
+
                                 $("#search-result-outer").show();
                             }
                         }
