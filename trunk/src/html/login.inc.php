@@ -48,7 +48,10 @@ function get_current_user_nickname()
 
 function get_current_user_role()
 {
-    return $GLOBALS['user']['role'];
+    if(isset($GLOBALS['user']['role']))
+        return $GLOBALS['user']['role'];
+    else
+        return false;
 }
 
 function user_is_admin()
