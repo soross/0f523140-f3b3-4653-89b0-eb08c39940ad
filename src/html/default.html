@@ -40,6 +40,7 @@
         //Init - default.js
         $(function () {
             $("#history-pic").animate({ opacity: 0.6 }, 0);
+            SetHot();
         });
         //End of Init
 
@@ -131,6 +132,20 @@
             });
         }
         //End of History Event
+
+        //Other Event - default.js
+        function SetHot() {
+            $.ajax({
+                type: 'GET',
+                url: 'hot/tag',
+                success: function (msg) {
+                    $("#hot").html(msg);
+                }
+            });
+        }
+        function HotClick(content) { 
+        }
+        //End of Other Event
     </script>
 </head>
 <body>
