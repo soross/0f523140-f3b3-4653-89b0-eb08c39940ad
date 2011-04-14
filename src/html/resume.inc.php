@@ -53,6 +53,8 @@ function resume_show()
     $key = $args[2];
     include_once('login.inc.php');
     $id = get_current_user_id();
+    
+    #FIXME: things to fix
     if(!$key)
     {
         $key = $id;
@@ -60,6 +62,7 @@ function resume_show()
     }
     else
         $theme = "resumeshow";
+        
     connect_db();
     $view = "SELECT * FROM resumes WHERE resume_id = '$key'";
     $list = mysql_query($view);

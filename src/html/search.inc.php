@@ -107,9 +107,9 @@ function search_show()
 {
     $args = func_get_args();
     $cate = $args[2];
-    $time = (string) $_POST['time'];
-    $page = (string) $_POST['page'];
-    $key = (string) $_POST['search'];
+    $time = format_str((string) $_POST['time']);
+    $page = format_str((string) $_POST['page']);
+    $key = format_str((string) $_POST['search']);
     if($key and $key != "all" and $key != "poiuy")
     {
         include_once('login.inc.php');
