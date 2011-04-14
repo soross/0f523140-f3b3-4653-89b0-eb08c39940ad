@@ -80,7 +80,7 @@ function user_count()
 {
     $args = func_get_args();
     $user = $args[2];
-    $site = $_POST['site_id'];
+    $site = format_str($_POST['site_id']);
     $data = get_user_tweets($user, $site, 10, "count");
     theme('page', 'count', $data[0][0]);
 }
@@ -89,8 +89,8 @@ function user_show()
 {
     $args = func_get_args();
     $user = $args[2];
-    $page = $_POST['page'];
-    $site = $_POST['site_id'];
+    $page = format_str($_POST['page']);
+    $site = format_str($_POST['site_id']);
     if(!$user)
         die("Invalid Argument!");
     $data = get_user_tweets($user, $site, 10, $page);
