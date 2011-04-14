@@ -70,7 +70,7 @@ function following_delete()
 
 function following_exist()
 {
-    include_once('login.php');
+    include_once('login.inc.php');
     $id = get_current_user_id();
     $args = func_get_args();
     $cat = $args[2];
