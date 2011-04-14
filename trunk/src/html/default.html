@@ -270,6 +270,7 @@
                                     success: function (e) {
                                         if (e[0] == '0') {
                                             concernFlag = false;
+                                            $("#search-result-concern").attr("class", "right search-result-concern");
                                         }
                                         else {
                                             concernFlag = true;
