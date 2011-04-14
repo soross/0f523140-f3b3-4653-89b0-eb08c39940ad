@@ -318,6 +318,50 @@ div#right a.microblog-item-apply
 {
     border-right: 1px #ea7f37 solid;
 }
+div#right div#pages
+{
+    height: 21px;
+    margin-top: 5px;
+}
+div#right a.page-number
+{
+    height: 21px;
+    padding: 0 6px;
+    line-height: 21px;
+    text-align: center;
+    border: 1px #5c738f solid;
+    color: #5c738f;
+    margin: 0 2px;
+    border-top-left-radius: 3px 3px;
+    border-top-right-radius: 3px 3px;
+    border-bottom-left-radius: 3px 3px;
+    border-bottom-right-radius: 3px 3px;
+}
+div#right a.page-number-current
+{
+    background-color: #a4c8f4;
+}
+div#right a.page-control
+{
+    height: 21px;
+    padding: 0 6px;
+    line-height: 21px;
+    text-align: center;
+    border: 1px #5c738f solid;
+    background-color: #a4c8f4;
+    color: #5c738f;
+    margin: 0 2px;
+    border-top-left-radius: 3px 3px;
+    border-top-right-radius: 3px 3px;
+    border-bottom-left-radius: 3px 3px;
+    border-bottom-right-radius: 3px 3px;
+}
+div#right div#pages span
+{
+    height: 21px;
+    line-height: 21px;
+    text-align: center;
+}
 
 a.keyword
 {
