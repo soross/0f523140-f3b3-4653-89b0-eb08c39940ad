@@ -186,7 +186,7 @@ function search_history_show()
         if($search != $h['search'])
             $search .= '...';
         $content .= '<div class="history-item" title="'.$h['search'].'">
-                    <a>'.$search.'</a></div>';
+                    <a>'.$h['cat_id'].':'.$search.'</a></div>';
     }
     $content .= '</div>';
     echo $content;
@@ -231,11 +231,12 @@ function search_history_add()
     include_once('login.inc.php');
     $id = get_current_user_id();
     $args = func_get_args();
+    $cat = $args[2];
     $key = $_POST['search'];
     if(!$key)
         die('Invalid Argument!');
     connect_db();
-    $view = "SELECT * FROM searchhistory WHERE user_id='$id' AND search='$key' AND deleted='0'";
+    $view = "SELECT * FROM searchhistory WHERE cat_id='$cat' AND user_id='$id' AND search='$key' AND deleted='0'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     if($row)
@@ -245,7 +246,7 @@ function search_history_add()
     include_once("uuid.inc.php");
     $v4uuid = str_replace("-", "", UUID::v4());
     $current_datetime = date('Y-m-d H:i:s');
-    $view = "INSERT INTO searchhistory(history_id, search, user_id, deleted, add_time) VALUES ('$v4uuid', '$key', '$id', '0', '$current_datetime')";
+    $view = "INSERT INTO searchhistory(history_id, search, user_id, deleted, add_time, cat_id) VALUES ('$v4uuid', '$key', '$id', '0', '$current_datetime', '$cat')";
     $list = mysql_query($view) or die("Insert error!");
 }
 
