@@ -13,7 +13,7 @@ function tweet_post()
     $content = $_POST['text'];
     if(!$cate or !$content)
         die("Invalid argument!");
-    include_once('sinaoauth.php');
+    include_once('sinaoauth.inc.php');
     $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
     $msg = $c -> update($content);
     if ($msg === false || $msg === null){
@@ -40,7 +40,7 @@ function tweet_post()
 function tweet_delete()
 {
     include_once('login.php');
-    include_once('sinaoauth.php');
+    include_once('sinaoauth.inc.php');
     $id = get_current_user_id();
     $args = func_get_args();
     $key = $args[2];
