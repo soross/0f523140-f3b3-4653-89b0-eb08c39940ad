@@ -40,7 +40,7 @@ function theme_search($key, $content)
     theme('page', $key, $content);
 }
 
-function get_search_result($key, $num, $cate, $time, $page)
+function get_search_result($key, $num, $cate, $time, $page, $count = false)
 {
     connect_db();
     
@@ -68,16 +68,16 @@ function get_search_result($key, $num, $cate, $time, $page)
     }
     $limit = " LIMIT 0 , $num";
     $content = "*";
-    if($page)
-    {
-        $page = intval($page) * $num;
-        $limit = " LIMIT $page , $num";
-        $time = "";
-    }
-    if($time == "count")
+    if($count)
     {
         $content = "COUNT(*)";
         $limit = "";
+        $time = "";
+    }
+    elseif($page)
+    {
+        $page = intval($page) * $num;
+        $limit = " LIMIT $page , $num";
         $time = "";
     }
     elseif($time)
@@ -112,7 +112,7 @@ function search_show()
     $cate = $args[2];
     $time = get_post('time');
     $page = get_post('page');
-    $key = get_post('search', true);
+    $key = get_post('search');
     $admin = get_post('admin');
     if($key and $key != "all")
     {
@@ -129,8 +129,8 @@ function search_count()
 {
     $args = func_get_args();
     $cate = $args[2];
-    $key = get_post('search', true);
-    $data = get_search_result($key, 10, $cate, "count", "");
+    $key = get_post('search');
+    $data = get_search_result($key, 10, $cate, "", "",true);
     theme('page', 'count', $data[0][0]);
 }
 
