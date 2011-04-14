@@ -10,15 +10,15 @@ function get_sent_applies($num, $page)
 {
     include_once('login.inc.php');
     $id = get_current_user_id();
-    if(!$page)
-        $page = "0";
-    elseif($page == "count")
+    if($page == "count")
     {
         $select = "COUNT(*)";
         $limit = "";
     }
     else
     {
+        if(!$page)
+            $page = "0";
         $select = "*";
         $page = intval($page) * $num;
         $limit = " LIMIT $page , $num";
