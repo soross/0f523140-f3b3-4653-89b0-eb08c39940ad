@@ -91,7 +91,7 @@ function following_add()
     $id = get_current_user_id();
     $args = func_get_args();
     $cat = $args[2];
-    $key = $_POST['search'];
+    $key = format_str($_POST['search']);
     if(!$key)
         die('Invalid Argument!');
     connect_db();
