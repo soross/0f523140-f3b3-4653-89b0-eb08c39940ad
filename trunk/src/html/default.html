@@ -8,6 +8,7 @@
     <link rel="icon" href="favicon_big.png" sizes="48x48">
     <link rel="shortcut icon" href="/favicon.ico" />
     <link href="css/share.css" rel="stylesheet" type="text/css" />
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
     <script src="script/jquery-1.5.1.js" type="text/javascript"></script>
     <script src="script/jquery.cookie.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -36,7 +37,7 @@
         }
         //End of User Login
 
-        //After User Login
+        //After User Login - default.js
         function AfterLogin() {
             $.ajax({
                 type: 'POST',
@@ -60,8 +61,27 @@
                     }
                 }
             });
+            $.ajax({
+                type: 'GET',
+                url: 'follow/show',
+                success: function (msg) { 
+                }
+            });
         }
         //End of After User Login
+
+        //Concern Event - default.js
+        function ConcernMouseOver(e) {
+            $(e).addClass("concern-item-over");
+        }
+        function ConcernMouseOut(e) {
+            $(e).removeClass("concern-item-over");
+        }
+        function ConcernDeleteClick(e) {
+        }
+        function ConcernContentClick(e) {
+        }
+        //End of Concern Event
     </script>
 </head>
 <body>
@@ -101,6 +121,32 @@
         <div class="left" id="company-control">
             <a class="left company-control" id="company-control-left">◀</a> <a class="left company-control"
                 id="company-control-right">▶</a>
+        </div>
+    </div>
+    <div id="content" class="inner">
+        <div id="left" class="left">
+            <div class="left-title first logined">
+                <span class="left-title-text left" id="concern-title">我的关注</span> <a class="right left-title-pic"
+                    id="concern-pic"></a>
+            </div>
+            <div id="concern" class="logined">
+                <div class="concern-item concern-item-normal" onmouseover="ConcernMouseOver(this)"
+                    onmouseout="ConcernMouseOut(this)">
+                    <a class="concern-item-delete left" onclick="ConcernDeleteClick()"></a>
+                    <div class="left concern-item-content" onclick="ConcernContentClick()">
+                        <a class="left concern-item-content-info">北京</a> <a class="right concern-item-content-number">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="left-title logined">
+                <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic">
+                </a>
+            </div>
+            <div id="history" class="logined">
+            </div>
+            <div id="hot">
+            </div>
         </div>
     </div>
 </body>

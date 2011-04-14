@@ -139,8 +139,8 @@ div#logo-search div#search-bar a#search-button
 div#company
 {
     height: 38px;
-    background-image: url('../images/company-background.jpg');
-    background-repeat: repeat-x;
+    background-color: #ffffff;
+    border: 1px #e7e7e7 solid;
 }
 div#company span.company-name
 {
@@ -213,7 +213,7 @@ div#company a.company-control:hover
 }
 .logined
 {
-    display: none;
+    1display: none;
 }
 .logouted
 {
