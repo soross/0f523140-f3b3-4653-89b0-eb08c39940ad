@@ -174,7 +174,7 @@ function theme_result($result, $keyword = '', $admin = false)
         else
             $source = '<a class="left microblog-item-position" target="_blank">'.$r['source'].'</a>';
         
-        $content .= '<div class="microblog-item" id="'.strtotime($r['post_datetime']).'" name="'.$r['tweet_id'].'">
+        $content .= '<div class="microblog-item" id="'.strtotime($r['post_datetime']).'" name="">
                     <div class="left microblog-item-pic">
                         <a target="_blank" href="'.BASE_URL.'profile/'.$r['post_screenname'].'"><img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/></a>
                     </div>
@@ -206,18 +206,18 @@ function theme_result($result, $keyword = '', $admin = false)
                         break;
                     }
                 if(!$fav)
-                    $content .= '<a class="right microblog-item-control like" onclick="JobLike(this)">收藏</a><a class="right microblog-item-control unlike"
-                                            style="display: none;" onclick="JobUnLike(this)">取消收藏</a> ';
+                    $content .= '<a class="right microblog-item-control like" onclick="JobLike(this,\''.$r['tweet_id'].'\')">收藏</a><a class="right microblog-item-control unlike"
+                                            style="display: none;" onclick="JobUnLike(this,\''.$r['tweet_id'].'\')">取消收藏</a> ';
                 else
-                    $content .= '<a class="right microblog-item-control like" style="display: none;" onclick="JobLike(this)">收藏</a><a class="right microblog-item-control unlike"
-                                             onclick="JobUnLike(this)">取消收藏</a> ';
+                    $content .= '<a class="right microblog-item-control like" style="display: none;" onclick="JobLike(this,\''.$r['tweet_id'].'\')">收藏</a><a class="right microblog-item-control unlike"
+                                             onclick="JobUnLike(this,\''.$r['tweet_id'].'\')">取消收藏</a> ';
                 if($r['type'] != 1 and !$app)
-                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" onclick="JobApply(this)">
-                                 申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" style="display: none;" onclick="JobUnApply(this)">
+                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" onclick="JobApply(this,\''.$r['tweet_id'].'\')">
+                                 申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" style="display: none;" onclick="JobUnApply(this,\''.$r['tweet_id'].'\')">
                                  取消申请</a>';
                 elseif($app)
-                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" style="display: none;" onclick="JobApply(this)">
-                                 申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" onclick="JobUnApply(this)">
+                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" style="display: none;" onclick="JobApply(this,\''.$r['tweet_id'].'\')">
+                                 申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" onclick="JobUnApply(this,\''.$r['tweet_id'].'\')">
                                  取消申请</a>';
             }
             if($tags)
@@ -264,6 +264,6 @@ function theme_rss($result)
     $content .= '
   </channel>
 </rss>';
-    echo $content;
+echo $content;
 }
 ?>
