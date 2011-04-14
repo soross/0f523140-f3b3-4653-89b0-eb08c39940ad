@@ -370,4 +370,7 @@ function ShowSorts() {
     });
     $("div#sorts").show();
 }
+function HideSorts() {
+    $("div#sorts").hide();
+}
 //End of Other Event
