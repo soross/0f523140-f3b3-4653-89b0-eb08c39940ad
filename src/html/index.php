@@ -6,7 +6,7 @@ include_once('login.inc.php');
 include_once('search.inc.php');
 include_once('follow.inc.php');
 include_once('like.inc.php');
-include_once('tag.inc.php');
+include_once('hot.inc.php');
 include_once('user.inc.php');
 include_once('tweet.inc.php');
 include_once('resume.inc.php');
