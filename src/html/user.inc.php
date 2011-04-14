@@ -100,6 +100,7 @@ function user_show()
 function user_info()
 {
     include_once("login.inc.php");
+    user_ensure_authenticated();
     show_credentials();
 }
 
