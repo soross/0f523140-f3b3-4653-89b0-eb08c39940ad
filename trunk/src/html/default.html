@@ -91,6 +91,7 @@
             });
         }
         function ConcernContentClick(cate, content) {
+            SearchContent(false, content, cate, 0);
         }
         function RefreshConcern() {
             $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("#concern").height() - 32) / 2) + 'px;margin-bottom:' + (($("#concern").height() - 32) / 2) + 'px;" />');
@@ -118,8 +119,16 @@
             $(item).animate({ opacity: 0.6 }, 0);
         }
         function HistoryPicClick() {
+            $.ajax({
+                type: 'GET',
+                url: 'history/deleteall',
+                success: function (msg) {
+                    $("#history").html("");
+                }
+            });
         }
         function HistoryClick(cate, content) {
+            SearchContent(false, content, cate, 0);
         }
         function RefreshHistory() {
             $("#history").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("#history").height() - 32) / 2) + 'px;margin-bottom:' + (($("#history").height() - 32) / 2) + 'px;" />');
