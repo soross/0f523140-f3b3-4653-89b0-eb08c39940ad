@@ -15,9 +15,9 @@ function feedback_post($query)
     }
     else
         $id1 = $id2 = "";
-    $question = $_POST['question'];
-    $description = $_POST['description'];
-    $email = $_POST['email'];
+    $question = format_str($_POST['question']);
+    $description = format_str($_POST['description']);
+    $email = format_str($_POST['email']);
     include_once("uuid.inc.php");
     $v4uuid = str_replace("-", "", UUID::v4());
     connect_db();
@@ -67,7 +67,7 @@ function feedback_show()
 {
     user_ensure_admin();
     $args = func_get_args();
-    $page = $_POST['page'];
+    $page = format_str($_POST['page']);
     $content = '';
     $results = get_feedbacks(10, $page);
     foreach($results as $r)
