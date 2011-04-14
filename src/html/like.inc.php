@@ -6,7 +6,7 @@ func_register(array(
     ),
 ));
 
-function favorites_count()
+function like_count()
 {
     include_once('login.inc.php');
     $id = get_current_user_id();
@@ -17,7 +17,7 @@ function favorites_count()
     echo $row[0];
 }
 
-function get_favorites($num, $page)
+function get_likes($num, $page)
 {
     include_once('login.inc.php');
     $id = get_current_user_id();
@@ -35,7 +35,7 @@ function get_favorites($num, $page)
     return $result;
 }
 
-function favorites_show()
+function like_show()
 {
     $args = func_get_args();
     if($_POST['page'])
@@ -44,7 +44,7 @@ function favorites_show()
         $page = "";
     $content = '';
     include_once("theme.inc.php");
-    $favorites = get_favorites(10, $page);
+    $favorites = get_likes(10, $page);
     include_once("apply.inc.php");
     $allapp = get_applies(32767, "");
     foreach($favorites as $f)
@@ -91,7 +91,7 @@ function favorites_show()
     echo $content;
 }
 
-function favorites_delete()
+function like_delete()
 {
     include_once('login.php');
     $id = get_current_user_id();
@@ -115,7 +115,7 @@ function favorites_delete()
     }
 }
 
-function favorites_exist()
+function like_exist()
 {
     include_once('login.inc.php');
     $id = get_current_user_id();
@@ -133,7 +133,7 @@ function favorites_exist()
         echo "0";
 }
 
-function favorites_add()
+function like_add()
 {
     include_once('login.php');
     $id = get_current_user_id();
@@ -147,7 +147,7 @@ function favorites_add()
     $row = mysql_fetch_array($list);
     if($row)
     {
-        favorites_delete("", "", $key);
+        like_delete("", "", $key);
     }
     $view = "INSERT INTO favorites(tweet_id, user_id, deleted) VALUES ('$key', '$id', '0')";
     $list = mysql_query($view) or die("Insert error!");
@@ -163,7 +163,7 @@ function deal_like($query)
     $key = (string) $query[1];
     if(!$key)
         $key = "show";
-    $function = 'favorites_'.$key;
+    $function = 'like_'.$key;
     if (!function_exists($function))
         die("Invalid Argument!");
     return call_user_func_array($function, $query);
