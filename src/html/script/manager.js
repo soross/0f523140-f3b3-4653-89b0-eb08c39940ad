@@ -146,12 +146,12 @@ $(function () {
         // });
 		
 		
-		$("#h-name").val($("#u-name").val());
-		$("#h-sex").val($("input[name='sex']:checked").val());
-		$("#h-birthday").val($("#birthday").val());
-		$("#h-npositon").val($("#n-positon").val());
-		$("#h-opositon").val($("#o-positon").val());
-		$("#h-mphone").val($("#m-phone").val());
+		$("#name").val($("#u-name").val());
+		$("#sex").val($("input[name='sex']:checked").val());
+		$("#date_birth").val($("#birthday").val());
+		$("#live_in_now").val($("#n-positon").val());
+		$("#live_in").val($("#o-positon").val());
+		$("#cellphone").val($("#m-phone").val());
 		$("#h-email").val($("#email").val());
 		$("#h-content").val(editor.document.getBody().getHtml());
 		
