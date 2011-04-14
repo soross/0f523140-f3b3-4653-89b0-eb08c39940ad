@@ -103,14 +103,14 @@ function theme_resumeapi($data)
 function resume_preview()
 {
     $data = array(
-        'name' => $_POST['name'],
-        'sex' => $_POST['sex'],
-        'date_birth' => $_POST['date_birth'],
-        'live_in_now' => $_POST['live_in_now'],
-        'live_in' => $_POST['live_in'],
-        'cellphone' => $_POST['cellphone'],
-        'email' => $_POST['email'],
-        'content' => $_POST['content'],
+        'name' => format_str($_POST['name']),
+        'sex' => format_str($_POST['sex']),
+        'date_birth' => format_str($_POST['date_birth']),
+        'live_in_now' => format_str($_POST['live_in_now']),
+        'live_in' => format_str($_POST['live_in']),
+        'cellphone' => format_str($_POST['cellphone']),
+        'email' => format_str($_POST['email']),
+        'content' => format_str($_POST['content']),
     );
     theme('resume', '个人简历预览', $data);
 }
