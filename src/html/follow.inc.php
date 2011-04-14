@@ -31,12 +31,14 @@ function following_show()
     $content = '';
     $follows = get_followings($key);
     foreach($follows as $f)
-        $content .= '<div class="concern-item concern-item-normal">
-                    <a class="concern-item-delete left" id="'.$f['following_id'].'"></a>
-                    <div class="left concern-item-content">
+        $content .= '<div class="concern-item concern-item-normal" onmouseover="ConcernMouseOver(this)"
+                    onmouseout="ConcernMouseOut(this)">
+                    <a class="concern-item-delete left" onclick="ConcernDeleteClick('.$f['following_id'].')"></a>
+                    <div class="left concern-item-content" onclick="ConcernContentClick('.$f['search'].')">
                         <a class="left concern-item-content-info">'.$f['search'].'</a> <a class="right concern-item-content-number">
-                            </a>
-                    </div></div>';
+                        </a>
+                    </div>
+                </div>';
     echo $content;
 }
 
