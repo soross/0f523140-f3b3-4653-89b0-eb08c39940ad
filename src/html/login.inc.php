@@ -54,7 +54,7 @@ function get_current_user_role()
 function user_is_admin()
 {
     $role = get_current_user_role();
-    if(!is_null($role) && $role===0)
+    if(gettype($role)==integer && $role===0)
         return true;
     return false;
 }
