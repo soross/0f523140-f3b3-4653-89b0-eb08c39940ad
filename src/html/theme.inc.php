@@ -230,8 +230,6 @@ function theme_result($result, $keyword = '', $admin = false)
         $content .= '
                         </div>
                     </div>
-                    <div class="clear">
-                    </div>
                 </div>';
     }
     return $content;
