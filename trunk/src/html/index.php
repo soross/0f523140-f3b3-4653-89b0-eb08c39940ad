@@ -13,6 +13,7 @@ include_once('resume.inc.php');
 include_once('apply.inc.php');
 include_once('avatar.inc.php');
 include_once('feedback.inc.php');
+include_once('count.inc.php');
 
 func_register(array(
   '' => array(
