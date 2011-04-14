@@ -155,7 +155,7 @@ $(function () {
 		$("#h-email").val($("#email").val());
 		$("#h-content").val(editor.document.getBody().getHtml());
 		
-		alert($("#h-sex").val());
+		alert($("input[name='dsex']:checked").title);
 		$("#ResumeForm").submit();
     });
 
