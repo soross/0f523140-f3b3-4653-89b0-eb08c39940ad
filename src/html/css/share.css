@@ -1,20 +1,20 @@
-﻿body
+﻿body, a, input, span, img, textarea
+{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+}
+body
 {
     width: 962px;
-    margin: auto;
+    margin: 0 auto;
     font-size: 12px;
     background-color: #f2f6fe;
     background-image: url('../images/background.jpg');
     background-repeat: repeat-x;
     font-family: Arial, Helvetica, sans-serif, 宋体 !important;
     font-family: 宋体;
-}
-body, a, input, span, img, textarea
-{
-    margin: 0;
-    padding: 0;
-    outline: none;
-    border: none;
 }
 a
 {
