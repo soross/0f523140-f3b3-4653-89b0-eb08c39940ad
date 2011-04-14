@@ -56,7 +56,7 @@ function apply_sent_add()
     if($row)
     {
         $tweet_site_id = $row[0];
-        include_once("sinaoauth.php");
+        include_once("sinaoauth.inc.php");
         $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
         $content = $content.' http://www.ybole.com/resume/show/'.$id;
         $msg = $c -> send_comment($tweet_site_id, $content);

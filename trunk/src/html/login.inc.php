@@ -78,7 +78,7 @@ function user_ensure_admin()
 
 function sina_get_credentials()
 {
-    include_once('sinaoauth.php');
+    include_once('sinaoauth.inc.php');
     $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
     $me = $c -> verify_credentials();
     return($me);
@@ -161,7 +161,7 @@ function save_cookie($stay_logged_in = 1)
 
 function oauth_sina()
 {
-    include_once('sinaoauth.php');
+    include_once('sinaoauth.inc.php');
     $o = new WeiboOAuth(SINA_AKEY, SINA_SKEY);
     $keys = $o -> getRequestToken();
     $callback = BASE_URL."sina_callback";
@@ -172,7 +172,7 @@ function oauth_sina()
 
 function oauth_sina_callback()
 {
-    include_once('sinaoauth.php');
+    include_once('sinaoauth.inc.php');
     $o = new WeiboOAuth(SINA_AKEY, SINA_SKEY, $_SESSION['sinakeys']['oauth_token'], $_SESSION['sinakeys']['oauth_token_secret']);
     $last_key = $o -> getAccessToken($_REQUEST['oauth_verifier']);
     $GLOBALS['user']['sinakey'] = $last_key;
