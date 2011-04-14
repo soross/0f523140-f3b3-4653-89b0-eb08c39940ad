@@ -1,5 +1,7 @@
 ﻿body
 {
+    width: 962px;
+    margin: auto;
     font-size: 12px;
     background-color: #f2f6fe;
     background-image: url('../images/background.jpg');
