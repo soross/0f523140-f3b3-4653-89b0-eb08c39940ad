@@ -359,8 +359,6 @@ function SetSorts() {
             $("#sorts-content").html(msg);
         }
     });
-}
-function ShowSorts() {
     $("div#sorts").position({
         of: $("a#sort"),
         my: "left top",
@@ -368,6 +366,8 @@ function ShowSorts() {
         offset: "-5 -10",
         collision: "none none"
     });
+}
+function ShowSorts() {
     $("div#sorts").show();
 }
 function HideSorts() {
