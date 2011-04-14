@@ -81,12 +81,16 @@
         function ConcernMouseOut(item) {
             $(item).removeClass("concern-item-over");
         }
-        function ConcernDeleteClick(id, item) {
+        function ConcernDeleteClick(id, content, item) {
             $.ajax({
                 type: 'GET',
                 url: 'follow/delete/' + id,
                 success: function (msg) {
                     $(item).parent().hide();
+                    if (searchContent == content) {
+                        concernFlag = false;
+                        $("#search-result-concern").attr("class", "right search-result-concern");
+                    }
                 }
             });
         }
@@ -202,6 +206,7 @@
                     searchContent = content;
                     cateContent = cate;
                     $("#blogs").html(msg);
+                    RefreshHistory();
                     page = pagenum / 5;
                     $.ajax({
                         type: 'POST',
@@ -295,6 +300,11 @@
             });
         }
         //End of Search Event
+
+        //Other Event
+        function JobLike(item) {
+        }
+        //End of Other Event
     </script>
 </head>
 <body>

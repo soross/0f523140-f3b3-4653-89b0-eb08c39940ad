@@ -35,7 +35,7 @@ function following_show()
     foreach($follows as $f)
         $content .= '<div class="concern-item concern-item-normal" onmouseover="ConcernMouseOver(this)"
                     onmouseout="ConcernMouseOut(this)">
-                    <a class="concern-item-delete left" onclick="ConcernDeleteClick(\''.$f['following_id'].'\',this)"></a>
+                    <a class="concern-item-delete left" onclick="ConcernDeleteClick(\''.$f['following_id'].'\',\''.$f['search'].'\',this)"></a>
                     <div class="left concern-item-content" onclick="ConcernContentClick(\''.$f['cat_id'].'\',\''.$f['search'].'\')">
                         <a class="left concern-item-content-info">'.$f['cat_id'].':'.$f['search'].'</a> <a class="right concern-item-content-number">
                         </a>
