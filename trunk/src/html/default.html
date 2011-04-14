@@ -105,8 +105,10 @@
 
         //History Event - default.js
         function HistoryMouseOver(item) {
+            $(item).addClass("history-item-over");
         }
         function HistoryMouseOut(item) {
+            $(item).removeClass("history-item-over");
         }
         function HistoryPicMouseOver(item) {
             $(item).animate({ opacity: 1 }, 0);
