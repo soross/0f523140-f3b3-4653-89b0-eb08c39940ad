@@ -104,6 +104,36 @@ function user_info()
     show_credentials();
 }
 
+function user_set_role()
+{
+    $id = get_current_user_id();
+    $args = func_get_args();
+    $key = $args[2];
+    if($key == "" or ($key != "1" and $key != "2"))
+        die("Invalid argument!");
+    connect_db();
+    $view = "SELECT role_id FROM userinfo WHERE user_id='".$id."'";
+    $list = mysql_query($view);
+    $row = mysql_fetch_array($list);
+    $role = $row['role_id'];
+    if($role != -1)
+        die('Already set role!');
+    $view = "UPDATE userinfo SET role_id=".$key." WHERE user_id='".$id."'";
+    $list = mysql_query($view) or die("Update error!");
+    $GLOBALS['user']['role'] = $key;
+    save_cookie();
+}
+
+function user_role_show()
+{
+    echo $GLOBALS['user']['role'];
+}
+
+function user_role()
+{
+    user_role_show();
+}
+
 function deal_user($query)
 {
     $key = (string) $query[1];
@@ -134,5 +164,4 @@ function deal_profile($query)
         die("Invalid Argument!");
     return call_user_func_array($function, $query);
 }
-
 ?>
