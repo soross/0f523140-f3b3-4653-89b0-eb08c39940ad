@@ -128,6 +128,11 @@ div#left div.history-item-over
     background-color: #e7f1f5;
 }
 
+div#left span.left-title-time
+{
+    margin-right: 5px;
+    color: #979797;
+}
 div#left div#hot-content
 {
     width: 275px;
