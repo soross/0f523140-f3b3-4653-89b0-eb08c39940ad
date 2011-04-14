@@ -174,7 +174,7 @@
                 $.ajax({
                     type: 'GET',
                     url: 'follow/add' + cateContent,
-                    data: { search: searchContent },
+                    data: { search: encodeURI(searchContent) },
                     success: function (msg) {
                         $("#search-result-concern").attr("class", "right search-result-concern-have");
                         concernFlag = true;
@@ -264,7 +264,7 @@
                                 $.ajax({
                                     type: 'GET',
                                     url: 'follow/exist/' + cateContent,
-                                    data: { search: content },
+                                    data: { search: encodeURI(content) },
                                     success: function (e) {
                                         if (e[0] == '0') {
                                             concernFlag = false;
