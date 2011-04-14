@@ -4,7 +4,7 @@ var position = 0;
 
 $(function () {
     SetCompany();
-//    SetSorts();
+    //    SetSorts();
 });
 
 function CompanyMR() {
@@ -56,7 +56,7 @@ function SetCompany() {
         }
         $(this).stop().animate({ opacity: 0.4 }, 0);
     });
-
+    alert("fuck");
     length = $("a.company-name:last").position().left + $("a.company-name:last").outerWidth("ture");
 }
 
