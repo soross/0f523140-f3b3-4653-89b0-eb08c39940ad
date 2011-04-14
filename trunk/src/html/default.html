@@ -173,7 +173,7 @@
             if (!concernFlag) {
                 $.ajax({
                     type: 'POST',
-                    url: 'follow/add' + cateContent,
+                    url: 'follow/add/' + cateContent,
                     data: { search: encodeURI(searchContent) },
                     success: function (msg) {
                         $("#search-result-concern").attr("class", "right search-result-concern-have");
