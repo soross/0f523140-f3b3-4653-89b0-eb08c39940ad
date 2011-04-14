@@ -172,7 +172,7 @@
         function SearchConcernClick() {
             if (!concernFlag) {
                 $.ajax({
-                    type: 'GET',
+                    type: 'POST',
                     url: 'follow/add' + cateContent,
                     data: { search: encodeURI(searchContent) },
                     success: function (msg) {
@@ -186,7 +186,7 @@
         function SearchContent(noresult, content, cate, pagenum) {
             $("#blogs").html('<img src="images/loading.gif" style="margin-left:275px;margin-top:' + (($("#blogs").height() - 32) / 2) + 'px;margin-bottom:' + (($("#blogs").height() - 32) / 2) + 'px;" />');
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 url: 'search/' + cate,
                 data: { search: encodeURI(content), page: pagenum },
                 success: function (msg) {
@@ -195,7 +195,7 @@
                     $("#blogs").html(msg);
                     page = pagenum / 5;
                     $.ajax({
-                        type: 'GET',
+                        type: 'POST',
                         url: 'search/count/' + cate,
                         data: { search: encodeURI(content) },
                         success: function (msg) {
@@ -262,7 +262,7 @@
                                 $("div#search-result div.left").html(result);
 
                                 $.ajax({
-                                    type: 'GET',
+                                    type: 'POST',
                                     url: 'follow/exist/' + cateContent,
                                     data: { search: encodeURI(content) },
                                     success: function (e) {
