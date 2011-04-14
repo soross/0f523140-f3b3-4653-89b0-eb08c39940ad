@@ -112,7 +112,7 @@ function search_show()
     $cate = $args[2];
     $time = get_post('time');
     $page = get_post('page');
-    $key = get_post('search', decode=true);
+    $key = get_post('search', $decode=true);
     $admin = get_post('admin');
     if($key and $key != "all")
     {
