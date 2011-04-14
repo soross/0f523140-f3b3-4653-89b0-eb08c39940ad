@@ -35,7 +35,7 @@ function following_show()
                     onmouseout="ConcernMouseOut(this)">
                     <a class="concern-item-delete left" onclick="ConcernDeleteClick('.$f['following_id'].')"></a>
                     <div class="left concern-item-content" onclick="ConcernContentClick(\''.$f['search'].'\')">
-                        <a class="left concern-item-content-info">'.$f['search'].'</a> <a class="right concern-item-content-number">
+                        <a class="left concern-item-content-info">'.$f['cat_id'].':'.$f['search'].'</a> <a class="right concern-item-content-number">
                         </a>
                     </div>
                 </div>';
@@ -71,11 +71,12 @@ function following_exist()
     include_once('login.php');
     $id = get_current_user_id();
     $args = func_get_args();
+    $cat = $args[2];
     $key = $_POST['search'];
     if(!$key)
         die('Invalid Argument!');
     connect_db();
-    $view = "SELECT * FROM followings WHERE user_id='$id' AND search='$key' AND deleted='0'";
+    $view = "SELECT * FROM followings WHERE cat_id='$cat' AND user_id='$id' AND search='$key' AND deleted='0'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     if($row)
@@ -89,6 +90,7 @@ function following_add()
     include_once('login.php');
     $id = get_current_user_id();
     $args = func_get_args();
+    $cat = $args[2];
     $key = $_POST['search'];
     if(!$key)
         die('Invalid Argument!');
@@ -100,7 +102,7 @@ function following_add()
     {
         die('Too many followings!');
     }
-    $view = "SELECT * FROM followings WHERE user_id='$id' AND search='$key' AND deleted='0'";
+    $view = "SELECT * FROM followings WHERE cat_id='$cat' AND user_id='$id' AND search='$key' AND deleted='0'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     if($row)
@@ -110,7 +112,7 @@ function following_add()
     include_once("uuid.inc.php");
     $v4uuid = str_replace("-", "", UUID::v4());
     $current_datetime = date('Y-m-d H:i:s');
-    $view = "INSERT INTO followings(following_id, search, user_id, deleted, add_time) VALUES ('$v4uuid', '$key', '$id', '0', '$current_datetime')";
+    $view = "INSERT INTO followings(following_id, search, user_id, deleted, add_time, cat_id) VALUES ('$v4uuid', '$key', '$id', '0', '$current_datetime', '$cat')";
     $list = mysql_query($view) or die("Insert error!");
 }
 
