@@ -41,7 +41,7 @@
         $(function () {
             $("#history-pic").animate({ opacity: 0.6 }, 0);
             SetHot();
-            SearchContent(true, "all", "0", 0);
+            SearchContent(true, "all", 0, 0);
         });
         //End of Init
 
@@ -165,14 +165,14 @@
             $.ajax({
                 type: 'GET',
                 url: 'search/' + cate,
-                data: { search: content, page: pagenum },
+                data: { search: encodeURI(content), page: pagenum },
                 success: function (msg) {
                     $("#blogs").html(msg);
                     page = pagenum;
                     $.ajax({
                         type: 'GET',
                         url: 'search/count/' + cate,
-                        data: { search: content },
+                        data: { search: encodeURI(content) },
                         success: function (msg) {
                             msg = $.trim(msg);
                             $("html, body").scrollTop(0);
@@ -187,12 +187,12 @@
                             }
                             var str = '<div id="pages-inner" class="right">';
                             if (page != 0) {
-                                str += '<a class="page-control left" id="prevPage">上一页</a>';
+                                str += '<a class="page-control left" id="prevPage" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (pagenum - 5) + ')">上一页</a>';
                             }
                             for (i = 0; i < allPage; i++) {
                                 if (!prevLess && i - page < -2) {
                                     if (i == 0) {
-                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                        str += '<a class="page-number left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
                                     }
                                     else {
                                         prevLess = true;
@@ -201,14 +201,14 @@
                                 }
                                 if (Math.abs(i - page) <= 2) {
                                     if (i == page) {
-                                        str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                                        str += '<a class="page-number page-number-current left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
                                     }
                                     else {
-                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                        str += '<a class="page-number left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
                                     }
                                 }
                                 if (i == allPage - 1 && i - page > 2) {
-                                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    str += '<a class="page-number left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
                                     nextLess = true;
                                 }
                                 if (!nextLess && i - page > 2) {
@@ -217,7 +217,7 @@
                                 }
                             }
                             if (page != allPage - 1) {
-                                str += '<a class="page-control left" id="nextPage">下一页</a>';
+                                str += '<a class="page-control left" id="nextPage" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (pagenum + 5) + ')">下一页</a>';
                             }
                             str += '</div>';
                             $("div#pages").html(str);
