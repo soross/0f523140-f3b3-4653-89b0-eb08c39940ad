@@ -28,7 +28,7 @@ function get_hot($num)
 {
     include_once("common.inc.php");
     connect_db();
-    $view = "SELECT tags.name,tags.count,tg.tag_group_name from tags,(SELECT * FROM tag_group) AS tg WHERE tg.tag_group = tags.tag_group ORDER BY tags.count DESC";
+    $view = "SELECT tags.name,tags.count,tags.tag_group,tg.tag_group_name from tags,(SELECT * FROM tag_group) AS tg WHERE tg.tag_group = tags.tag_group ORDER BY tags.count DESC";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
