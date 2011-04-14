@@ -302,7 +302,29 @@
         //End of Search Event
 
         //Other Event
-        function JobLike(item) {
+        function JobLike(item, id) {
+            $.ajax({
+                type: 'GET',
+                url: 'like/add/' + id,
+                success: function (msg) {
+                    $(item).hide();
+                    $(item).next().show();
+                }
+            });
+        }
+        function JobUnLike(item, id) {
+            $.ajax({
+                type: 'GET',
+                url: 'like/delete/' + id,
+                success: function (msg) {
+                    $(item).hide();
+                    $(item).prev().show();
+                }
+            });
+        }
+        function JobApply(item, id) {
+        }
+        function JobUnApply(item, id) {
         }
         //End of Other Event
     </script>
