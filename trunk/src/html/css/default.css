@@ -296,6 +296,11 @@ div#right a.microblog-item-position
     color: #7ba5d7;
     margin: 0 10px;
 }
+div#right span.microblog-item-relate
+{
+    color: #a3a3a3;
+    padding: 0 5px;
+}
 div#right a.microblog-item-relate
 {
     margin: 0 5px;
@@ -312,4 +317,9 @@ div#right a.microblog-item-control
 div#right a.microblog-item-apply
 {
     border-right: 1px #ea7f37 solid;
+}
+
+a.keyword
+{
+    color: #2972a4;
 }

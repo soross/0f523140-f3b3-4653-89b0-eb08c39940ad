@@ -222,7 +222,7 @@ function theme_result($result, $keyword = '', $admin = false)
             if($tags)
             {
                 $content.='</div><div class="microblog-item-other1">
-                                <span class="left microblog-item-time">相关职位：</span> ';
+                                <span class="left microblog-item-relate">相关职位：</span> ';
                 foreach($tags as $t)
                     $content.='<a class="left keyword microblog-item-relate">'.$t.'</a>';
             }
