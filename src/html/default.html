@@ -64,7 +64,8 @@
             $.ajax({
                 type: 'GET',
                 url: 'follow/show',
-                success: function (msg) { 
+                success: function (msg) {
+                    $("#concern").html(msg);
                 }
             });
         }
@@ -130,14 +131,6 @@
                     id="concern-pic"></a>
             </div>
             <div id="concern" class="logined">
-                <div class="concern-item concern-item-normal" onmouseover="ConcernMouseOver(this)"
-                    onmouseout="ConcernMouseOut(this)">
-                    <a class="concern-item-delete left" onclick="ConcernDeleteClick()"></a>
-                    <div class="left concern-item-content" onclick="ConcernContentClick()">
-                        <a class="left concern-item-content-info">北京</a> <a class="right concern-item-content-number">
-                        </a>
-                    </div>
-                </div>
             </div>
             <div class="left-title logined">
                 <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic">
