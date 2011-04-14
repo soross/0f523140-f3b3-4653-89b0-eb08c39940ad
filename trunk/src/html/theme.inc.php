@@ -56,7 +56,7 @@ function parsekeyword($keyword, $out)
 {
     $keyword = explode(" ",$keyword);
     foreach($keyword as $key)
-        if($key and $key !== "all" and $key !== "poiuy")
+        if($key and $key !== "all")
         {
             #$out = preg_replace('/(>.*?)('.$key.')(.*?<)/i', '${1}<span class=\'highlight\'>${2}</span>${3}', $out);
             $out = preg_replace('/('.$key.')/i', '<span class=\'highlight\'>${1}</span>', $out);
@@ -157,7 +157,7 @@ function time_tran($the_time){
    }
 }
 
-function theme_result($result, $keyword = '')
+function theme_result($result, $keyword = '', $admin = false)
 {
     include_once("login.inc.php");
     include_once("tag.inc.php");
@@ -193,7 +193,7 @@ function theme_result($result, $keyword = '')
                         </div>
                         <div class="microblog-item-other">
                             <a target="_blank" href="http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'" class="left microblog-item-time">'.time_tran($r['post_datetime']).'</a> '.$source;
-        if($keyword == "poiuy")
+        if($admin)
             $content .= '<a class="right item-control last delete">删除</a>';
         else
         {

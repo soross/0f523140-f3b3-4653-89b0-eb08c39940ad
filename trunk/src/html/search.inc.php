@@ -114,14 +114,15 @@ function search_show()
     $time = format_str((string) $_POST['time']);
     $page = format_str((string) $_POST['page']);
     $key = format_str((string) $_POST['search']);
-    if($key and $key != "all" and $key != "poiuy")
+    $admin = format_str((string) $_POST['admin']);
+    if($key and $key != "all")
     {
         include_once('login.inc.php');
         if(user_is_authenticated())
         search_history_add("", "", $key);
     }
     $data = get_search_result($key, 10, $cate, $time, $page);
-    $content = theme('result', $data, $key);
+    $content = theme('result', $data, $key, $admin);
     theme('search', $key, $content);
 }
 
