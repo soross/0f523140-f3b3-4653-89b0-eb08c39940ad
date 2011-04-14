@@ -50,10 +50,15 @@ function format_str($str)
     return $str;
 }
 
-function get_post($item)
+function get_post($item, $decode = true)
 {
     if(isset($_POST[$item]))
-        $item = format_str($_POST[$item]);
+    {
+        if($decode)
+            $item = format_str(urldecode($_POST[$item]));
+        else
+            $item = format_str($_POST[$item]);
+    }
     else
         $item = false;
     return $item;
