@@ -182,7 +182,7 @@ function search_history_show()
         $search = mb_substr($h['search'], 0, 20, "utf8");
         if($search != $h['search'])
             $search .= '...';
-        $content .= '<div class="history-item" title="'.$h['search'].'">
+        $content .= '<div class="history-item" onmouseover="HistoryMouseOver(this)" onmouseout="HistoryMouseOut(this)" onclick="HistoryClick(\''.$h['cat_id'].'\',\''.$h['search'].'\')">
                     <a>'.$h['cat_id'].':'.$search.'</a></div>';
     }
     $content .= '</div>';
