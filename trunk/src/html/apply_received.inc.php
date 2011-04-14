@@ -8,7 +8,7 @@ func_register(array(
     ),
 ));
 
-function get_received_tweets($num, $page, $count)
+function get_received_tweets($num, $page, $count = false)
 {
     include_once('login.inc.php');
     $id = get_current_user_id();
@@ -35,7 +35,7 @@ function get_received_tweets($num, $page, $count)
     return $result;
 }
 
-function get_received_applies($tweet_id, $num, $page, $count)
+function get_received_applies($tweet_id, $num, $page, $count = false)
 {
     include_once('login.inc.php');
     $id = get_current_user_id();
@@ -74,11 +74,17 @@ function received_apply_show($tweet_id, $page)
     echo $content;
 }
 
-function received_apply_count($tweet_id)
+function received_apply_count_tweet($tweet_id)
 {
-    include_once("theme.inc.php");
     $content = '';
     $applies = get_received_applies($tweet_id, 10, "", true);
+    echo $applies[0][0];
+}
+
+function received_apply_count()
+{
+    $content = '';
+    $applies = get_received_tweets(10, "", true);
     echo $applies[0][0];
 }
 
