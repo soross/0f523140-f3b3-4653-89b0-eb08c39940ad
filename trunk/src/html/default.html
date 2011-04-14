@@ -86,7 +86,7 @@
                 type: 'GET',
                 url: 'follow/delete/' + id,
                 success: function (msg) {
-                    $(item).hide();
+                    $(item).parent().hide();
                 }
             });
         }
