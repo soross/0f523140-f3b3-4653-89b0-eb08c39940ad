@@ -103,6 +103,7 @@ function hot_editgroup()
 {
     include_once('login.inc.php');
     user_ensure_admin();
+    connect_db();
     $view = "SELECT * FROM tags";
     $list = mysql_query($view);
     $content = "<form action='/hot/groupupdate' method='post'><table>";
@@ -118,6 +119,7 @@ function hot_editname()
 {
     include_once('login.inc.php');
     user_ensure_admin();
+    connect_db();
     $view = "SELECT * FROM tag_group";
     $list = mysql_query($view);
     $content = "<form action='/hot/nameupdate' method='post'><table>";
