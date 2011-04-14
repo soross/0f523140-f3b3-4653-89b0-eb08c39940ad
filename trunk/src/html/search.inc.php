@@ -44,6 +44,10 @@ function get_search_result($key, $num, $cate, $time, $page)
     
     //$view = "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('$key') ORDER BY post_datetime DESC";
     //FIXME: Cannot use this syntax.
+    $key = format_str($key);
+    $time = format_str($time);
+    $page = format_str($page);
+    
     if($key and $key != "all" and $key != "poiuy")
     {
         $key = explode(" ",$key);
@@ -125,7 +129,7 @@ function search_count()
 {
     $args = func_get_args();
     $cate = $args[2];
-    $key = (string) $_POST['search'];
+    $key = format_str((string) $_POST['search']);
     $data = get_search_result($key, 10, $cate, "count", "");
     theme('page', 'count', $data[0][0]);
 }
