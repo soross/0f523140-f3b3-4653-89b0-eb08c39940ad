@@ -40,8 +40,18 @@
         //Init - default.js
         $(function () {
             $("#history-pic").animate({ opacity: 0.6 }, 0);
+
             SetHot();
+
             SearchContent(true, "all", 0, 0);
+
+            $.ajax({
+                type: 'GET',
+                url: 'count/show',
+                success: function (msg) {
+                    $("div#radio").html("本周新增职位" + $.trim(msg).split(',')[0] + "个，今日新增职位" + $.trim(msg).split(',')[1] + "个");
+                }
+            });
         });
         //End of Init
 
