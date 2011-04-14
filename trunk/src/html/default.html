@@ -63,7 +63,7 @@
                     else if (type == 2) {
                         $(".recruitment").show();
                     }
-                    else if (type == 0) {
+                    else if (type == 99) {
                         $(".recruitment").show();
                         $(".admin").show();
                     }
@@ -150,6 +150,7 @@
 
         //Search Event - default.js
         var concernFlag = true;
+        var page = 0;
 
         function SearchConcernMouseOver(item)
         { }
@@ -159,19 +160,70 @@
         { }
         function SearchConcernClick()
         { }
-        function SearchContent(noresult, content, cate, page, admin) {
-            if (admin == null) {
-                $.ajax({
-                    type: 'GET',
-                    url: 'search/' + cate,
-                    data: { search: content, page: page },
-                    success: function (msg) {
-                        $("#blogs").html(msg);
-                    }
-                });
-            }
-            else {
-            }
+        function SearchContent(noresult, content, cate, pagenum) {
+            $.ajax({
+                type: 'GET',
+                url: 'search/' + cate,
+                data: { search: content, page: pagenum },
+                success: function (msg) {
+                    $("#blogs").html(msg);
+                    page = pagenum;
+                    $.ajax({
+                        type: 'GET',
+                        url: 'search/count/' + cate,
+                        data: { search: content },
+                        success: function (msg) {
+                            msg = $.trim(msg);
+                            $("html, body").scrollTop(0);
+                            prevLess = false;
+                            nextLess = false;
+                            var allPage;
+                            if (msg % 50 == 0) {
+                                allPage = Math.floor(msg / 50);
+                            }
+                            else {
+                                allPage = Math.floor(msg / 50) + 1;
+                            }
+                            var str = '<div id="pages-inner" class="right">';
+                            if (page != 0) {
+                                str += '<a class="page-control left" id="prevPage">上一页</a>';
+                            }
+                            for (i = 0; i < allPage; i++) {
+                                if (!prevLess && i - page < -2) {
+                                    if (i == 0) {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        prevLess = true;
+                                        str += '<span class="left">...</span>';
+                                    }
+                                }
+                                if (Math.abs(i - page) <= 2) {
+                                    if (i == page) {
+                                        str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                                    }
+                                    else {
+                                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    }
+                                }
+                                if (i == allPage - 1 && i - page > 2) {
+                                    str += '<a class="page-number left">' + (i + 1) + '</a>';
+                                    nextLess = true;
+                                }
+                                if (!nextLess && i - page > 2) {
+                                    nextLess = true;
+                                    str += '<span class="left">...</span>';
+                                }
+                            }
+                            if (page != allPage - 1) {
+                                str += '<a class="page-control left" id="nextPage">下一页</a>';
+                            }
+                            str += '</div>';
+                            $("div#pages").html(str);
+                        }
+                    });
+                }
+            });
         }
         //End of Search Event
     </script>
