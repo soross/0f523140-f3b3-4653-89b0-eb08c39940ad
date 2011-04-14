@@ -171,6 +171,14 @@
                 });
             }
             else if (admin == null) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'search/' + cate,
+                    data: { search: content, page: page },
+                    success: function (msg) {
+                        $("#blogs").html(msg);
+                    }
+                });
             }
             else {
             }
