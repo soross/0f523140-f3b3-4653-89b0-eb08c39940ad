@@ -1,4 +1,6 @@
 <?php
+include_once('common.inc.php');
+
 func_register(array(
   'avatar' => array(
     'callback' => 'deal_avatar',
