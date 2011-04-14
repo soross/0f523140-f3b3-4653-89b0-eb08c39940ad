@@ -159,18 +159,8 @@
         { }
         function SearchConcernClick()
         { }
-        function SearchContent(noresult, content, cate, page, time, admin) {
-            if (time == null && admin == null) {
-                $.ajax({
-                    type: 'GET',
-                    url: 'search/' + cate,
-                    data: { search: content, page: page },
-                    success: function (msg) {
-                        $("#blogs").html(msg);
-                    }
-                });
-            }
-            else if (admin == null) {
+        function SearchContent(noresult, content, cate, page, admin) {
+            if (admin == null) {
                 $.ajax({
                     type: 'GET',
                     url: 'search/' + cate,
