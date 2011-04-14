@@ -1,6 +1,7 @@
 ﻿div#content
 {
     margin-top: 10px;
+    overflow: hidden;
 }
 div#left
 {
