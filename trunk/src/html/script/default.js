@@ -6,6 +6,8 @@ $(function () {
 
     SearchContent(true, "all", 0, 0);
 
+    SetSorts();
+
     $.ajax({
         type: 'GET',
         url: 'count/show',
