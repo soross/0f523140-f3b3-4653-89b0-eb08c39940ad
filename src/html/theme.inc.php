@@ -224,7 +224,7 @@ function theme_result($result, $keyword = '', $admin = false)
                 $content.='</div><div class="microblog-item-other1">
                                 <span class="left microblog-item-relate">相关职位：</span> ';
                 foreach($tags as $t)
-                    $content.='<a class="left keyword microblog-item-relate">'.$t.'</a>';
+                    $content.='<a class="left keyword microblog-item-relate" onclick="SearchContent(false, \''.$t.'\', 0, 0)">'.$t.'</a>';
             }
         }
         $content .= '
@@ -242,26 +242,27 @@ function theme_rss($result)
 <rss version="2.0">
   <channel>
     <title>'.$GLOBALS['search'].'最新职位订阅-歪伯乐</title>
-    <link>'.BASE_URL.'search/'.$GLOBALS['search'].'</link> 
+    <link>'.BASE_URL.'search/'.$GLOBALS['search'].'</link>
     <description>Latest 10 threads of all jobs</description>
-    <copyright>Copyright(C) 歪伯乐</copyright> 
+    <copyright>Copyright(C) 歪伯乐</copyright>
     <generator>YBole by GNG.</generator>
-    <lastBuildDate>'.date(DATE_RSS).'</lastBuildDate> 
+    <lastBuildDate>'.date(DATE_RSS).'</lastBuildDate>
     <ttl>30</ttl>
-    <image> 
-      <url>'.BASE_URL.'images/logo.gif</url> 
-      <title>'.$GLOBALS['search'].'最新职位订阅-歪伯乐</title> 
-      <link>'.BASE_URL.'search/'.$GLOBALS['search'].'</link> 
+    <image>
+      <url>'.BASE_URL.'images/logo.gif</url>
+      <title>'.$GLOBALS['search'].'最新职位订阅-歪伯乐</title>
+      <link>'.BASE_URL.'search/'.$GLOBALS['search'].'</link>
     </image>';
     foreach($result as $r)
-        $content .= '<item>
-      <title>'.$r['post_screenname'].":".mb_substr($r['content'], 0, 15, "utf8").'...</title> 
-      <link>http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'</link> 
+    $content .= '<item>
+      <title>'.$r['post_screenname'].":".mb_substr($r['content'], 0, 15, "utf8").'...</title>
+      <link>http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'</link>
       <description><![CDATA['.$r['content'].']]></description>
-      <pubDate>'.date(DATE_RSS, strtotime($r['post_datetime'])).'</pubDate> 
+      <pubDate>'.date(DATE_RSS, strtotime($r['post_datetime'])).'</pubDate>
     </item>';
-    $content .= '</channel> 
+    $content .= '
+  </channel>
 </rss>';
-    echo $content;
+echo $content;
 }
 ?>
