@@ -1,4 +1,6 @@
 <?php
+include_once('common.inc.php');
+
 func_register(array(
     'apply_received' => array(
         'callback' => 'deal_apply_received',
