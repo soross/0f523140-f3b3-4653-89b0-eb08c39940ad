@@ -50,6 +50,12 @@ function format_str($str)
     return $str;
 }
 
+function get_post($item)
+{
+    $item = format_str($item);
+    return $item;
+}
+
 function func_execute_active_handler() {
     if(isset($_GET['q']))
     {
