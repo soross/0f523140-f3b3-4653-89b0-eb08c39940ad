@@ -1,0 +1,226 @@
+﻿.fl{float:left;}
+.fr{float:right;}
+.udl{
+	text-decoration:underline;
+}
+.popBox{
+	height:198px;
+	background-color:white;
+	font-family:宋体, 微软雅黑;
+	font-size:12px;
+	box-shadow:0px 0px 10px #777777;
+	-moz-box-shadow:0px 0px 10px #777777;
+ 	-webkit-box-shadow:0px 0px 10px #777777;
+ 	border:1px #bdbdbd solid;
+}
+.confirmBox{
+	height:83px;	
+}
+.popboxicon{
+    background: url('images/popboximg.png') no-repeat scroll -999em 0 transparent;
+    background-position:-236px 0px;
+    width: 120px;
+    height: 30px;
+    overflow: hidden;
+    vertical-align: middle;
+    color:#7191a3;
+    font-weight:normal; 
+    float:left;   
+}
+.popboxicon h4{
+	margin:8px auto auto 15px;
+	font-size:14px;
+	font-weight:normal;
+	width:250px;}
+.popBoxwd1,.wd282{width:282px;}
+.popBoxwd2,.wd480{width:480px;}
+.popBoxwd3,.wd195{width:195px;}
+
+.boxtitle{
+	height:30px;
+	background-color:#cde1ec;
+}
+.btn_close{
+	background-position:-267px -127px;
+	width:15px;
+	height:15px;
+	position:relative;
+	float:right;
+	top:8px;
+	right:6px;
+}
+.popBox_main{
+	margin:5px 20px 5px 20px;
+	_margin:5px 10px 5px 10px;
+	height:75%;
+}
+#popBox_apply0 .popBox_main .line1{
+	height:40px;
+	line-height:40px;
+	margin-top:20px;
+}
+.img_err{
+	background-position:0px 0px;
+    width: 31px;
+    height: 33px;    
+    float:left;
+}
+.font_tip{
+	font-family: 微软雅黑;
+	font-size:20px;
+	color:#668594;
+	display:inline-block;	
+	float:left;
+	font-weight:600;
+	padding-left:20px;
+
+}
+#popBox_apply0 .popBox_main .line2{
+	margin-top:15px;
+}
+.font_tip2{
+	color:#f09953;
+	text-align:center;
+	line-height:30px;
+}
+#popBox_apply0 .popBox_main .line3{
+	margin-top:5px;
+}
+#popBox_apply0 .popBox_main .line3 a{
+	background-position:0px -33px;
+	width:245px;
+	height:41px;
+}
+#popBox_apply0 .popBox_main .line3 a:hover{
+	background-position:0px -74px;
+	width:245px;
+	height:41px;
+
+}
+#popBox_apply1 .popBox_main .line0{
+	line-height:24px;
+}
+#popBox_apply1 .popBox_main .line1{
+	width:433px;
+	height:80px;
+	border:3px #cde1ec solid;
+	border-bottom-left-radius:5px 5px;
+	border-bottom-right-radius:5px 5px;
+	border-top-left-radius:5px 5px;
+	border-top-right-radius:5px 5px;
+	display:inline-block;
+}
+#popBox_apply1 .popBox_main textarea{
+	overflow:hidden;
+	width:auto;
+	border:0px solid;
+	width:99%;
+	height:96%;
+	word-warp:break-word;
+	_height:75px;
+	
+}
+.font_tip3{
+	font-family:Constantia;
+	font-size:26px;
+	line-height:26px;
+}
+.btn_publish{
+	background-position:-246px -36px;/*激活状态下背景图片的位移是-246px -73px*/
+	width:120px;
+	height:37px;
+	position:relative;
+	top:-30px;
+	_top:-21px;
+	left:310px;
+}
+.able{
+	background-position:-246px -73px;
+}
+#confirmBox_del .line0{
+	margin:3px 20px 3px 20px;
+	display:inline-block;
+	line-height:20px;
+	text-align:center;
+}
+.icon_ques{
+	background-position:-65px 1px;
+	width:18px;
+	height:18px;
+	margin-right:5px;
+}
+#confirmBox_del .line1{
+	margin:1px 20px 1px 20px;
+	_margin:5px 10px 5px 10px;
+}
+a.btn_ok{
+	background-position:-114px -116px;
+	width:73px;
+	height:27px;
+	float:left;
+	color:#527417;
+	text-align:center;
+	line-height:25px;
+
+}
+a:hover.btn_ok{
+	background-position:-188px -116px;
+}
+a.btn_cal{
+	background-position:-89px -5px;
+	width:73px;
+	height:27px;
+	float:right;
+	color:#666666;
+	text-align:center;
+	line-height:25px;
+}
+a:hover.btn_cal{
+	background-position:-162px -5px;
+}
+.icon_ok{
+	background-position:-65px -17px;
+	width:18px;
+	height:17px;
+	margin-right:5px;
+}
+#confirmBox_ok .line0{
+	margin:5px 20px 5px 20px;
+	display:inline-block;
+	line-height:20px;
+	text-align:center;
+}
+#confirmBox_ok .line1{
+	margin:1px 20px 1px 20px;
+	_margin:5px 10px 5px 10px;
+}
+.img_tip{
+	background-position:-35px 0px;
+    width: 31px;
+    height: 33px;
+    vertical-align: middle;
+    float:left;
+}
+#popBox_publishok .popBox_main .line1{
+	height:40px;
+	line-height:40px;
+	margin-top:20px;
+}
+
+#popBox_publishok .popBox_main .line2{
+	margin-top:15px;
+}
+
+#popBox_publishok .popBox_main .line3{
+	margin-left:50px;	
+	margin-top:8px;
+	text-align:center;
+	line-height:27px;
+}
+.btn_ikown{
+	background-position:-4px -116px;
+	width:110px;
+	height:27px;
+	color:#527417;
+	
+}
