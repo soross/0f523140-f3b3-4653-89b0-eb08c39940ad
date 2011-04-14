@@ -52,7 +52,7 @@ function format_str($str)
 
 function get_post($item)
 {
-    $item = format_str($item);
+    $item = format_str($_POST[$item]);
     return $item;
 }
 
