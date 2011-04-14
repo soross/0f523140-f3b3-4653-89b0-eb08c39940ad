@@ -6,7 +6,7 @@ func_register(array(
         'callback' => 'deal_user',
     ),
     'profile' => array(
-        'callback' => 'deal_profile',
+        'callback' => 'profile_show',
     ),
 ));
 
@@ -44,18 +44,18 @@ function theme_user($data)
     echo $content;
 }
 
-function get_user_tweets($key, $site, $num, $page)
+function get_user_tweets($key, $site, $num, $page, $count = false)
 {
     connect_db();
-    if(!$page)
-        $page = "0";
-    if($page == "count")
+    if($count)
     {
         $limit = "";
         $select = "COUNT(*)";
     }
     else
     {
+        if(!$page)
+            $page = "0";
         $select = "*";
         $page = intval($page) * $num;
         $limit = " LIMIT $page , $num";
@@ -83,7 +83,7 @@ function user_count()
     $args = func_get_args();
     $user = $args[2];
     $site = get_post('site_id');
-    $data = get_user_tweets($user, $site, 10, "count");
+    $data = get_user_tweets($user, $site, 10, "", true);
     theme('page', 'count', $data[0][0]);
 }
 
@@ -151,14 +151,15 @@ function deal_user($query)
 
 function profile_show()
 {
-    $args = func_get_args();
-    $key = $args[2];
+    /*$args = func_get_args();
+    $key = $args[2];*/
+    $key = (string) $query[1];
     if(!$key)
         die("Invalid Argument!");
     header('Location: http://t.sina.com.cn/n/'.$key);
 }
 
-function deal_profile($query)
+/*function deal_profile($query)
 {
     $key = (string) $query[1];
     if(!$key)
@@ -167,5 +168,5 @@ function deal_profile($query)
     if (!function_exists($function))
         die("Invalid Argument!");
     return call_user_func_array($function, $query);
-}
+}*/
 ?>
