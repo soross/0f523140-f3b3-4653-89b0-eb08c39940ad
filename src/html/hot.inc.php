@@ -68,8 +68,7 @@ function hot_tag()
     $key = $args[2];
     if($key == "0" or $key == "")
     {
-        $content = '<div id="hot">
-                <div class="left-title">
+        $content = '<div class="left-title">
                     <span class="left left-title-text">热门职位</span> <span class="right left-title-time">截止至'.date('Y.n.j').'</span>
                 </div>
                 <div id="hot-content">';
@@ -96,7 +95,7 @@ function hot_tag()
         else
             $content .= '<a class="left hot-content-item" onclick="HotClick(\''.$h['name'].'\')">'.$h['name'].'('.$h['count'].')</a>';
     if($key == "0" or $key == "")
-        $content .= '</div></div>';
+        $content .= '</div>';
     echo $content;
 }
 
