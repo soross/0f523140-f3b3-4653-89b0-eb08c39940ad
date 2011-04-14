@@ -1,7 +1,7 @@
 <?php
 func_register(array(
     'like' => array(
-        'callback' => 'user_like',
+        'callback' => 'deal_like',
         'security' => 'true',
     ),
 ));
@@ -38,8 +38,8 @@ function get_favorites($num, $page)
 function favorites_show()
 {
     $args = func_get_args();
-    if($args[2])
-        $page = intval($args[2]);
+    if($_POST['page'])
+        $page = intval($_POST['page']);
     else
         $page = "";
     $content = '';
@@ -158,7 +158,7 @@ function theme_like($content)
     theme('page', "收藏", $content);
 }
 
-function user_like($query)
+function deal_like($query)
 {
     $key = (string) $query[1];
     if(!$key)

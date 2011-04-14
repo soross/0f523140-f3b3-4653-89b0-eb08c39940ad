@@ -1,7 +1,7 @@
 <?php
 func_register(array(
     'hot' => array(
-        'callback' => 'theme_hot',
+        'callback' => 'deal_hot',
     ),
 ));
 
@@ -28,7 +28,7 @@ function get_hot($num)
 {
     include_once("common.inc.php");
     connect_db();
-    $view = "SELECT name,count,tag_group from tags ORDER BY count DESC";
+    $view = "SELECT tags.name,tags.count,tg.tag_group_name from tags,(SELECT * FROM tag_group) AS tg WHERE tg.tag_group = tags.tag_group ORDER BY tags.count DESC";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
@@ -45,7 +45,15 @@ function get_hot($num)
             }
         if(!$ok)
             continue;
-        $result[$i++] = $row;
+        if($row['tag_group']!=0)
+            $name = $row['tag_group_name'];
+        else
+            $name = $row['name'];
+        $row2 = array(
+            'name' => $name,
+            'count' => $row['count'],
+        );
+        $result[$i++] = $row2;
         if($i == $num)
             break;
         if($row['tag_group']!=0)
@@ -54,9 +62,9 @@ function get_hot($num)
     return $result;
 }
 
-function theme_hot($query)
+function hot_tag()
 {
-    $key = (string) $query[1];
+    $key = (string) $_POST['show_type'];
     if($key == "0" or $key == "")
     {
         $content = '<div id="hot">
@@ -91,5 +99,44 @@ function theme_hot($query)
     echo $content;
 }
 
+function hot_editgroup()
+{
+    include_once('login.inc.php');
+    user_ensure_admin();
+    $view = "SELECT * FROM tags";
+    $list = mysql_query($view);
+    $content = "<form action='/hot/groupupdate' method='post'><table>";
+    while($row = mysql_fetch_array($list))
+    {
+        $content .= "<tr><td>".$row['name']."</td><td>".$row['tag_group']."</td></tr>";
+    }
+    $content .= "</form></table>";
+    echo $content;
+}
+    
+function hot_editname()
+{
+    include_once('login.inc.php');
+    user_ensure_admin();
+    $view = "SELECT * FROM tag_group";
+    $list = mysql_query($view);
+    $content = "<form action='/hot/nameupdate' method='post'><table>";
+    while($row = mysql_fetch_array($list))
+    {
+        $content .= "<tr><td>".$row['tag_group_name']."</td><td>".$row['tag_group']."</td></tr>";
+    }
+    $content .= "</form></table>";
+    echo $content;
+}
 
+function deal_hot($query)
+{
+    $key = (string) $query[1];
+    if(!$key)
+        die("Invalid Argument!");
+    $function = 'hot_'.$key;
+    if (!function_exists($function))
+        die("Invalid Argument!");
+    return call_user_func_array($function, $query);
+}
 ?>

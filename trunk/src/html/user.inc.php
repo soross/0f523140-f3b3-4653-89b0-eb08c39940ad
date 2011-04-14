@@ -1,10 +1,10 @@
 <?php
 func_register(array(
     'user' => array(
-        'callback' => 'user_page',
+        'callback' => 'deal_user',
     ),
     'profile' => array(
-        'callback' => 'profile_page',
+        'callback' => 'deal_profile',
     ),
 ));
 
@@ -42,7 +42,7 @@ function theme_user($data)
     echo $content;
 }
 
-function get_user_result($key, $site, $num, $page)
+function get_user_tweets($key, $site, $num, $page)
 {
     connect_db();
     if(!$page)
@@ -76,26 +76,62 @@ function get_user_result($key, $site, $num, $page)
     return $result;
 }
 
-function user_page($query)
+function user_count()
 {
-    $page = (string) $query[3];
-    $key = (string) $query[1];
-    $site = (string) $query[2];
-    if(!$key)
-        die("Invalid Argument!");
-    $data = get_user_result($key, $site, 10, $page);
-    if($page == "count")
-        theme('page', 'count', $data[0][0]);
-    else
-        theme('user', $data);
+    $args = func_get_args();
+    $user = $args[2];
+    $site = $_POST['site_id'];
+    $data = get_user_tweets($user, $site, 10, "count");
+    theme('page', 'count', $data[0][0]);
 }
 
-function profile_page($query)
+function user_show()
+{
+    $args = func_get_args();
+    $user = $args[2];
+    $page = $_POST['page'];
+    $site = $_POST['site_id'];
+    if(!$user)
+        die("Invalid Argument!");
+    $data = get_user_tweets($user, $site, 10, $page);
+    theme('user', $data);
+}
+
+function user_info()
+{
+    include_once("login.inc.php");
+    show_credentials();
+}
+
+function deal_user($query)
 {
     $key = (string) $query[1];
+    if(!$key)
+        $key = "show";
+    $function = 'user_'.$key;
+    if (!function_exists($function))
+        die("Invalid Argument!");
+    return call_user_func_array($function, $query);
+}
+
+function profile_show()
+{
+    $args = func_get_args();
+    $key = $args[2];
     if(!$key)
         die("Invalid Argument!");
     header('Location: http://t.sina.com.cn/n/'.$key);
+}
+
+function deal_profile($query)
+{
+    $key = (string) $query[1];
+    if(!$key)
+        $key = "show";
+    $function = 'profile_'.$key;
+    if (!function_exists($function))
+        die("Invalid Argument!");
+    return call_user_func_array($function, $query);
 }
 
 ?>

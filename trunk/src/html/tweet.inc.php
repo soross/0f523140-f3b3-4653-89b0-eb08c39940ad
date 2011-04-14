@@ -6,9 +6,10 @@ func_register(array(
     ),
 ));
 
-function tweet_post($query)
+function tweet_post()
 {
-    $cate = (string) $query[1];
+    $args = func_get_args();
+    $cate = $args[2];
     $content = $_POST['text'];
     if(!$cate or !$content)
         die("Invalid argument!");

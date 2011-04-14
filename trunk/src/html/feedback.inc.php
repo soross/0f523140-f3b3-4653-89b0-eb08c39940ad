@@ -1,4 +1,10 @@
 <?php
+func_register(array(
+    'feedback' => array(
+        'callback' => 'deal_feedback',
+    ),
+));
+
 function feedback_post($query)
 {
     include_once('login.inc.php');
@@ -47,18 +53,23 @@ function get_feedbacks($num, $page)
     return $result;
 }
 
-function feedback_show()
+function feedback_count()
 {
     user_ensure_admin();
     $args = func_get_args();
     $key = $args[2];
     $content = '';
-    $results = get_feedbacks(10, $key);
-    if($key == "count")
-    {
-        echo $results;
-        return;
-    }
+    $results = get_feedbacks(10, "count");
+    echo $results;
+}
+
+function feedback_show()
+{
+    user_ensure_admin();
+    $args = func_get_args();
+    $page = $_POST['page'];
+    $content = '';
+    $results = get_feedbacks(10, $page);
     foreach($results as $r)
     {
         if($r['user_id'])
@@ -90,5 +101,16 @@ function feedback_show()
                     </div>';
     }
     echo $content;
+}
+
+function deal_feedback($query)
+{
+    $key = (string) $query[1];
+    if(!$key)
+        $key = "post";
+    $function = 'feedback_'.$key;
+    if (!function_exists($function))
+        die("Invalid Argument!");
+    return call_user_func_array($function, $query);
 }
 ?>

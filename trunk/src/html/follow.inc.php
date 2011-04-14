@@ -1,7 +1,7 @@
 <?php
 func_register(array(
     'follow' => array(
-        'callback' => 'following',
+        'callback' => 'deal_following',
         'security' => 'true',
     ),
 ));
@@ -69,7 +69,7 @@ function following_exist()
     include_once('login.php');
     $id = get_current_user_id();
     $args = func_get_args();
-    $key = $args[2];
+    $key = $_POST['search'];
     if(!$key)
         die('Invalid Argument!');
     connect_db();
@@ -87,7 +87,7 @@ function following_add()
     include_once('login.php');
     $id = get_current_user_id();
     $args = func_get_args();
-    $key = $args[2];
+    $key = $_POST['search'];
     if(!$key)
         die('Invalid Argument!');
     connect_db();
@@ -112,7 +112,7 @@ function following_add()
     $list = mysql_query($view) or die("Insert error!");
 }
 
-function following($query)
+function deal_following($query)
 {
     $key = (string) $query[1];
     if(!$key)

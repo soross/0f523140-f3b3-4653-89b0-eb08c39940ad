@@ -1,14 +1,11 @@
 <?php
 func_register(array(
     'search' => array(
-        'callback' => 'search_page',
+        'callback' => 'deal_search',
     ),
     'history' => array(
-        'callback' => 'search_history',
+        'callback' => 'deal_search_history',
         'security' => 'true',
-    ),
-    'rss' => array(
-        'callback' => 'get_rss',
     ),
     'count' => array(
         'callback' => 'count_show',
@@ -109,12 +106,13 @@ function get_search_result($key, $num, $cate, $time, $page)
     return $result;
 }
 
-function search_page($query)
+function search_show()
 {
-    $cate = (string) $query[2];
-    $time = (string) $query[3];
-    $page = (string) $query[4];
-    $key = (string) $query[1];
+    $args = func_get_args();
+    $cate = $args[2];
+    $time = (string) $_POST['time'];
+    $page = (string) $_POST['page'];
+    $key = (string) $_POST['search'];
     if($key and $key != "all" and $key != "poiuy")
     {
         include_once('login.inc.php');
@@ -123,24 +121,39 @@ function search_page($query)
     }
     $data = get_search_result($key, 10, $cate, $time, $page);
     $content = theme('result', $data, $key);
-    if($time == "count")
-        theme('page', 'count', $data[0][0]);
-    else
-        theme('search', $key, $content);
+    theme('search', $key, $content);
 }
 
-function get_rss($query)
+function search_count()
+{
+    $args = func_get_args();
+    $cate = $args[2];
+    $key = (string) $_POST['search'];
+    $data = get_search_result($key, 10, $cate, "count", "");
+    theme('page', 'count', $data[0][0]);
+}
+
+function search_rss()
+{
+    $key = (string) $_POST['search'];
+    $args = func_get_args();
+    $cate = $args[2];
+    if(!$key)
+        die("Invalid argument!");
+    $data = get_search_result($key, 10, $cate, "", "");
+    $GLOBALS['search'] = $key;
+    theme('rss', $data);
+}
+    
+function deal_search($query)
 {
     $key = (string) $query[1];
     if(!$key)
-    {
-        $key = $_POST['search_text'];
-        if(!$key)
-            die("Invalid argument!");
-    }
-    $data = get_search_result($key, 10);
-    $GLOBALS['search'] = $key;
-    theme('rss', $data);
+        $key = "show";
+    $function = 'search_'.$key;
+    if (!function_exists($function))
+        die("Invalid Argument!");
+    return call_user_func_array($function, $query);
 }
 
 function get_search_history($num)
@@ -218,7 +231,7 @@ function search_history_add()
     include_once('login.inc.php');
     $id = get_current_user_id();
     $args = func_get_args();
-    $key = $args[2];
+    $key = $_POST['search'];
     if(!$key)
         die('Invalid Argument!');
     connect_db();
@@ -236,7 +249,7 @@ function search_history_add()
     $list = mysql_query($view) or die("Insert error!");
 }
 
-function search_history($query)
+function deal_search_history($query)
 {
     $key = (string) $query[1];
     if(!$key)

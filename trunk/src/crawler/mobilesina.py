@@ -4,7 +4,7 @@ from Queue import Queue
 import sqlite3
 import sys, re, StringIO
 from time import sleep
-import urllib2 as urllib
+import urllib2, urllib
 
 TARGET = 1000
 NUM = 10
@@ -14,7 +14,9 @@ results = []
 count = 0
 q = Queue()
 
-class UserAgentProcessor(urllib.BaseHandler):
+KEYS = ['招聘']
+
+class UserAgentProcessor(urllib2.BaseHandler):
     """A handler to add a custom UA string to urllib2 requests
     """
     def __init__(self):
@@ -26,14 +28,15 @@ class UserAgentProcessor(urllib.BaseHandler):
         return request
     https_request = http_request
 
-opener = urllib.build_opener(UserAgentProcessor())
-urllib.install_opener(opener)
+opener = urllib2.build_opener(UserAgentProcessor())
+urllib2.install_opener(opener)
 
 def craw(key):
     global count, results, q, ids
     key = key.replace(" ", "%20")
     print key
-    a = urllib.urlopen("http://t.sina.cn/dpool/ttt/search.php?PHPSESSID=f54ade2b393f1a28b59db06939c8f420", data="keyword="+key+"&smblog=搜微博")
+    params = urllib.urlencode({'keyword': key, 'smblog': '搜微博'})
+    a = urllib2.urlopen("http://t.sina.cn/dpool/ttt/search.php?PHPSESSID=f54ade2b393f1a28b59db06939c8f420", data=params)
     while True:
         b = a.read().split('<div class="c"')
         for item in b[1:-2]:
@@ -47,11 +50,11 @@ def craw(key):
                     text = text[1:]
                 if id in ids:
                     continue
-                #print id, text
+                print id, text
                 results.append((id, unicode(text,'utf-8')))
                 ids.append(id)
                 count += 1
-                print count
+                #print count
                 if count > TARGET:
                     return
             except:
@@ -80,6 +83,7 @@ for key in KEYS:
 
 q.join()
 print "Craw completed."
+sys.exit(1)
 conn = sqlite3.connect("train.dat")
 cur = conn.cursor()
 
