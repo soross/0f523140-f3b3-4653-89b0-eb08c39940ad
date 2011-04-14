@@ -146,9 +146,7 @@ function like_add()
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     if($row)
-    {
         like_delete("", "", $key);
-    }
     $view = "INSERT INTO favorites(tweet_id, user_id, deleted) VALUES ('$key', '$id', '0')";
     $list = mysql_query($view) or die("Insert error!");
 }

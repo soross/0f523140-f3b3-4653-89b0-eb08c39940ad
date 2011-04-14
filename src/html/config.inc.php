@@ -13,9 +13,8 @@ define("ENCRYPTION_KEY", 'HustGNGisVeryGelivable');
 define("LONGURL_KEY", 'true');
 
 $base_url = 'http://'.$_SERVER['HTTP_HOST'];
-if ($directory = trim(dirname($_SERVER['SCRIPT_NAME']), '/\,')) {
+if ($directory = trim(dirname($_SERVER['SCRIPT_NAME']), '/\,'))
   $base_url .= '/'.$directory;
-}
 define('BASE_URL', $base_url.'/');
 
 ?>

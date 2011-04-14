@@ -9,9 +9,38 @@ function connect_db(){
 }
 
 function func_register($items) {
-    foreach ($items as $url => $item) {
+    foreach ($items as $url => $item)
         $GLOBALS['func_registry'][$url] = $item;
+}
+
+function long_url($shortURL)
+{
+    if (!defined('LONGURL_KEY'))
+    {
+        return $shortURL;
     }
+    $url = "http://www.longurlplease.com/api/v1.1?q=" . $shortURL;
+    $curl_handle=curl_init();
+    curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($curl_handle,CURLOPT_URL,$url);
+    $url_json = curl_exec($curl_handle);
+    curl_close($curl_handle);
+
+    $url_array = json_decode($url_json,true);
+    
+    $url_long = $url_array["$shortURL"];
+    
+    if ($url_long == null)
+        return $shortURL;
+
+    if (substr($url_long,0,4) !== "http")
+    {
+        preg_match("/^(http:\/\/)?([^\/]+)/i", $shortURL, $matches);
+        $host = $matches[2];
+        $url_long="http://".$host."/".$url_long;
+    }
+        
+    return $url_long;
 }
 
 function func_execute_active_handler() {
@@ -62,9 +91,7 @@ function get_categories()
     $result = array();
     $i = 0;
     while($row = mysql_fetch_array($list))
-    {
         $result[$i++] = $row;
-    }
     return $result;
 }
 
@@ -76,9 +103,7 @@ function get_counts()
     $result = array();
     $i = 0;
     while($row = mysql_fetch_array($list))
-    {
         $result[$row['type']] = $row['count'];
-    }
     return $result;
 }
 ?>
