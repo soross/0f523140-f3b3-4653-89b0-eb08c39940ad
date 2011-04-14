@@ -112,7 +112,7 @@ $(function () {
             url: 'resume/add',
             data: {
                 name: $("#u-name").val(),
-                sex: $("input[name='sex']:checked").val(),
+                sex: $("input[name='sex']:checked=\"checked\"").val(),
                 date_birth: $("#birthday").val(),
                 live_in_now: $("#n-positon").val(),
                 live_in: $("#o-positon").val(),
