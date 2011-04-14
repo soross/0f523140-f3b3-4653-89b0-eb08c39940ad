@@ -54,7 +54,7 @@ function get_current_user_role()
 function user_is_admin()
 {
     $role = get_current_user_role();
-    if(gettype($role)==integer && $role===0)
+    if($role===99)
         return true;
     return false;
 }
@@ -70,6 +70,7 @@ function user_ensure_admin()
     user_ensure_authenticated();
     if(!user_is_admin())
         header("Location: ".BASE_URL."?errormsg=".urlencode("不要做坏事哟^o^"));
+    die("Access denied");
 }
 
 function sina_get_credentials()
