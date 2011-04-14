@@ -20,6 +20,9 @@ func_register(array(
   '' => array(
     'callback' => 'home_page',
   ),
+  'home' => array(
+    'callback' => 'home_page',
+  ),
   'manager' => array(
     'callback' => 'manager_page',
     'security' => 'true',
