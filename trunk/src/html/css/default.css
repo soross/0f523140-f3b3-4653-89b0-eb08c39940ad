@@ -236,3 +236,80 @@ div#right a.search-result-concern-have
 {
     background-image: url('../images/search-result-concern-have.jpg');
 }
+
+div#right div.microblog-item
+{
+    width: 582px;
+    margin-top: 5px;
+    border-bottom: 1px #a3a3a3 dashed;
+    padding: 5px;
+    overflow: hidden;
+}
+div#right div.microblog-item-pic
+{
+    height: 50px;
+    width: 50px;
+    padding: 2px;
+    border: 1px #ececec solid;
+    background-color: #ffffff;
+}
+div#right div.microblog-item-content
+{
+    width: 530px;
+}
+div#right div.microblog-item-blog
+{
+    width: 520px;
+    line-height: 20px;
+    padding: 0 5px;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+div#right a.microblog-item-blog-name
+{
+    color: #6f93ab;
+}
+div#right a.item-blog-link
+{
+    color: #0084b4;
+}
+div#right div.microblog-item-other
+{
+    width: 530px;
+    height: 24px;
+    line-height: 24px;
+}
+div#right div.microblog-item-other1
+{
+    width: 530px;
+    height: 24px;
+    line-height: 24px;
+    border-top: 1px #dedede dashed;
+}
+div#right a.microblog-item-time
+{
+    color: #a3a3a3;
+    padding: 0 5px;
+}
+div#right a.microblog-item-position
+{
+    color: #7ba5d7;
+    margin: 0 10px;
+}
+div#right a.microblog-item-relate
+{
+    margin: 0 5px;
+}
+div#right a.microblog-item-control
+{
+    color: #ea7f37;
+    letter-spacing: 2px;
+    padding: 0 10px;
+    line-height: 14px;
+    height: 14px;
+    margin-top: 5px;
+}
+div#right a.microblog-item-apply
+{
+    border-right: 1px #ea7f37 solid;
+}
