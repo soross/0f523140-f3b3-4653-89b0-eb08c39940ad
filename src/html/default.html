@@ -82,7 +82,9 @@
                 type: 'GET',
                 url: 'follow/show',
                 success: function (msg) {
-                    $("#concern").html(msg);
+                    setTimeout(function () {
+                        $("#concern").html(msg);
+                    }, 3000);
                 }
             });
         }
