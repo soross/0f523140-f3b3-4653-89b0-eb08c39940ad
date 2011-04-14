@@ -16,9 +16,7 @@ function func_register($items) {
 function long_url($shortURL)
 {
     if (!defined('LONGURL_KEY'))
-    {
         return $shortURL;
-    }
     $url = "http://www.longurlplease.com/api/v1.1?q=" . $shortURL;
     $curl_handle=curl_init();
     curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
@@ -43,17 +41,22 @@ function long_url($shortURL)
     return $url_long;
 }
 
+function format_str($str)
+{
+    $str = str_replace("'", "", $str);
+    $str = str_replace("\"", "", $str);
+    $str = str_replace("<", "", $str);
+    $str = str_replace(">", "", $str);
+    $str = str_replace("#", "", $str);
+    $str = str_replace("?", "", $str);
+    $str = str_replace("=", "", $str);
+    return $str;
+}
+
 function func_execute_active_handler() {
     if(isset($_GET['q']))
     {
-        $q = $_GET['q'];
-        $q = str_replace("'", "", $q);
-        $q = str_replace("\"", "", $q);
-        $q = str_replace("<", "", $q);
-        $q = str_replace(">", "", $q);
-        $q = str_replace("#", "", $q);
-        $q = str_replace("?", "", $q);
-        $q = str_replace("=", "", $q);
+        $q = format_str($_GET['q']);
         $query = (array) explode('/', $q);
         $GLOBALS['page'] = $query[0];
     }
