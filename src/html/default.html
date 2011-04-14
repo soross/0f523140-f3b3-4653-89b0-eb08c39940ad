@@ -82,7 +82,6 @@
             $(item).removeClass("concern-item-over");
         }
         function ConcernDeleteClick(id, item) {
-            $("div#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#concern").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#concern").height() - 32) / 2) + 'px;" />');
             $.ajax({
                 type: 'GET',
                 url: 'follow/delete/' + id,
