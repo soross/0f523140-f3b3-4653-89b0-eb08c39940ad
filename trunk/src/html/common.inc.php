@@ -55,7 +55,7 @@ function get_post($item)
     if(isset($_POST[$item]))
         $item = format_str($_POST[$item]);
     else
-        $item = "";
+        $item = false;
     return $item;
 }
 
