@@ -106,6 +106,7 @@ function user_info()
 
 function user_set_role()
 {
+    user_ensure_authenticated();
     $id = get_current_user_id();
     $args = func_get_args();
     $key = $args[2];
@@ -126,6 +127,7 @@ function user_set_role()
 
 function user_role_show()
 {
+    user_ensure_authenticated();
     echo $GLOBALS['user']['role'];
 }
 
