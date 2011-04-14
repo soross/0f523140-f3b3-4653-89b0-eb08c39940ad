@@ -2,7 +2,7 @@
 include_once('common.inc.php');
 func_register(array(
     'login' => array(
-        'callback' => 'login_page',
+        'callback' => 'user_login',
     ),
     'relogin' => array(
         'callback' => 'user_relogin',
@@ -15,10 +15,6 @@ func_register(array(
     ),
     'logout' => array(
         'callback' => 'user_logout',
-        'security' => 'true',
-    ),
-    'role' => array(
-        'callback' => 'role',
         'security' => 'true',
     ),
 ));
@@ -226,17 +222,6 @@ function db_get_sinakey()
             );
 }
 
-function role($query)
-{
-    $key = (string) $query[1];
-    if(!$key)
-        $key = "show";
-    $function = 'role_'.$key;
-    if (!function_exists($function))
-        die("Invalid Argument!");
-    return call_user_func_array($function, $query);
-}
-
 function get_nick_by_id($id)
 {
     connect_db();
@@ -244,25 +229,5 @@ function get_nick_by_id($id)
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     return $row[0];
-}
-
-function role_set()
-{
-    $id = get_current_user_id();
-    $args = func_get_args();
-    $key = $args[2];
-    if($key == "" or ($key != "1" and $key != "2"))
-        die("Invalid argument!");
-    connect_db();
-    $view = "SELECT role_id FROM userinfo WHERE user_id='".$id."'";
-    $list = mysql_query($view);
-    $row = mysql_fetch_array($list);
-    $role = $row['role_id'];
-    if($role != -1)
-        die('Already set role!');
-    $view = "UPDATE userinfo SET role_id=".$key." WHERE user_id='".$id."'";
-    $list = mysql_query($view) or die("Update error!");
-    $GLOBALS['user']['role'] = $key;
-    save_cookie();
 }
 ?>
