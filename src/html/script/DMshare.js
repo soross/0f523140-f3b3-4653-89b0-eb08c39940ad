@@ -1,5 +1,6 @@
 ﻿var MR = false;
 var ML = false;
+var position = 0;
 
 $(function () {
     SetCompany();
