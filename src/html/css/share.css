@@ -193,6 +193,26 @@ div#company a.company-control:hover
 {
     text-decoration: none;
 }
+div#footer
+{
+    margin-top: 30px;
+    letter-spacing: 1px;
+}
+div#footer a
+{
+    color: #5c738f;
+}
+div#footerlinks
+{
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+div#copyright
+{
+    line-height: 20px;
+    text-align: center;
+}
 
 .left
 {
