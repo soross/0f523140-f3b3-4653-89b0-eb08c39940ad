@@ -168,7 +168,7 @@
                 data: { search: encodeURI(content), page: pagenum },
                 success: function (msg) {
                     $("#blogs").html(msg);
-                    page = pagenum;
+                    page = pagenum / 5;
                     $.ajax({
                         type: 'GET',
                         url: 'search/count/' + cate,
