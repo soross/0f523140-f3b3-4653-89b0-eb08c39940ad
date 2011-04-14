@@ -89,7 +89,7 @@ function show_credentials()
     theme('page', 'info', $r);
 }
 
-function login_page()
+function user_login()
 {
     #Sina only:
     header("Location: ".BASE_URL."sina_login");
