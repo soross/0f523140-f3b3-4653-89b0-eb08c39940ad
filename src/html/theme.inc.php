@@ -264,6 +264,6 @@ function theme_rss($result)
     $content .= '
   </channel>
 </rss>';
-echo $content;
+    echo $content;
 }
 ?>
