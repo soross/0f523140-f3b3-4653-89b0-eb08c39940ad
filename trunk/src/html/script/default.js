@@ -358,4 +358,14 @@ function SetSorts() {
         }
     });
 }
+function ShowSorts() {
+    $("div#sorts").position({
+        of: $("a#sort"),
+        my: "left top",
+        at: "left top",
+        offset: "-5 -10",
+        collision: "none none"
+    });
+    $("div#sorts").show();
+}
 //End of Other Event
