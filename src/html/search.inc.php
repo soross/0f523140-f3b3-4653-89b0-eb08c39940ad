@@ -118,7 +118,7 @@ function search_show()
     {
         include_once('login.inc.php');
         if(user_is_authenticated())
-        search_history_add("", "", $key);
+        search_history_add("", "", $cate);
     }
     $data = get_search_result($key, 10, $cate, $time, $page);
     $content = theme('result', $data, $key, $admin);
