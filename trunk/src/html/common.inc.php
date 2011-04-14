@@ -52,7 +52,10 @@ function format_str($str)
 
 function get_post($item)
 {
-    $item = format_str($_POST[$item]);
+    if(isset($_POST[$item]))
+        $item = format_str($_POST[$item]);
+    else
+        $item = "";
     return $item;
 }
 
