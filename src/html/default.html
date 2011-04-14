@@ -61,13 +61,7 @@
                     }
                 }
             });
-            $.ajax({
-                type: 'GET',
-                url: 'follow/show',
-                success: function (msg) {
-                    $("#concern").html(msg);
-                }
-            });
+            RefreshConcern();
         }
         //End of After User Login
 
@@ -81,6 +75,16 @@
         function ConcernDeleteClick(e) {
         }
         function ConcernContentClick(e) {
+        }
+        function RefreshConcern() {
+            $("div#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#concern").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#concern").height() - 32) / 2) + 'px;" />');
+            $.ajax({
+                type: 'GET',
+                url: 'follow/show',
+                success: function (msg) {
+                    $("#concern").html(msg);
+                }
+            });
         }
         //End of Concern Event
     </script>
