@@ -118,7 +118,7 @@ function user_set_role()
     $row = mysql_fetch_array($list);
     $role = $row['role_id'];
     if($role != -1)
-        die('Already set role!');
+        die('Role already set!');
     $view = "UPDATE userinfo SET role_id=".$key." WHERE user_id='".$id."'";
     $list = mysql_query($view) or die("Update error!");
     $GLOBALS['user']['role'] = $key;
