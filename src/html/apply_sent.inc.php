@@ -8,11 +8,11 @@ func_register(array(
     ),
 ));
 
-function get_sent_applies($num, $page)
+function get_sent_applies($num, $page, $count = false)
 {
     include_once('login.inc.php');
     $id = get_current_user_id();
-    if($page == "count")
+    if($count)
     {
         $select = "COUNT(*)";
         $limit = "";
@@ -76,7 +76,7 @@ function apply_sent_add()
 function apply_sent_count()
 {
     include_once('login.inc.php');
-    $num = get_applies(0, "count");
+    $num = get_sent_applies(0, "", true);
     echo $num[0][0];
 }
 
