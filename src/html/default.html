@@ -41,6 +41,7 @@
         $(function () {
             $("#history-pic").animate({ opacity: 0.6 }, 0);
             SetHot();
+            SearchContent(true, "all", "0", "0");
         });
         //End of Init
 
@@ -133,7 +134,7 @@
         }
         //End of History Event
 
-        //Other Event - default.js
+        //Hot Event - default.js
         function SetHot() {
             $.ajax({
                 type: 'GET',
@@ -143,9 +144,38 @@
                 }
             });
         }
-        function HotClick(content) { 
+        function HotClick(content) {
         }
-        //End of Other Event
+        //End of Hot Event
+
+        //Search Event - default.js
+        var concernFlag = true;
+
+        function SearchConcernMouseOver(item)
+        { }
+        function SearchConcernMouseOut(item)
+        { }
+        function SearchConcernMouseDown(item)
+        { }
+        function SearchConcernClick()
+        { }
+        function SearchContent(noresult, content, cate, page, time, admin) {
+            if (time == null && admin == null) {
+                $.ajax({
+                    type: 'GET',
+                    url: 'search/' + cate,
+                    data: { search: content, page: page },
+                    success: function (msg) {
+                        $("#blogs").html(msg);
+                    }
+                });
+            }
+            else if (admin == null) {
+            }
+            else {
+            }
+        }
+        //End of Search Event
     </script>
 </head>
 <body>
@@ -203,6 +233,34 @@
             <div id="history" class="logined">
             </div>
             <div id="hot">
+            </div>
+        </div>
+        <div id="right" class="left">
+            <div id="radio">
+            </div>
+            <div id="microblogs">
+                <div id="search-result-outer">
+                    <div id="search-result">
+                        <div class="left">
+                        </div>
+                        <a id="search-result-rss" class="right"></a><a id="search-result-concern" class="right search-result-concern"
+                            onmouseover="SearchConcernMouseOver(this)" onmouseout="SearchConcernMouseOut(this)"
+                            onmousedown="SearchConcernMouseDown(this)" onclick="SearchConcernClick()"></a>
+                    </div>
+                </div>
+                <div id="fresh-outer">
+                    <div id="fresh">
+                    </div>
+                </div>
+                <div id="fresh-blogs" style="display: none; border-bottom: 1px #dedede solid">
+                </div>
+                <div id="blogs">
+                </div>
+                <div id="flower" style="text-align: center; display: none;">
+                    <img src="images/loading.gif" alt="" />正在加载中...
+                </div>
+                <div id="pages">
+                </div>
             </div>
         </div>
     </div>
