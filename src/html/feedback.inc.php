@@ -30,16 +30,14 @@ function feedback_post($query)
     echo "0";
 }
 
-function get_feedbacks($num, $page)
+function get_feedbacks($num, $page, $count = false)
 {
-    if(!$page)
-        $page = "0";
-    if($page == "count")
-    {
+    if($count)
         $limit = "";
-    }
     else
     {
+        if(!$page)
+            $page = "0";
         $page = intval($page) * $num;
         $limit = " LIMIT $page , $num";
     }
@@ -61,7 +59,7 @@ function feedback_count()
     $args = func_get_args();
     $key = $args[2];
     $content = '';
-    $results = get_feedbacks(10, "count");
+    $results = get_feedbacks(10, "", true);
     echo $results;
 }
 
