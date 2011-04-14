@@ -36,7 +36,7 @@ function avatar_show()
     $id = $args[2];
     if($id == "current")
         $id = get_current_user_id();
-    $size = format_str($_POST['size']);
+    $size = get_post('size');
     echo get_avatar($id, $size);
 }
 

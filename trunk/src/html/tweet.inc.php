@@ -10,7 +10,7 @@ function tweet_post()
 {
     $args = func_get_args();
     $cate = $args[2];
-    $content = format_str($_POST['text']);
+    $content = get_post('text');
     if(!$cate or !$content)
         die("Invalid argument!");
     include_once('sinaoauth.inc.php');

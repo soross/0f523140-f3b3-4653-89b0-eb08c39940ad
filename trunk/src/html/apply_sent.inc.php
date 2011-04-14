@@ -49,7 +49,7 @@ function apply_sent_add()
         die('Dulplicate Error');
     $view = "INSERT INTO applications(resume_id, tweet_id, user_id, apply_time) VALUES ('$id', '$key', '$id', '".date('Y-m-d H:i:s')."')";
     $list = mysql_query($view) or die("Insert error!");
-    $content = format_str($_POST['text']);
+    $content = get_post('text');
     $view = "SELECT tweet_site_id FROM tweets WHERE tweet_id='$key'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
@@ -82,8 +82,8 @@ function apply_sent_show()
 {
     include_once("theme.inc.php");
     $args = func_get_args();
-    if($_POST['page'])
-        $page = intval($_POST['page']);
+    if(get_post('page'))
+        $page = intval(get_post('page'));
     else
         $page = "";
     $content = '';
