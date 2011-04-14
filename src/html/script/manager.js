@@ -146,8 +146,8 @@ $(function () {
         // });
 		
 		
-		$("#name").val($("#u-name").val());
-		$("#sex").val($("input[name='sex']:checked").val());
+		$("#h-name").val($("#u-name").val());
+		$("#h-sex").val($("input[name='sex']:checked").val());
 		$("#date_birth").val($("#birthday").val());
 		$("#live_in_now").val($("#n-positon").val());
 		$("#live_in").val($("#o-positon").val());
