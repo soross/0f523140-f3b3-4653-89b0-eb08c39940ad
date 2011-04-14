@@ -158,7 +158,7 @@ div#left a.hot-content-item
 
 div#left a:hover
 {
-    text-decoration:none;
+    text-decoration: none;
 }
 
 div#right
@@ -190,6 +190,7 @@ div#right div#microblogs
     border-top-right-radius: 3px 3px;
     border-bottom-left-radius: 3px 3px;
     border-bottom-right-radius: 3px 3px;
+    overflow: hidden;
 }
 div#right div#search-result-outer
 {
