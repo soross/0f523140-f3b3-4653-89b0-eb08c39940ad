@@ -101,6 +101,33 @@ div#left a.concern-item-content-number
 {
     margin-right: 5px;
 }
+
+div#left a#history-pic
+{
+    background-image: url('../images/history-clear.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+div#left div.history-item
+{
+    cursor: pointer;
+    height: 24px;
+    line-height: 24px;
+    width: 270px;
+    margin-left: 25px;
+    color: #5a7b92;
+    margin-top: 5px;
+    border-top-left-radius: 3px 3px;
+    border-top-right-radius: 3px 3px;
+    border-bottom-left-radius: 3px 3px;
+    border-bottom-right-radius: 3px 3px;
+    padding-left: 5px;
+}
+div#left div.history-item-over
+{
+    background-color: #e7f1f5;
+}
+
 div#left a:hover
 {
     text-decoration:none;

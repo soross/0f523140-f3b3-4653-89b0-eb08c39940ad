@@ -37,6 +37,12 @@
         }
         //End of User Login
 
+        //Init - default.js
+        $(function () {
+            $("#history-pic").animate({ opacity: 0.6 }, 0);
+        });
+        //End of Init
+
         //After User Login - default.js
         function AfterLogin() {
             $.ajax({
@@ -62,22 +68,31 @@
                 }
             });
             RefreshConcern();
+            RefreshHistory();
         }
         //End of After User Login
 
         //Concern Event - default.js
-        function ConcernMouseOver(e) {
-            $(e).addClass("concern-item-over");
+        function ConcernMouseOver(item) {
+            $(item).addClass("concern-item-over");
         }
-        function ConcernMouseOut(e) {
-            $(e).removeClass("concern-item-over");
+        function ConcernMouseOut(item) {
+            $(item).removeClass("concern-item-over");
         }
-        function ConcernDeleteClick(e) {
+        function ConcernDeleteClick(id, item) {
+            $("div#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#concern").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#concern").height() - 32) / 2) + 'px;" />');
+            $.ajax({
+                type: 'GET',
+                url: 'follow/delete' + id,
+                success: function (msg) {
+                    $(item).hide();
+                }
+            });
         }
-        function ConcernContentClick(e) {
+        function ConcernContentClick(cate, content) {
         }
         function RefreshConcern() {
-            $("div#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#concern").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#concern").height() - 32) / 2) + 'px;" />');
+            $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#concern").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#concern").height() - 32) / 2) + 'px;" />');
             $.ajax({
                 type: 'GET',
                 url: 'follow/show',
@@ -87,6 +102,33 @@
             });
         }
         //End of Concern Event
+
+        //History Event - default.js
+        function HistoryMouseOver(item) {
+        }
+        function HistoryMouseOut(item) {
+        }
+        function HistoryPicMouseOver(item) {
+            $(item).animate({ opacity: 1 }, 0);
+        }
+        function HistoryPicMouseOut(item) {
+            $(item).animate({ opacity: 0.6 }, 0);
+        }
+        function HistoryPicClick() {
+        }
+        function HistoryClick(cate, content) {
+        }
+        function RefreshHistory() {
+            $("#history").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#history").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#history").height() - 32) / 2) + 'px;" />');
+            $.ajax({
+                type: 'GET',
+                url: 'history/show',
+                success: function (msg) {
+                    $("#history").html(msg);
+                }
+            });
+        }
+        //End of History Event
     </script>
 </head>
 <body>
@@ -137,8 +179,9 @@
             <div id="concern" class="logined">
             </div>
             <div class="left-title logined">
-                <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic">
-                </a>
+                <span class="left left-title-text">搜索历史</span> <a class="right left-title-pic" id="history-pic"
+                    onmouseover="HistoryPicMouseOver(this)" onmouseout="HistoryPicMouseOut(this)"
+                    onclick="HistoryPicClick()"></a>
             </div>
             <div id="history" class="logined">
             </div>
