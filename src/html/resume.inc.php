@@ -6,7 +6,7 @@ func_register(array(
     ),
 ));
 
-function resume_add()
+function resume_update()
 {
     include_once('login.php');
     include_once("uuid.inc.php");

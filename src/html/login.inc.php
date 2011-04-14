@@ -17,10 +17,6 @@ func_register(array(
         'callback' => 'user_logout',
         'security' => 'true',
     ),
-    'info' => array(
-        'callback' => 'show_credentials',
-        'security' => 'true',
-    ),
     'role' => array(
         'callback' => 'role',
         'security' => 'true',
