@@ -326,6 +326,9 @@
         }
         function JobUnApply(item, id) {
         }
+        function HotCompany(item) {
+            SearchContent(false, $(item).html(), 0, 0);
+        }
         //End of Other Event
     </script>
 </head>
@@ -355,13 +358,17 @@
         <span class="left company-name">热门企业：</span>
         <div class="left" id="companies">
             <div id="companies-inner">
-                <a class="company-name first">新浪</a><a class="company-name">腾讯</a><a class="company-name">百度</a><a
-                    class="company-name">淘宝</a><a class="company-name">搜狐</a><a class="company-name">创新工场</a><a
-                        class="company-name">凡客</a><a class="company-name">海辉软件</a><a class="company-name">奇艺</a><a
-                            class="company-name">联想</a><a class="company-name">华为</a><a class="company-name">街旁</a><a
-                                class="company-name">中兴</a><a class="company-name">Tom</a><a class="company-name">网龙</a><a
-                                    class="company-name">网易</a><a class="company-name">戴尔</a><a class="company-name">人民网</a><a
-                                        class="company-name">米聊</a><a class="company-name">金山</a></div>
+                <a class="company-name first" onclick="HotCompany(this)">新浪</a><a class="company-name"
+                    onclick="HotCompany(this)">腾讯</a><a class="company-name" onclick="HotCompany(this)">百度</a><a
+                        class="company-name" onclick="HotCompany(this)">淘宝</a><a class="company-name" onclick="HotCompany(this)">搜狐</a><a
+                            class="company-name" onclick="HotCompany(this)">创新工场</a><a class="company-name" onclick="HotCompany(this)">凡客</a><a
+                                class="company-name" onclick="HotCompany(this)">海辉软件</a><a class="company-name" onclick="HotCompany(this)">奇艺</a><a
+                                    class="company-name" onclick="HotCompany(this)">联想</a><a class="company-name" onclick="HotCompany(this)">华为</a><a
+                                        class="company-name" onclick="HotCompany(this)">街旁</a><a class="company-name" onclick="HotCompany(this)">中兴</a><a
+                                            class="company-name" onclick="HotCompany(this)">Tom</a><a class="company-name" onclick="HotCompany(this)">网龙</a><a
+                                                class="company-name" onclick="HotCompany(this)">网易</a><a class="company-name" onclick="HotCompany(this)">戴尔</a><a
+                                                    class="company-name" onclick="HotCompany(this)">人民网</a><a class="company-name" onclick="HotCompany(this)">米聊</a><a
+                                                        class="company-name" onclick="HotCompany(this)">金山</a></div>
         </div>
         <div class="left" id="company-control">
             <a class="left company-control" id="company-control-left">◀</a> <a class="left company-control"
