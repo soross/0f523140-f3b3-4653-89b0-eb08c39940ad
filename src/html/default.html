@@ -94,7 +94,7 @@
         function ConcernContentClick(cate, content) {
         }
         function RefreshConcern() {
-            $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#concern").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#concern").height() - 32) / 2) + 'px;" />');
+            $("#concern").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("#concern").height() - 32) / 2) + 'px;margin-bottom:' + (($("#concern").height() - 32) / 2) + 'px;" />');
             $.ajax({
                 type: 'GET',
                 url: 'follow/show',
@@ -123,7 +123,7 @@
         function HistoryClick(cate, content) {
         }
         function RefreshHistory() {
-            $("#history").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("div#history").height() - 32) / 2) + 'px;margin-bottom:' + (($("div#history").height() - 32) / 2) + 'px;" />');
+            $("#history").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("#history").height() - 32) / 2) + 'px;margin-bottom:' + (($("#history").height() - 32) / 2) + 'px;" />');
             $.ajax({
                 type: 'GET',
                 url: 'history/show',
@@ -161,6 +161,7 @@
         function SearchConcernClick()
         { }
         function SearchContent(noresult, content, cate, pagenum) {
+            $("#blogs").html('<img src="images/loading.gif" style="margin-left:134px;margin-top:' + (($("#blogs").height() - 32) / 2) + 'px;margin-bottom:' + (($("#blogs").height() - 32) / 2) + 'px;" />');
             $.ajax({
                 type: 'GET',
                 url: 'search/' + cate,
