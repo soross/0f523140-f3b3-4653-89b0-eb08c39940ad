@@ -10,6 +10,8 @@ define("SINA_SKEY", '47d9d806a1dc04cc758be6f7213465bc');
 
 define("ENCRYPTION_KEY", 'HustGNGisVeryGelivable');
 
+define("LONGURL_KEY", 'true');
+
 $base_url = 'http://'.$_SERVER['HTTP_HOST'];
 if ($directory = trim(dirname($_SERVER['SCRIPT_NAME']), '/\,')) {
   $base_url .= '/'.$directory;
