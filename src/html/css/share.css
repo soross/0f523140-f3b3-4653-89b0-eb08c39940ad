@@ -214,6 +214,61 @@ div#copyright
     text-align: center;
 }
 
+div#sorts
+{
+    height: 289px;
+    width: 294px;
+    display: none;
+}
+div#sorts-tag
+{
+    width: 77px;
+    height: 35px;
+    background-color: #f8fcff;
+    border-top-left-radius: 5px 5px;
+    border-top-right-radius: 5px 5px;
+    line-height: 35px;
+    text-align: center;
+    color: #527299;
+    padding-left: 5px;
+    border: 1px #9c9c9c solid;
+    border-bottom: none;
+}
+a#sorts-name
+{
+    width: 60px;
+    text-align: center;
+}
+div#sorts-content
+{
+    width: 294px;
+    background-color: #f8fcff;
+    border-top-right-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    padding-top: 10px;
+    border: 1px #9c9c9c solid;
+    border-top: none;
+}
+div.sorts-item
+{
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    padding-left: 10px;
+    letter-spacing: 2px;
+    color: #527299;
+}
+div.sorts-item-alternative
+{
+    background-color: #f0f5fe;
+}
+div.sorts-item-over
+{
+    color: #ef7a0d;
+    text-decoration: underline;
+}
+
 .left
 {
     float: left;
