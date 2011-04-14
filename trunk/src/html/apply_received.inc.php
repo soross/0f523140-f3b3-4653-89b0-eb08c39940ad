@@ -8,19 +8,19 @@ func_register(array(
     ),
 ));
 
-function get_received_tweets($num, $page)
+function get_received_tweets($num, $page, $count)
 {
     include_once('login.inc.php');
     $id = get_current_user_id();
-    if(!$page)
-        $page = "0";
-    if($page == "count")
+    if($count)
     {
         $limit = "";
         $select = "COUNT(DISTINCT tweets.tweet_id)";
     }
     else
     {
+        if(!$page)
+            $page = "0";
         $select = "*";
         $page = intval($page) * $num;
         $limit = " LIMIT $page , $num";
@@ -35,19 +35,19 @@ function get_received_tweets($num, $page)
     return $result;
 }
 
-function get_received_applies($tweet_id, $num, $page)
+function get_received_applies($tweet_id, $num, $page, $count)
 {
     include_once('login.inc.php');
     $id = get_current_user_id();
-    if(!$page)
-        $page = "0";
-    if($page == "count")
+    if($count)
     {
         $limit = "";
         $select = "COUNT(*)";
     }
     else
     {
+        if(!$page)
+            $page = "0";
         $select = "*";
         $page = intval($page) * $num;
         $limit = " LIMIT $page , $num";
@@ -78,12 +78,8 @@ function received_apply_count($tweet_id)
 {
     include_once("theme.inc.php");
     $content = '';
-    $applies = get_received_applies($tweet_id, 10, "count");
-    foreach($applies as $r)
-        $content .= '<div id="'.$r['resume_id'].'">
-<span class="left">申请自：</span><a class="left item-applys-name">'.get_nick_by_id($r['user_id']).'</a><span class="left item-applys-time">于'.time_tran($r['apply_time']).'</span><a
-                class="right item-applys-read">查看简历</a></div>';
-    echo $content;
+    $applies = get_received_applies($tweet_id, 10, "", true);
+    echo $applies[0][0];
 }
 
 function deal_received_apply($query)
