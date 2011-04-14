@@ -72,7 +72,7 @@ function following_exist()
     $id = get_current_user_id();
     $args = func_get_args();
     $cat = $args[2];
-    $key = format_str($_POST['search']);
+    $key = get_post('search');
     if(!$key)
         die('Invalid Argument!');
     connect_db();
@@ -91,7 +91,7 @@ function following_add()
     $id = get_current_user_id();
     $args = func_get_args();
     $cat = $args[2];
-    $key = format_str($_POST['search']);
+    $key = get_post('search');
     if(!$key)
         die('Invalid Argument!');
     connect_db();

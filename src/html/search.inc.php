@@ -111,10 +111,10 @@ function search_show()
 {
     $args = func_get_args();
     $cate = $args[2];
-    $time = format_str((string) $_POST['time']);
-    $page = format_str((string) $_POST['page']);
-    $key = format_str((string) $_POST['search']);
-    $admin = format_str((string) $_POST['admin']);
+    $time = get_post('time');
+    $page = get_post('page');
+    $key = get_post('search');
+    $admin = get_post('admin');
     if($key and $key != "all")
     {
         include_once('login.inc.php');
@@ -130,7 +130,7 @@ function search_count()
 {
     $args = func_get_args();
     $cate = $args[2];
-    $key = format_str((string) $_POST['search']);
+    $key = get_post('search');
     $data = get_search_result($key, 10, $cate, "count", "");
     theme('page', 'count', $data[0][0]);
 }
@@ -234,7 +234,7 @@ function search_history_add()
     $id = get_current_user_id();
     $args = func_get_args();
     $cat = $args[2];
-    $key = format_str($_POST['search']);
+    $key = get_post('search');
     if(!$key)
         die('Invalid Argument!');
     connect_db();

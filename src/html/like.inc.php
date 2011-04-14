@@ -38,8 +38,8 @@ function get_likes($num, $page)
 function like_show()
 {
     $args = func_get_args();
-    if($_POST['page'])
-        $page = intval($_POST['page']);
+    if(get_post('page'))
+        $page = intval(get_post('page'));
     else
         $page = "";
     $content = '';

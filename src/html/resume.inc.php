@@ -14,14 +14,14 @@ function resume_update()
     
     $user_id = get_current_user_id();
     $resume_id = $user_id;
-    $name = format_str($_POST['name']);
-    $sex = format_str($_POST['sex']);
-    $date_birth = format_str($_POST['date_birth']);
-    $live_in_now = format_str($_POST['live_in_now']);
-    $live_in = format_str($_POST['live_in']);
-    $cellphone = format_str($_POST['cellphone']);
-    $email = format_str($_POST['email']);
-    $content = format_str($_POST['content']);
+    $name = get_post('name');
+    $sex = get_post('sex');
+    $date_birth = get_post('date_birth');
+    $live_in_now = get_post('live_in_now');
+    $live_in = get_post('live_in');
+    $cellphone = get_post('cellphone');
+    $email = get_post('email');
+    $content = get_post('content');
     
     connect_db();
     $view = "SELECT * FROM resumes WHERE resume_id = '$resume_id'";
@@ -103,14 +103,14 @@ function theme_resumeapi($data)
 function resume_preview()
 {
     $data = array(
-        'name' => format_str($_POST['name']),
-        'sex' => format_str($_POST['sex']),
-        'date_birth' => format_str($_POST['date_birth']),
-        'live_in_now' => format_str($_POST['live_in_now']),
-        'live_in' => format_str($_POST['live_in']),
-        'cellphone' => format_str($_POST['cellphone']),
-        'email' => format_str($_POST['email']),
-        'content' => format_str($_POST['content']),
+        'name' => get_post('name'),
+        'sex' => get_post('sex'),
+        'date_birth' => get_post('date_birth'),
+        'live_in_now' => get_post('live_in_now'),
+        'live_in' => get_post('live_in'),
+        'cellphone' => get_post('cellphone'),
+        'email' => get_post('email'),
+        'content' => get_post('content'),
     );
     theme('resume', '个人简历预览', $data);
 }
