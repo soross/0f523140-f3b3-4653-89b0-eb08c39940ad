@@ -4,7 +4,7 @@ var position = 0;
 
 $(function () {
     SetCompany();
-    SetSorts();
+//    SetSorts();
 });
 
 function CompanyMR() {
