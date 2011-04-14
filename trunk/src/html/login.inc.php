@@ -153,9 +153,7 @@ function save_cookie($stay_logged_in = 1)
     $cookie = _user_encrypt_cookie();
     $duration = 0;
     if ($stay_logged_in)
-    {
         $duration = time() + (3600 * 24 * 365);
-    }
     setcookie('USER_AUTH', $cookie, $duration, '/');
 }
 

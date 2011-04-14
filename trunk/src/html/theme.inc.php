@@ -20,50 +20,16 @@ function theme()
         if (function_exists($custom_function))
             $function = $custom_function;
     }
-    else
-    {
-        if (!function_exists($function))
-            return "<p>Error: theme function <b>$function</b> not found.</p>";
-    }
+    elseif (!function_exists($function))
+        return "<p>Error: theme function <b>$function</b> not found.</p>";
     return call_user_func_array($function, $args);
 }
 
 function theme_template($template)
 {
     $page = file_get_contents($template);
+    #FIXME: Should use flexible theme functions here
     echo $page;
-}
-
-function long_url($shortURL)
-{
-    if (!defined('LONGURL_KEY'))
-    {
-        return $shortURL;
-    }
-    $url = "http://www.longurlplease.com/api/v1.1?q=" . $shortURL;
-    $curl_handle=curl_init();
-    curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
-    curl_setopt($curl_handle,CURLOPT_URL,$url);
-    $url_json = curl_exec($curl_handle);
-    curl_close($curl_handle);
-
-    $url_array = json_decode($url_json,true);
-    
-    $url_long = $url_array["$shortURL"];
-    
-    if ($url_long == null)
-    {
-        return $shortURL;
-    }
-
-    if (substr($url_long,0,4) !== "http")
-    {
-        preg_match("/^(http:\/\/)?([^\/]+)/i", $shortURL, $matches);
-        $host = $matches[2];
-        $url_long="http://".$host."/".$url_long;
-    }
-        
-    return $url_long;
 }
 
 function theme_external_link($url, $content = null)
