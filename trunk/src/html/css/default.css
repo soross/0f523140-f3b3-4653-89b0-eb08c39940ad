@@ -255,11 +255,11 @@ div#right div.microblog-item-pic
 }
 div#right div.microblog-item-content
 {
-    width: 530px;
+    width: 525px;
 }
 div#right div.microblog-item-blog
 {
-    width: 520px;
+    width: 515px;
     line-height: 20px;
     padding: 0 5px;
     font-size: 14px;
@@ -275,13 +275,13 @@ div#right a.item-blog-link
 }
 div#right div.microblog-item-other
 {
-    width: 530px;
+    width: 525px;
     height: 24px;
     line-height: 24px;
 }
 div#right div.microblog-item-other1
 {
-    width: 530px;
+    width: 525px;
     height: 24px;
     line-height: 24px;
     border-top: 1px #dedede dashed;
