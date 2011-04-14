@@ -136,9 +136,9 @@ function search_count()
 
 function search_rss()
 {
-    $key = (string) $_POST['search'];
     $args = func_get_args();
     $cate = $args[2];
+    $key = $args[3];
     if(!$key)
         die("Invalid argument!");
     $data = get_search_result($key, 10, $cate, "", "");
