@@ -112,6 +112,7 @@ function hot_editgroup()
         $content .= "<tr><td>".$row['name']."</td><td>".$row['tag_group']."</td></tr>";
     }
     $content .= "</form></table>";
+    header('Content-Type: application/xml; charset=utf-8');
     echo $content;
 }
     
@@ -128,6 +129,7 @@ function hot_editname()
         $content .= "<tr><td>".$row['tag_group_name']."</td><td>".$row['tag_group']."</td></tr>";
     }
     $content .= "</form></table>";
+    header('Content-Type: application/xml; charset=utf-8');
     echo $content;
 }
 
