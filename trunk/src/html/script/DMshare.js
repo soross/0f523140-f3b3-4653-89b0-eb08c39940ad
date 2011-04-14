@@ -60,7 +60,7 @@ function SetCompany() {
     length = $("a.company-name:last").position().left + $("a.company-name:last").outerWidth("ture");
 }
 
-function SetSorts() {
+function SetTheSorts() {
     $("div#sorts").position({
         of: $("a#sort"),
         my: "left top",
