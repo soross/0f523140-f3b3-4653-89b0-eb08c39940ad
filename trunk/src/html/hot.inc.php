@@ -64,7 +64,8 @@ function get_hot($num)
 
 function hot_tag()
 {
-    $key = (string) $_POST['show_type'];
+    $args = func_get_args();
+    $key = $args[2];
     if($key == "0" or $key == "")
     {
         $content = '<div id="hot">
