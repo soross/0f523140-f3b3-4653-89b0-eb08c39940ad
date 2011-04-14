@@ -277,6 +277,8 @@
                                     url: 'follow/exist/' + cateContent,
                                     data: { search: encodeURI(content) },
                                     success: function (e) {
+                                        alert(e);
+                                        alert(e[0]);
                                         if (e[0] == '0') {
                                             concernFlag = false;
                                             $("#search-result-concern").attr("class", "right search-result-concern");

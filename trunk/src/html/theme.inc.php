@@ -206,18 +206,18 @@ function theme_result($result, $keyword = '', $admin = false)
                         break;
                     }
                 if(!$fav)
-                    $content .= '<a class="right microblog-item-control like">收藏</a><a class="right microblog-item-control unlike"
-                                            style="display: none;">取消收藏</a> ';
+                    $content .= '<a class="right microblog-item-control like" onclick="JobLike(this)">收藏</a><a class="right microblog-item-control unlike"
+                                            style="display: none;" onclick="JobUnLike(this)">取消收藏</a> ';
                 else
-                    $content .= '<a class="right microblog-item-control like" style="display: none;">收藏</a><a class="right microblog-item-control unlike"
-                                            >取消收藏</a> ';
+                    $content .= '<a class="right microblog-item-control like" style="display: none;" onclick="JobLike(this)">收藏</a><a class="right microblog-item-control unlike"
+                                             onclick="JobUnLike(this)">取消收藏</a> ';
                 if($r['type'] != 1 and !$app)
-                    $content .= '<a class="right microblog-item-control microblog-item-apply apply">
-                                 申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" style="display: none;">
+                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" onclick="JobApply(this)">
+                                 申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" style="display: none;" onclick="JobUnApply(this)">
                                  取消申请</a>';
                 elseif($app)
-                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" style="display: none;">
-                                 申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply">
+                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" style="display: none;" onclick="JobApply(this)">
+                                 申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" onclick="JobUnApply(this)">
                                  取消申请</a>';
             }
             if($tags)
