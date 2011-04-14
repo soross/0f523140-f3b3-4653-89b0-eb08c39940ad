@@ -160,13 +160,13 @@ function time_tran($the_time){
 function theme_result($result, $keyword = '', $admin = false)
 {
     include_once("login.inc.php");
-    include_once("tag.inc.php");
+    include_once("hot.inc.php");
     if(user_is_authenticated())
     {
         include_once("favorite.inc.php");
-        $allfav = get_favorites(32767, "");
-        include_once("apply.inc.php");
-        $allapp = get_applies(32767, "");
+        $allfav = get_likes(32767, "");
+        include_once("apply_sent.inc.php");
+        $allapp = get_sent_applies(32767, "");
     }
     $content = "";
     foreach($result as $r)
