@@ -126,24 +126,36 @@ $(function () {
         });
     });
     $("a#profile-preview").click(function () {
-        $.ajax({
-            type: 'POST',
-            url: 'resume/preview',
-            data: {
-                name: $("#u-name").val(),
-                sex: $("input[name='sex']:checked").val(),
-                date_birth: $("#birthday").val(),
-                live_in_now: $("#n-positon").val(),
-                live_in: $("#o-positon").val(),
-                cellphone: $("#m-phone").val(),
-                email: $("#email").val(),
-                content: editor.document.getBody().getHtml()
-            },
-            success: function (msg) {
-                var obj = window.open("/resume");
-                obj.document.write(msg);
-            }
-        });
+        // $.ajax({
+            // type: 'POST',
+            // url: 'resume/preview',
+            // data: {
+                // name: $("#u-name").val(),
+                // sex: $("input[name='sex']:checked").val(),
+                // date_birth: $("#birthday").val(),
+                // live_in_now: $("#n-positon").val(),
+                // live_in: $("#o-positon").val(),
+                // cellphone: $("#m-phone").val(),
+                // email: $("#email").val(),
+                // content: editor.document.getBody().getHtml()
+            // },
+            // success: function (msg) {
+                // var obj = window.open("/resume");
+                // obj.document.write(msg);
+            // }
+        // });
+		
+		
+		$("#h-name").val($("#u-name").val());
+		$("#h-sex").val($("input[name='sex']:checked").val());
+		$("#h-birthday").val($("#birthday").val());
+		$("#h-npositon").val($("#n-positon").val());
+		$("#h-opositon").val($("#o-positon").val());
+		$("#h-mphone").val($("#m-phone").val());
+		$("#h-email").val($("#email").val());
+		$("#h-content").val(editor.document.getBody().getHtml());
+		
+		$("#ResumeForm").submit();
     });
 
     $("a.applys").click(function () {
