@@ -163,7 +163,7 @@ function theme_result($result, $keyword = '', $admin = false)
     include_once("hot.inc.php");
     if(user_is_authenticated())
     {
-        include_once("favorite.inc.php");
+        include_once("like.inc.php");
         $allfav = get_likes(32767, "");
         include_once("apply_sent.inc.php");
         $allapp = get_sent_applies(32767, "");
