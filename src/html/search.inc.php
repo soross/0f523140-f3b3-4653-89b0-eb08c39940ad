@@ -7,9 +7,6 @@ func_register(array(
         'callback' => 'deal_search_history',
         'security' => 'true',
     ),
-    'count' => array(
-        'callback' => 'count_show',
-    ),
 ));
 
 function theme_search($key, $content)
@@ -259,12 +256,5 @@ function deal_search_history($query)
     if (!function_exists($function))
         die("Invalid Argument!");
     return call_user_func_array($function, $query);
-}
-
-function count_show()
-{
-    $counts = get_counts();
-    $r = $counts['tweets_thisweek'].','.$counts['tweets_today'];
-    echo $r;
 }
 ?>
