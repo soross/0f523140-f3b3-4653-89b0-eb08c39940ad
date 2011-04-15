@@ -7,7 +7,7 @@ $(function () {
 
     SetSorts();
     InitBoxes();
-
+    
     $.ajax({
         type: 'GET',
         url: 'count/show',
@@ -48,7 +48,26 @@ $(function () {
     $(window).scroll(function () {
         DocumenScroll();
     });
-
+    
+    $("div#backTop").position({
+        of: $("div#microblogs"),
+        my: "left top",
+        at: "right top",
+        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+        collision: "none none"
+    });
+    
+    $("div#backTop").click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 1000);
+    });
+    $("div#backTop").animate({ opacity: 0.6 }, 0);
+    $("div#backTop").mouseover(function () {
+        $("div#backTop").stop().animate({ opacity: 1 }, 200);
+    });
+    $("div#backTop").mouseout(function () {
+        $("div#backTop").stop().animate({ opacity: 0.6 }, 200);
+    });
+    
 });
 //End of Init
 
@@ -549,7 +568,7 @@ var countpage = 100;
 
 function DocumenScroll() {
     if ($(window).scrollTop() != 0) {
-        $("div#backTop").fadeIn(200)
+        $("div#backTop").fadeIn(200);
     }
     else {
         $("div#backTop").fadeOut(200);
