@@ -124,9 +124,10 @@ function RefreshConcern() {
         url: 'follow/show',
         success: function (msg) {
         	if(msg == null || msg == ""){
-        		$("#concern").html(msg);
-        	}else{
         		$("#concern").html("尚未有关注项？试试搜索，有新发现哟！");
+        		$("#concern").css("color","#878787");
+        	}else{
+        		$("#concern").html(msg);
         	}
             
         }
