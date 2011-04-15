@@ -3,10 +3,10 @@ $(function () {
     $("#history-pic").animate({ opacity: 0.6 }, 0);
 
     SetHot();
-
     SearchContent(true, "all", 0, 0);
 
     SetSorts();
+    InitBoxes();
 
     $.ajax({
         type: 'GET',
@@ -304,6 +304,24 @@ function SearchContent(noresult, content, cate, pagenum) {
 //End of Search Event
 
 //Other Event
+function InitBoxes() {
+    $("#popBox_apply1").position({
+        of: $(window),
+        my: "center top",
+        at: "center top",
+        offset: "0 130",
+        collision: "none none"
+    });
+    $("#popBox_apply1").css("posotion", "fixed");
+    $("#popBox_apply0").position({
+        of: $(window),
+        my: "center top",
+        at: "center top",
+        offset: "0 130",
+        collision: "none none"
+    });
+    $("#popBox_apply0").css("posotion", "fixed");
+}
 function JobLike(item, id) {
     $.ajax({
         type: 'GET',
