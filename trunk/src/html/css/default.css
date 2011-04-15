@@ -237,6 +237,13 @@ div#right a.search-result-concern-have
 {
     background-image: url('../images/search-result-concern-have.jpg');
 }
+div#right a#search-result-rss
+{
+    height: 28px;
+    width: 28px;
+    background-image: url('../images/search-result-rss.jpg');
+    background-repeat: no-repeat;
+}
 
 div#right div.microblog-item
 {
