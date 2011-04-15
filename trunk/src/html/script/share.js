@@ -83,6 +83,15 @@ function CoverResize() {
 }
 
 function SetPublish() {
+
+    $("#popBox_publishok").position({
+        of: $("html"),
+        my: "center top",
+        at: "center top",
+        offset: "0 200",
+        collision: "none none"
+    });
+    $("#popBox_publishok").css("position", "fixed");
     $("div#jobs-publish").position({
         of: $("body"),
         my: "center top",
@@ -111,7 +120,7 @@ function SetPublish() {
                     alert(msg);
                 }
                 HideJobsPublish();
-                $("div#published-info").dialog("open");
+                $("#popBox_publishok").show();
             }
         });
     });
@@ -125,7 +134,7 @@ function SetPublish() {
                     alert(msg);
                 }
                 HideRecruitmentPublish();
-                $("div#published-info").dialog("open");
+                $("#popBox_publishok").show();
             }
         });
     });

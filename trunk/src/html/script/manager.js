@@ -3,14 +3,6 @@ var page;
 
 $(function () {
 
-    $("#popBox_publishok").position({
-        of: $("html"),
-        my: "center top",
-        at: "center top",
-        offset: "0 200",
-        collision: "none none"
-    });
-    $("#popBox_publishok").css("position", "fixed");
     $("#confirmBox_ok").position({
         of: $("html"),
         my: "center top",
