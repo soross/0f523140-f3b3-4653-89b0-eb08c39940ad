@@ -324,7 +324,7 @@ function JobUnLike(item, id) {
         }
     });
 }
-function JobApply(item, id) {
+function JobApply(item, id, name) {
     var userid;
     $.ajax({
         type: 'GET',
@@ -337,6 +337,7 @@ function JobApply(item, id) {
                 success: function (resume) {
                     if (resume.indexOf("<html") != -1) {
                         $("#popBox_apply1").show();
+                        $("#at-name").html("@" + name);
                     }
                     else {
                         $("#popBox_apply0").show();
