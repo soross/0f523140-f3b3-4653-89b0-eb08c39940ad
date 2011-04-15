@@ -5,7 +5,6 @@ var length = 0;
 
 $(function () {
     SetCompany();
-    SetSorts();
 });
 
 function CompanyMR() {
