@@ -23,7 +23,7 @@ function resume_update()
     $live_in = get_post('live_in');
     $cellphone = get_post('cellphone');
     $email = get_post('email');
-    $content = get_post('content');
+    $content = get_post('content', false);
     
     connect_db();
     $view = "SELECT * FROM resumes WHERE resume_id = '$resume_id'";
@@ -112,7 +112,7 @@ function resume_preview()
         'live_in' => get_post('live_in'),
         'cellphone' => get_post('cellphone'),
         'email' => get_post('email'),
-        'content' => get_post('content'),
+        'content' => get_post('content', false),
     );
     theme('resume', '个人简历预览', $data);
 }

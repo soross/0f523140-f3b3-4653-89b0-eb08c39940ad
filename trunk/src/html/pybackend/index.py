@@ -5,6 +5,7 @@ from bottle import route, run, debug, template, request, validate, error, respon
 from bottle import default_app
 from y_home import *
 from y_apply import *
+from y_admin import *
 
 #reload(sys)
 #sys.setdefaultencoding('utf-8')
