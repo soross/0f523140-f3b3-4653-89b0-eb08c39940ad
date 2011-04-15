@@ -62,6 +62,16 @@ $(function () {
     setTimeout(function () { GetNewerBlogs(); }, 6000);
     
     SetRolePicker();
+    
+    if ($.cookie("athere") == null) {
+        $.cookie("athere", "here", { path: '/' });
+        setTimeout(function () {
+            $("#radio").slideUp(200);
+        }, 30000);
+    }
+    else {
+        $("#radio").hide();
+    }
 });
 //End of Init
 
