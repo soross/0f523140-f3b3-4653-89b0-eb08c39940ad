@@ -744,9 +744,9 @@ function GetNewerBlogs() {
                     type: 'POST',
                     url: 'count/',
                     success: function (msg) {
-                        if (!issearch) {
-                            $("div#radio").html("本周新增职位" + msg.split(',')[0] + "个，今日新增职位" + msg.split(',')[1] + "个");
-                        }
+                        
+                        $("div#radio").html("本周新增职位" + msg.split(',')[0] + "个，今日新增职位" + msg.split(',')[1] + "个");
+                        
                     }
                 });
                 if (!isFreshed) {
