@@ -561,7 +561,7 @@ function DocumenScroll() {
         $.ajax({
             type: 'POST',
             url: 'search/' + cateContent,
-            data: { search: encodeURI(searchContent), page: page, time: '-' + $(".microblog-item:last").attr("id")},
+            data: { search: encodeURI(searchContent), page: page},//, time: '-' + $(".microblog-item:last").attr("id")
             //url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
             success: function (msg) {
                 if (msg == "" || msg.split('"microblog-item"').length < 11) {
