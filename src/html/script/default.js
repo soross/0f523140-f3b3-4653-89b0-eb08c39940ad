@@ -561,15 +561,18 @@ var scrollflag = false;
 var countpage = 100;
 
 function DocumenScroll() {
+	
+	$("div#backTop").position({
+        of: $("div#microblogs"),
+        my: "left top",
+        at: "right top",
+        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+        collision: "none none"
+    });
+	$("div#backTop").css("position", "fixed");
+	
     if ($(window).scrollTop() != 0) {
-    	$("div#backTop").position({
-            of: $("div#microblogs"),
-            my: "left top",
-            at: "right top",
-            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-            collision: "none none"
-        });
-    	$("div#backTop").css("position", "fixed");
+    	
         $("div#backTop").fadeIn(200);
     }
     else {
