@@ -139,7 +139,7 @@ function hot_editname()
     include_once('login.inc.php');
     user_ensure_admin();
     connect_db();
-    $view = "SELECT DISTINCT tag_group FROM tags WHERE tag_group != 0";
+    $view = "SELECT DISTINCT tag_group FROM tags WHERE tag_group != 0 ORDER BY tag_group";
     $list = mysql_query($view);
     $content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><form action="/hot/nameupdate" method="post"><table>';
