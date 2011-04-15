@@ -1,10 +1,11 @@
 ﻿var MR = false;
 var ML = false;
 var position = 0;
+var length = 0;
 
 $(function () {
     SetCompany();
-    //    SetSorts();
+    SetSorts();
 });
 
 function CompanyMR() {

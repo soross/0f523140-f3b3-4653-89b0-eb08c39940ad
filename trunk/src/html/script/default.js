@@ -404,22 +404,6 @@ function JobUnApply(item, id) {
 function HotCompany(item) {
     SearchContent(false, $(item).html(), 0, 0);
 }
-function SetSorts() {
-    $.ajax({
-        type: 'GET',
-        url: 'cate',
-        success: function (msg) {
-            $("#sorts-content").html(msg);
-        }
-    });
-    $("div#sorts").position({
-        of: $("a#sort"),
-        my: "left top",
-        at: "left top",
-        offset: "-5 -10",
-        collision: "none none"
-    });
-}
 function ShowSorts() {
     $("div#sorts").show();
 }
@@ -472,7 +456,7 @@ function SetRolePicker() {
             $(".jobs").show();
             $.ajax({
                 type: 'POST',
-                url: 'role/set/1',
+                url: 'user/set_row/1',
                 success: function (msg) {
                     $("#manager-tips").position({
                         of: $("#manager-center"),
@@ -506,7 +490,7 @@ function SetRolePicker() {
             $(".recruitment").show();
             $.ajax({
                 type: 'POST',
-                url: 'role/set/2',
+                url: 'user/set_row/2',
                 success: function (msg) {
                     $("#manager-tips").position({
                         of: $("#manager-center"),
