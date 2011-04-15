@@ -573,9 +573,15 @@ var countpage = 100;
 function DocumenScroll() {
 	
 	if ($.browser.msie && $.browser.version == "6.0"){
-		$("div#backTop").hide();
-		$("#microblogs").append('<div id="backTop">'+$("div#backTop").html()+'</>');
+		$("div#backTop").position({
+            of: $("div#microblogs"),
+            my: "left top",
+            at: "right top",
+            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+            collision: "none none"
+        });
 	}
+
 	
     if ($(window).scrollTop() != 0) {
         $("div#backTop").fadeIn(200);
