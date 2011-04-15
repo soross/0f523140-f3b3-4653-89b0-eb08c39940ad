@@ -729,10 +729,16 @@ function DocumenScroll() {
 }
 
 var nowFirst;
+var firstTime = true;
 var isFreshed = false;
 
 function GetNewerBlogs() {
-	nowFirst = $(".microblog-item:first").attr("id");
+	
+	if(firstTime){
+		nowFirst = $(".microblog-item:first").attr("id");
+		firstTime = false;
+	}
+	
     $.ajax({
         type: 'POST',
         url: 'search/' + cateContent,
