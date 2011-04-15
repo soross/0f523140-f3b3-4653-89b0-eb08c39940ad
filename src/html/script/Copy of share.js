@@ -135,10 +135,6 @@ function ShowJobsPublish() {
     $("div#cover").fadeIn(200);
     $("div#jobs-publish").fadeIn(200);
     $("div#jobs-publish-text textarea").focus();
-    //    var obj = document.getElementById("jobs-publish-text").firstChild;
-    //    var rng = document.selection.createRange();
-    //    rng.moveStart("character ", $("div#jobs-publish-text textarea").val().length);
-    //    rng.select();
 }
 function HideJobsPublish() {
     $("div#cover").fadeOut(200);
@@ -148,10 +144,6 @@ function ShowRecruitmentPublish() {
     $("div#cover").fadeIn(200);
     $("div#recruitment-publish").fadeIn(200);
     $("div#recruitment-publish-text textarea").focus();
-    //    var obj = document.getElementById("recruitment-publish-text").firstChild;
-    //    var rng = document.selection.createRange();
-    //    rng.moveStart("character ", $("div#recruitment-publish-text textarea").val().length);
-    //    rng.select();
 }
 function HideRecruitmentPublish() {
     $("div#cover").fadeOut(200);
