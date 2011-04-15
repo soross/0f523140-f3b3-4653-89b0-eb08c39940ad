@@ -461,7 +461,7 @@ function SetSorts() {
             $(".sorts-item").mouseout(function () { $(this).removeClass("sorts-item-over") });
             $(".sorts-item a").click(function () {
                 $("a#sorts-name").html($(this).html());
-                $("a#sort").html($(this).html());
+                $("a#sort").html($(this).html() + "▼");
                 $("#sorts").fadeOut(200);
                 cate = $(this).attr("id");
             });
