@@ -95,8 +95,7 @@ function received_apply_count()
 function received_apply_show_tweet()
 {
     include_once("theme.inc.php");
-    $args = func_get_args();
-    $key = $args[2];
+    $key = get_post('page');
     $content = '';
     $results = get_received_tweets(10, $key);
 
