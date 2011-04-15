@@ -544,7 +544,7 @@ function SetRolePicker() {
             $(".jobs").show();
             $.ajax({
                 type: 'POST',
-                url: 'user/set_row/1',
+                url: 'user/set_role/1',
                 success: function (msg) {
                     $("#manager-tips").position({
                         of: $("#manager-center"),
@@ -578,7 +578,7 @@ function SetRolePicker() {
             $(".recruitment").show();
             $.ajax({
                 type: 'POST',
-                url: 'user/set_row/2',
+                url: 'user/set_role/2',
                 success: function (msg) {
                     $("#manager-tips").position({
                         of: $("#manager-center"),
