@@ -19,7 +19,7 @@ $(function () {
     $("#search-text").keypress(function (e) {
         if (e.which == 13) {
             if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
-                SearchContent(false, $("#search-text").val(), $("#sort").attr("id"), 0);
+                SearchContent(false, $("#search-text").val(), $("#sort").attr("name"), 0);
             }
         }
     });
@@ -41,7 +41,7 @@ $(function () {
     });
     $("a#search-button").click(function () {
         if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
-            SearchContent(false, $("#search-text").val(), $("#sort").attr("id"), 0);
+            SearchContent(false, $("#search-text").val(), $("#sort").attr("name"), 0);
         }
     });
     
