@@ -537,7 +537,6 @@ function SetRolePicker() {
     });
 }
 var count = 0;
-var page = 0;
 var scrollflag = false;
 var countpage = 100;
 var SearchResult = "all";
@@ -556,7 +555,9 @@ function DocumenScroll() {
         $("#flower").fadeIn(200);
         $.ajax({
             type: 'GET',
-            url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
+            url: 'search/' + cateContent,
+            data: { search: encodeURI(SearchResult), page: page, time: $(".microblog-item:last").attr("id")},
+            //url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
             success: function (msg) {
                 if (msg == "" || msg.split('"microblog-item"').length < 11) {
                     scrollflag = true;
