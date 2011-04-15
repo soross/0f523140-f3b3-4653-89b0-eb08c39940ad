@@ -126,6 +126,7 @@ function RefreshConcern() {
         	if(msg == null || msg == ""){
         		$("#concern").html("尚未有关注项？试试搜索，有新发现哟！");
         		$("#concern").css("color","#878787");
+        		$("#concern").css("text-align","center");
         	}else{
         		$("#concern").html(msg);
         	}
