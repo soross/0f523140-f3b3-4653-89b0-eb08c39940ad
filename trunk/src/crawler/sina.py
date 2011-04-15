@@ -151,16 +151,16 @@ q = Queue()
 
 def working():
     global B
-    crawler = q.get()
+    cateid, crawlerinfo = q.get()
     test = SinaFetch()
-    test.setToken(crawler[1][2], crawler[1][3])    
+    test.setToken(crawlerinfo[1], crawlerinfo[2])
     for page in range(1, PAGE + 1):
         result = test.friends_timeline(page)
-        B += [(crawler[0] + 1, result)]
-        print now() + "Crawler %d/%d page %d/%d Done." % (crawler[0] + 1, len(A), page, PAGE)
+        B += [(cateid, result)]
+        print now() + "Crawler %s Cate:%d page %d/%d Done." % (crawlerinfo[0], cateid, page, PAGE)
     q.task_done()
 
-for crawler in enumerate(A):
+for crawler in A:
     q.put(crawler)
     t = Thread(target=working)
     t.setDaemon(True)
