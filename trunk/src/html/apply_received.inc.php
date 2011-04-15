@@ -62,9 +62,11 @@ function get_received_applies($tweet_id, $num, $page, $count = false)
     return $result;
 }
 
-function received_apply_show_tweet($tweet_id, $page)
+function received_apply_show_tweet()
 {
-    include_once("theme.inc.php");
+    $args = func_get_args();
+    $tweet_id = $args[2];
+    $page = get_post('page');
     $content = '';
     $applies = get_received_applies($tweet_id, 10, $page);
     foreach($applies as $r)
