@@ -93,8 +93,7 @@
         resize_enabled: false,
         filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
         filebrowserImageBrowseUrl: 'ckfinder/ckfinder.html?Type=Images',
-        filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        htmlEncodeOutput: false
+        filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
     });
     CKFinder.setupCKEditor(editor, "ckfinder/");
 
