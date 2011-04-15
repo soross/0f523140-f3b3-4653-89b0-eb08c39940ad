@@ -557,6 +557,7 @@ function DocumenScroll() {
     if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4 && !scrollflag && countpage >= 10) {
         $(window).unbind("scroll");
         count++;
+        page ++;
         $("#flower").fadeIn(200);
         $.ajax({
             type: 'POST',
@@ -567,7 +568,7 @@ function DocumenScroll() {
                 if (msg == "" || msg.split('"microblog-item"').length < 11) {
                     scrollflag = true;
                 }
-                page ++;
+                
                 $("#flower").fadeOut(200);
                 $("div#blogs").html($("div#blogs").html() + msg);
                 /*
