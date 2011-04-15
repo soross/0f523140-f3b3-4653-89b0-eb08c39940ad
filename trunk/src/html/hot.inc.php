@@ -112,7 +112,7 @@ function hot_editgroup()
     <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><form action="/hot/groupupdate" method="post"><table>';
     while($row = mysql_fetch_array($list))
     {
-        $content .= "<tr><td>".$row['name']."</td><td>".$row['tag_group']."</td></tr>";
+        $content .= "<tr><td>".$row['name']."</td><td><input type='text' name=".$row["tag_id"]." value=".$row['tag_group']." /></td></tr>";
     }
     $content .= "</form></table></body></html>";
     echo $content;
