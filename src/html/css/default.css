@@ -239,8 +239,8 @@ div#right a.search-result-concern-have
 }
 div#right a#search-result-rss
 {
-    height: 28px;
-    width: 28px;
+    height: 25px;
+    width: 44px;
     background-image: url('../images/search-result-rss.jpg');
     background-repeat: no-repeat;
 }
