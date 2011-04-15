@@ -121,7 +121,7 @@ function received_apply_show()
                             <div class="item-other">
                                 <span class="left item-time">'.time_tran($r['post_datetime']).'</span> '.$source.'
                                 <a class="right item-control last applys" id="'.$g[0][0].'">
-                                    申请数('.$g[0][0].')</a>
+                                    申请数('.$g.')</a>
                             </div>
                             <div class="item-applys close"></div><div class="item-page"></div>';
         $content .= '

@@ -41,7 +41,7 @@ function long_url($shortURL)
     return $url_long;
 }
 
-function format_str($str, $strict)
+function format_str($str, $strict = true)
 {
     $str = str_replace("'", "", $str);
     //$str = str_replace("\"", "", $str);
