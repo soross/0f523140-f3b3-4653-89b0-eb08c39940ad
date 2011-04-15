@@ -404,6 +404,22 @@ function JobUnApply(item, id) {
 function HotCompany(item) {
     SearchContent(false, $(item).html(), 0, 0);
 }
+function SetSorts() {
+    $.ajax({
+        type: 'GET',
+        url: 'cate',
+        success: function (msg) {
+            $("#sorts-content").html(msg);
+        }
+    });
+    $("div#sorts").position({
+        of: $("a#sort"),
+        my: "left top",
+        at: "left top",
+        offset: "-5 -10",
+        collision: "none none"
+    });
+}
 function ShowSorts() {
     $("div#sorts").show();
 }
