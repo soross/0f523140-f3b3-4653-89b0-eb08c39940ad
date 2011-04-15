@@ -47,8 +47,8 @@ function like_show()
     $content = '';
     include_once("theme.inc.php");
     $favorites = get_likes(10, $page);
-    include_once("apply.inc.php");
-    $allapp = get_applies(32767, "");
+    include_once("apply_sent.inc.php");
+    $allapp = get_sent_applies(32767, "");
     foreach($favorites as $f)
     {
         $content .= '<div class="item" id="'.$f['tweet_id'].'">
