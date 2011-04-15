@@ -728,14 +728,15 @@ function DocumenScroll() {
     }
 }
 
-var nowFirst = $(".microblog-item:first").attr("id");
+var nowFirst;
 var isFreshed = false;
 
 function GetNewerBlogs() {
+	nowFirst = $(".microblog-item:first").attr("id");
     $.ajax({
         type: 'POST',
         url: 'search/' + cateContent,
-        data: { search: encodeURI(searchContent), time: nowFirst},
+        data: { search: encodeURI(searchContent), time: nowFirst },
         //url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + nowFirst,
         success: function (msg) {
             if (msg != "") {
