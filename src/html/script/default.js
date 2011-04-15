@@ -335,6 +335,8 @@ function SearchContent(noresult, content, cate, pagenum) {
                     $(window).scroll(function () {
                         DocumenScroll();
                     });	
+                    
+                    SetSorts();
                 }
             });
             
@@ -448,14 +450,14 @@ function SetSorts() {
         url: 'cate',
         success: function (msg) {
             $("#sorts-content").html(msg);
-            $("div#sorts").position({
-                of: $("a#sort"),
-                my: "left top",
-                at: "left top",
-                offset: "-5 -10",
-                collision: "none none"
-            });
         }
+    });
+    $("div#sorts").position({
+        of: $("a#sort"),
+        my: "left top",
+        at: "left top",
+        offset: "-5 -10",
+        collision: "none none"
     });
     
 }
