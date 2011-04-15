@@ -229,7 +229,7 @@ function db_get_sinakey()
 function get_nick_by_id($id)
 {
     connect_db();
-    $view = "SELECT nickname FROM userinfo WHERE user_id='".$id."'";
+    $view = "SELECT nickname FROM userinfo WHERE user_id='$id'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     return $row[0];

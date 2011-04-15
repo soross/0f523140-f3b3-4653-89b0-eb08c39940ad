@@ -113,7 +113,7 @@ function user_set_role()
     if($key == "" or ($key != "1" and $key != "2"))
         die("Invalid argument!");
     connect_db();
-    $view = "SELECT role_id FROM userinfo WHERE user_id='".$id."'";
+    $view = "SELECT role_id FROM userinfo WHERE user_id='$id'";
     $list = mysql_query($view);
     $row = mysql_fetch_array($list);
     $role = $row['role_id'];
