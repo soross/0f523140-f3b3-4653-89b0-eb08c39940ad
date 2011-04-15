@@ -82,6 +82,154 @@
     else {
         ShowNormal(0);
     }
+
+    $("#delete-dialog").dialog({
+        autoOpen: false,
+        draggable: false,
+        resizable: false,
+        width: 180,
+        buttons: {
+            "确定": function () {
+                $(this).dialog("close");
+                var flag = false;
+                $("div#pages").fadeOut(50);
+                if (allpage > 1) {
+                    flag = true;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: deleteurl + deleteid,
+                    success: function () {
+                        deleteitem.animate({ opacity: 0 }, 300, null, function () {
+                            deleteitem.slideUp(200, null, function () {
+                                if (type == "apply") {
+                                    if (flag) {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'apply/show/',
+                                            data: { page: page },
+                                            success: function (msg) {
+                                                var str = '<div class="item newer" style="display:none;"';
+                                                str += msg.split('<div class="item"')[10];
+                                                $("div.item:last").after(str);
+                                                $(".newer:last").slideDown(200);
+                                                $("div.item-delete a").unbind("click");
+                                                $("div.item-delete a").click(function () {
+                                                    deleteitem = $(this).parent().parent();
+                                                    deleteid = deleteitem.attr("id");
+                                                    deleteurl = 'apply_sent/delete/';
+                                                    type = "apply";
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                            }
+                                        });
+                                    }
+                                    UpdateApply();
+                                }
+                                else if (type == "like") {
+                                    if (flag) {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'like/show/',
+                                            data: { page: page },
+                                            success: function (msg) {
+                                                var str = '<div class="item newer" style="display:none;"';
+                                                str += msg.split('<div class="item"')[10];
+                                                $("div.item:last").after(str);
+                                                $(".newer:last").slideDown(200);
+                                                $("a.delete").unbind("click");
+                                                $("div.item-delete a").unbind("click");
+                                                $("a.delete").click(function () {
+                                                    deleteitem = $(this).parent().parent().parent();
+                                                    deleteid = deleteitem.attr("id");
+                                                    deleteurl = 'like/delete/';
+                                                    type = "like";
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                                $("div.item-delete a").click(function () {
+                                                    deleteitem = $(this).parent().parent();
+                                                    deleteid = deleteitem.attr("id");
+                                                    deleteurl = 'like/delete/';
+                                                    type = "like";
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                            }
+                                        });
+                                    }
+                                    UpdateFavourite();
+                                }
+                                else if (type == "tweet") {
+                                    if (flag) {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'user/show/',
+                                            data: { page: page },
+                                            success: function (msg) {
+                                                var str = '<div class="item newer" style="display:none;"';
+                                                str += msg.split('<div class="item"')[10];
+                                                $("div.item:last").after(str);
+                                                $(".newer:last").slideDown(200);
+                                                $("a.delete").unbind("click");
+                                                $("div.item-delete a").unbind("click");
+                                                $("a.delete").click(function () {
+                                                    deleteitem = $(this).parent().parent().parent();
+                                                    deleteid = deleteitem.attr("id");
+                                                    deleteurl = 'tweet/delete/';
+                                                    type = "tweet";
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                                $("div.item-delete a").click(function () {
+                                                    deleteitem = $(this).parent().parent();
+                                                    deleteid = deleteitem.attr("id");
+                                                    deleteurl = 'tweet/delete/';
+                                                    $("#delete-dialog").dialog("open");
+                                                });
+                                            }
+                                        });
+                                    }
+                                    UpdateTweet();
+                                }
+                            });
+                        });
+                    }
+                });
+            },
+            "取消": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+
+    $("a.apply").live("click", function () {
+        var item = $(this);
+        var id = $(this).parent().parent().parent().attr("id");
+        $.ajax({
+            type: "POST",
+            url: 'apply_sent/add/' + id,
+            success: function () {
+                item.hide();
+                item.next("a.unapply").show();
+            }
+        });
+    });
+    $("a.unapply").live("click", function () {
+        var item = $(this);
+        var id = $(this).parent().parent().parent().attr("id");
+        $.ajax({
+            type: "POST",
+            url: 'apply_sent/delete/' + id,
+            success: function () {
+                item.hide();
+                item.prev("a.apply").show();
+            }
+        });
+    });
+    $("div.item").live("mouseover", function () {
+        $(this).addClass("item-over");
+    });
+    $("div.item").live("mouseout", function () {
+        $(this).removeClass("item-over");
+    });
 });
 
 
@@ -283,20 +431,6 @@ function ShowApplys(e) {
                 }
             });
             UpdateApplys();
-            //            $("div.item").mouseover(function () {
-            //                $(this).addClass("item-over");
-            //            });
-            //            $("div.item").mouseout(function () {
-            //                $(this).removeClass("item-over");
-            //            });
-            //            $("div.item-delete a").click(function () {
-            //                deleteitem = $(this).parent().parent();
-            //                deleteid = deleteitem.attr("id");
-            //                deleteurl = 'apply/delete/';
-            //                type = "apply";
-            //                $("#delete-dialog").dialog("open");
-            //            });
-            //            UpdateApply();
         }
     });
 }
@@ -309,20 +443,15 @@ function ShowApply(e) {
     $("div#ads").show();
     $.ajax({
         type: 'POST',
-        url: 'apply/show/' + e,
+        url: 'apply_sent/show/',
+        data: { page: page },
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
-            $("div.item").mouseover(function () {
-                $(this).addClass("item-over");
-            });
-            $("div.item").mouseout(function () {
-                $(this).removeClass("item-over");
-            });
             $("div.item-delete a").click(function () {
                 deleteitem = $(this).parent().parent();
                 deleteid = deleteitem.attr("id");
-                deleteurl = 'apply/delete/';
+                deleteurl = 'apply_sent/delete/';
                 type = "apply";
                 $("#delete-dialog").dialog("open");
             });
@@ -335,7 +464,7 @@ function ShowApply(e) {
 function UpdateApply() {
     $.ajax({
         type: "POST",
-        url: 'apply/count',
+        url: 'apply_sent/count',
         success: function (msg) {
             msg = $.trim(msg);
             $("span#blogs-count").html("共有" + msg + "条记录");
@@ -413,40 +542,11 @@ function ShowFavourite(e) {
     $("div#ads").show();
     $.ajax({
         type: 'POST',
-        url: 'like/show/' + e,
+        url: 'like/show/',
+        data: { page: page },
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
-            $("a.apply").click(function () {
-                var item = $(this);
-                var id = $(this).parent().parent().parent().attr("id");
-                $.ajax({
-                    type: "POST",
-                    url: 'apply/add/' + id,
-                    success: function () {
-                        item.hide();
-                        item.next("a.unapply").show();
-                    }
-                });
-            });
-            $("a.unapply").click(function () {
-                var item = $(this);
-                var id = $(this).parent().parent().parent().attr("id");
-                $.ajax({
-                    type: "POST",
-                    url: 'apply/delete/' + id,
-                    success: function () {
-                        item.hide();
-                        item.prev("a.apply").show();
-                    }
-                });
-            });
-            $("div.item").mouseover(function () {
-                $(this).addClass("item-over");
-            });
-            $("div.item").mouseout(function () {
-                $(this).removeClass("item-over");
-            });
             $("a.delete").click(function () {
                 deleteitem = $(this).parent().parent().parent();
                 deleteid = deleteitem.attr("id");
