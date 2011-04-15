@@ -1,4 +1,29 @@
 ﻿$(function () {
+
+    $("#popBox_publishok").position({
+        of: $("html"),
+        my: "center top",
+        at: "center top",
+        offset: "0 200",
+        collision: "none none"
+    });
+    $("#popBox_publishok").css("position", "fixed");
+    $("#confirmBox_ok").position({
+        of: $("html"),
+        my: "center top",
+        at: "center top",
+        offset: "0 200",
+        collision: "none none"
+    });
+    $("#confirmBox_ok").css("position", "fixed");
+    $("#confirmBox_del").position({
+        of: $("html"),
+        my: "center top",
+        at: "center top",
+        offset: "0 200",
+        collision: "none none"
+    });
+    $("#confirmBox_del").css("position", "fixed");
     $.ajax({
         type: 'POST',
         url: 'avatar/',
@@ -64,7 +89,7 @@
     editor = CKEDITOR.replace('profile-detail', {
         uiColor: '#d1e9f1',
         language: 'zh-cn',
-        toolbar: [['NewPage', 'Save', 'Preview', '-', 'Templates'], ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'], ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], '/', ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink', 'Anchor'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak'], '/', ['Styles', 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor']],
+        toolbar: [['NewPage', 'Save', 'Preview', '-', 'Templates'], ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'], ['Undo', 'Redo', '-', 'Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'], ['Image', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak'], '/', ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'], ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'], ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'], ['Link', 'Unlink', 'Anchor'], '/', ['Styles', 'Format', 'Font', 'FontSize'], ['TextColor', 'BGColor']],
         resize_enabled: false,
         filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
         filebrowserImageBrowseUrl: 'ckfinder/ckfinder.html?Type=Images',
@@ -216,7 +241,7 @@
                 content: editor.document.getBody().getHtml()
             },
             success: function (msg) {
-                $("div#profile-info").dialog("open");
+                $('#confirmBox_ok').show();
             }
         });
     });
