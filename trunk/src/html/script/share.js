@@ -188,6 +188,7 @@ function UpdateRecruitmentText() {
     }
 }
 function ShowJobsPublish() {
+	CoverResize();
     $("div#cover").fadeIn(200);
     $("body").css("overflow","hidden");
     $("div#jobs-publish").fadeIn(200);
@@ -199,6 +200,7 @@ function HideJobsPublish() {
     $("div#jobs-publish").fadeOut(200);
 }
 function ShowRecruitmentPublish() {
+	CoverResize();
     $("div#cover").fadeIn(200);
     $("body").css("overflow","hidden");
     $("div#recruitment-publish").fadeIn(200);
