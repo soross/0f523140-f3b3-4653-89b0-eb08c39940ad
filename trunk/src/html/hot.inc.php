@@ -108,13 +108,13 @@ function hot_editgroup()
     connect_db();
     $view = "SELECT * FROM tags";
     $list = mysql_query($view);
-    $content = "<html><body><form action='/hot/groupupdate' method='post'><table>";
+    $content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html><body><form action="/hot/groupupdate" method="post"><table>';
     while($row = mysql_fetch_array($list))
     {
         $content .= "<tr><td>".$row['name']."</td><td>".$row['tag_group']."</td></tr>";
     }
     $content .= "</form></table></body></html>";
-    header('Content-Type: application/xml; charset=utf-8');
     echo $content;
 }
     
@@ -125,13 +125,13 @@ function hot_editname()
     connect_db();
     $view = "SELECT * FROM tag_group";
     $list = mysql_query($view);
-    $content = "<html><body><form action='/hot/nameupdate' method='post'><table>";
+    $content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html><body><form action="/hot/nameupdate" method="post"><table>';
     while($row = mysql_fetch_array($list))
     {
         $content .= "<tr><td>".$row['tag_group_name']."</td><td>".$row['tag_group']."</td></tr>";
     }
     $content .= "</form></table></body></html>";
-    header('Content-Type: application/xml; charset=utf-8');
     echo $content;
 }
 
