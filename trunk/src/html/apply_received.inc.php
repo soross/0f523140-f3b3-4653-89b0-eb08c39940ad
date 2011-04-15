@@ -85,7 +85,11 @@ function received_apply_count()
 {
     $content = '';
     $applies = get_received_tweets(10, "", true);
-    echo $applies[0][0];
+    $r = $applies[0][0];
+    if($r)
+        echo $r;
+    else
+        echo '0';
 }
 
 function deal_received_apply($query)
