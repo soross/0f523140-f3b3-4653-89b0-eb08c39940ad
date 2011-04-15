@@ -69,7 +69,7 @@
         filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
         filebrowserImageBrowseUrl: 'ckfinder/ckfinder.html?Type=Images',
         filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        htmlEncodeOutput: true
+        htmlEncodeOutput: false
     });
     CKFinder.setupCKEditor(editor, "ckfinder/");
 
