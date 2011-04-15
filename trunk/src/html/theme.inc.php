@@ -174,7 +174,7 @@ function theme_result($result, $keyword = '', $admin = false)
         else
             $source = '<a class="left microblog-item-position" target="_blank">'.$r['source'].'</a>';
         
-        $content .= '<div class="microblog-item" id="'.strtotime($r['post_datetime']).'" name="">
+        $content .= '<div class="microblog-item" id="'.strtotime($r['post_datetime']).'">
                     <div class="left microblog-item-pic">
                         <a target="_blank" href="'.BASE_URL.'profile/'.$r['post_screenname'].'"><img alt="" width="50" height="50" src="'.$r['profile_image_url'].'"/></a>
                     </div>
