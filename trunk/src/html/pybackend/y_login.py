@@ -18,6 +18,6 @@ def sina_callback():
     oauth_token = request.GET.get('oauth_token')
     oauth_verifier = request.GET.get('oauth_verifier')
     auth = OAuthHandler(sina_consumer_key, sina_consumer_secret)
-    token = auth.get_access_token(verifier, oauth_token)
+    token = auth.get_access_token(oauth_verifier, oauth_token)
     response.set_cookie("ybole_auth", token, secret = gng_secret)
     redirect('/')
