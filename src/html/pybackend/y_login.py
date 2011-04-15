@@ -9,5 +9,5 @@ def login():
 @route('/sina/login')
 def sina_login():
     auth = OAuthHandler(consumer_key, consumer_secret)
-    auth_url = self.auth.get_authorization_url()
+    auth_url = auth.get_authorization_url()
     redirect(auth_url)
