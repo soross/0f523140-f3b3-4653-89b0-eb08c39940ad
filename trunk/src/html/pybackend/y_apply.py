@@ -20,4 +20,3 @@ def apply_sent_count():
 @route('/apply/sent/delete/:tweet_id')
 def apply_sent_delete(tweet_id):
     return template('home')
-    #return 'Ybole - Python backend ... Coming soon!'
