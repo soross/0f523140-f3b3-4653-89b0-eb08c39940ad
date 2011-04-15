@@ -10,7 +10,7 @@ def login():
 @route('/sina/login')
 def sina_login():
     auth = WebOAuthHandler(sina_consumer_key, sina_consumer_secret)
-    auth_url = auth.get_authorization_url_with_callback(baseurl + "/sina/callback/" + auth.request_token)
+    auth_url = auth.get_authorization_url_with_callback(baseurl + "/sina/callback/")
     redirect(auth_url)
     
 @route('/sina/callback/:request_token')

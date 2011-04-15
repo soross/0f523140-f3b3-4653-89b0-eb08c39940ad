@@ -162,7 +162,7 @@ class WebOAuthHandler(OAuthHandler):
             else:
                 url = self._get_oauth_url('authorize')
             request = oauth.OAuthRequest.from_token_and_callback(
-                token=self.request_token, callback=callback, http_url=url
+                token=self.request_token, callback=callback+self.request_token, http_url=url
             )
             return request.to_url()
         except Exception, e:
