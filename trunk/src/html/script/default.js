@@ -43,11 +43,11 @@ $(function () {
             SearchContent(false, $("#search-text").val(), $("#sort").attr("name"), 0);
         }
     });
-    
+
     $(window).scroll(function () {
         DocumenScroll();
     });
-    
+
     $("div#backTop").click(function () {
         $("html, body").animate({ scrollTop: 0 }, 1000);
     });
@@ -58,11 +58,11 @@ $(function () {
     $("div#backTop").mouseout(function () {
         $("div#backTop").stop().animate({ opacity: 0.6 }, 200);
     });
-    
+
     setTimeout(function () { GetNewerBlogs(); }, 60000);
-    
+
     SetRolePicker();
-    
+
     if ($.cookie("athere") == null) {
         $.cookie("athere", "here", { path: '/' });
         setTimeout(function () {
@@ -72,65 +72,65 @@ $(function () {
     else {
         $("#radio").hide();
     }
-    
-    $("a.btn_goresume").click(function(){
-    	document.location = "manager?type=profile";
+
+    $("a.btn_goresume").click(function () {
+        document.location = "manager?type=profile";
     });
-    
+
 
     if ($.query.get("search") != "") {
         var text = $.trim($.query.get("search"));
         var cate = $.trim($.query.get("cat"));
-        
+
         if (text != "职位关键字，如：北京 产品经理 阿里巴巴" && text != "") {
-            SearchContent(false, text, cate , 0);
+            SearchContent(false, text, cate, 0);
         }
-        
+
         /*
         StartSearch('search/' + encodeURI(text) + '/' + cat, function (msg, thissearch) {
-            page = 0;
-            cate = cat;
-            $("#sort").html($("a#" + cate).html());
-            $("#sorts-name").html($("a#" + cate).html());
-            isTurn = false;
-            SetSearch(msg, text, thissearch);
-            setTimeout(function () { GetNewerBlogs(); }, 60000);
-            $("div#backTop").position({
-                of: $("div#microblogs"),
-                my: "left top",
-                at: "right top",
-                offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                collision: "none none"
-            });
-            $("div#backTop").css("position", "fixed");
+        page = 0;
+        cate = cat;
+        $("#sort").html($("a#" + cate).html());
+        $("#sorts-name").html($("a#" + cate).html());
+        isTurn = false;
+        SetSearch(msg, text, thissearch);
+        setTimeout(function () { GetNewerBlogs(); }, 60000);
+        $("div#backTop").position({
+        of: $("div#microblogs"),
+        my: "left top",
+        at: "right top",
+        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+        collision: "none none"
+        });
+        $("div#backTop").css("position", "fixed");
         });
         */
     }
     else {
-    	
-    	SearchContent(true, "all", 0, 0);
-    	/*
+
+        SearchContent(true, "all", 0, 0);
+        /*
         $.ajax({
-            type: 'GET',
-            url: 'search/all/0',
-            success: function (msg) {
-                isTurn = false;
-                SetAllSearch(msg);
-                $("div#backTop").position({
-                    of: $("div#microblogs"),
-                    my: "left top",
-                    at: "right top",
-                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                    collision: "none none"
-                });
-                $("div#backTop").css("position", "fixed");
-                setTimeout(function () { GetNewerBlogs(); }, 60000);
-            }
+        type: 'GET',
+        url: 'search/all/0',
+        success: function (msg) {
+        isTurn = false;
+        SetAllSearch(msg);
+        $("div#backTop").position({
+        of: $("div#microblogs"),
+        my: "left top",
+        at: "right top",
+        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+        collision: "none none"
+        });
+        $("div#backTop").css("position", "fixed");
+        setTimeout(function () { GetNewerBlogs(); }, 60000);
+        }
         });
         */
     }
 
-    
+
 });
 //End of Init
 
@@ -155,7 +155,7 @@ function AfterLogin() {
             var type = msg.split(',')[1];
             $("#name").html(username);
             if (type == -1) {
-            	CoverResize();
+                CoverResize();
                 $("div#cover").show();
                 $("div#role-choose").show();
             }
@@ -205,14 +205,14 @@ function RefreshConcern() {
         type: 'GET',
         url: 'follow/show',
         success: function (msg) {
-        	if(msg == null || msg == ""){
-        		$("#concern").html("尚未有关注项？试试搜索，有新发现哟！");
-        		$("#concern").css("color","#878787");
-        		$("#concern").css("text-align","center");
-        	}else{
-        		$("#concern").html(msg);
-        	}
-            
+            if (msg == null || msg == "") {
+                $("#concern").html("尚未有关注项？试试搜索，有新发现哟！");
+                $("#concern").css("color", "#878787");
+                $("#concern").css("text-align", "center");
+            } else {
+                $("#concern").html(msg);
+            }
+
         }
     });
 }
@@ -305,7 +305,7 @@ function SearchConcernClick() {
         });
     }
 }
-function SearchContent(noresult, content, cate, pagenum) {
+function SearchContent(noresult, content, cate, pagenum, callback) {
     $("#blogs").html('<img src="images/loading.gif" style="margin-left:275px;margin-top:' + (($("#blogs").height() - 32) / 2) + 'px;margin-bottom:' + (($("#blogs").height() - 32) / 2) + 'px;" />');
     $.ajax({
         type: 'POST',
@@ -315,6 +315,7 @@ function SearchContent(noresult, content, cate, pagenum) {
             searchContent = content;
             cateContent = cate;
             $("#blogs").html(msg);
+            callback();
             RefreshHistory();
             page = pagenum / 5;
             $.ajax({
@@ -405,30 +406,30 @@ function SearchContent(noresult, content, cate, pagenum) {
                         $("div#pages").html("");
                         $("a#search-result-rss").attr("href", 'search/rss/' + cate + '/' + searchContent);
                     }
-                    
-                    if (!($.browser.msie && $.browser.version == "6.0")){
-                    	 $("div#backTop").position({
-                             of: $("div#microblogs"),
-                             my: "left top",
-                             at: "right top",
-                             offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                             collision: "none none"
-                         });
-                         $("div#backTop").css("position", "fixed");
+
+                    if (!($.browser.msie && $.browser.version == "6.0")) {
+                        $("div#backTop").position({
+                            of: $("div#microblogs"),
+                            my: "left top",
+                            at: "right top",
+                            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                            collision: "none none"
+                        });
+                        $("div#backTop").css("position", "fixed");
                     }
-                   
-                    
+
+
                     page = pagenum;
                     count = 0;
-                    
+
                     $(window).unbind("scroll");
                     $(window).scroll(function () {
                         DocumenScroll();
-                    });	
+                    });
 
                 }
             });
-            
+
         }
     });
 }
@@ -585,31 +586,33 @@ function SetRolePicker() {
                 type: 'POST',
                 url: 'user/set_role/1',
                 success: function (msg) {
-                	$("body").css("overflow","auto");
-                    $("#manager-tips").position({
-                        of: $("#manager-center"),
-                        my: "center top",
-                        at: "center bottom",
-                        offset: "0 0",
-                        collision: "none none"
+                    $("body").css("overflow", "auto");
+                    SearchContent(true, "all", 0, 0, function () {
+                        $("#manager-tips").position({
+                            of: $("#manager-center"),
+                            my: "center top",
+                            at: "center bottom",
+                            offset: "0 0",
+                            collision: "none none"
+                        });
+                        $("#concern-tips").position({
+                            of: $("#concern-title"),
+                            my: "left center",
+                            at: "right center",
+                            offset: "0 0",
+                            collision: "none none"
+                        });
+                        $("#apply-tips").position({
+                            of: $(".apply:first"),
+                            my: "center bottom",
+                            at: "center top",
+                            offset: "0 0",
+                            collision: "none none"
+                        });
+                        $("#manager-tips").show();
+                        $("#concern-tips").show();
+                        $("#apply-tips").show();
                     });
-                    $("#concern-tips").position({
-                        of: $("#concern-title"),
-                        my: "left center",
-                        at: "right center",
-                        offset: "0 0",
-                        collision: "none none"
-                    });
-                    $("#apply-tips").position({
-                        of: $(".apply:first"),
-                        my: "center bottom",
-                        at: "center top",
-                        offset: "0 0",
-                        collision: "none none"
-                    });
-                    $("#manager-tips").show();
-                    $("#concern-tips").show();
-                    $("#apply-tips").show();
                 }
             });
         }
@@ -620,7 +623,7 @@ function SetRolePicker() {
                 type: 'POST',
                 url: 'user/set_role/2',
                 success: function (msg) {
-                	$("body").css("overflow","auto");
+                    $("body").css("overflow", "auto");
                     $("#manager-tips").position({
                         of: $("#manager-center"),
                         my: "center top",
@@ -649,84 +652,84 @@ var scrollflag = false;
 var countpage = 100;
 
 function DocumenScroll() {
-	
-	if ($.browser.msie && $.browser.version == "6.0"){
-		//$("div#backTop").attr("position","absolute");
-		$("div#backTop").position({
+
+    if ($.browser.msie && $.browser.version == "6.0") {
+        //$("div#backTop").attr("position","absolute");
+        $("div#backTop").position({
             of: $("div#microblogs"),
             my: "left top",
             at: "right top",
             offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
             collision: "none none"
         });
-	}
+    }
 
-	
+
     if ($(window).scrollTop() != 0) {
         $("div#backTop").fadeIn(200);
     }
     else {
         $("div#backTop").fadeOut(200);
     }
-    
+
     if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4 && !scrollflag && countpage >= 10) {
         $(window).unbind("scroll");
         count++;
-        page ++;
+        page++;
         $("#flower").fadeIn(200);
         $.ajax({
             type: 'POST',
             url: 'search/' + cateContent,
-            data: { search: encodeURI(searchContent), page: page},//, time: '-' + $(".microblog-item:last").attr("id")
+            data: { search: encodeURI(searchContent), page: page }, //, time: '-' + $(".microblog-item:last").attr("id")
             //url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
             success: function (msg) {
                 if (msg == "" || msg.split('"microblog-item"').length < 11) {
                     scrollflag = true;
                 }
-                
+
                 $("#flower").fadeOut(200);
                 $("div#blogs").html($("div#blogs").html() + msg);
-                
-                if (!($.browser.msie && $.browser.version == "6.0")){
-	                $("div#backTop").position({
-	                    of: $("div#microblogs"),
-	                    my: "left top",
-	                    at: "right top",
-	                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-	                    collision: "none none"
-	                });
-	                $("div#backTop").css("position", "fixed");
+
+                if (!($.browser.msie && $.browser.version == "6.0")) {
+                    $("div#backTop").position({
+                        of: $("div#microblogs"),
+                        my: "left top",
+                        at: "right top",
+                        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                        collision: "none none"
+                    });
+                    $("div#backTop").css("position", "fixed");
                 }
                 /*
                 $("a.microblog-item-relate").unbind("click");
                 $("a.microblog-item-relate").click(function () {
-                    var text = $(this).html();
-                    $.ajax({
-                        type: 'GET',
-                        url: 'search/' + encodeURI(text),
-                        success: function (msg, thissearch) {
-                            page = 0;
-                            cate = 0;
-                            $("#sort").html($("a#" + cate).html());
-                            $("#sorts-name").html($("a#" + cate).html());
-                            //SetSearch(msg, text, thissearch);
-                            nowFirst = $(".microblog-item:first").attr("id");
-                        }
-                    });
+                var text = $(this).html();
+                $.ajax({
+                type: 'GET',
+                url: 'search/' + encodeURI(text),
+                success: function (msg, thissearch) {
+                page = 0;
+                cate = 0;
+                $("#sort").html($("a#" + cate).html());
+                $("#sorts-name").html($("a#" + cate).html());
+                //SetSearch(msg, text, thissearch);
+                nowFirst = $(".microblog-item:first").attr("id");
+                }
+                });
                 });
                 $("a.tag").unbind("click");
                 $("a.tag").click(function () {
-                    var text = $(this).attr("title");
+                var text = $(this).attr("title");
                     
-                    StartSearch('search/' + encodeURI(text),
-                        function (msg, thissearch) {
-                            page = 0;
-                            cate = 0;
-                            $("#sort").html($("a#" + cate).html());
-                            $("#sorts-name").html($("a#" + cate).html());
-                            isTurn = false;
-                            //SetSearch(msg, text, thissearch);
-                        });
+                StartSearch('search/' + encodeURI(text),
+                function (msg, thissearch) {
+                page = 0;
+                cate = 0;
+                $("#sort").html($("a#" + cate).html());
+                $("#sorts-name").html($("a#" + cate).html());
+                isTurn = false;
+                //SetSearch(msg, text, thissearch);
+                });
                         
                 });
                 $("a.like").unbind("click");
@@ -734,60 +737,60 @@ function DocumenScroll() {
                 $("a.apply").unbind("click");
                 $("a.unapply").unbind("click");
                 $("a.like").click(function () {
-                    var item = $(this);
-                    var id = $(this).parent().parent().parent().attr("name");
+                var item = $(this);
+                var id = $(this).parent().parent().parent().attr("name");
                     
-                    StartSearch('like/add/' + id,
-                        function () {
-                            item.hide();
-                            item.next("a.unlike").show();
-                        });
+                StartSearch('like/add/' + id,
+                function () {
+                item.hide();
+                item.next("a.unlike").show();
+                });
                         
                 });
                 $("a.unlike").click(function () {
-                    var item = $(this);
-                    var id = $(this).parent().parent().parent().attr("name");
-                    $.ajax({
-                        type: "POST",
-                        url: 'like/delete/' + id,
-                        success: function () {
-                            item.hide();
-                            item.prev("a.like").show();
-                        }
-                    });
+                var item = $(this);
+                var id = $(this).parent().parent().parent().attr("name");
+                $.ajax({
+                type: "POST",
+                url: 'like/delete/' + id,
+                success: function () {
+                item.hide();
+                item.prev("a.like").show();
+                }
+                });
                 });
                 $("a.apply").click(function () {
-                    item = $(this);
-                    id = $(this).parent().parent().parent().attr("name");
-                    if (haveResume) {
-                        ShowResume();
-                    }
-                    else {
-                        ShowNoresume();
-                    }
+                item = $(this);
+                id = $(this).parent().parent().parent().attr("name");
+                if (haveResume) {
+                ShowResume();
+                }
+                else {
+                ShowNoresume();
+                }
                 });
                 
                 if (rolekind && rolekind != "jobs") {
-                    $("a.apply").hide();
+                $("a.apply").hide();
                 }
                 
                 $("a.unapply").click(function () {
-                    var item = $(this);
-                    var id = $(this).parent().parent().parent().attr("name");
-                    $.ajax({
-                        type: "POST",
-                        url: 'apply/delete/' + id,
-                        success: function () {
-                            item.hide();
-                            item.prev("a.apply").show();
-                        }
-                    });
+                var item = $(this);
+                var id = $(this).parent().parent().parent().attr("name");
+                $.ajax({
+                type: "POST",
+                url: 'apply/delete/' + id,
+                success: function () {
+                item.hide();
+                item.prev("a.apply").show();
+                }
+                });
                 });
                 */
                 $(window).scroll(function () {
                     DocumenScroll();
                 });
-                
+
             }
         });
     }
@@ -798,12 +801,12 @@ var firstTime = true;
 var isFreshed = false;
 
 function GetNewerBlogs() {
-	
-	if(firstTime){
-		nowFirst = $(".microblog-item:first").attr("id");
-		firstTime = false;
-	}
-	
+
+    if (firstTime) {
+        nowFirst = $(".microblog-item:first").attr("id");
+        firstTime = false;
+    }
+
     $.ajax({
         type: 'POST',
         url: 'search/' + cateContent,
@@ -815,9 +818,9 @@ function GetNewerBlogs() {
                     type: 'POST',
                     url: 'count/',
                     success: function (msg) {
-                        
+
                         $("div#radio").html("本周新增职位" + msg.split(',')[0] + "个，今日新增职位" + msg.split(',')[1] + "个");
-                        
+
                     }
                 });
                 if (!isFreshed) {
@@ -827,82 +830,82 @@ function GetNewerBlogs() {
                     /*
                     $("a.microblog-item-relate").unbind("click");
                     $("a.microblog-item-relate").click(function () {
-                        var text = $(this).html();
-                        StartSearch('search/' + encodeURI(text),
-                            function (msg, thissearch) {
-                                page = 0;
-                                cate = 0;
-                                $("#sort").html($("a#" + cate).html());
-                                $("#sorts-name").html($("a#" + cate).html());
-                                SetSearch(msg, text, thissearch);
-                                nowFirst = $(".microblog-item:first").attr("id");
-                            });
+                    var text = $(this).html();
+                    StartSearch('search/' + encodeURI(text),
+                    function (msg, thissearch) {
+                    page = 0;
+                    cate = 0;
+                    $("#sort").html($("a#" + cate).html());
+                    $("#sorts-name").html($("a#" + cate).html());
+                    SetSearch(msg, text, thissearch);
+                    nowFirst = $(".microblog-item:first").attr("id");
+                    });
                     });
                     $("a.tag").unbind("click");
                     $("a.tag").click(function () {
-                        var text = $(this).attr("title");
-                        StartSearch('search/' + encodeURI(text),
-                            function (msg, thissearch) {
-                                page = 0;
-                                cate = 0;
-                                $("#sort").html($("a#" + cate).html());
-                                $("#sorts-name").html($("a#" + cate).html());
-                                isTurn = false;
-                                SetSearch(msg, text, thissearch);
-                            });
+                    var text = $(this).attr("title");
+                    StartSearch('search/' + encodeURI(text),
+                    function (msg, thissearch) {
+                    page = 0;
+                    cate = 0;
+                    $("#sort").html($("a#" + cate).html());
+                    $("#sorts-name").html($("a#" + cate).html());
+                    isTurn = false;
+                    SetSearch(msg, text, thissearch);
+                    });
                     });
                     $("a.like").unbind("click");
                     $("a.unlike").unbind("click");
                     $("a.apply").unbind("click");
                     $("a.unapply").unbind("click");
                     $("a.like").click(function () {
-                        var item = $(this);
-                        var id = $(this).parent().parent().parent().attr("name");
-                        $.ajax({
-                            type: "POST",
-                            url: 'like/add/' + id,
-                            success: function () {
-                                item.hide();
-                                item.next("a.unlike").show();
-                            }
-                        });
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                    type: "POST",
+                    url: 'like/add/' + id,
+                    success: function () {
+                    item.hide();
+                    item.next("a.unlike").show();
+                    }
+                    });
                     });
                     $("a.unlike").click(function () {
-                        var item = $(this);
-                        var id = $(this).parent().parent().parent().attr("name");
-                        $.ajax({
-                            type: "POST",
-                            url: 'like/delete/' + id,
-                            success: function () {
-                                item.hide();
-                                item.prev("a.like").show();
-                            }
-                        });
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                    type: "POST",
+                    url: 'like/delete/' + id,
+                    success: function () {
+                    item.hide();
+                    item.prev("a.like").show();
+                    }
+                    });
                     });
                     $("a.apply").click(function () {
-                        item = $(this);
-                        id = $(this).parent().parent().parent().attr("name");
-                        if (haveResume) {
-                            ShowResume();
-                        }
-                        else {
-                            ShowNoresume();
-                        }
+                    item = $(this);
+                    id = $(this).parent().parent().parent().attr("name");
+                    if (haveResume) {
+                    ShowResume();
+                    }
+                    else {
+                    ShowNoresume();
+                    }
                     });
                     if (rolekind != "jobs") {
-                        $("a.apply").hide();
+                    $("a.apply").hide();
                     }
                     $("a.unapply").click(function () {
-                        var item = $(this);
-                        var id = $(this).parent().parent().parent().attr("name");
-                        $.ajax({
-                            type: "POST",
-                            url: 'apply/delete/' + id,
-                            success: function () {
-                                item.hide();
-                                item.prev("a.apply").show();
-                            }
-                        });
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                    type: "POST",
+                    url: 'apply/delete/' + id,
+                    success: function () {
+                    item.hide();
+                    item.prev("a.apply").show();
+                    }
+                    });
                     });
                     */
                 }
@@ -925,82 +928,82 @@ function GetNewerBlogs() {
                     /*
                     $("a.microblog-item-relate").unbind("click");
                     $("a.microblog-item-relate").click(function () {
-                        var text = $(this).html();
-                        StartSearch('search/' + encodeURI(text),
-                            function (msg, thissearch) {
-                                page = 0;
-                                cate = 0;
-                                $("#sort").html($("a#" + cate).html());
-                                $("#sorts-name").html($("a#" + cate).html());
-                                SetSearch(msg, text, thissearch);
-                                nowFirst = $(".microblog-item:first").attr("id");
-                            });
+                    var text = $(this).html();
+                    StartSearch('search/' + encodeURI(text),
+                    function (msg, thissearch) {
+                    page = 0;
+                    cate = 0;
+                    $("#sort").html($("a#" + cate).html());
+                    $("#sorts-name").html($("a#" + cate).html());
+                    SetSearch(msg, text, thissearch);
+                    nowFirst = $(".microblog-item:first").attr("id");
+                    });
                     });
                     $("a.tag").unbind("click");
                     $("a.tag").click(function () {
-                        var text = $(this).attr("title");
-                        StartSearch('search/' + encodeURI(text),
-                            function (msg, thissearch) {
-                                page = 0;
-                                cate = 0;
-                                $("#sort").html($("a#" + cate).html());
-                                $("#sorts-name").html($("a#" + cate).html());
-                                isTurn = false;
-                                SetSearch(msg, text, thissearch);
-                            });
+                    var text = $(this).attr("title");
+                    StartSearch('search/' + encodeURI(text),
+                    function (msg, thissearch) {
+                    page = 0;
+                    cate = 0;
+                    $("#sort").html($("a#" + cate).html());
+                    $("#sorts-name").html($("a#" + cate).html());
+                    isTurn = false;
+                    SetSearch(msg, text, thissearch);
+                    });
                     });
                     $("a.like").unbind("click");
                     $("a.unlike").unbind("click");
                     $("a.apply").unbind("click");
                     $("a.unapply").unbind("click");
                     $("a.like").click(function () {
-                        var item = $(this);
-                        var id = $(this).parent().parent().parent().attr("name");
-                        $.ajax({
-                            type: "POST",
-                            url: 'like/add/' + id,
-                            success: function () {
-                                item.hide();
-                                item.next("a.unlike").show();
-                            }
-                        });
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                    type: "POST",
+                    url: 'like/add/' + id,
+                    success: function () {
+                    item.hide();
+                    item.next("a.unlike").show();
+                    }
+                    });
                     });
                     $("a.unlike").click(function () {
-                        var item = $(this);
-                        var id = $(this).parent().parent().parent().attr("name");
-                        $.ajax({
-                            type: "POST",
-                            url: 'like/delete/' + id,
-                            success: function () {
-                                item.hide();
-                                item.prev("a.like").show();
-                            }
-                        });
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                    type: "POST",
+                    url: 'like/delete/' + id,
+                    success: function () {
+                    item.hide();
+                    item.prev("a.like").show();
+                    }
+                    });
                     });
                     $("a.apply").click(function () {
-                        item = $(this);
-                        id = $(this).parent().parent().parent().attr("name");
-                        if (haveResume) {
-                            ShowResume();
-                        }
-                        else {
-                            ShowNoresume();
-                        }
+                    item = $(this);
+                    id = $(this).parent().parent().parent().attr("name");
+                    if (haveResume) {
+                    ShowResume();
+                    }
+                    else {
+                    ShowNoresume();
+                    }
                     });
                     if (rolekind != "jobs") {
-                        $("a.apply").hide();
+                    $("a.apply").hide();
                     }
                     $("a.unapply").click(function () {
-                        var item = $(this);
-                        var id = $(this).parent().parent().parent().attr("name");
-                        $.ajax({
-                            type: "POST",
-                            url: 'apply/delete/' + id,
-                            success: function () {
-                                item.hide();
-                                item.prev("a.apply").show();
-                            }
-                        });
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                    type: "POST",
+                    url: 'apply/delete/' + id,
+                    success: function () {
+                    item.hide();
+                    item.prev("a.apply").show();
+                    }
+                    });
                     });
                     */
                 });
