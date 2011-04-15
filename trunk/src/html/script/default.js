@@ -123,7 +123,12 @@ function RefreshConcern() {
         type: 'GET',
         url: 'follow/show',
         success: function (msg) {
-            $("#concern").html(msg);
+        	if(msg == null || msg == ""){
+        		$("#concern").html(msg);
+        	}else{
+        		$("#concern").html("尚未有关注项？试试搜索，有新发现哟！");
+        	}
+            
         }
     });
 }
