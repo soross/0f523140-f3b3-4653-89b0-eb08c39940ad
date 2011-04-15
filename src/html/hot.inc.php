@@ -111,11 +111,26 @@ function hot_editgroup()
     $content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><form action="/hot/groupupdate" method="post"><table>';
     while($row = mysql_fetch_array($list))
-    {
         $content .= "<tr><td>".$row['name']."</td><td><input type='text' name=".$row["tag_id"]." value=".$row['tag_group']." /></td></tr>";
-    }
-    $content .= "</form></table></body></html>";
+    $content .= "<input type='submit' value='修改' /></form></table></body></html>";
     echo $content;
+}
+
+function hot_groupupdate()
+{
+    include_once('login.inc.php');
+    user_ensure_admin();
+    connect_db();
+    $view = "SELECT tag_id FROM tags";
+    $list = mysql_query($view);
+    $set = array();
+    while($row = mysql_fetch_array($list))
+        $set[$row['tag_id']] = get_post[$row['tag_id']];
+    foreach($set as ($tag_id => $tag_group))
+    {
+        $view = "UPDATE tags SET tag_group='$tag_group' WHERE tag_id='$tag_id'";
+        $list = mysql_query($view);
+    }
 }
     
 function hot_editname()
