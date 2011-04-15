@@ -60,7 +60,7 @@ function get_user_tweets($key, $site, $num, $page, $count = false)
         $page = intval($page) * $num;
         $limit = " LIMIT $page , $num";
     }
-    if($key == "current")
+    if(!$key)
     {
         include_once("login.inc.php");
         user_ensure_authenticated();
@@ -84,7 +84,7 @@ function user_count()
     $user = $args[2];
     $site = get_post('site_id');
     $data = get_user_tweets($user, $site, 10, "", true);
-    theme('page', 'count', $data[0][0]);
+    echo $data[0][0];
 }
 
 function user_show()
