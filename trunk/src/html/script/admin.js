@@ -139,7 +139,7 @@ function UpdateNormal() {
     $.ajax({
         type: "POST",
         url: 'search/0/',
-        data: {admin: 1, page: e},
+        data: {admin: 1},
         success: function (msg) {
             msg = $.trim(msg);
             if (msg % 10 == 0) {
