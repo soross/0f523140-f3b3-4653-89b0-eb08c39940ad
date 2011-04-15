@@ -7,7 +7,6 @@ $(function () {
 
     SetSorts();
     InitBoxes();
-    GetNewerBlogs();
     $.ajax({
         type: 'GET',
         url: 'count/show',
@@ -60,7 +59,7 @@ $(function () {
         $("div#backTop").stop().animate({ opacity: 0.6 }, 200);
     });
     
-    setTimeout(function () { GetNewerBlogs(); }, 60000);
+    setTimeout(function () { GetNewerBlogs(); }, 6000);
     
 });
 //End of Init
@@ -934,7 +933,7 @@ function GetNewerBlogs() {
             }
         }
     });
-    setTimeout(function () { GetNewerBlogs(); }, 60000);
+    setTimeout(function () { GetNewerBlogs(); }, 6000);
 }
 
 //End of Other Event
