@@ -103,7 +103,7 @@ function SetPublish() {
     $("div#jobs-publish-confirm a").click(function () {
         $.ajax({
             type: 'POST',
-            url: 'post/1',
+            url: 'tweet/post/1',
             data: { text: $("div#jobs-publish-text textarea").val() },
             success: function (msg) {
                 if ($.trim(msg) != "0") {
@@ -117,7 +117,7 @@ function SetPublish() {
     $("div#recruitment-publish-confirm a").click(function () {
         $.ajax({
             type: 'POST',
-            url: 'post/2',
+            url: 'tweet/post/2',
             data: { text: $("div#recruitment-publish-text textarea").val() },
             success: function (msg) {
                 if ($.trim(msg) != "0") {
