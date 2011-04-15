@@ -1,5 +1,6 @@
 ﻿//User Login - share.js
 var logined = false;
+var rolekind = "";
 
 $(function () {
     InitUser();
@@ -76,7 +77,7 @@ function CoverResize() {
         pageWidth = windowWidth;
     }
     pageWidth += 50;
-    $("body").css("overflow","hidden");
+    $("body").css("overflow", "hidden");
     $("div#cover").css("height", pageHeight + "px");
     $("div#cover").css("width", pageWidth + "px");
     $("div#cover").animate({ opacity: 0.4 }, 0);
@@ -197,26 +198,26 @@ function UpdateRecruitmentText() {
     }
 }
 function ShowJobsPublish() {
-	CoverResize();
+    CoverResize();
     $("div#cover").fadeIn(200);
-    $("body").css("overflow","hidden");
+    $("body").css("overflow", "hidden");
     $("div#jobs-publish").fadeIn(200);
     $("div#jobs-publish-text textarea").focus();
 }
 function HideJobsPublish() {
     $("div#cover").fadeOut(200);
-    $("body").css("overflow","auto");
+    $("body").css("overflow", "auto");
     $("div#jobs-publish").fadeOut(200);
 }
 function ShowRecruitmentPublish() {
-	CoverResize();
+    CoverResize();
     $("div#cover").fadeIn(200);
-    $("body").css("overflow","hidden");
+    $("body").css("overflow", "hidden");
     $("div#recruitment-publish").fadeIn(200);
     $("div#recruitment-publish-text textarea").focus();
 }
 function HideRecruitmentPublish() {
     $("div#cover").fadeOut(200);
-    $("body").css("overflow","auto");
+    $("body").css("overflow", "auto");
     $("div#recruitment-publish").fadeOut(200);
 }
