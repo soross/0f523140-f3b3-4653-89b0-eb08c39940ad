@@ -4,6 +4,7 @@ from bottle import route, run, debug, template, request, validate, error, respon
 # only needed when you run Bottle on mod_wsgi
 from bottle import default_app
 from y_home import *
+from y_apply import *
 
 #reload(sys)
 #sys.setdefaultencoding('utf-8')
