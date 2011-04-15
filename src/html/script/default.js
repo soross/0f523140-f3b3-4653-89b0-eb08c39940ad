@@ -312,7 +312,7 @@ function InitBoxes() {
         offset: "0 200",
         collision: "none none"
     });
-    $("#popBox_apply1").css("posotion", "fixed");
+    $("#popBox_apply1").css("position", "fixed");
     $("#popBox_apply0").position({
         of: $("html"),
         my: "center top",
@@ -320,7 +320,7 @@ function InitBoxes() {
         offset: "0 200",
         collision: "none none"
     });
-    $("#popBox_apply0").css("posotion", "fixed");
+    $("#popBox_apply0").css("position", "fixed");
 }
 function JobLike(item, id) {
     $.ajax({
