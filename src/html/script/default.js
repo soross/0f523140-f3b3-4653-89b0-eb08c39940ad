@@ -306,20 +306,22 @@ function SearchContent(noresult, content, cate, pagenum) {
 //Other Event
 function InitBoxes() {
     $("#popBox_apply1").position({
-        of: $(window),
+        of: $("body"),
         my: "center top",
         at: "center top",
         offset: "0 130",
         collision: "none none"
     });
+    $("#popBox_apply1").css("top", "200");
     $("#popBox_apply1").css("posotion", "fixed");
     $("#popBox_apply0").position({
-        of: $(window),
+        of: $("body"),
         my: "center top",
         at: "center top",
         offset: "0 130",
         collision: "none none"
     });
+    $("#popBox_apply0").css("top", "200");
     $("#popBox_apply0").css("posotion", "fixed");
 }
 function JobLike(item, id) {
