@@ -302,7 +302,11 @@ function ShowProfile() {
         success: function (msg) {
             if ($.trim(msg).indexOf('|') != -1) {
                 $("#u-name").val(msg.split('|')[0]);
-                $("input[name='dsex']").val(msg.split('|')[1]);
+                $("input[name='dsex']").each(function () {
+                    if ($(this).val() == msg.split('|')[1]) {
+                        $(this).attr("checked", "checked");
+                    }
+                });
                 $("#birthday").val(msg.split('|')[2]);
                 $("#n-positon").val(msg.split('|')[3]);
                 $("#o-positon").val(msg.split('|')[4]);
