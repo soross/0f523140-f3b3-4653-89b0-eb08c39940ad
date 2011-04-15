@@ -61,6 +61,7 @@ $(function () {
     
     setTimeout(function () { GetNewerBlogs(); }, 6000);
     
+    SetRolePicker();
 });
 //End of Init
 
