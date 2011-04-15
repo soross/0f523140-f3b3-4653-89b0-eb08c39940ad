@@ -77,6 +77,60 @@ $(function () {
     	document.location = "manager?type=profile";
     });
     
+
+    if ($.query.get("search") != "") {
+        var text = $.trim($.query.get("search"));
+        var cat = $.trim($.query.get("cat"));
+        
+        if (text != "职位关键字，如：北京 产品经理 阿里巴巴" && text != "") {
+            SearchContent(false, text, cate , 0);
+        }
+        
+        /*
+        StartSearch('search/' + encodeURI(text) + '/' + cat, function (msg, thissearch) {
+            page = 0;
+            cate = cat;
+            $("#sort").html($("a#" + cate).html());
+            $("#sorts-name").html($("a#" + cate).html());
+            isTurn = false;
+            SetSearch(msg, text, thissearch);
+            setTimeout(function () { GetNewerBlogs(); }, 60000);
+            $("div#backTop").position({
+                of: $("div#microblogs"),
+                my: "left top",
+                at: "right top",
+                offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                collision: "none none"
+            });
+            $("div#backTop").css("position", "fixed");
+        });
+        */
+    }
+    else {
+    	
+    	SearchContent(true, "all", 0, 0);
+    	/*
+        $.ajax({
+            type: 'GET',
+            url: 'search/all/0',
+            success: function (msg) {
+                isTurn = false;
+                SetAllSearch(msg);
+                $("div#backTop").position({
+                    of: $("div#microblogs"),
+                    my: "left top",
+                    at: "right top",
+                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                    collision: "none none"
+                });
+                $("div#backTop").css("position", "fixed");
+                setTimeout(function () { GetNewerBlogs(); }, 60000);
+            }
+        });
+        */
+    }
+
+    
 });
 //End of Init
 
