@@ -547,7 +547,8 @@ function ShowNormal(e) {
     $("div#ads").show();
     $.ajax({
         type: 'POST',
-        url: 'user/current/0/' + e,
+        url: 'user/show',
+        data: { page: page },
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
@@ -578,7 +579,7 @@ function ShowNormal(e) {
 function UpdateTweet() {
     $.ajax({
         type: "POST",
-        url: 'user/current/0/count',
+        url: 'user/count',
         success: function (msg) {
             msg = $.trim(msg);
             $("span#blogs-count").html("共有" + msg + "条记录");
