@@ -17,5 +17,7 @@ def jsonencode(x):
     data = dict(x)
     return json.dumps(data)
 
+baseurl = "http://www.ybole.com:81"
+
 consumer_key= "961495784"
 consumer_secret ="47d9d806a1dc04cc758be6f7213465bc"
