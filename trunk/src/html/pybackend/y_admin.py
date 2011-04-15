@@ -8,6 +8,6 @@ def admin():
 def admin_tag():
     return template("home")
 
-@post('/admin/tag/edit')
+@route('/admin/tag/edit')
 def admin_tag():
     return template("home")
