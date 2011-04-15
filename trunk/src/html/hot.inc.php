@@ -126,7 +126,7 @@ function hot_groupupdate()
     $set = array();
     while($row = mysql_fetch_array($list))
         $set[$row['tag_id']] = get_post($row['tag_id']);
-    foreach($set as ($tag_id => $tag_group))
+    foreach($set as $tag_id => $tag_group)
     {
         $view = "UPDATE tags SET tag_group='$tag_group' WHERE tag_id='$tag_id'";
         $list = mysql_query($view);
