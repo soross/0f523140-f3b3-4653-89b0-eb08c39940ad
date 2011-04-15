@@ -1,7 +1,7 @@
 ﻿function AfterLogin() {
     $.ajax({
         type: 'POST',
-        url: 'info/',
+        url: 'user_info/',
         success: function (msg) {
             $(".logined").show();
             $(".logouted").hide();
