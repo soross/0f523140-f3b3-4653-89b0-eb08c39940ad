@@ -73,6 +73,10 @@ $(function () {
         $("#radio").hide();
     }
     
+    $("a.btn_goresume").click(function(){
+    	document.location.href="manager?type=profile";
+    });
+    
 });
 //End of Init
 
