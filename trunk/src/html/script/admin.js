@@ -136,8 +136,7 @@ function ShowNormal(e) {
 }
 
 function DeleteTweet(id){
-	deleteitem = $(this).get().parentNode.parentNode.parentNode;
-	deleteitem = $(deleteitem);
+	deleteitem = $(this).parent().parent().parent();
     deleteid = id;
     deleteurl = 'tweet/delete/';
     type = "tweet";
