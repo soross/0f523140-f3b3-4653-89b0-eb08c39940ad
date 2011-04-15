@@ -1,7 +1,7 @@
 #coding:utf8
 from bottle import route, run, debug, template, request, validate, error, response, redirect
 from y_common import *
-from weibopy import OAuthHandler
+from weibopy import WebOAuthHandler
 from urllib import quote_plus
 
 @route('/login')
