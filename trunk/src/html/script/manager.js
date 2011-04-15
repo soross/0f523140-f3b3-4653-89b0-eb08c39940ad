@@ -68,7 +68,8 @@
         resize_enabled: false,
         filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
         filebrowserImageBrowseUrl: 'ckfinder/ckfinder.html?Type=Images',
-        filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+        filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        htmlEncodeOutput: true
     });
     CKFinder.setupCKEditor(editor, "ckfinder/");
 
@@ -203,7 +204,7 @@
     $("a#profile-save").click(function () {
         $.ajax({
             type: 'POST',
-            url: 'resume/add',
+            url: 'resume/update',
             data: {
                 name: $("#u-name").val(),
                 sex: $("input[name='dsex']:checked=\"checked\"").val(),
@@ -230,7 +231,6 @@
         $("#h-email").val($("#email").val());
         $("#h-content").val(editor.document.getBody().getHtml());
 
-        alert($("input[name='dsex']:checked").title);
         $("#ResumeForm").submit();
     });
 
