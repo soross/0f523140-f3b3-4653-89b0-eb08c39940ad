@@ -93,8 +93,6 @@ function user_show()
     $user = $args[2];
     $page = get_post('page');
     $site = get_post('site_id');
-    if(!$user)
-        $user = "current";
     $data = get_user_tweets($user, $site, 10, $page);
     theme('user', $data);
 }
