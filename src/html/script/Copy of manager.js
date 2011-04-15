@@ -170,6 +170,38 @@ $(function () {
             item.addClass("close");
         }
     });
+    
+    // added 20110415
+    $("a.apply").live("click", function () {
+        var item = $(this);
+        var id = $(this).parent().parent().parent().attr("id");
+        $.ajax({
+            type: "POST",
+            url: 'apply/add/' + id,
+            success: function () {
+                item.hide();
+                item.next("a.unapply").show();
+            }
+        });
+    });
+    $("a.unapply").live("click", function () {
+        var item = $(this);
+        var id = $(this).parent().parent().parent().attr("id");
+        $.ajax({
+            type: "POST",
+            url: 'apply/delete/' + id,
+            success: function () {
+                item.hide();
+                item.prev("a.apply").show();
+            }
+        });
+    });
+    $("div.item").live("mouseover", function () {
+        $(this).addClass("item-over");
+    });
+    $("div.item").live("mouseout", function () {
+        $(this).removeClass("item-over");
+    });
 
     $("#delete-dialog").dialog({
         autoOpen: false,
@@ -200,15 +232,19 @@ $(function () {
                                                 str += msg.split('<div class="item"')[10];
                                                 $("div.item:last").after(str);
                                                 $(".newer:last").slideDown(200);
+                                                /*
                                                 $("div.item").unbind("mouseover");
                                                 $("div.item").unbind("mouseout");
+                                                */
                                                 $("div.item-delete a").unbind("click");
+                                                /*
                                                 $("div.item").mouseover(function () {
                                                     $(this).addClass("item-over");
                                                 });
                                                 $("div.item").mouseout(function () {
                                                     $(this).removeClass("item-over");
                                                 });
+                                                */
                                                 $("div.item-delete a").click(function () {
                                                     deleteitem = $(this).parent().parent();
                                                     deleteid = deleteitem.attr("id");
@@ -231,12 +267,15 @@ $(function () {
                                                 str += msg.split('<div class="item"')[10];
                                                 $("div.item:last").after(str);
                                                 $(".newer:last").slideDown(200);
+                                                /*
                                                 $("a.apply").unbind("click");
                                                 $("a.unapply").unbind("click");
                                                 $("div.item").unbind("mouseover");
                                                 $("div.item").unbind("mouseout");
+                                                */
                                                 $("a.delete").unbind("click");
                                                 $("div.item-delete a").unbind("click");
+                                                /*
                                                 $("a.apply").click(function () {
                                                     var item = $(this);
                                                     var id = $(this).parent().parent().parent().attr("id");
@@ -267,6 +306,7 @@ $(function () {
                                                 $("div.item").mouseout(function () {
                                                     $(this).removeClass("item-over");
                                                 });
+                                                */
                                                 $("a.delete").click(function () {
                                                     deleteitem = $(this).parent().parent().parent();
                                                     deleteid = deleteitem.attr("id");
@@ -296,16 +336,20 @@ $(function () {
                                                 str += msg.split('<div class="item"')[10];
                                                 $("div.item:last").after(str);
                                                 $(".newer:last").slideDown(200);
+                                                /*
                                                 $("div.item").unbind("mouseover");
                                                 $("div.item").unbind("mouseout");
+                                                */
                                                 $("a.delete").unbind("click");
                                                 $("div.item-delete a").unbind("click");
+                                                /*
                                                 $("div.item").mouseover(function () {
                                                     $(this).addClass("item-over");
                                                 });
                                                 $("div.item").mouseout(function () {
                                                     $(this).removeClass("item-over");
                                                 });
+                                                */
                                                 $("a.delete").click(function () {
                                                     deleteitem = $(this).parent().parent().parent();
                                                     deleteid = deleteitem.attr("id");
@@ -551,12 +595,14 @@ function ShowApply(e) {
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
+            /*
             $("div.item").mouseover(function () {
                 $(this).addClass("item-over");
             });
             $("div.item").mouseout(function () {
                 $(this).removeClass("item-over");
             });
+            */
             $("div.item-delete a").click(function () {
                 deleteitem = $(this).parent().parent();
                 deleteid = deleteitem.attr("id");
@@ -655,6 +701,7 @@ function ShowFavourite(e) {
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
+            /*
             $("a.apply").click(function () {
                 var item = $(this);
                 var id = $(this).parent().parent().parent().attr("id");
@@ -685,6 +732,7 @@ function ShowFavourite(e) {
             $("div.item").mouseout(function () {
                 $(this).removeClass("item-over");
             });
+            */
             $("a.delete").click(function () {
                 deleteitem = $(this).parent().parent().parent();
                 deleteid = deleteitem.attr("id");
@@ -789,12 +837,14 @@ function ShowNormal(e) {
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
+            /*
             $("div.item").mouseover(function () {
                 $(this).addClass("item-over");
             });
             $("div.item").mouseout(function () {
                 $(this).removeClass("item-over");
             });
+            */
             $("a.delete").click(function () {
                 deleteitem = $(this).parent().parent().parent();
                 deleteid = deleteitem.attr("id");
