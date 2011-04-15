@@ -74,7 +74,7 @@ $(function () {
     }
     
     $("a.btn_goresume").click(function(){
-    	document.location.href="manager?type=profile";
+    	document.location = "manager?type=profile";
     });
     
 });
