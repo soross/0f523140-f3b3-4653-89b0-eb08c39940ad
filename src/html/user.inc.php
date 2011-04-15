@@ -94,7 +94,7 @@ function user_show()
     $page = get_post('page');
     $site = get_post('site_id');
     if(!$user)
-        die("Invalid Argument!");
+        $user = "current";
     $data = get_user_tweets($user, $site, 10, $page);
     theme('user', $data);
 }
