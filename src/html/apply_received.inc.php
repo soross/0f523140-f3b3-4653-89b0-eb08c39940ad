@@ -78,7 +78,7 @@ function received_apply_count_tweet($tweet_id)
 {
     $content = '';
     $applies = get_received_applies($tweet_id, 10, "", true);
-    echo $applies[0][0];
+    return $applies[0][0];
 }
 
 function received_apply_count()
