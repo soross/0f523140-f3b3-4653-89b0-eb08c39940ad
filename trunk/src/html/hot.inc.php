@@ -109,7 +109,7 @@ function hot_editgroup()
     $view = "SELECT * FROM tags";
     $list = mysql_query($view);
     $content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html><body><form action="/hot/groupupdate" method="post"><table>';
+    <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><form action="/hot/groupupdate" method="post"><table>';
     while($row = mysql_fetch_array($list))
     {
         $content .= "<tr><td>".$row['name']."</td><td>".$row['tag_group']."</td></tr>";
@@ -126,7 +126,7 @@ function hot_editname()
     $view = "SELECT * FROM tag_group";
     $list = mysql_query($view);
     $content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html><body><form action="/hot/nameupdate" method="post"><table>';
+    <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><form action="/hot/nameupdate" method="post"><table>';
     while($row = mysql_fetch_array($list))
     {
         $content .= "<tr><td>".$row['tag_group_name']."</td><td>".$row['tag_group']."</td></tr>";
