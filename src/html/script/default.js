@@ -309,19 +309,17 @@ function InitBoxes() {
         of: $("body"),
         my: "center top",
         at: "center top",
-        offset: "0 130",
+        offset: "0 200",
         collision: "none none"
     });
-    $("#popBox_apply1").css("top", "200");
     $("#popBox_apply1").css("posotion", "fixed");
     $("#popBox_apply0").position({
         of: $("body"),
         my: "center top",
         at: "center top",
-        offset: "0 130",
+        offset: "0 200",
         collision: "none none"
     });
-    $("#popBox_apply0").css("top", "200");
     $("#popBox_apply0").css("posotion", "fixed");
 }
 function JobLike(item, id) {
