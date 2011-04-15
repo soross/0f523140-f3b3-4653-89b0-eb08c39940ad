@@ -292,7 +292,7 @@ function SetContent(id, datas, item, count) {
     var current = datas.attr("name");
     $.ajax({
         type: 'POST',
-        url: 'received/apply/' + id + "/" + current,
+        url: 'apply_received/show_tweet/' + id + "/" + current,
         success: function (msg) {
             item.html(msg);
             $("a.item-applys-read").each(function () {
@@ -404,14 +404,13 @@ function UpdateApplys() {
 }
 
 function ShowApplys(e) {
-    page = e;
     $("div#profile").hide();
     $("div#blogs").show();
     $("div#profile-control").hide();
     $("div#ads").show();
     $.ajax({
         type: 'POST',
-        url: 'received/' + e,
+        url: 'apply_received/show/' + e,
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
