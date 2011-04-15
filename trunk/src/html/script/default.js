@@ -58,6 +58,8 @@ function AfterLogin() {
             var type = msg.split(',')[1];
             $("#name").html(username);
             if (type == -1) {
+                $("div#cover").show();
+                $("div#role-choose").show();
             }
             else if (type == 1) {
                 $(".jobs").show();
@@ -304,6 +306,8 @@ function SearchContent(noresult, content, cate, pagenum) {
 //End of Search Event
 
 //Other Event
+var appyId = "";
+
 function InitBoxes() {
     $("#popBox_apply1").position({
         of: $("html"),
@@ -352,8 +356,19 @@ function JobUnLike(item, id) {
         }
     });
 }
+function SentResume() {
+    $.ajax({
+        type: 'GET',
+        url: 'apply_sent/add/' + appyId,
+        success: function (msg) {
+            $(item).hide();
+            $(item).next().show();
+        }
+    });
+}
 function JobApply(item, id, name) {
     var userid;
+    appyId = id;
     $.ajax({
         type: 'GET',
         url: 'resume/current',
@@ -377,6 +392,14 @@ function JobApply(item, id, name) {
     });
 }
 function JobUnApply(item, id) {
+    $.ajax({
+        type: 'GET',
+        url: 'apply_sent/delete/' + id,
+        success: function (msg) {
+            $(item).hide();
+            $(item).prev().show();
+        }
+    });
 }
 function HotCompany(item) {
     SearchContent(false, $(item).html(), 0, 0);
@@ -402,5 +425,110 @@ function ShowSorts() {
 }
 function HideSorts() {
     $("div#sorts").hide();
+}
+function SetRolePicker() {
+    $("div#role-choose").position({
+        of: $("body"),
+        my: "center top",
+        at: "center top",
+        offset: "0 130",
+        collision: "none none"
+    });
+    $("a#role-jobs").position({
+        of: $("div#role-choose"),
+        my: "left top",
+        at: "left top",
+        offset: "48 54",
+        collision: "none none"
+    });
+    $("a#role-recruitment").position({
+        of: $("div#role-choose"),
+        my: "left top",
+        at: "left top",
+        offset: "328 54",
+        collision: "none none"
+    });
+    $("a#role-confirm").position({
+        of: $("div#role-choose"),
+        my: "left top",
+        at: "left top",
+        offset: "190 276",
+        collision: "none none"
+    });
+
+    $("a#role-jobs").click(function () {
+        $("div#role-choose").removeClass("role-recruitment");
+        $("div#role-choose").addClass("role-jobs");
+        rolekind = "jobs";
+    });
+    $("a#role-recruitment").click(function () {
+        $("div#role-choose").removeClass("role-jobs");
+        $("div#role-choose").addClass("role-recruitment");
+        rolekind = "recruitment";
+    });
+    $("a#role-confirm").click(function () {
+        if (rolekind == "jobs") {
+            $(".logined").show();
+            $(".jobs").show();
+            $.ajax({
+                type: 'POST',
+                url: 'role/set/1',
+                success: function (msg) {
+                    $("#manager-tips").position({
+                        of: $("#manager-center"),
+                        my: "center top",
+                        at: "center bottom",
+                        offset: "0 0",
+                        collision: "none none"
+                    });
+                    $("#concern-tips").position({
+                        of: $("#concern-title"),
+                        my: "left center",
+                        at: "right center",
+                        offset: "0 0",
+                        collision: "none none"
+                    });
+                    $("#apply-tips").position({
+                        of: $(".apply:first"),
+                        my: "center bottom",
+                        at: "center top",
+                        offset: "0 0",
+                        collision: "none none"
+                    });
+                    $("#manager-tips").show();
+                    $("#concern-tips").show();
+                    $("#apply-tips").show();
+                }
+            });
+        }
+        else if (rolekind == "recruitment") {
+            $(".logined").show();
+            $(".recruitment").show();
+            $.ajax({
+                type: 'POST',
+                url: 'role/set/2',
+                success: function (msg) {
+                    $("#manager-tips").position({
+                        of: $("#manager-center"),
+                        my: "center top",
+                        at: "center bottom",
+                        offset: "0 0",
+                        collision: "none none"
+                    });
+                    $("#concern-tips").position({
+                        of: $("#concern-title"),
+                        my: "left center",
+                        at: "right center",
+                        offset: "0 0",
+                        collision: "none none"
+                    });
+                    $("#manager-tips").show();
+                    $("#concern-tips").show();
+                }
+            });
+        }
+        $("div#cover").hide();
+        $("div#role-choose").hide();
+    });
 }
 //End of Other Event

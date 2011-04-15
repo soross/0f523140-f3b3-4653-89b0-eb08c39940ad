@@ -175,7 +175,7 @@
                         (<span class="font_tip2">*</span>系统将自动为您附上您的简历)</span>
                 </div>
                 <div id="btn_publish" class="popboxicon btn_publish">
-                    <a class="left" style="height: 100%; width: 100%;"></a>
+                    <a class="left" style="height: 100%; width: 100%;" onclick="SentResume()"></a>
                 </div>
             </div>
         </div>
@@ -200,8 +200,60 @@
                     在本网站中，请不要重复发布。</div>
             </div>
             <div class="line3">
-                <a class="popboxicon btn_ikown">好的，我知道了</a></div>
+                <a class="popboxicon btn_ikown" onclick="$('#popBox_publishok').hide();">好的，我知道了</a></div>
         </div>
+    </div>
+    <div id="cover">
+    </div>
+    <div id="role-choose" class="absolute role-jobs">
+        <a id="role-jobs" class="absolute"></a><a id="role-recruitment" class="absolute">
+        </a><a id="role-confirm" class="absolute"></a>
+    </div>
+    <div id="jobs-publish" class="absolute">
+        <div id="jobs-publish-title">
+            <span class="left">发布求职信息</span> <a class="right"></a>
+        </div>
+        <div id="jobs-publish-content">
+            <div id="jobs-publish-remain">
+                还可输入136个字</div>
+            <div id="jobs-publish-text">
+                <textarea>#求职#</textarea>
+            </div>
+            <div id="jobs-publish-tags-hot">
+            </div>
+            <div id="jobs-publish-confirm">
+                <a class="right"></a><span class="right">本信息将同步发送到新浪微博</span>
+            </div>
+        </div>
+    </div>
+    <div id="recruitment-publish" class="absolute">
+        <div id="recruitment-publish-title">
+            <span class="left">发布招聘信息</span> <a class="right"></a>
+        </div>
+        <div id="recruitment-publish-content">
+            <div id="recruitment-publish-remain">
+                还可输入136个字</div>
+            <div id="recruitment-publish-text">
+                <textarea>#招聘#</textarea>
+            </div>
+            <div id="recruitment-publish-tags-hot">
+            </div>
+            <div id="recruitment-publish-confirm">
+                <a class="right"></a><span class="right">本信息将同步发送到新浪微博</span>
+            </div>
+        </div>
+    </div>
+    <div id="backTop" class="absolute">
+        <a>▲回到顶部</a>
+    </div>
+    <div id="manager-tips" class="absolute">
+        <a class="right" onclick="CloseMTips()"></a>
+    </div>
+    <div id="concern-tips" class="absolute">
+        <a class="right" onclick="CloseCTips()"></a>
+    </div>
+    <div id="apply-tips" class="absolute">
+        <a class="right" onclick="CloseATips()"></a>
     </div>
 </body>
 </html>

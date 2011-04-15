@@ -187,7 +187,7 @@ function search_history_show()
         if($search != $h['search'])
             $search .= '...';
         $content .= '<div class="history-item" onmouseover="HistoryMouseOver(this)" onmouseout="HistoryMouseOut(this)" onclick="HistoryClick(\''.$h['cat_id'].'\',\''.$h['search'].'\')">
-                    <a>'.$h['cat_id'].':'.$search.'</a></div>';
+                    <a>'.$search.'</a></div>';
     }
     $content .= '</div>';
     echo $content;
