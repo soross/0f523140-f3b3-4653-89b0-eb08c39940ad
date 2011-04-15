@@ -44,7 +44,7 @@ function long_url($shortURL)
 function format_str($str, $strict)
 {
     $str = str_replace("'", "", $str);
-    $str = str_replace("\"", "", $str);
+    //$str = str_replace("\"", "", $str);
     if($strict)
     {
         $str = str_replace("<", "&lt;", $str);
