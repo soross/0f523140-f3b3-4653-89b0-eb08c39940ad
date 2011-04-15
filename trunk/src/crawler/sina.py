@@ -13,6 +13,9 @@ import os
 from signal import SIGTERM
 from crawler_id import idlist as A
 
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 PAGE = 1
     
 B = []
