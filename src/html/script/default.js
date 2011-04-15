@@ -308,6 +308,7 @@ function SearchContent(noresult, content, cate, pagenum) {
                     $(window).scroll(function () {
                         DocumenScroll();
                     });	
+                    page = pagenum;
                 }
             });
             
@@ -566,7 +567,7 @@ function DocumenScroll() {
                 if (msg == "" || msg.split('"microblog-item"').length < 11) {
                     scrollflag = true;
                 }
-                
+
                 $("#flower").fadeOut(200);
                 $("div#blogs").html($("div#blogs").html() + msg);
                 /*
