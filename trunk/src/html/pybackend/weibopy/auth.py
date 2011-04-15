@@ -102,20 +102,18 @@ class OAuthHandler(AuthHandler):
         except Exception, e:
             raise WeibopError(e)
 
-    def get_access_token(self, verifier=None, oauth_token=None):
+    def get_access_token(self, verifier=None):
         """
         After user has authorized the request token, get access token
         with user supplied verifier.
         """
         try:
-            if oauth_token == None:
-                oauth_token = self.request_token
             url = self._get_oauth_url('access_token')
 
             # build request
             request = oauth.OAuthRequest.from_consumer_and_token(
                 self._consumer,
-                token=oauth_token, http_url=url,
+                token=self.request_token, http_url=url,
                 verifier=str(verifier)
             )
             request.sign_request(self._sigmethod, self._consumer, self.request_token)
@@ -143,3 +141,29 @@ class OAuthHandler(AuthHandler):
             else:
                 raise WeibopError("Unable to get username, invalid oauth token!")
         return self.username
+
+class WebOAuthHandler(OAuthHandler):
+    """继承自OAuthHandler，提供Web应用方法。"""
+    def __init__(self, consumer_key, consumer_secret, access_token=None):
+        OAuthHandler.__init__(self, consumer_key, consumer_secret)
+        if access_token is not None:
+            self.set_access_token(access_token.key, access_token.secret)
+            self.api = API(self)
+    
+    def get_authorization_url_with_callback(self, callback, signin_with_twitter=False):
+        """Get the authorization URL to redirect the user"""
+        try:
+            # get the request token
+            self.request_token = self._get_request_token()
+
+            # build auth request and return as url
+            if signin_with_twitter:
+                url = self._get_oauth_url('authenticate')
+            else:
+                url = self._get_oauth_url('authorize')
+            request = oauth.OAuthRequest.from_token_and_callback(
+                token=self.request_token, callback=callback, http_url=url
+            )
+            return request.to_url()
+        except Exception, e:
+            raise WeibopError(e)
