@@ -176,7 +176,7 @@ $(function () {
         $(this).removeClass("item-over");
     });
     
-    ShowSorts();
+    SetSorts();
 });
 
 function Delete() {
