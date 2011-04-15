@@ -59,7 +59,7 @@ $(function () {
         $("div#backTop").stop().animate({ opacity: 0.6 }, 200);
     });
     
-    setTimeout(function () { GetNewerBlogs(); }, 6000);
+    setTimeout(function () { GetNewerBlogs(); }, 60000);
     
     SetRolePicker();
     
@@ -72,6 +72,7 @@ $(function () {
     else {
         $("#radio").hide();
     }
+    
 });
 //End of Init
 
@@ -977,7 +978,7 @@ function GetNewerBlogs() {
             }
         }
     });
-    setTimeout(function () { GetNewerBlogs(); }, 6000);
+    setTimeout(function () { GetNewerBlogs(); }, 60000);
 }
 
 //End of Other Event
