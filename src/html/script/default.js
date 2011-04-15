@@ -44,7 +44,7 @@ $(function () {
             SearchContent(false, $("#search-text").val(), $("#sort").attr("id"), 0);
         }
     });
-    $(window).live("scroll", function () {
+    $(window).scroll(function () {
         DocumenScroll();
     });
 });
