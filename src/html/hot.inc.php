@@ -111,7 +111,7 @@ function hot_editgroup()
     $content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><form action="/hot/groupupdate" method="post"><table>';
     while($row = mysql_fetch_array($list))
-        $content .= "<tr><td>".$row['name']."</td><td><input type='text' name=".$row["tag_id"]." value=".$row['tag_group']." /></td></tr>";
+        $content .= "<tr><td>".$row['name']."</td><td><input type='text' name='".$row["tag_id"]."' value='".$row['tag_group']."' /></td></tr>";
     $content .= "<input type='submit' value='修改' /></form></table></body></html>";
     echo $content;
 }
@@ -139,16 +139,40 @@ function hot_editname()
     include_once('login.inc.php');
     user_ensure_admin();
     connect_db();
-    $view = "SELECT * FROM tag_group";
+    $view = "SELECT DISTINCT tag_group FROM tags WHERE tag_group != 0";
     $list = mysql_query($view);
     $content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><form action="/hot/nameupdate" method="post"><table>';
+    $set = array();
     while($row = mysql_fetch_array($list))
+        $set[] = $row['tag_group'];
+    foreach($set as $tag_group)
     {
-        $content .= "<tr><td>".$row['tag_group_name']."</td><td>".$row['tag_group']."</td></tr>";
+        $view = "SELECT tag_group_name FROM tag_group WHERE tag_group = $tag_group";
+        $list = mysql_query($view);
+        $row = mysql_fetch_array($list)
+        $content .= "<tr><td>$tag_group</td><td><input type='text' name='$tag_group' value='".$row['tag_group_name']."' /></td></tr>";
     }
-    $content .= "</form></table></body></html>";
+    $content .= "<input type='submit' value='修改' /></form></table></body></html>";
     echo $content;
+}
+
+function hot_nameupdate()
+{
+    include_once('login.inc.php');
+    user_ensure_admin();
+    connect_db();
+    $view = "SELECT DISTINCT tag_group FROM tags WHERE tag_group != 0";
+    $list = mysql_query($view);
+    $set = array();
+    while($row = mysql_fetch_array($list))
+        $set[$row['tag_group']] = get_post($row['tag_group']);
+    foreach($set as $tag_group => $tag_group_name)
+    {
+        $view = "UPDATE tag_group SET tag_group_name='$tag_group_name' WHERE tag_group='$tag_group'";
+        $list = mysql_query($view);
+    }
+    header("Location: ".BASE_URL."hot/editname");
 }
 
 function deal_hot($query)
