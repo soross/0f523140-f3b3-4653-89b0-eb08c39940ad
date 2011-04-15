@@ -134,6 +134,16 @@ $(function () {
 });
 //End of Init
 
+function CloseMTips() {
+    $("#manager-tips").fadeOut(200);
+}
+function CloseCTips() {
+    $("#concern-tips").fadeOut(200);
+}
+function CloseATips() {
+    $("#apply-tips").fadeOut(200);
+}
+
 //After User Login - default.js
 function AfterLogin() {
     $.ajax({
