@@ -251,26 +251,54 @@
             </div>
         </div>
     </div>
-    <div id="published-info" title="发布成功">
-        <p>
-            信息发布成功！本信息已同步发布到新浪微博。</p>
-        <p>
-            您发布的信息将在一段时间之后显示在网站中，请不要重复发布。</p>
+    <div id="confirmBox_del" class="popBox confirmBox popBoxwd3" style="display:none;">
+        <div class="line0">
+            <span class="popboxicon icon_ques"></span>确认删除这条信息？
+        </div>
+        <div class="line1">
+            <a class="popboxicon btn_ok">确认</a> <a class="popboxicon btn_cal">取消</a>
+        </div>
     </div>
-    <div id="profile-info" title="保存成功">
-        <p>
-            简历保存成功！</p>
+    <div id="confirmBox_ok" class="popBox confirmBox popBoxwd3" style="display:none;">
+        <div class="line0">
+            <span class="popboxicon icon_ok"></span>信息保存成功！
+        </div>
+        <div class="line1">
+            <a class="popboxicon btn_ok">确认</a> <a class="popboxicon btn_cal">取消</a>
+        </div>
     </div>
-	
-	<form id="ResumeForm" action="resume/preview" method="post" target="_blank">
-		<input type="hidden" name="name"  id="h-name" />
-		<input type="hidden" name="sex" id="h-sex" checked="false" />
-		<input type="hidden" name="date_birth" id="date_birth" />
-		<input type="hidden" name="live_in_now" id="live_in_now" />
-		<input type="hidden" name="live_in" id="live_in" />
-		<input type="hidden" name="cellphone" id="cellphone"/>
-		<input type="hidden" name="email" id="h-email" />
-		<input type="hidden" name="content" id="h-content" />
-	</form>
+    <div id="popBox_publishok" class="popBox popBoxwd1" style="display:none;">
+        <div class="boxtitle">
+            <div class="popboxicon">
+                <h4>
+                    信息发布提示</h4>
+            </div>
+        </div>
+        <div class="popBox_main">
+            <div class="line1">
+                <div class="popboxicon img_tip">
+                </div>
+                <div class="font_tip">
+                    信息发布成功！</div>
+            </div>
+            <div class="line2">
+                <div class="font_tip2" style="line-height: 18px;">
+                    信息已同步到新浪微博，本信息将在稍后显示<br>
+                    在本网站中，请不要重复发布。</div>
+            </div>
+            <div class="line3">
+                <a class="popboxicon btn_ikown">好的，我知道了</a></div>
+        </div>
+    </div>
+    <form id="ResumeForm" action="resume/preview" method="post" target="_blank">
+    <input type="hidden" name="name" id="h-name" />
+    <input type="hidden" name="sex" id="h-sex" checked="false" />
+    <input type="hidden" name="date_birth" id="date_birth" />
+    <input type="hidden" name="live_in_now" id="live_in_now" />
+    <input type="hidden" name="live_in" id="live_in" />
+    <input type="hidden" name="cellphone" id="cellphone" />
+    <input type="hidden" name="email" id="h-email" />
+    <input type="hidden" name="content" id="h-content" />
+    </form>
 </body>
 </html>
