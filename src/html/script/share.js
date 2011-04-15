@@ -76,7 +76,7 @@ function CoverResize() {
     } else {
         pageWidth = windowWidth;
     }
-    $("div#cover").css("height", "5000px");
+    $("div#cover").css("height", pageHeight + "px");
     $("div#cover").css("width", pageWidth + "px");
     $("div#cover").animate({ opacity: 0.4 }, 0);
 }
