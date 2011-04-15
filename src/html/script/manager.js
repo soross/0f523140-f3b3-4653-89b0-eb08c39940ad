@@ -1,4 +1,11 @@
 ﻿$(function () {
+    $.ajax({
+        type: 'POST',
+        url: 'avatar/',
+        success: function (msg) {
+            $("#headpic").attr("src", msg);
+        }
+    });
     $("a.manager-control").click(function () {
         $("a.manager-control").removeClass("manager-control-choose");
         $(this).addClass("manager-control-choose");
@@ -64,7 +71,18 @@
         filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
     });
     CKFinder.setupCKEditor(editor, "ckfinder/");
-})
+
+
+    var sort = $.query.get("type");
+    if (sort == "profile") {
+        ShowProfile();
+        $("a.manager-control").removeClass("manager-control-choose");
+        $("#myprofile").addClass("manager-control-choose");
+    }
+    else {
+        ShowNormal(0);
+    }
+});
 
 
 function AfterLogin() {
@@ -85,6 +103,546 @@ function AfterLogin() {
             else if (type == 99) {
                 $(".recruitment").show();
                 $(".admin").show();
+            }
+        }
+    });
+}
+
+function ShowProfile() {
+    $("div#profile").show();
+    $("div#blogs").hide();
+    $("div#profile-control").show();
+    $("div#ads").hide();
+    $.ajax({
+        type: 'GET',
+        url: 'resume/show',
+        success: function (msg) {
+            if ($.trim(msg).indexOf('|') != -1) {
+                $("#u-name").val(msg.split('|')[0]);
+                $("input[name='dsex']").val(msg.split('|')[1]);
+                $("#birthday").val(msg.split('|')[2]);
+                $("#n-positon").val(msg.split('|')[3]);
+                $("#o-positon").val(msg.split('|')[4]);
+                $("#m-phone").val(msg.split('|')[5]);
+                $("#email").val(msg.split('|')[6]);
+                var str = "";
+                for (s in msg.split('|')) {
+                    if (s == 7) {
+                        str += msg.split('|')[s];
+                    }
+                    else if (s >= 7) {
+                        str += '|' + msg.split('|')[s];
+                    }
+                }
+                editor.setData(str);
+            }
+        }
+    });
+}
+
+function SetContent(id, datas, item, count) {
+    var current = datas.attr("name");
+    $.ajax({
+        type: 'POST',
+        url: 'received/apply/' + id + "/" + current,
+        success: function (msg) {
+            item.html(msg);
+            $("a.item-applys-read").each(function () {
+                $(this).attr("href", "resume/show/" + $(this).parent().attr("id"));
+                $(this).attr("target", "_blank");
+            });
+            var allpage = 0;
+            if (count % 10 == 0) {
+                allpage = Math.floor(count / 10);
+            }
+            else {
+                allpage = Math.floor(count / 10) + 1;
+            }
+            item.next(".item-page").html('');
+            if (allpage > 1) {
+                if (current != allpage - 1) {
+                    item.next(".item-page").html('<a class="right">下一页</a>');
+                    item.next(".item-page").children("a:first").click(function () {
+                        datas.attr("name", current + 1);
+                        SetContent(id, datas, item, count);
+                    });
+                }
+                if (current != 0) {
+                    item.next(".item-page").html(item.next(".item-page").html() + '<a class="right">上一页</a>');
+                    item.next(".item-page").children("a:last").click(function () {
+                        datas.attr("name", current - 1);
+                        SetContent(id, datas, item, count);
+                    });
+                }
+            }
+            item.slideDown(200);
+            item.next(".item-page").slideUp(200);
+            item.removeClass("close");
+        }
+    });
+}
+
+function UpdateApplys() {
+    $.ajax({
+        type: "POST",
+        url: 'received/count',
+        success: function (msg) {
+            msg = $.trim(msg);
+            $("span#blogs-count").html("共有" + msg + "条记录");
+            if (msg % 10 == 0) {
+                allpage = Math.floor(msg / 10);
+            }
+            else {
+                allpage = Math.floor(msg / 10) + 1;
+            }
+            if (allpage > 0) {
+                prevLess = false;
+                nextLess = false;
+                var str = '<div id="pages-inner" class="right">';
+                if (page != 0) {
+                    str += '<a class="page-control left" id="prevPage">上一页</a>';
+                }
+                for (i = 0; i < allpage; i++) {
+                    if (!prevLess && i - page < -2) {
+                        if (i == 0) {
+                            str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        }
+                        else {
+                            prevLess = true;
+                            str += '<span class="left">...</span>';
+                        }
+                    }
+                    if (Math.abs(i - page) <= 2) {
+                        if (i == page) {
+                            str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                        }
+                        else {
+                            str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        }
+                    }
+                    if (i == allpage - 1 && i - page > 2) {
+                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        nextLess = true;
+                    }
+                    if (!nextLess && i - page > 2) {
+                        nextLess = true;
+                        str += '<span class="left">...</span>';
+                    }
+                }
+                if (page != allpage - 1) {
+                    str += '<a class="page-control left" id="nextPage">下一页</a>';
+                }
+                str += '</div>';
+                $("div#pages").html(str);
+                $("div#pages").fadeIn(200);
+                $("a.page-number").click(function () {
+                    page = $(this).html() - 1;
+                    ShowApplys(page);
+                    $(window).scrollTop(0);
+                });
+                $("a#prevPage").click(function () {
+                    page--;
+                    ShowApplys(page);
+                    $(window).scrollTop(0);
+                });
+                $("a#nextPage").click(function () {
+                    page++;
+                    ShowApplys(page);
+                    $(window).scrollTop(0);
+                });
+            }
+        }
+    });
+}
+
+function ShowApplys(e) {
+    page = e;
+    $("div#profile").hide();
+    $("div#blogs").show();
+    $("div#profile-control").hide();
+    $("div#ads").show();
+    $.ajax({
+        type: 'POST',
+        url: 'received/' + e,
+        success: function (msg) {
+            $("div#pages").fadeOut(50);
+            $("div#blogsinner").html(msg);
+            $("a.applys").click(function () {
+                var datas = $(this);
+                var count = $(this).attr("id");
+                $(this).attr("name", "0");
+                var id = $(this).parent().parent().parent().attr("id");
+                var item = $(this).parent().next(".item-applys");
+                if (item.hasClass("close")) {
+                    SetContent(id, datas, item, count);
+                }
+                else {
+                    item.slideUp(200);
+                    item.next(".item-page").slideUp(200);
+                    item.addClass("close");
+                }
+            });
+            UpdateApplys();
+            //            $("div.item").mouseover(function () {
+            //                $(this).addClass("item-over");
+            //            });
+            //            $("div.item").mouseout(function () {
+            //                $(this).removeClass("item-over");
+            //            });
+            //            $("div.item-delete a").click(function () {
+            //                deleteitem = $(this).parent().parent();
+            //                deleteid = deleteitem.attr("id");
+            //                deleteurl = 'apply/delete/';
+            //                type = "apply";
+            //                $("#delete-dialog").dialog("open");
+            //            });
+            //            UpdateApply();
+        }
+    });
+}
+
+function ShowApply(e) {
+    page = e;
+    $("div#profile").hide();
+    $("div#blogs").show();
+    $("div#profile-control").hide();
+    $("div#ads").show();
+    $.ajax({
+        type: 'POST',
+        url: 'apply/show/' + e,
+        success: function (msg) {
+            $("div#pages").fadeOut(50);
+            $("div#blogsinner").html(msg);
+            $("div.item").mouseover(function () {
+                $(this).addClass("item-over");
+            });
+            $("div.item").mouseout(function () {
+                $(this).removeClass("item-over");
+            });
+            $("div.item-delete a").click(function () {
+                deleteitem = $(this).parent().parent();
+                deleteid = deleteitem.attr("id");
+                deleteurl = 'apply/delete/';
+                type = "apply";
+                $("#delete-dialog").dialog("open");
+            });
+            $(".job-closed").animate({ opacity: 0.4 }, 0);
+            UpdateApply();
+        }
+    });
+}
+
+function UpdateApply() {
+    $.ajax({
+        type: "POST",
+        url: 'apply/count',
+        success: function (msg) {
+            msg = $.trim(msg);
+            $("span#blogs-count").html("共有" + msg + "条记录");
+            if (msg % 10 == 0) {
+                allpage = Math.floor(msg / 10);
+            }
+            else {
+                allpage = Math.floor(msg / 10) + 1;
+            }
+            if (allpage > 0) {
+                prevLess = false;
+                nextLess = false;
+                var str = '<div id="pages-inner" class="right">';
+                if (page != 0) {
+                    str += '<a class="page-control left" id="prevPage">上一页</a>';
+                }
+                for (i = 0; i < allpage; i++) {
+                    if (!prevLess && i - page < -2) {
+                        if (i == 0) {
+                            str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        }
+                        else {
+                            prevLess = true;
+                            str += '<span class="left">...</span>';
+                        }
+                    }
+                    if (Math.abs(i - page) <= 2) {
+                        if (i == page) {
+                            str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                        }
+                        else {
+                            str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        }
+                    }
+                    if (i == allpage - 1 && i - page > 2) {
+                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        nextLess = true;
+                    }
+                    if (!nextLess && i - page > 2) {
+                        nextLess = true;
+                        str += '<span class="left">...</span>';
+                    }
+                }
+                if (page != allpage - 1) {
+                    str += '<a class="page-control left" id="nextPage">下一页</a>';
+                }
+                str += '</div>';
+                $("div#pages").html(str);
+                $("div#pages").fadeIn(200);
+                $("a.page-number").click(function () {
+                    page = $(this).html() - 1;
+                    ShowApply(page);
+                    $(window).scrollTop(0);
+                });
+                $("a#prevPage").click(function () {
+                    page--;
+                    ShowApply(page);
+                    $(window).scrollTop(0);
+                });
+                $("a#nextPage").click(function () {
+                    page++;
+                    ShowApply(page);
+                    $(window).scrollTop(0);
+                });
+            }
+        }
+    });
+}
+
+function ShowFavourite(e) {
+    page = e;
+    $("div#profile").hide();
+    $("div#blogs").show();
+    $("div#profile-control").hide();
+    $("div#ads").show();
+    $.ajax({
+        type: 'POST',
+        url: 'like/show/' + e,
+        success: function (msg) {
+            $("div#pages").fadeOut(50);
+            $("div#blogsinner").html(msg);
+            $("a.apply").click(function () {
+                var item = $(this);
+                var id = $(this).parent().parent().parent().attr("id");
+                $.ajax({
+                    type: "POST",
+                    url: 'apply/add/' + id,
+                    success: function () {
+                        item.hide();
+                        item.next("a.unapply").show();
+                    }
+                });
+            });
+            $("a.unapply").click(function () {
+                var item = $(this);
+                var id = $(this).parent().parent().parent().attr("id");
+                $.ajax({
+                    type: "POST",
+                    url: 'apply/delete/' + id,
+                    success: function () {
+                        item.hide();
+                        item.prev("a.apply").show();
+                    }
+                });
+            });
+            $("div.item").mouseover(function () {
+                $(this).addClass("item-over");
+            });
+            $("div.item").mouseout(function () {
+                $(this).removeClass("item-over");
+            });
+            $("a.delete").click(function () {
+                deleteitem = $(this).parent().parent().parent();
+                deleteid = deleteitem.attr("id");
+                deleteurl = 'like/delete/';
+                type = "like";
+                $("#delete-dialog").dialog("open");
+            });
+            $("div.item-delete a").click(function () {
+                deleteitem = $(this).parent().parent();
+                deleteid = deleteitem.attr("id");
+                deleteurl = 'like/delete/';
+                type = "like";
+                $("#delete-dialog").dialog("open");
+            });
+            UpdateFavourite();
+        }
+    });
+}
+
+function UpdateFavourite() {
+    $.ajax({
+        type: "POST",
+        url: 'like/count',
+        success: function (msg) {
+            msg = $.trim(msg);
+            $("span#blogs-count").html("共有" + msg + "条记录");
+            if (msg % 10 == 0) {
+                allpage = Math.floor(msg / 10);
+            }
+            else {
+                allpage = Math.floor(msg / 10) + 1;
+            }
+            if (allpage > 0) {
+                prevLess = false;
+                nextLess = false;
+                var str = '<div id="pages-inner" class="right">';
+                if (page != 0) {
+                    str += '<a class="page-control left" id="prevPage">上一页</a>';
+                }
+                for (i = 0; i < allpage; i++) {
+                    if (!prevLess && i - page < -2) {
+                        if (i == 0) {
+                            str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        }
+                        else {
+                            prevLess = true;
+                            str += '<span class="left">...</span>';
+                        }
+                    }
+                    if (Math.abs(i - page) <= 2) {
+                        if (i == page) {
+                            str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                        }
+                        else {
+                            str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        }
+                    }
+                    if (i == allpage - 1 && i - page > 2) {
+                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        nextLess = true;
+                    }
+                    if (!nextLess && i - page > 2) {
+                        nextLess = true;
+                        str += '<span class="left">...</span>';
+                    }
+                }
+                if (page != allpage - 1) {
+                    str += '<a class="page-control left" id="nextPage">下一页</a>';
+                }
+                str += '</div>';
+                $("div#pages").html(str);
+                $("div#pages").fadeIn(200);
+                $("a.page-number").click(function () {
+                    page = $(this).html() - 1;
+                    ShowFavourite(page);
+                    $(window).scrollTop(0);
+                });
+                $("a#prevPage").click(function () {
+                    page--;
+                    ShowFavourite(page);
+                    $(window).scrollTop(0);
+                });
+                $("a#nextPage").click(function () {
+                    page++;
+                    ShowFavourite(page);
+                    $(window).scrollTop(0);
+                });
+            }
+        }
+    });
+}
+
+function ShowNormal(e) {
+    page = e;
+    $("div#profile").hide();
+    $("div#blogs").show();
+    $("div#profile-control").hide();
+    $("div#ads").show();
+    $.ajax({
+        type: 'POST',
+        url: 'user/current/0/' + e,
+        success: function (msg) {
+            $("div#pages").fadeOut(50);
+            $("div#blogsinner").html(msg);
+            $("div.item").mouseover(function () {
+                $(this).addClass("item-over");
+            });
+            $("div.item").mouseout(function () {
+                $(this).removeClass("item-over");
+            });
+            $("a.delete").click(function () {
+                deleteitem = $(this).parent().parent().parent();
+                deleteid = deleteitem.attr("id");
+                deleteurl = 'tweet/delete/';
+                type = "tweet";
+                $("#delete-dialog").dialog("open");
+            });
+            $("div.item-delete a").click(function () {
+                deleteitem = $(this).parent().parent();
+                deleteid = deleteitem.attr("id");
+                deleteurl = 'tweet/delete/';
+                $("#delete-dialog").dialog("open");
+            });
+            UpdateTweet();
+        }
+    });
+}
+
+function UpdateTweet() {
+    $.ajax({
+        type: "POST",
+        url: 'user/current/0/count',
+        success: function (msg) {
+            msg = $.trim(msg);
+            $("span#blogs-count").html("共有" + msg + "条记录");
+            if (msg % 10 == 0) {
+                allpage = Math.floor(msg / 10);
+            }
+            else {
+                allpage = Math.floor(msg / 10) + 1;
+            }
+            if (allpage > 0) {
+                prevLess = false;
+                nextLess = false;
+                var str = '<div id="pages-inner" class="right">';
+                if (page != 0) {
+                    str += '<a class="page-control left" id="prevPage">上一页</a>';
+                }
+                for (i = 0; i < allpage; i++) {
+                    if (!prevLess && i - page < -2) {
+                        if (i == 0) {
+                            str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        }
+                        else {
+                            prevLess = true;
+                            str += '<span class="left">...</span>';
+                        }
+                    }
+                    if (Math.abs(i - page) <= 2) {
+                        if (i == page) {
+                            str += '<a class="page-number page-number-current left">' + (i + 1) + '</a>';
+                        }
+                        else {
+                            str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        }
+                    }
+                    if (i == allpage - 1 && i - page > 2) {
+                        str += '<a class="page-number left">' + (i + 1) + '</a>';
+                        nextLess = true;
+                    }
+                    if (!nextLess && i - page > 2) {
+                        nextLess = true;
+                        str += '<span class="left">...</span>';
+                    }
+                }
+                if (page != allpage - 1) {
+                    str += '<a class="page-control left" id="nextPage">下一页</a>';
+                }
+                str += '</div>';
+                $("div#pages").html(str);
+                $("div#pages").fadeIn(200);
+                $("a.page-number").click(function () {
+                    page = $(this).html() - 1;
+                    ShowNormal(page);
+                    $(window).scrollTop(0);
+                });
+                $("a#prevPage").click(function () {
+                    page--;
+                    ShowNormal(page);
+                    $(window).scrollTop(0);
+                });
+                $("a#nextPage").click(function () {
+                    page++;
+                    ShowNormal(page);
+                    $(window).scrollTop(0);
+                });
             }
         }
     });
