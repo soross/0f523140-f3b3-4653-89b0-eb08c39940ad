@@ -92,23 +92,13 @@ function received_apply_count()
         echo '0';
 }
 
-function deal_received_apply($query)
+function received_apply_show_tweet()
 {
     include_once("theme.inc.php");
-    $key = (string) $query[1];
-    if($key == "apply")
-    {
-        $id = (string) $query[2];
-        $page = (string) $query[3];
-        return received_apply_show($id, $page);
-    }
+    $args = func_get_args();
+    $key = $args[2];
     $content = '';
     $results = get_received_tweets(10, $key);
-    if($key == "count")
-    {
-        echo $results[0][0];
-        return;
-    }
 
     foreach($results as $r)
     {
