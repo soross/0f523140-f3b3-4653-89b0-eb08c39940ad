@@ -2,6 +2,7 @@
 from bottle import route, run, debug, template, request, validate, error, response, redirect
 from y_common import *
 from weibopy.auth import WebOAuthHandler
+from weibopy import oauth
 
 @route('/login')
 def login():
@@ -16,7 +17,7 @@ def sina_login():
 @route('/sina/callback/:request_token')
 def sina_callback(request_token):
     oauth_verifier = request.GET.get('oauth_verifier', None)
-    auth = WebOAuthHandler(sina_consumer_key, sina_consumer_secret, request_token)
+    auth = WebOAuthHandler(sina_consumer_key, sina_consumer_secret, oauth.OAuthToken.from_string(request_token))
     token = auth.get_access_token(oauth_verifier)
     response.set_cookie("ybole_auth", token, secret = gng_secret)
     redirect('/')
