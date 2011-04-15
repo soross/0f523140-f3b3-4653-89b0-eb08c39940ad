@@ -145,7 +145,7 @@ function deal_apply_received($query)
     $key = (string) $query[1];
     if(!$key)
         $key = "show";
-    $function = 'apply_received_'.$key;
+    $function = 'received_apply_'.$key;
     if (!function_exists($function))
         die("Invalid Argument!");
     return call_user_func_array($function, $query);
