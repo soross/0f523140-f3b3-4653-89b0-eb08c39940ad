@@ -314,21 +314,14 @@ function SearchContent(noresult, content, cate, pagenum) {
                             }
                         });
                     }
-                    $(window).unbind("scroll");
+                    
+                    page = pagenum;
                     count = 0;
+                    
+                    $(window).unbind("scroll");
                     $(window).scroll(function () {
                         DocumenScroll();
                     });	
-                    page = pagenum;
-                    
-                    $("div#backTop").position({
-                        of: $("div#microblogs"),
-                        my: "left top",
-                        at: "right top",
-                        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                        collision: "none none"
-                    });
-                    $("div#backTop").css("position", "fixed");
                 }
             });
             
@@ -569,7 +562,14 @@ var countpage = 100;
 
 function DocumenScroll() {
     if ($(window).scrollTop() != 0) {
-    	
+    	$("div#backTop").position({
+            of: $("div#microblogs"),
+            my: "left top",
+            at: "right top",
+            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+            collision: "none none"
+        });
+    	$("div#backTop").css("position", "fixed");
         $("div#backTop").fadeIn(200);
     }
     else {
