@@ -561,8 +561,10 @@ function DocumenScroll() {
                 if (msg == "" || msg.split('"microblog-item"').length < 11) {
                     scrollflag = true;
                 }
+                
                 $("#flower").fadeOut(200);
                 $("div#blogs").html($("div#blogs").html() + msg);
+                /*
                 $("a.microblog-item-relate").unbind("click");
                 $("a.microblog-item-relate").click(function () {
                     var text = $(this).html();
@@ -582,7 +584,7 @@ function DocumenScroll() {
                 $("a.tag").unbind("click");
                 $("a.tag").click(function () {
                     var text = $(this).attr("title");
-                    /*
+                    
                     StartSearch('search/' + encodeURI(text),
                         function (msg, thissearch) {
                             page = 0;
@@ -592,7 +594,7 @@ function DocumenScroll() {
                             isTurn = false;
                             //SetSearch(msg, text, thissearch);
                         });
-                        */
+                        
                 });
                 $("a.like").unbind("click");
                 $("a.unlike").unbind("click");
@@ -601,13 +603,13 @@ function DocumenScroll() {
                 $("a.like").click(function () {
                     var item = $(this);
                     var id = $(this).parent().parent().parent().attr("name");
-                    /*
+                    
                     StartSearch('like/add/' + id,
                         function () {
                             item.hide();
                             item.next("a.unlike").show();
                         });
-                        */
+                        
                 });
                 $("a.unlike").click(function () {
                     var item = $(this);
@@ -625,17 +627,17 @@ function DocumenScroll() {
                     item = $(this);
                     id = $(this).parent().parent().parent().attr("name");
                     if (haveResume) {
-                        //ShowResume();
+                        ShowResume();
                     }
                     else {
-                        //ShowNoresume();
+                        ShowNoresume();
                     }
                 });
-                /*
+                
                 if (rolekind && rolekind != "jobs") {
                     $("a.apply").hide();
                 }
-                */
+                
                 $("a.unapply").click(function () {
                     var item = $(this);
                     var id = $(this).parent().parent().parent().attr("name");
@@ -651,6 +653,7 @@ function DocumenScroll() {
                 $(window).scroll(function () {
                     DocumenScroll();
                 });
+                */
             }
         });
     }
