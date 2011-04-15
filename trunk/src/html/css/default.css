@@ -243,6 +243,7 @@ div#right a#search-result-rss
     width: 44px;
     background-image: url('../images/search-result-rss.jpg');
     background-repeat: no-repeat;
+    margin-top:2px;
 }
 
 div#right div.microblog-item
