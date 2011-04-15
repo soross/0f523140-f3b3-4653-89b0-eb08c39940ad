@@ -304,6 +304,7 @@ function SearchContent(noresult, content, cate, pagenum) {
                         });
                     }
                     $(window).unbind("scroll");
+                    count = 0;
                     $(window).scroll(function () {
                         DocumenScroll();
                     });	
@@ -544,7 +545,6 @@ function SetRolePicker() {
 var count = 0;
 var scrollflag = false;
 var countpage = 100;
-var cate = 0;
 
 function DocumenScroll() {
     if ($(window).scrollTop() != 0) {
