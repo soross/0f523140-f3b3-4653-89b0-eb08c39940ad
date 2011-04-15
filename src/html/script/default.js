@@ -556,7 +556,7 @@ function DocumenScroll() {
         $.ajax({
             type: 'POST',
             url: 'search/' + cateContent,
-            data: { search: encodeURI(SearchResult), page: page, time: $(".microblog-item:last").attr("id")},
+            data: { search: encodeURI(SearchResult), page: page, time: '-' + $(".microblog-item:last").attr("id")},
             //url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
             success: function (msg) {
                 if (msg == "" || msg.split('"microblog-item"').length < 11) {
@@ -651,10 +651,11 @@ function DocumenScroll() {
                         }
                     });
                 });
+                */
                 $(window).scroll(function () {
                     DocumenScroll();
                 });
-                */
+                
             }
         });
     }
