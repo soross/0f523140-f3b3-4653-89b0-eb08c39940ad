@@ -368,3 +368,87 @@ a.keyword
 {
     color: #2972a4;
 }
+div#role-choose
+{
+    display: none;
+    width: 552px;
+    height: 372px;
+    background-color: #ffffff;
+}
+div.role-jobs
+{
+    background-image: url('../images/role-background-jobs.jpg');
+}
+div.role-recruitment
+{
+    background-image: url('../images/role-background-recruitment.jpg');
+}
+a#role-jobs
+{
+    width: 170px;
+    height: 190px;
+    border: 3px transparent solid;
+    border-radius: 5px 5px;
+}
+a#role-jobs:hover
+{
+    border: 3px #425d7a solid;
+}
+a#role-recruitment
+{
+    width: 166px;
+    height: 190px;
+    border: 3px transparent solid;
+    border-radius: 5px 5px;
+}
+a#role-recruitment:hover
+{
+    border: 3px #678432 solid;
+}
+a#role-confirm
+{
+    width: 173px;
+    height: 46px;
+}
+
+div#right div#fresh-outer
+{
+    height: 28px;
+    border: 1px #fff2dc solid;
+    background-color: #fff2dc;
+    width: 588px;
+    padding: 1px;
+    display: none;
+}
+div#right div#fresh
+{
+    height: 28px;
+    background-color: #fff2dc;
+    width: 563px;
+    line-height: 28px;
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    padding-left: 10px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    color: #ff9646;
+}
+
+div#backTop
+{
+    width: 20px;
+    height: 100px;
+    line-height: 20px;
+    text-align: center;
+    background-color: #d7e7ef;
+    display: none;
+    letter-spacing: 2px;
+}
+div#backTop:hover
+{
+    cursor: pointer;
+}
+div#backTop a:hover
+{
+    text-decoration: none;
+}
