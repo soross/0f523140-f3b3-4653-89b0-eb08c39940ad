@@ -574,6 +574,7 @@ function DocumenScroll() {
 	
 	if ($.browser.msie && $.browser.version == "6.0"){
 		$("div#backTop").attr("position","absolute");
+		alert($("div#backTop").attr("position"));
 		$("div#backTop").position({
             of: $("div#microblogs"),
             my: "left top",
