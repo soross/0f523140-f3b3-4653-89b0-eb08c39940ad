@@ -186,7 +186,7 @@ function theme_result($result, $keyword = '', $admin = false)
                         <div class="microblog-item-other">
                             <a target="_blank" href="http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'" class="left microblog-item-time">'.time_tran($r['post_datetime']).'</a> '.$source;
         if($admin)
-            $content .= '<a class="right item-control last delete" onclick="DeleteTweet(\''.$r['tweet_id'].'\')">删除</a>';
+            $content .= '<a class="right item-control last delete" onclick="DeleteTweet(\''.$r['tweet_id'].'\', this)">删除</a>';
         else
         {
             if(user_is_authenticated())
