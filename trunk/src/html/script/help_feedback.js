@@ -3,25 +3,19 @@
         type: 'POST',
         url: 'user/info/',
         success: function (msg) {
-            $(".logined").show();
-            $(".logouted").hide();
-            $("a#name").html(msg.split(',')[0]);
-            $("div#links a:last").attr("href", "profile/" + msg.split(',')[0]);
+            msg = $.trim(msg);
+            var username = msg.split(',')[0];
             var type = msg.split(',')[1];
+            $("#name").html(username);
             if (type == 1) {
                 $(".jobs").show();
-                $(".recruitment").hide();
-                $(".admin").hide();
             }
             else if (type == 2) {
-                $(".jobs").hide();
                 $(".recruitment").show();
-                $(".admin").hide();
             }
-            else if (type == 0) {
-                $(".admin").show();
-                $(".jobs").hide();
+            else if (type == 99) {
                 $(".recruitment").show();
+                $(".admin").show();
             }
         }
     });
