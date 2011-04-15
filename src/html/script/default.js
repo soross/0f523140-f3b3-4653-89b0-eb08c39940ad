@@ -540,6 +540,7 @@ var count = 0;
 var page = 0;
 var scrollflag = false;
 var countpage = 100;
+var SearchResult = "all";
 
 function DocumenScroll() {
     if ($(window).scrollTop() != 0) {
