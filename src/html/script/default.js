@@ -316,14 +316,17 @@ function SearchContent(noresult, content, cate, pagenum) {
                         $("div#pages").html("");
                     }
                     
-                    $("div#backTop").position({
-                        of: $("div#microblogs"),
-                        my: "left top",
-                        at: "right top",
-                        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                        collision: "none none"
-                    });
-                    $("div#backTop").css("position", "fixed");
+                    if (!($.browser.msie && $.browser.version == "6.0")){
+                    	 $("div#backTop").position({
+                             of: $("div#microblogs"),
+                             my: "left top",
+                             at: "right top",
+                             offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                             collision: "none none"
+                         });
+                         $("div#backTop").css("position", "fixed");
+                    }
+                   
                     
                     page = pagenum;
                     count = 0;
@@ -573,12 +576,12 @@ var countpage = 100;
 function DocumenScroll() {
 	
 	if ($.browser.msie && $.browser.version == "6.0"){
-		$("div#backTop").attr("position","absolute");
+		//$("div#backTop").attr("position","absolute");
 		$("div#backTop").position({
             of: $("div#microblogs"),
             my: "left top",
             at: "right top",
-            offset: "0 0", 
+            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
             collision: "none none"
         });
 	}
@@ -613,7 +616,7 @@ function DocumenScroll() {
                     of: $("div#microblogs"),
                     my: "left top",
                     at: "right top",
-                    offset: "0 0", //+ ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
                     collision: "none none"
                 });
                 $("div#backTop").css("position", "fixed");
