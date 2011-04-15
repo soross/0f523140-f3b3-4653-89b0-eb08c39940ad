@@ -102,12 +102,14 @@ class OAuthHandler(AuthHandler):
         except Exception, e:
             raise WeibopError(e)
 
-    def get_access_token(self, verifier=None, oauth_token=self.request_token):
+    def get_access_token(self, verifier=None, oauth_token=None):
         """
         After user has authorized the request token, get access token
         with user supplied verifier.
         """
         try:
+            if oauth_token == None:
+                oauth_token = self.request_token
             url = self._get_oauth_url('access_token')
 
             # build request
