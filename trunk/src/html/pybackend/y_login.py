@@ -2,7 +2,6 @@
 from bottle import route, run, debug, template, request, validate, error, response, redirect
 from y_common import *
 from weibopy.auth import WebOAuthHandler
-from urllib import quote_plus
 
 @route('/login')
 def login():
