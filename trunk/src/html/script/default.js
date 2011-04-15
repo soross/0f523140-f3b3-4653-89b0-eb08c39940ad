@@ -582,7 +582,8 @@ function DocumenScroll() {
                 $("a.tag").unbind("click");
                 $("a.tag").click(function () {
                     var text = $(this).attr("title");
-                    //StartSearch('search/' + encodeURI(text),
+                    /*
+                    StartSearch('search/' + encodeURI(text),
                         function (msg, thissearch) {
                             page = 0;
                             cate = 0;
@@ -591,6 +592,7 @@ function DocumenScroll() {
                             isTurn = false;
                             //SetSearch(msg, text, thissearch);
                         });
+                        */
                 });
                 $("a.like").unbind("click");
                 $("a.unlike").unbind("click");
@@ -599,11 +601,13 @@ function DocumenScroll() {
                 $("a.like").click(function () {
                     var item = $(this);
                     var id = $(this).parent().parent().parent().attr("name");
-                    //StartSearch('like/add/' + id,
+                    /*
+                    StartSearch('like/add/' + id,
                         function () {
                             item.hide();
                             item.next("a.unlike").show();
                         });
+                        */
                 });
                 $("a.unlike").click(function () {
                     var item = $(this);
