@@ -200,6 +200,41 @@
         }
     });
 
+    $("a#profile-save").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: 'resume/add',
+            data: {
+                name: $("#u-name").val(),
+                sex: $("input[name='dsex']:checked=\"checked\"").val(),
+                date_birth: $("#birthday").val(),
+                live_in_now: $("#n-positon").val(),
+                live_in: $("#o-positon").val(),
+                cellphone: $("#m-phone").val(),
+                email: $("#email").val(),
+                content: editor.document.getBody().getHtml()
+            },
+            success: function (msg) {
+                $("div#profile-info").dialog("open");
+            }
+        });
+    });
+    $("a#profile-preview").click(function () {
+
+        $("#h-name").val($("#u-name").val());
+        $("#h-sex").val($("input[name='dsex']:checked").val());
+        $("#date_birth").val($("#birthday").val());
+        $("#live_in_now").val($("#n-positon").val());
+        $("#live_in").val($("#o-positon").val());
+        $("#cellphone").val($("#m-phone").val());
+        $("#h-email").val($("#email").val());
+        $("#h-content").val(editor.document.getBody().getHtml());
+
+        alert($("input[name='dsex']:checked").title);
+        $("#ResumeForm").submit();
+    });
+
+
     $("a.apply").live("click", function () {
         var item = $(this);
         var id = $(this).parent().parent().parent().attr("id");
