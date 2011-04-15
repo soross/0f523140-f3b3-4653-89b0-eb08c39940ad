@@ -335,8 +335,7 @@ function SearchContent(noresult, content, cate, pagenum) {
                     $(window).scroll(function () {
                         DocumenScroll();
                     });	
-                    
-                    SetSorts();
+
                 }
             });
             
