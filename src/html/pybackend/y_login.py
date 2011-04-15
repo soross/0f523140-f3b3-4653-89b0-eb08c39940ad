@@ -9,6 +9,15 @@ def login():
     
 @route('/sina/login')
 def sina_login():
-    auth = OAuthHandler(consumer_key, consumer_secret)
+    auth = OAuthHandler(sina_consumer_key, sina_consumer_secret)
     auth_url = auth.get_authorization_url() + "&oauth_callback=" + quote_plus(baseurl + "/sina/callback")
     redirect(auth_url)
+    
+@route('/sina/callback')
+def sina_callback():
+    oauth_token = request.GET.get('oauth_token')
+    oauth_verifier = request.GET.get('oauth_verifier')
+    auth = OAuthHandler(sina_consumer_key, sina_consumer_secret)
+    token = auth.get_access_token(verifier, oauth_token)
+    response.set_cookie("ybole_auth", token, secret = gng_secret)
+    redirect('/')
