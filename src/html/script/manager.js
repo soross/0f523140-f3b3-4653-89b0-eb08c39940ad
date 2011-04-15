@@ -277,6 +277,7 @@ function Delete() {
                     }
                 });
             });
+            $("#confirmBox_del").hide();
         }
     });
 }
