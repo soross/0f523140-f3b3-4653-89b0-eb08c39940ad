@@ -1,4 +1,6 @@
-﻿$(function () {
+﻿var allpage;
+
+$(function () {
 
     $("#popBox_publishok").position({
         of: $("html"),
@@ -108,123 +110,6 @@
         ShowNormal(0);
     }
 
-    $("#delete-dialog").dialog({
-        autoOpen: false,
-        draggable: false,
-        resizable: false,
-        width: 180,
-        buttons: {
-            "确定": function () {
-                $(this).dialog("close");
-                var flag = false;
-                $("div#pages").fadeOut(50);
-                if (allpage > 1) {
-                    flag = true;
-                }
-                $.ajax({
-                    type: "POST",
-                    url: deleteurl + deleteid,
-                    success: function () {
-                        deleteitem.animate({ opacity: 0 }, 300, null, function () {
-                            deleteitem.slideUp(200, null, function () {
-                                if (type == "apply") {
-                                    if (flag) {
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: 'apply/show/',
-                                            data: { page: page },
-                                            success: function (msg) {
-                                                var str = '<div class="item newer" style="display:none;"';
-                                                str += msg.split('<div class="item"')[10];
-                                                $("div.item:last").after(str);
-                                                $(".newer:last").slideDown(200);
-                                                $("div.item-delete a").unbind("click");
-                                                $("div.item-delete a").click(function () {
-                                                    deleteitem = $(this).parent().parent();
-                                                    deleteid = deleteitem.attr("id");
-                                                    deleteurl = 'apply_sent/delete/';
-                                                    type = "apply";
-                                                    $("#delete-dialog").dialog("open");
-                                                });
-                                            }
-                                        });
-                                    }
-                                    UpdateApply();
-                                }
-                                else if (type == "like") {
-                                    if (flag) {
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: 'like/show/',
-                                            data: { page: page },
-                                            success: function (msg) {
-                                                var str = '<div class="item newer" style="display:none;"';
-                                                str += msg.split('<div class="item"')[10];
-                                                $("div.item:last").after(str);
-                                                $(".newer:last").slideDown(200);
-                                                $("a.delete").unbind("click");
-                                                $("div.item-delete a").unbind("click");
-                                                $("a.delete").click(function () {
-                                                    deleteitem = $(this).parent().parent().parent();
-                                                    deleteid = deleteitem.attr("id");
-                                                    deleteurl = 'like/delete/';
-                                                    type = "like";
-                                                    $("#delete-dialog").dialog("open");
-                                                });
-                                                $("div.item-delete a").click(function () {
-                                                    deleteitem = $(this).parent().parent();
-                                                    deleteid = deleteitem.attr("id");
-                                                    deleteurl = 'like/delete/';
-                                                    type = "like";
-                                                    $("#delete-dialog").dialog("open");
-                                                });
-                                            }
-                                        });
-                                    }
-                                    UpdateFavourite();
-                                }
-                                else if (type == "tweet") {
-                                    if (flag) {
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: 'user/show/',
-                                            data: { page: page },
-                                            success: function (msg) {
-                                                var str = '<div class="item newer" style="display:none;"';
-                                                str += msg.split('<div class="item"')[10];
-                                                $("div.item:last").after(str);
-                                                $(".newer:last").slideDown(200);
-                                                $("a.delete").unbind("click");
-                                                $("div.item-delete a").unbind("click");
-                                                $("a.delete").click(function () {
-                                                    deleteitem = $(this).parent().parent().parent();
-                                                    deleteid = deleteitem.attr("id");
-                                                    deleteurl = 'tweet/delete/';
-                                                    type = "tweet";
-                                                    $("#delete-dialog").dialog("open");
-                                                });
-                                                $("div.item-delete a").click(function () {
-                                                    deleteitem = $(this).parent().parent();
-                                                    deleteid = deleteitem.attr("id");
-                                                    deleteurl = 'tweet/delete/';
-                                                    $("#delete-dialog").dialog("open");
-                                                });
-                                            }
-                                        });
-                                    }
-                                    UpdateTweet();
-                                }
-                            });
-                        });
-                    }
-                });
-            },
-            "取消": function () {
-                $(this).dialog("close");
-            }
-        }
-    });
-
     $("a#profile-save").click(function () {
         $.ajax({
             type: 'POST',
@@ -291,6 +176,110 @@
     });
 });
 
+function Delete() {
+    var flag = false;
+    $("div#pages").fadeOut(50);
+    if (allpage > 1) {
+        flag = true;
+    }
+    $.ajax({
+        type: "POST",
+        url: deleteurl + deleteid,
+        success: function () {
+            deleteitem.animate({ opacity: 0 }, 300, null, function () {
+                deleteitem.slideUp(200, null, function () {
+                    if (type == "apply") {
+                        if (flag) {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'apply_sent/show/',
+                                data: { page: page },
+                                success: function (msg) {
+                                    var str = '<div class="item newer" style="display:none;"';
+                                    str += msg.split('<div class="item"')[10];
+                                    $("div.item:last").after(str);
+                                    $(".newer:last").slideDown(200);
+                                    $("div.item-delete a").unbind("click");
+                                    $("div.item-delete a").click(function () {
+                                        deleteitem = $(this).parent().parent();
+                                        deleteid = deleteitem.attr("id");
+                                        deleteurl = 'apply_sent/delete/';
+                                        type = "apply";
+                                        $('#confirmBox_del').show();
+                                    });
+                                }
+                            });
+                        }
+                        UpdateApply();
+                    }
+                    else if (type == "like") {
+                        if (flag) {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'like/show/',
+                                data: { page: page },
+                                success: function (msg) {
+                                    var str = '<div class="item newer" style="display:none;"';
+                                    str += msg.split('<div class="item"')[10];
+                                    $("div.item:last").after(str);
+                                    $(".newer:last").slideDown(200);
+                                    $("a.delete").unbind("click");
+                                    $("div.item-delete a").unbind("click");
+                                    $("a.delete").click(function () {
+                                        deleteitem = $(this).parent().parent().parent();
+                                        deleteid = deleteitem.attr("id");
+                                        deleteurl = 'like/delete/';
+                                        type = "like";
+                                        $('#confirmBox_del').show();
+                                    });
+                                    $("div.item-delete a").click(function () {
+                                        deleteitem = $(this).parent().parent();
+                                        deleteid = deleteitem.attr("id");
+                                        deleteurl = 'like/delete/';
+                                        type = "like";
+                                        $('#confirmBox_del').show();
+                                    });
+                                }
+                            });
+                        }
+                        UpdateFavourite();
+                    }
+                    else if (type == "tweet") {
+                        if (flag) {
+                            $.ajax({
+                                type: 'POST',
+                                url: 'user/show/',
+                                data: { page: page },
+                                success: function (msg) {
+                                    var str = '<div class="item newer" style="display:none;"';
+                                    str += msg.split('<div class="item"')[10];
+                                    $("div.item:last").after(str);
+                                    $(".newer:last").slideDown(200);
+                                    $("a.delete").unbind("click");
+                                    $("div.item-delete a").unbind("click");
+                                    $("a.delete").click(function () {
+                                        deleteitem = $(this).parent().parent().parent();
+                                        deleteid = deleteitem.attr("id");
+                                        deleteurl = 'tweet/delete/';
+                                        type = "tweet";
+                                        $('#confirmBox_del').show();
+                                    });
+                                    $("div.item-delete a").click(function () {
+                                        deleteitem = $(this).parent().parent();
+                                        deleteid = deleteitem.attr("id");
+                                        deleteurl = 'tweet/delete/';
+                                        $('#confirmBox_del').show();
+                                    });
+                                }
+                            });
+                        }
+                        UpdateTweet();
+                    }
+                });
+            });
+        }
+    });
+}
 
 function AfterLogin() {
     $.ajax({
@@ -515,7 +504,7 @@ function ShowApply(e) {
                 deleteid = deleteitem.attr("id");
                 deleteurl = 'apply_sent/delete/';
                 type = "apply";
-                $("#delete-dialog").dialog("open");
+                $('#confirmBox_del').show();
             });
             $(".job-closed").animate({ opacity: 0.4 }, 0);
             UpdateApply();
@@ -613,14 +602,14 @@ function ShowFavourite(e) {
                 deleteid = deleteitem.attr("id");
                 deleteurl = 'like/delete/';
                 type = "like";
-                $("#delete-dialog").dialog("open");
+                $('#confirmBox_del').show();
             });
             $("div.item-delete a").click(function () {
                 deleteitem = $(this).parent().parent();
                 deleteid = deleteitem.attr("id");
                 deleteurl = 'like/delete/';
                 type = "like";
-                $("#delete-dialog").dialog("open");
+                $('#confirmBox_del').show();
             });
             UpdateFavourite();
         }
@@ -724,13 +713,13 @@ function ShowNormal(e) {
                 deleteid = deleteitem.attr("id");
                 deleteurl = 'tweet/delete/';
                 type = "tweet";
-                $("#delete-dialog").dialog("open");
+                $('#confirmBox_del').show();
             });
             $("div.item-delete a").click(function () {
                 deleteitem = $(this).parent().parent();
                 deleteid = deleteitem.attr("id");
                 deleteurl = 'tweet/delete/';
-                $("#delete-dialog").dialog("open");
+                $('#confirmBox_del').show();
             });
             UpdateTweet();
         }
