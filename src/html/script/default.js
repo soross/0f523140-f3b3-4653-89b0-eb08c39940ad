@@ -631,7 +631,7 @@ function DocumenScroll() {
                         //ShowNoresume();
                     }
                 });
-                if (rolekind != "jobs") {
+                if (rolekind && rolekind != "jobs") {
                     $("a.apply").hide();
                 }
                 $("a.unapply").click(function () {
