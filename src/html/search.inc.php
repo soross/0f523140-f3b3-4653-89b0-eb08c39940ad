@@ -57,7 +57,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         $key = "";
     if($cate and $cate!="0")
     {
-        $cate1 = ",(SELECT * from cat_relationship WHERE cat_id=$cate) AS cate";
+        $cate1 = ",(SELECT * from cat_relationship WHERE cat_id='$cate') AS cate";
         $cate2 = " AND tweets.tweet_id=cate.tweet_id";
     }
     else

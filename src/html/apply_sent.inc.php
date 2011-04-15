@@ -75,9 +75,12 @@ function apply_sent_add()
 
 function apply_sent_count()
 {
-    include_once('login.inc.php');
     $num = get_sent_applies(0, "", true);
-    echo $num[0][0];
+    $r = $num[0][0];
+    if($r)
+        echo $r;
+    else
+        echo '0';
 }
 
 function apply_sent_show()
