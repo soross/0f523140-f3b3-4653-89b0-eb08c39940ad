@@ -89,7 +89,7 @@ function apply_sent_show()
     else
         $page = "";
     $content = '';
-    $applies = get_applies(10, $page);
+    $applies = get_sent_applies(10, $page);
     foreach($applies as $f)
     {
         if(strstr($f['source'], '<'))
