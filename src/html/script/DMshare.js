@@ -96,3 +96,47 @@ function SetTheSorts() {
         }
     });
 }
+
+function SetSorts() {
+    $.ajax({
+        type: 'GET',
+        url: 'cate',
+        success: function (msg) {
+            $("#sorts-content").html(msg);
+            $(".sorts-item").mouseover(function () { $(this).addClass("sorts-item-over") });
+            $(".sorts-item").mouseout(function () { $(this).removeClass("sorts-item-over") });
+            $(".sorts-item a").click(function () {
+                $("a#sorts-name").html($(this).html());
+                $("a#sort").html($(this).html() + "▼");
+                $("a#sort").attr("name", $(this).attr("id"));
+                $("a#sort").attr("title", $(this).html());
+                $("#sorts").fadeOut(200);
+                cate = $(this).attr("id");
+            });
+        }
+    });
+   
+    $("div#sorts").position({
+        of: $("a#sort"),
+        my: "left top",
+        at: "left top",
+        offset: "-5 -10",
+        collision: "none none"
+    });
+    
+    $("#sorts-name").click(function () { $("#sorts").fadeOut(200) });
+    $("#sorts-triangle").click(function () { $("#sorts").fadeOut(200) });
+    $("#sort-triangle").click(function () { $("#sorts").fadeIn(200) });
+    $("#sort").click(function () { $("#sorts").fadeIn(200) });
+    $("body").click(function (e) {
+        if (e.pageX >= $("#sorts").offset().left && e.pageX <= $("#sorts").offset().left + $("#sorts").width() && e.pageY >= $("#sorts").offset().top && e.pageY <= $("#sorts").offset().top + $("#sorts").height()) {
+        }
+        else {
+            $("#sorts").fadeOut(200);
+        }
+    });
+    
+}
+function ShowSorts() {
+    $("div#sorts").show();
+}

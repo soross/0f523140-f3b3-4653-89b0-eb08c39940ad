@@ -175,6 +175,8 @@ $(function () {
     $("div.item").live("mouseout", function () {
         $(this).removeClass("item-over");
     });
+    
+    ShowSorts();
 });
 
 function Delete() {
