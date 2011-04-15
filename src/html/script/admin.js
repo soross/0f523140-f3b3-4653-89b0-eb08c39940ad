@@ -117,7 +117,8 @@ function ShowNormal(e) {
     $("div#ads").show();
     $.ajax({
         type: 'POST',
-        url: 'search/poiuy/0/page/' + e,
+        url: 'search/0/',
+        data: {admin: 1, page: e},
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
@@ -136,7 +137,8 @@ function ShowNormal(e) {
 function UpdateNormal() {
     $.ajax({
         type: "POST",
-        url: 'search/poiuy/0/count',
+        url: 'search/0/',
+        data: {admin: 1, page: e},
         success: function (msg) {
             msg = $.trim(msg);
             if (msg % 10 == 0) {
