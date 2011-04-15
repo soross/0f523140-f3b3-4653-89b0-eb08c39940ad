@@ -123,16 +123,24 @@ function ShowNormal(e) {
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
-            $("a.delete").click(function () {
-                deleteitem = $(this).parent().parent().parent();
-                deleteid = deleteitem.attr("name");
-                deleteurl = 'tweet/delete/';
-                type = "tweet";
-                $("#delete-dialog").dialog("open");
-            });
+            //$("a.delete").click(function () {
+            //    deleteitem = $(this).parent().parent().parent();
+            //    deleteid = deleteitem.attr("name");
+            //    deleteurl = 'tweet/delete/';
+            //    type = "tweet";
+            //    $("#delete-dialog").dialog("open");
+            //});
             UpdateNormal();
         }
     });
+}
+
+function DeleteTweet(id){
+	deleteitem = $(this).parent().parent().parent();
+    deleteid = id;
+    deleteurl = 'tweet/delete/';
+    type = "tweet";
+    $("#delete-dialog").dialog("open");
 }
 
 function UpdateNormal() {
