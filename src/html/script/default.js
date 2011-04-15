@@ -303,12 +303,13 @@ function SearchContent(noresult, content, cate, pagenum) {
                             }
                         });
                     }
+                    $(window).unbind("scroll");
+                    $(window).scroll(function () {
+                        DocumenScroll();
+                    });	
                 }
             });
-            $(window).unbind("scroll");
-            $(window).scroll(function () {
-                DocumenScroll();
-            });	
+            
         }
     });
 }
