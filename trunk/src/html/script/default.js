@@ -80,7 +80,7 @@ $(function () {
 
     if ($.query.get("search") != "") {
         var text = $.trim($.query.get("search"));
-        var cat = $.trim($.query.get("cat"));
+        var cate = $.trim($.query.get("cat"));
         
         if (text != "职位关键字，如：北京 产品经理 阿里巴巴" && text != "") {
             SearchContent(false, text, cate , 0);
