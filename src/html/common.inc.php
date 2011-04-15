@@ -41,23 +41,28 @@ function long_url($shortURL)
     return $url_long;
 }
 
-function format_str($str)
+function format_str($str, $strict)
 {
     $str = str_replace("'", "", $str);
     $str = str_replace("\"", "", $str);
-    $str = str_replace("<", "&lt;", $str);
-    $str = str_replace(">", "&gt;", $str);
+    if($strict)
+    {
+        $str = str_replace("<", "&lt;", $str);
+        $str = str_replace(">", "&gt;", $str);
+    }
+    else
+    {
+        $str = preg_replace('$<\s*script$iu', "&lt;script", $str);
+        $str = preg_replace('$<\s*iframe$iu', "&lt;iframe", $str);
+    }
     return $str;
 }
 
-function get_post($item, $decode = true)
+function get_post($item, $strict = true)
 {
     if(isset($_POST[$item]))
     {
-        if($decode)
-            $item = format_str(urldecode($_POST[$item]));
-        else
-            $item = format_str($_POST[$item]);
+        $item = format_str(urldecode($_POST[$item]), $strict);
     }
     else
         $item = false;
