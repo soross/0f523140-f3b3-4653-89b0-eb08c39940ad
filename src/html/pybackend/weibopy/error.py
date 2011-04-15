@@ -8,7 +8,7 @@ class WeibopError(Exception):
     def __init__(self, reason):
         try:
             self.reason = reason.encode('utf-8')
-        else:
+        except:
             self.reason = reason
 
     def __str__(self):
