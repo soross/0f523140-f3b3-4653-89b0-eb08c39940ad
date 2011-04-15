@@ -62,7 +62,7 @@ function get_received_applies($tweet_id, $num, $page, $count = false)
     return $result;
 }
 
-function received_apply_show($tweet_id, $page)
+function received_apply_show_tweet($tweet_id, $page)
 {
     include_once("theme.inc.php");
     $content = '';
@@ -92,7 +92,7 @@ function received_apply_count()
         echo '0';
 }
 
-function received_apply_show_tweet()
+function received_apply_show()
 {
     include_once("theme.inc.php");
     $key = get_post('page');
