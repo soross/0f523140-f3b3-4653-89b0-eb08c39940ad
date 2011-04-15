@@ -178,11 +178,20 @@ import MySQLdb, uuid
 db = MySQLdb.connect("127.0.0.1","apis","G2WvPRsxGEr77wEd","apis",charset="utf8")
 c = db.cursor()
 d = detect()
-_tagid = open("tag_list_withid.dict", "r").read().decode("utf-8").split('\n')
+#_tagid = open("tag_list_withid.dict", "r").read().decode("utf-8").split('\n')
+c.execute("SELECT * FROM tags")
 tagid = {}
-for line in _tagid:
-    tag_id, tag = line.split()
+tagnoid = []
+for i in c:
+    tag_id, tag = i[0], i[1]
+    tagnoid += [tag]
     tagid[tag] = tag_id
+f = open("tag_list_nogroup.list", "w")
+f.write('\n'.join(tagnoid))
+f.close()
+#for line in _tagid:
+#    tag_id, tag = line.split()
+#    tagid[tag] = tag_id
 print now() + "Dealing with pending tweets..."
 c.execute("SELECT * FROM pending_tweets LIMIT 0 , 1")
 while True:
