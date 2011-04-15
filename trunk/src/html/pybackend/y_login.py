@@ -1,3 +1,4 @@
+#coding:utf8
 from bottle import route, run, debug, template, request, validate, error, response, redirect
 from y_common import *
 from weibopy import OAuthHandler
