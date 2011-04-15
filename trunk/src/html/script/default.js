@@ -354,8 +354,9 @@ function JobApply(item, id, name) {
                 url: 'resume/show/' + userid,
                 success: function (resume) {
                     if (resume.indexOf("<html") != -1) {
-                        $("#popBox_apply1").show();
+                        $("#default-resume").attr("href", "resume/show/" + userid);
                         $("#at-name").html("@" + name);
+                        $("#popBox_apply1").show();
                     }
                     else {
                         $("#popBox_apply0").show();
