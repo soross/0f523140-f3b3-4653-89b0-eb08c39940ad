@@ -78,7 +78,8 @@ $(function () {
                                     if (flag) {
                                         $.ajax({
                                             type: 'POST',
-                                            url: 'search/poiuy/0/page/' + page,
+                                            url: 'search/0',
+                                            data: {page: page, admin: 1},
                                             success: function (msg) {
                                                 var str = '<div class="microblog-item newer" style="display:none;"';
                                                 str += msg.split('<div class="microblog-item"')[10];
