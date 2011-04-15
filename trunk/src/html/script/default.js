@@ -299,7 +299,7 @@ function SearchContent(noresult, content, cate, pagenum) {
     $("#blogs").html('<img src="images/loading.gif" style="margin-left:275px;margin-top:' + (($("#blogs").height() - 32) / 2) + 'px;margin-bottom:' + (($("#blogs").height() - 32) / 2) + 'px;" />');
     $.ajax({
         type: 'POST',
-        url: 'search/show' + cate,
+        url: 'search/show/' + cate,
         data: { search: encodeURI(content), page: pagenum },
         success: function (msg) {
             searchContent = content;
