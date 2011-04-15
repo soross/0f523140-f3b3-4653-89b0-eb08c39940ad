@@ -189,19 +189,23 @@ function UpdateRecruitmentText() {
 }
 function ShowJobsPublish() {
     $("div#cover").fadeIn(200);
+    $("body").css("overflow","hidden");
     $("div#jobs-publish").fadeIn(200);
     $("div#jobs-publish-text textarea").focus();
 }
 function HideJobsPublish() {
     $("div#cover").fadeOut(200);
+    $("body").css("overflow","auto");
     $("div#jobs-publish").fadeOut(200);
 }
 function ShowRecruitmentPublish() {
     $("div#cover").fadeIn(200);
+    $("body").css("overflow","hidden");
     $("div#recruitment-publish").fadeIn(200);
     $("div#recruitment-publish-text textarea").focus();
 }
 function HideRecruitmentPublish() {
     $("div#cover").fadeOut(200);
+    $("body").css("overflow","auto");
     $("div#recruitment-publish").fadeOut(200);
 }
