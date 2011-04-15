@@ -631,9 +631,11 @@ function DocumenScroll() {
                         //ShowNoresume();
                     }
                 });
+                /*
                 if (rolekind && rolekind != "jobs") {
                     $("a.apply").hide();
                 }
+                */
                 $("a.unapply").click(function () {
                     var item = $(this);
                     var id = $(this).parent().parent().parent().attr("name");
