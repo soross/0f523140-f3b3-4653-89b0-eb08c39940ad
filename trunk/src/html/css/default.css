@@ -243,7 +243,7 @@ div#right a#search-result-rss
     width: 44px;
     background-image: url('../images/search-result-rss.jpg');
     background-repeat: no-repeat;
-    margin-top:2px;
+    margin-top: 2px;
 }
 
 div#right div.microblog-item
@@ -382,14 +382,16 @@ div#role-choose
     width: 552px;
     height: 372px;
     background-color: #ffffff;
+    background-image: url('../images/role-background.jpg');
+    background-repeat: no-repeat;
 }
 div.role-jobs
 {
-    background-image: url('../images/role-background-jobs.jpg');
+    background-position: 0 0;
 }
 div.role-recruitment
 {
-    background-image: url('../images/role-background-recruitment.jpg');
+    background-position: 0 -372px;
 }
 a#role-jobs
 {
