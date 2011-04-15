@@ -333,7 +333,7 @@ function SetContent(id, datas, item, count) {
 function UpdateApplys() {
     $.ajax({
         type: "POST",
-        url: 'received/count',
+        url: 'apply_received/count',
         success: function (msg) {
             msg = $.trim(msg);
             $("span#blogs-count").html("共有" + msg + "条记录");
@@ -535,7 +535,6 @@ function UpdateApply() {
 }
 
 function ShowFavourite(e) {
-    page = e;
     $("div#profile").hide();
     $("div#blogs").show();
     $("div#profile-control").hide();
@@ -543,7 +542,7 @@ function ShowFavourite(e) {
     $.ajax({
         type: 'POST',
         url: 'like/show/',
-        data: { page: page },
+        data: { page: e },
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
