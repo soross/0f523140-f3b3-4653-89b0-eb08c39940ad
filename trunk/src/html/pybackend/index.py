@@ -6,6 +6,7 @@ from bottle import default_app
 from y_home import *
 from y_apply import *
 from y_admin import *
+from y_login import *
 
 #reload(sys)
 #sys.setdefaultencoding('utf-8')
