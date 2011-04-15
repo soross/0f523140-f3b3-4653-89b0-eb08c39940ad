@@ -118,7 +118,7 @@ function ShowNormal(e) {
     $("div#ads").show();
     $.ajax({
         type: 'POST',
-        url: 'search/0/',
+        url: 'search/show/0/',
         data: {admin: 1, page: e},
         success: function (msg) {
             $("div#pages").fadeOut(50);
@@ -146,8 +146,7 @@ function DeleteTweet(id){
 function UpdateNormal() {
     $.ajax({
         type: "POST",
-        url: 'search/0/',
-        data: {admin: 1, count: 1},
+        url: 'search/count/0/',
         success: function (msg) {
             msg = $.trim(msg);
             if (msg % 10 == 0) {
