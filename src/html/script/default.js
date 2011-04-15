@@ -573,7 +573,7 @@ var countpage = 100;
 function DocumenScroll() {
 	
 	if ($.browser.msie && $.browser.version == "6.0"){
-		//$("div#backTop").hide();
+		$("div#backTop").attr("position","absolute");
 		$("div#backTop").position({
             of: $("div#microblogs"),
             my: "left top",
