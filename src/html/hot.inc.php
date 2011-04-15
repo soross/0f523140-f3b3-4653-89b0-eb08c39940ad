@@ -131,6 +131,7 @@ function hot_groupupdate()
         $view = "UPDATE tags SET tag_group='$tag_group' WHERE tag_id='$tag_id'";
         $list = mysql_query($view);
     }
+    header("Location: ".BASE_URL."hot/editgroup");
 }
     
 function hot_editname()
