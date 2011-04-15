@@ -212,11 +212,11 @@ function theme_result($result, $keyword = '', $admin = false)
                     $content .= '<a class="right microblog-item-control like" style="display: none;" onclick="JobLike(this,\''.$r['tweet_id'].'\')">收藏</a><a class="right microblog-item-control unlike"
                                              onclick="JobUnLike(this,\''.$r['tweet_id'].'\')">取消收藏</a> ';
                 if($r['type'] != 1 and !$app)
-                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" onclick="JobApply(this,\''.$r['tweet_id'].'\')">
+                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" onclick="JobApply(this,\''.$r['tweet_id'].'\',\''.$r['post_screenname'].'\')">
                                  申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" style="display: none;" onclick="JobUnApply(this,\''.$r['tweet_id'].'\')">
                                  取消申请</a>';
                 elseif($app)
-                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" style="display: none;" onclick="JobApply(this,\''.$r['tweet_id'].'\')">
+                    $content .= '<a class="right microblog-item-control microblog-item-apply apply" style="display: none;" onclick="JobApply(this,\''.$r['tweet_id'].'\',\''.$r['post_screenname'].'\')">
                                  申请该职位</a><a class="right microblog-item-control microblog-item-apply unapply" onclick="JobUnApply(this,\''.$r['tweet_id'].'\')">
                                  取消申请</a>';
             }
