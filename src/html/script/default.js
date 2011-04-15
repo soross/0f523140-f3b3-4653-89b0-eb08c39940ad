@@ -49,15 +49,6 @@ $(function () {
         DocumenScroll();
     });
     
-    $("div#backTop").position({
-        of: $("div#microblogs"),
-        my: "left top",
-        at: "right top",
-        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-        collision: "none none"
-    });
-    $("div#backTop").css("position", "fixed");
-    
     $("div#backTop").click(function () {
         $("html, body").animate({ scrollTop: 0 }, 1000);
     });
@@ -329,6 +320,15 @@ function SearchContent(noresult, content, cate, pagenum) {
                         DocumenScroll();
                     });	
                     page = pagenum;
+                    
+                    $("div#backTop").position({
+                        of: $("div#microblogs"),
+                        my: "left top",
+                        at: "right top",
+                        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                        collision: "none none"
+                    });
+                    $("div#backTop").css("position", "fixed");
                 }
             });
             
@@ -569,6 +569,7 @@ var countpage = 100;
 
 function DocumenScroll() {
     if ($(window).scrollTop() != 0) {
+    	
         $("div#backTop").fadeIn(200);
     }
     else {
