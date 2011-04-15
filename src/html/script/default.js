@@ -574,12 +574,11 @@ function DocumenScroll() {
 	
 	if ($.browser.msie && $.browser.version == "6.0"){
 		$("div#backTop").attr("position","absolute");
-		alert($("div#backTop").attr("position"));
 		$("div#backTop").position({
             of: $("div#microblogs"),
             my: "left top",
             at: "right top",
-            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+            offset: "0 0", 
             collision: "none none"
         });
 	}
@@ -614,7 +613,7 @@ function DocumenScroll() {
                     of: $("div#microblogs"),
                     my: "left top",
                     at: "right top",
-                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                    offset: "0 0", //+ ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
                     collision: "none none"
                 });
                 $("div#backTop").css("position", "fixed");
