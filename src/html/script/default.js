@@ -44,6 +44,10 @@ $(function () {
             SearchContent(false, $("#search-text").val(), $("#sort").attr("id"), 0);
         }
     });
+    
+    $(window).scroll(function () {
+        DocumenScroll();
+    });
 
 });
 //End of Init
@@ -532,4 +536,116 @@ function SetRolePicker() {
         $("div#role-choose").hide();
     });
 }
+var count = 0;
+var page = 0;
+var scrollflag = false;
+var countpage = 100;
+
+function DocumenScroll() {
+    if ($(window).scrollTop() != 0) {
+        $("div#backTop").fadeIn(200)
+    }
+    else {
+        $("div#backTop").fadeOut(200);
+    }
+    if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4 && !scrollflag && countpage >= 10) {
+        $(window).unbind("scroll");
+        count++;
+        $("#flower").fadeIn(200);
+        $.ajax({
+            type: 'GET',
+            url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
+            success: function (msg) {
+                if (msg == "" || msg.split('"microblog-item"').length < 11) {
+                    scrollflag = true;
+                }
+                $("#flower").fadeOut(200);
+                $("div#blogs").html($("div#blogs").html() + msg);
+                $("a.microblog-item-relate").unbind("click");
+                $("a.microblog-item-relate").click(function () {
+                    var text = $(this).html();
+                    $.ajax({
+                        type: 'GET',
+                        url: 'search/' + encodeURI(text),
+                        success: function (msg, thissearch) {
+                            page = 0;
+                            cate = 0;
+                            $("#sort").html($("a#" + cate).html());
+                            $("#sorts-name").html($("a#" + cate).html());
+                            //SetSearch(msg, text, thissearch);
+                            nowFirst = $(".microblog-item:first").attr("id");
+                        }
+                    });
+                });
+                $("a.tag").unbind("click");
+                $("a.tag").click(function () {
+                    var text = $(this).attr("title");
+                    StartSearch('search/' + encodeURI(text),
+                        function (msg, thissearch) {
+                            page = 0;
+                            cate = 0;
+                            $("#sort").html($("a#" + cate).html());
+                            $("#sorts-name").html($("a#" + cate).html());
+                            isTurn = false;
+                            //SetSearch(msg, text, thissearch);
+                        });
+                });
+                $("a.like").unbind("click");
+                $("a.unlike").unbind("click");
+                $("a.apply").unbind("click");
+                $("a.unapply").unbind("click");
+                $("a.like").click(function () {
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    StartSearch('like/add/' + id,
+                        function () {
+                            item.hide();
+                            item.next("a.unlike").show();
+                        });
+                });
+                $("a.unlike").click(function () {
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                        type: "POST",
+                        url: 'like/delete/' + id,
+                        success: function () {
+                            item.hide();
+                            item.prev("a.like").show();
+                        }
+                    });
+                });
+                $("a.apply").click(function () {
+                    item = $(this);
+                    id = $(this).parent().parent().parent().attr("name");
+                    if (haveResume) {
+                        ShowResume();
+                    }
+                    else {
+                        ShowNoresume();
+                    }
+                });
+                if (rolekind != "jobs") {
+                    $("a.apply").hide();
+                }
+                $("a.unapply").click(function () {
+                    var item = $(this);
+                    var id = $(this).parent().parent().parent().attr("name");
+                    $.ajax({
+                        type: "POST",
+                        url: 'apply/delete/' + id,
+                        success: function () {
+                            item.hide();
+                            item.prev("a.apply").show();
+                        }
+                    });
+                });
+                $(window).scroll(function () {
+                    DocumenScroll();
+                });
+            }
+        });
+    }
+}
+
 //End of Other Event
