@@ -3,4 +3,5 @@ from bottle import route, run, debug, template, request, validate, error, respon
 @route('/')
 @route('/home')
 def home():
-    return 'Ybole - Python backend ... Coming soon!'
+    return template('home')
+    #return 'Ybole - Python backend ... Coming soon!'
