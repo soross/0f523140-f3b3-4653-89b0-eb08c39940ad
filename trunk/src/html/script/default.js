@@ -76,6 +76,7 @@ function AfterLogin() {
             var type = msg.split(',')[1];
             $("#name").html(username);
             if (type == -1) {
+            	CoverResize();
                 $("div#cover").show();
                 $("div#role-choose").show();
             }

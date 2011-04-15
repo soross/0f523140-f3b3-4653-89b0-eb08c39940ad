@@ -3,7 +3,6 @@ var logined = false;
 
 $(function () {
     InitUser();
-    CoverResize();
     SetPublish();
 
     $("input#search-text").focusin(function () {
