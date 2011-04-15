@@ -27,7 +27,7 @@
 }
 .popboxicon
 {
-    background: url('images/popboximg.png') no-repeat scroll -999em 0 transparent;
+    background: url('../images/popboximg.png') no-repeat scroll -999em 0 transparent;
     background-position: -236px 0px;
     width: 120px;
     height: 30px;
