@@ -38,44 +38,42 @@
     </script>
 </head>
 <body>
-    <div id="delete-dialog" title="提示">
-        <p>
-            确定删除这条信息吗？</p>
-    </div>
     <div id="header">
         <div class="left" id="links">
-            <a class="left" href="/">歪伯乐招聘网</a> <a class="left" href="http://t.sina.com.cn/2020566725">
-                歪伯乐招聘官方微博</a> <a class="left last">我的微博</a>
+            <a class="left first" href="/">歪伯乐招聘网</a> <a class="left" href="http://t.sina.com.cn/2020566725">
+                歪伯乐招聘官方微博</a> <a class="left logined">我的微博</a>
         </div>
         <div class="right" id="infos">
-            <a class="left logined" id="name" href="/"></a><a class="left selected orange logined"
-                href="/manager">管理中心</a> <a class="left jobs" id="jobs-publish-quick">发布求职信息</a><a
-                    class="left recruitment" id="recruitment-publish-quick">发布招聘信息</a><a class="left admin"
-                        href="/admin">管理员入口</a> <a class="left logined" href="logout/">退出</a>
+            <a class="left selected logined" id="name" href="/"></a><a class="left orange logined"
+                href="/manager" id="manager-center">管理中心</a> <a class="left jobs" id="jobs-publish-quick">
+                    发布求职信息</a><a class="left recruitment" id="recruitment-publish-quick">发布招聘信息</a><a
+                        class="left admin" href="/admin">管理员入口</a> <a class="left logined" href="logout/">退出</a>
             <a class="left logouted" id="sina-login" href="login/"></a>
         </div>
     </div>
     <div id="logo-search">
         <a id="logo" class="left" href="/">测试版</a>
         <div id="search-bar" class="left">
-            <a class="left sort" id="sort">全部分类</a><a class="left sort" id="sort-triangle">&#9660;</a>
+            <a class="left" id="sort" onclick="ShowSorts()">全部分类▼</a>
             <input class="left" id="search-text" type="text" value="职位关键字，如：北京 产品经理 阿里巴巴" />
             <a class="left" id="search-button"></a>
         </div>
     </div>
     <div id="company" class="inner">
-        <div class="clear">
-        </div>
         <span class="left company-name">热门企业：</span>
         <div class="left" id="companies">
             <div id="companies-inner">
-                <a class="company-name">新浪</a><a class="company-name">腾讯</a><a class="company-name">百度</a><a
-                    class="company-name">淘宝</a><a class="company-name">搜狐</a><a class="company-name">创新工场</a><a
-                        class="company-name">凡客</a><a class="company-name">海辉软件</a><a class="company-name">奇艺</a><a
-                            class="company-name">联想</a><a class="company-name">华为</a><a class="company-name">街旁</a><a
-                                class="company-name">中兴</a><a class="company-name">Tom</a><a class="company-name">网龙</a><a
-                                    class="company-name">网易</a><a class="company-name">戴尔</a><a class="company-name">人民网</a><a
-                                        class="company-name">米聊</a><a class="company-name last">金山</a></div>
+                <a class="company-name first" onclick="HotCompany(this)">新浪</a><a class="company-name"
+                    onclick="HotCompany(this)">腾讯</a><a class="company-name" onclick="HotCompany(this)">百度</a><a
+                        class="company-name" onclick="HotCompany(this)">淘宝</a><a class="company-name" onclick="HotCompany(this)">搜狐</a><a
+                            class="company-name" onclick="HotCompany(this)">创新工场</a><a class="company-name" onclick="HotCompany(this)">凡客</a><a
+                                class="company-name" onclick="HotCompany(this)">海辉软件</a><a class="company-name" onclick="HotCompany(this)">奇艺</a><a
+                                    class="company-name" onclick="HotCompany(this)">联想</a><a class="company-name" onclick="HotCompany(this)">华为</a><a
+                                        class="company-name" onclick="HotCompany(this)">街旁</a><a class="company-name" onclick="HotCompany(this)">中兴</a><a
+                                            class="company-name" onclick="HotCompany(this)">Tom</a><a class="company-name" onclick="HotCompany(this)">网龙</a><a
+                                                class="company-name" onclick="HotCompany(this)">网易</a><a class="company-name" onclick="HotCompany(this)">戴尔</a><a
+                                                    class="company-name" onclick="HotCompany(this)">人民网</a><a class="company-name" onclick="HotCompany(this)">米聊</a><a
+                                                        class="company-name" onclick="HotCompany(this)">金山</a></div>
         </div>
         <div class="left" id="company-control">
             <a class="left company-control" id="company-control-left">◀</a> <a class="left company-control"
