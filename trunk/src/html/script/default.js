@@ -5,7 +5,7 @@ $(function () {
     SetHot();
     SearchContent(true, "all", 0, 0);
 
-    SetSorts();
+    //SetSorts();
     InitBoxes();
     
     $.ajax({
