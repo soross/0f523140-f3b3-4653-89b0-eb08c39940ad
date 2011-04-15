@@ -56,6 +56,7 @@ $(function () {
         offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
         collision: "none none"
     });
+    $("div#backTop").css("position", "fixed");
     
     $("div#backTop").click(function () {
         $("html, body").animate({ scrollTop: 0 }, 1000);
@@ -573,6 +574,7 @@ function DocumenScroll() {
     else {
         $("div#backTop").fadeOut(200);
     }
+    
     if (($(window).scrollTop() + $(window).height()) >= $(document).height() - 200 && count < 4 && !scrollflag && countpage >= 10) {
         $(window).unbind("scroll");
         count++;
@@ -590,6 +592,15 @@ function DocumenScroll() {
                 
                 $("#flower").fadeOut(200);
                 $("div#blogs").html($("div#blogs").html() + msg);
+                
+                $("div#backTop").position({
+                    of: $("div#microblogs"),
+                    my: "left top",
+                    at: "right top",
+                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                    collision: "none none"
+                });
+                $("div#backTop").css("position", "fixed");
                 /*
                 $("a.microblog-item-relate").unbind("click");
                 $("a.microblog-item-relate").click(function () {
