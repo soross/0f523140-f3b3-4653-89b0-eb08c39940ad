@@ -306,7 +306,7 @@ function SearchContent(noresult, content, cate, pagenum) {
 //Other Event
 function InitBoxes() {
     $("#popBox_apply1").position({
-        of: $("body"),
+        of: $("html"),
         my: "center top",
         at: "center top",
         offset: "0 200",
@@ -314,7 +314,7 @@ function InitBoxes() {
     });
     $("#popBox_apply1").css("posotion", "fixed");
     $("#popBox_apply0").position({
-        of: $("body"),
+        of: $("html"),
         my: "center top",
         at: "center top",
         offset: "0 200",
