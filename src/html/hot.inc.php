@@ -150,7 +150,7 @@ function hot_editname()
     {
         $view = "SELECT tag_group_name FROM tag_group WHERE tag_group = $tag_group";
         $list = mysql_query($view);
-        $row = mysql_fetch_array($list)
+        $row = mysql_fetch_array($list);
         $content .= "<tr><td>$tag_group</td><td><input type='text' name='$tag_group' value='".$row['tag_group_name']."' /></td></tr>";
     }
     $content .= "<input type='submit' value='修改' /></form></table></body></html>";
