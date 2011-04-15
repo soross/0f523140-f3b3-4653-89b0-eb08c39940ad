@@ -546,6 +546,7 @@ function SetRolePicker() {
                 type: 'POST',
                 url: 'user/set_role/1',
                 success: function (msg) {
+                	$("body").css("overflow","auto");
                     $("#manager-tips").position({
                         of: $("#manager-center"),
                         my: "center top",
