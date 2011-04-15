@@ -462,6 +462,8 @@ function SetSorts() {
             $(".sorts-item a").click(function () {
                 $("a#sorts-name").html($(this).html());
                 $("a#sort").html($(this).html() + "▼");
+                $("a#sort").attr("name", $(this).attr("id"));
+                $("a#sort").attr("title", $(this).html());
                 $("#sorts").fadeOut(200);
                 cate = $(this).attr("id");
             });
