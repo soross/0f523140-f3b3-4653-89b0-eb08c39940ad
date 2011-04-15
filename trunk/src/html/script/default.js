@@ -393,6 +393,7 @@ function SearchContent(noresult, content, cate, pagenum) {
                             }
                         });
                         $("div#pages").html("");
+                        $("a#search-result-rss").attr("href", 'rss/' + encodeURI(msg));
                     }
                     
                     if (!($.browser.msie && $.browser.version == "6.0")){
