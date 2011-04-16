@@ -1,4 +1,4 @@
-ï»¿body, a, input, span, img, textarea
+body, a, input, span, img, textarea
 {
     margin: 0;
     padding: 0;
@@ -11,8 +11,8 @@ body
     background-color: #f2f6fe;
     background-image: url('../images/background.jpg');
     background-repeat: repeat-x;
-    font-family: Arial, Helvetica, sans-serif, å®‹ä½“ !important;
-    font-family: å®‹ä½“;
+    font-family: Arial, Helvetica, sans-serif, ËÎÌå !important;
+    font-family: ËÎÌå;
 }
 a
 {
@@ -275,6 +275,7 @@ div#cover
     top: 0px;
     left: 0px;
     display: none;
+    z-index:100;
 }div#jobs-publish
 {
     display: none;
@@ -301,7 +302,7 @@ div#jobs-publish-title span
     line-height: 31px;
     color: #ffffff;
     font-size: 18px;
-    font-family: å¾®è½¯é›…é»‘, å®‹ä½“;
+    font-family: Î¢ÈíÑÅºÚ, ËÎÌå;
     letter-spacing: 8px;
     padding-left: 45px;
 }
@@ -462,7 +463,7 @@ div#recruitment-publish-title span
     line-height: 31px;
     color: #ffffff;
     font-size: 18px;
-    font-family: å¾®è½¯é›…é»‘, å®‹ä½“;
+    font-family: Î¢ÈíÑÅºÚ, ËÎÌå;
     letter-spacing: 8px;
     padding-left: 45px;
 }
