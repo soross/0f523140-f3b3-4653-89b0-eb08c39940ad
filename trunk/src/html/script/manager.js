@@ -137,10 +137,20 @@ $(function () {
     });
 
     $("div.item").live("mouseover", function () {
-        $(this).addClass("item-over");
+        if ($(this).hasClass("item-noclose")) {
+            $(this).addClass("item-over-noclose");
+        }
+        else {
+            $(this).addClass("item-over");
+        }
     });
     $("div.item").live("mouseout", function () {
-        $(this).removeClass("item-over");
+        if ($(this).hasClass("item-noclose")) {
+            $(this).removeClass("item-over-noclose");
+        }
+        else {
+            $(this).removeClass("item-over");
+        }
     });
 
     SetSorts();
