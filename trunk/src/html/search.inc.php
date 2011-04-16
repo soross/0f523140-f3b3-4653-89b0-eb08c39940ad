@@ -51,7 +51,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
     {
         $key = explode(" ",$key);
         $key = "%".implode("%",$key)."%";
-        $key = " AND tweets.content LIKE '$key'";
+        $key = " AND (tweets.content LIKE '$key' OR tweets.post_screenname LIKE '$key')";
     }
     else
         $key = "";
