@@ -155,8 +155,8 @@ function AfterLogin() {
             var type = msg.split(',')[1];
             $("#name").html(username);
             if (type == -1) {
-            	$(window).scrollTop(0);
                 CoverResize();
+                $(window).scrollTop(0);
                 $("div#cover").show();
                 $("div#role-choose").show();
             }
