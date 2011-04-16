@@ -63,7 +63,7 @@ function like_show()
                            <a class="item-blog-name">'.$f['post_screenname'].'</a>：'.$f['content'].'
                        </div>
                        <div class="item-other">
-                           <span class="left item-time">'.time_tran($f['post_datetime']).'</span> '.$source.'
+                           <a target="_blank" href="http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'" class="left item-time">'.time_tran($f['post_datetime']).'</a> '.$source.'
                            <a class="right item-favourite item-action delete">取消收藏</a> ';
                             if($f['type'] != 1)
                             {
