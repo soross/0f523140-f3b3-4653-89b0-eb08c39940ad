@@ -286,6 +286,7 @@ div#cover
     border-top-right-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
     border-bottom-right-radius: 5px 5px;
+    z-index:200;
 }
 div#jobs-publish-title
 {
@@ -447,6 +448,7 @@ div#recruitment-publish
     border-top-right-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
     border-bottom-right-radius: 5px 5px;
+    z-index:200;
 }
 div#recruitment-publish-title
 {
