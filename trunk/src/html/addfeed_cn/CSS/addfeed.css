@@ -1,6 +1,6 @@
-.addfeed_cn .addbox{ position:absolute; display:block; border:#D9E9EF solid 3px; background:#FFFFFF; width:252px; z-index:998; font-size:12px;}
+.addfeed_cn .addbox{ position:absolute; display:block; border:#D9E9EF solid 3px; background:#FFFFFF; width:192px; z-index:998; font-size:12px;}
 .addfeed_cn .bgfrm{filter: alpha(opacity=0);-moz-opacity:0;opacity: 0;}
-.addfeed_cn .addshow{ width:245px; height:auto;}
+.addfeed_cn .addshow{ width:185px; height:auto;}
 .addfeed_cn .addh{ height:20px; background:#EDF5F8;}
 .addfeed_cn .addh .addt{ padding-left:6px; line-height:20px; color:#666666;}
 .addfeed_cn .addbottom{ height:14px; height:18px; background:#EDF5F8; text-align:right; padding:0 6px 0 0; text-align:left; display:none;}
