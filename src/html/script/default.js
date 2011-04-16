@@ -485,8 +485,6 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
 //End of Search Event
 
 //Other Event
-var appyId = "";
-var theItem;
 
 function InitBoxes() {
     $("#popBox_apply1").position({
