@@ -8,13 +8,13 @@ $(function () {
 });
 
 function SentResume() {
+    $(theItem).hide();
+    $(theItem).next().show();
+    $("#popBox_apply1").hide();
     $.ajax({
         type: 'GET',
         url: 'apply_sent/add/' + appyId,
         success: function (msg) {
-            $(theItem).hide();
-            $(theItem).next().show();
-            $("#popBox_apply1").hide();
         }
     });
 }
@@ -171,7 +171,7 @@ function SetSorts() {
             });
         }
     });
-   
+
     $("div#sorts").position({
         of: $("a#sort"),
         my: "left top",
@@ -179,7 +179,7 @@ function SetSorts() {
         offset: "-5 -10",
         collision: "none none"
     });
-    
+
     $("#sorts-name").click(function () { $("#sorts").fadeOut(200) });
     $("#sorts-triangle").click(function () { $("#sorts").fadeOut(200) });
     $("#sort-triangle").click(function () { $("#sorts").fadeIn(200) });
@@ -191,7 +191,7 @@ function SetSorts() {
             $("#sorts").fadeOut(200);
         }
     });
-    
+
 }
 function ShowSorts() {
     $("div#sorts").show();
