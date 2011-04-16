@@ -167,6 +167,7 @@ div.item-page
 {
     margin-top: 5px;
     line-height: 24px;
+    display: none;
     padding: 0 5px;
 }
 div.item-page a

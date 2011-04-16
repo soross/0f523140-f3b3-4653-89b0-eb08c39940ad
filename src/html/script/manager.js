@@ -365,7 +365,7 @@ function SetContent(id, datas, item, count) {
                 }
             }
             item.slideDown(200);
-            item.next(".item-page").slideUp(200);
+            item.next(".item-page").slideDown(200);
             item.removeClass("close");
         }
     });
