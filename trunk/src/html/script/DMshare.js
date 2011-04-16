@@ -7,6 +7,8 @@ $(function () {
     SetCompany();
 });
 
+var appyId = "";
+var theItem;
 function SentResume() {
     $(theItem).hide();
     $(theItem).next().show();
