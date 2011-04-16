@@ -13,6 +13,7 @@ body
     background-repeat: repeat-x;
     font-family: Arial, Helvetica, sans-serif, ËÎÌו !important;
     font-family: ËÎÌו;
+    overflow-y: scroll;
 }
 a
 {
@@ -275,8 +276,9 @@ div#cover
     top: 0px;
     left: 0px;
     display: none;
-    z-index:100;
-}div#jobs-publish
+    z-index: 100;
+}
+div#jobs-publish
 {
     display: none;
     height: 307px;
@@ -286,7 +288,7 @@ div#cover
     border-top-right-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
     border-bottom-right-radius: 5px 5px;
-    z-index:200;
+    z-index: 200;
 }
 div#jobs-publish-title
 {
@@ -448,7 +450,7 @@ div#recruitment-publish
     border-top-right-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
     border-bottom-right-radius: 5px 5px;
-    z-index:200;
+    z-index: 200;
 }
 div#recruitment-publish-title
 {
