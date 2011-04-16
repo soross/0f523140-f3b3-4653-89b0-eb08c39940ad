@@ -252,23 +252,25 @@
             </div>
         </div>
     </div>
-    <div id="confirmBox_del" class="popBox confirmBox popBoxwd3" style="display:none;">
+    <div id="confirmBox_del" class="popBox confirmBox popBoxwd3" style="display: none;">
         <div class="line0">
             <span class="popboxicon icon_ques"></span>确认删除这条信息？
         </div>
         <div class="line1">
-            <a class="popboxicon btn_ok" onclick="Delete()">确认</a> <a class="popboxicon btn_cal" onclick="$('#confirmBox_del').hide();">取消</a>
+            <a class="popboxicon btn_ok" onclick="Delete()">确认</a> <a class="popboxicon btn_cal"
+                onclick="$('#confirmBox_del').hide();">取消</a>
         </div>
     </div>
-    <div id="confirmBox_ok" class="popBox confirmBox popBoxwd3" style="display:none;">
+    <div id="confirmBox_ok" class="popBox confirmBox popBoxwd3" style="display: none;">
         <div class="line0">
             <span class="popboxicon icon_ok"></span>信息保存成功！
         </div>
         <div class="line1">
-            <a class="popboxicon btn_ok" onclick="$('#confirmBox_ok').hide();">确认</a> <a class="popboxicon btn_cal" onclick="$('#confirmBox_ok').hide();">取消</a>
+            <a class="popboxicon btn_ok" onclick="$('#confirmBox_ok').hide();">确认</a> <a class="popboxicon btn_cal"
+                onclick="$('#confirmBox_ok').hide();">取消</a>
         </div>
     </div>
-    <div id="popBox_publishok" class="popBox popBoxwd1" style="display:none;">
+    <div id="popBox_publishok" class="popBox popBoxwd1" style="display: none;">
         <div class="boxtitle">
             <div class="popboxicon">
                 <h4>
@@ -288,7 +290,7 @@
                     在本网站中，请不要重复发布。</div>
             </div>
             <div class="line3">
-                <a class="popboxicon btn_ikown">好的，我知道了</a></div>
+                <a class="popboxicon btn_ikown" onclick="$('#popBox_publishok').hide();">好的，我知道了</a></div>
         </div>
     </div>
     <form id="ResumeForm" action="resume/preview" method="post" target="_blank">
