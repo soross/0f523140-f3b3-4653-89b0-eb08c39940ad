@@ -26,7 +26,7 @@ function get_sent_applies($num, $page, $count = false)
         $limit = " LIMIT $page , $num";
     }
     connect_db();
-    $view = "SELECT $select from tweets WHERE tweet_id IN (SELECT * FROM applications WHERE user_id='$id' AND deleted=0) AND tweets.deleted=0 ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT $select from tweets WHERE tweet_id IN (SELECT tweet_id FROM applications WHERE user_id='$id' AND deleted=0) AND tweets.deleted=0 ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
