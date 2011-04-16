@@ -41,11 +41,11 @@ func_register(array(
 
 function home_page()
 {
-    #theme('template', 'default.html');
+    theme('template', 'default.html');
     #header("Location: ".BASE_URL."default.html");
     #$content = theme('result', get_newest_result(10));
     #theme('search', '首页', $content);
-    echo "502: Service Unavailable";
+    #echo "502: Service Unavailable";
 }
 
 function manager_page()
