@@ -24,6 +24,7 @@ function resume_update()
     $cellphone = get_post('cellphone');
     $email = get_post('email');
     $content = get_post('content', false);
+    $show_avatar = get_post('show_avatar');
     
     connect_db();
     $view = "SELECT * FROM resumes WHERE resume_id = '$resume_id'";
@@ -31,12 +32,12 @@ function resume_update()
     $row = mysql_fetch_array($list);
     if($row)
     {
-        $view = "UPDATE resumes SET name='$name', sex='$sex', date_birth='$date_birth', live_in_now='$live_in_now', live_in='$live_in', cellphone='$cellphone', email='$email', content='$content' WHERE resume_id = '$resume_id'";
+        $view = "UPDATE resumes SET name='$name', sex='$sex', date_birth='$date_birth', live_in_now='$live_in_now', live_in='$live_in', cellphone='$cellphone', email='$email', show_avatar='$show_avatar', content='$content' WHERE resume_id = '$resume_id'";
         $list = mysql_query($view) or die("Update error!");
     }
     else
     {
-        $view = "INSERT INTO resumes(user_id, resume_id, name, sex, date_birth, live_in_now, live_in, cellphone, email, content) VALUES('$user_id','$resume_id','$name','$sex','$date_birth','$live_in_now','$live_in','$cellphone','$email','$content')";
+        $view = "INSERT INTO resumes(user_id, resume_id, name, sex, date_birth, live_in_now, live_in, cellphone, email, show_avatar, content) VALUES('$user_id','$resume_id','$name','$sex','$date_birth','$live_in_now','$live_in','$cellphone','$email','$show_avatar','$content')";
         $list = mysql_query($view) or die("Update error!");
     }
 }
@@ -98,7 +99,7 @@ function theme_resumeapi($data)
 {
     $content =       $data['name'].'|'.$data['sex'].'|'.$data['date_birth']
                 .'|'.$data['live_in_now'].'|'.$data['live_in'].'|'.$data['cellphone']
-                .'|'.$data['email'].'|'.$data['content'];
+                .'|'.$data['email'].'|'.$data['show_avatar'].'|'.$data['content'];
     echo $content;
 }
 
@@ -113,6 +114,7 @@ function resume_preview()
         'cellphone' => get_post('cellphone'),
         'email' => get_post('email'),
         'content' => get_post('content', false),
+        'show_avatar' => get_post('show_avatar'),
     );
     theme('resume', '个人简历预览', $data);
 }
@@ -125,6 +127,10 @@ function theme_resumeshow($data)
 function theme_resume($title, $data)
 {
     include_once("avatar.inc.php");
+    if($data['show_avatar'])
+        $avatar = '<img height="83" width="83" alt="" src="'.get_avatar($data['user_id'], "big").'" />';
+    else
+        $avatar = "";
     $content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -141,7 +147,7 @@ function theme_resume($title, $data)
     <div id="content">
         <div id="basic">
             <div id="basic1">
-                <img height="83" width="83" alt="" src="'.get_avatar($data['user_id'], "big").'" />
+                '.$avatar.'
                 <span>'.$data['name'].'('.$data['sex'].')</span>
             </div>
             <div id="basic2">
