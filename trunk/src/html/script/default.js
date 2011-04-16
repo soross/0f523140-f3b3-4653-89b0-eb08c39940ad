@@ -542,6 +542,7 @@ function SentResume() {
         success: function (msg) {
             $(item).hide();
             $(item).next().show();
+            $("#popBox_apply1").hide();
         }
     });
 }
