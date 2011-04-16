@@ -371,6 +371,8 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                         }
                         str += '</div>';
                         $("div#pages").html(str);
+                    }else{
+                    	$("div#pages").html("");
                     }
 
                     if (!noresult) {
@@ -403,7 +405,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                                 $("#search-result-outer").show();
                             }
                         });
-                        $("div#pages").html("");
+                        
                         $("#search-result-outer").show();
                         $("a#search-result-rss").attr("href", 'search/rss/' + cate + '/' + searchContent);
                     }
