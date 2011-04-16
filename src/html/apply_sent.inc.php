@@ -60,7 +60,7 @@ function apply_sent_add()
         $tweet_site_id = $row[0];
         include_once("sinaoauth.inc.php");
         $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
-        $content = $content.' http://www.ybole.com/resume/show/'.$id;
+        $content = $content.' 我在歪伯乐的简历：http://www.ybole.com/resume/show/'.$id;
         $msg = $c -> send_comment($tweet_site_id, $content);
         if ($msg === false || $msg === null){
             echo "Error occured";
