@@ -7,6 +7,7 @@
             var username = msg.split(',')[0];
             var type = msg.split(',')[1];
             $("#name").html(username);
+            $("#my-microbloging").attr("href", "http://t.sina.com.cn/" + username);
             if (type == 1) {
                 $(".jobs").show();
             }
