@@ -78,6 +78,7 @@ function received_apply_show_tweet()
         $content .= '<div id="'.$r['resume_id'].'">
 <span class="left">申请自：</span><a class="left item-applys-name">'.get_nick_by_id($r['user_id']).'</a><span class="left item-applys-time">于'.time_tran($r['apply_time']).$readinfo.'</span><a
                 class="right item-applys-read">查看简历</a></div>';
+    }
     echo $content;
 }
 
