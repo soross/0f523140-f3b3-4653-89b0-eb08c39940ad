@@ -136,39 +136,30 @@ $(function () {
         $("#ResumeForm").submit();
     });
 
-
-    $("a.apply").live("click", function () {
-        var item = $(this);
-        var id = $(this).parent().parent().parent().attr("id");
-        $.ajax({
-            type: "POST",
-            url: 'apply_sent/add/' + id,
-            success: function () {
-                item.hide();
-                item.next("a.unapply").show();
-            }
-        });
-    });
-    $("a.unapply").live("click", function () {
-        var item = $(this);
-        var id = $(this).parent().parent().parent().attr("id");
-        $.ajax({
-            type: "POST",
-            url: 'apply_sent/delete/' + id,
-            success: function () {
-                item.hide();
-                item.prev("a.apply").show();
-            }
-        });
-    });
     $("div.item").live("mouseover", function () {
         $(this).addClass("item-over");
     });
     $("div.item").live("mouseout", function () {
         $(this).removeClass("item-over");
     });
-    
+
     SetSorts();
+    $("#popBox_apply1").position({
+        of: $("html"),
+        my: "center top",
+        at: "center top",
+        offset: "0 200",
+        collision: "none none"
+    });
+    $("#popBox_apply1").css("position", "fixed");
+    $("#popBox_apply0").position({
+        of: $("html"),
+        my: "center top",
+        at: "center top",
+        offset: "0 200",
+        collision: "none none"
+    });
+    $("#popBox_apply0").css("position", "fixed");
 });
 
 function Delete() {

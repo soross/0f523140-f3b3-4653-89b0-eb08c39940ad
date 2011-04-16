@@ -301,5 +301,62 @@
     <input type="hidden" name="email" id="h-email" />
     <input type="hidden" name="content" id="h-content" />
     </form>
+    <div id="popBox_apply0" class="popBox popBoxwd1 absolute" style="display: none;">
+        <div class="boxtitle">
+            <div class="popboxicon">
+                <h4>
+                    职位申请</h4>
+            </div>
+            <div class="popboxicon btn_close">
+                <a class="left" style="height: 100%; width: 100%;" onclick="$('#popBox_apply0').hide();">
+                </a>
+            </div>
+        </div>
+        <div class="popBox_main">
+            <div class="line1">
+                <div class="popboxicon img_err">
+                </div>
+                <div class="font_tip">
+                    还没完善简历？</div>
+            </div>
+            <div class="line2">
+                <div class="font_tip2">
+                    提示：完整的简历会加大您录取的概率哟！</div>
+            </div>
+            <div class="line3">
+                <a class="popboxicon btn_goresume"></a>
+            </div>
+        </div>
+    </div>
+    <div id="popBox_apply1" class="popBox popBoxwd2 absolute" style="display: none;">
+        <div class="boxtitle">
+            <div class="popboxicon">
+                <h4>
+                    职位申请</h4>
+            </div>
+            <div class="popboxicon btn_close">
+                <a class="left" style="height: 100%; width: 100%;" onclick="$('#popBox_apply1').hide();">
+                </a>
+            </div>
+        </div>
+        <div class="popBox_main">
+            <div class="line0">
+                <span class="font_tip2 fl" id="at-name">@赶集网</span><span class="fr">还可输入<span class="font_tip3"
+                    id="remain-number">115</span>个字</span>
+            </div>
+            <div id="text_apply" class="line1">
+                <textarea rows="4" id="resumeinput" onkeydown="UpdateResumeText(this)" onkeyup="UpdateResumeText(this)"></textarea></div>
+            <div class="line3">
+                <div class="add_resume">
+                    <input type="radio" name="def_resume" checked="checked" />
+                    <a href="" target="_blank" class="font_tip2 udl" id="default-resume">默认简历</a> <span>
+                        (<span class="font_tip2">*</span>系统将自动为您附上您的简历)</span>
+                </div>
+                <div id="btn_publish" class="popboxicon btn_publish">
+                    <a class="left" style="height: 100%; width: 100%;" onclick="SentResume()"></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

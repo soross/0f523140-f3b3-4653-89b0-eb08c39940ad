@@ -7,6 +7,54 @@ $(function () {
     SetCompany();
 });
 
+function SentResume() {
+    $.ajax({
+        type: 'GET',
+        url: 'apply_sent/add/' + appyId,
+        success: function (msg) {
+            $(theItem).hide();
+            $(theItem).next().show();
+            $("#popBox_apply1").hide();
+        }
+    });
+}
+function JobApply(item, id, name) {
+    var userid;
+    appyId = id;
+    theItem = item;
+    $.ajax({
+        type: 'GET',
+        url: 'resume/current',
+        success: function (msg) {
+            userid = $.trim(msg);
+            $.ajax({
+                type: 'GET',
+                url: 'resume/show/' + userid,
+                success: function (resume) {
+                    if (resume.indexOf("<html") != -1) {
+                        $("#default-resume").attr("href", "resume/show/" + userid);
+                        $("#at-name").html("@" + name);
+                        $("#popBox_apply1").show();
+                    }
+                    else {
+                        $("#popBox_apply0").show();
+                    }
+                }
+            });
+        }
+    });
+}
+function JobUnApply(item, id) {
+    $.ajax({
+        type: 'GET',
+        url: 'apply_sent/delete/' + id,
+        success: function (msg) {
+            $(item).hide();
+            $(item).prev().show();
+        }
+    });
+}
+
 function CompanyMR() {
     if (position + 840 < length) {
         $("#companies-inner").animate({ "left": "-=2" }, 10, "linear", function () {
