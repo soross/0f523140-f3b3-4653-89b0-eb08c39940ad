@@ -147,7 +147,7 @@ function deal_user($query)
     return call_user_func_array($function, $query);
 }
 
-function profile_show()
+function profile_show($query)
 {
     /*$args = func_get_args();
     $key = $args[2];*/
