@@ -1,3 +1,7 @@
+.addfeed_cn a:hover
+{
+    text-decoration:none;
+}
 .addfeed_cn .addbox{ position:absolute; display:block; border:#D9E9EF solid 3px; background:#FFFFFF; width:192px; z-index:998; font-size:12px;}
 .addfeed_cn .bgfrm{filter: alpha(opacity=0);-moz-opacity:0;opacity: 0;}
 .addfeed_cn .addshow{ width:185px; height:auto;}
