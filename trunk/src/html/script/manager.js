@@ -104,6 +104,13 @@ $(function () {
     }
 
     $("a#profile-save").click(function () {
+        var show = 0;
+        if ($("#info-pic-control input").attr("checked") == "checked") {
+            show = 1;
+        }
+        else {
+            show = 0;
+        }
         $.ajax({
             type: 'POST',
             url: 'resume/update',
@@ -115,6 +122,7 @@ $(function () {
                 live_in: $("#o-positon").val(),
                 cellphone: $("#m-phone").val(),
                 email: $("#email").val(),
+                show_avatar: show,
                 content: editor.document.getBody().getHtml()
             },
             success: function (msg) {
@@ -323,12 +331,18 @@ function ShowProfile() {
                 $("#o-positon").val(msg.split('|')[4]);
                 $("#m-phone").val(msg.split('|')[5]);
                 $("#email").val(msg.split('|')[6]);
+                if (msg.split('|')[7] == 0) {
+                    $("#info-pic-control input").removeAttr("checked");
+                }
+                else {
+                    $("#info-pic-control input").attr("checked", "checked");
+                }
                 var str = "";
                 for (s in msg.split('|')) {
-                    if (s == 7) {
+                    if (s == 8) {
                         str += msg.split('|')[s];
                     }
-                    else if (s >= 7) {
+                    else if (s >= 8) {
                         str += '|' + msg.split('|')[s];
                     }
                 }
