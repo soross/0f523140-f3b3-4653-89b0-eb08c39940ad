@@ -42,7 +42,7 @@ function get_received_applies($tweet_id, $num, $page, $count = false)
     if($count)
     {
         $limit = "";
-        $select = "COUNT(DISTINCT tweets.tweet_id)";
+        $select = "COUNT(*)";
     }
     else
     {
