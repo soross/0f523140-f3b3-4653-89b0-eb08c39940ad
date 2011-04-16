@@ -407,8 +407,10 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                         $("#search-result-outer").show();
                         $("a#search-result-rss").attr("href", 'search/rss/' + cate + '/' + searchContent);
                     }
-
+                    
+                    /*
                     if (!($.browser.msie && $.browser.version == "6.0")) {
+                    	
                         $("div#backTop").position({
                             of: $("div#microblogs"),
                             my: "left top",
@@ -418,7 +420,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                         });
                         $("div#backTop").css("position", "fixed");
                     }
-
+					*/
 
                     page = pagenum;
                     count = 0;
@@ -656,15 +658,16 @@ function DocumenScroll() {
 
     if ($.browser.msie && $.browser.version == "6.0") {
         //$("div#backTop").attr("position","absolute");
-        $("div#backTop").position({
-            of: $("div#microblogs"),
-            my: "left top",
-            at: "right top",
-            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-            collision: "none none"
-        });
+       
     }
 
+    $("div#backTop").position({
+        of: $("div#microblogs"),
+        my: "left top",
+        at: "right top",
+        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+        collision: "none none"
+    });
 
     if ($(window).scrollTop() != 0) {
         $("div#backTop").fadeIn(200);
@@ -690,7 +693,8 @@ function DocumenScroll() {
 
                 $("#flower").fadeOut(200);
                 $("div#blogs").html($("div#blogs").html() + msg);
-
+                
+                /*
                 if (!($.browser.msie && $.browser.version == "6.0")) {
                     $("div#backTop").position({
                         of: $("div#microblogs"),
@@ -701,6 +705,7 @@ function DocumenScroll() {
                     });
                     $("div#backTop").css("position", "fixed");
                 }
+                */
                 /*
                 $("a.microblog-item-relate").unbind("click");
                 $("a.microblog-item-relate").click(function () {
