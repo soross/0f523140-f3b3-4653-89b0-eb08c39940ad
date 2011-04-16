@@ -23,7 +23,8 @@
 }
 .confirmBox
 {
-    height: 83px;
+    padding-top:15px;
+    height: 68px;
 }
 .popboxicon
 {
