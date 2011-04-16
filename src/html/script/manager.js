@@ -105,7 +105,7 @@ $(function () {
 
     $("a#profile-save").click(function () {
         var show = 0;
-        if ($("#info-pic-control input").attr("checked") == "checked") {
+        if ($("#info-pic-control input").attr("checked")) {
             show = 1;
         }
         else {
@@ -140,7 +140,7 @@ $(function () {
         $("#cellphone").val($("#m-phone").val());
         $("#h-email").val($("#email").val());
         $("#h-content").val(editor.document.getBody().getHtml());
-        if ($("#info-pic-control input").attr("checked") == "checked") {
+        if ($("#info-pic-control input").attr("checked")) {
             $("#h-avatar").val(1);
         }
         else {
