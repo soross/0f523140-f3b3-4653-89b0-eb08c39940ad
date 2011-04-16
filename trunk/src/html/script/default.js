@@ -154,7 +154,7 @@ function AfterLogin() {
             var username = msg.split(',')[0];
             var type = msg.split(',')[1];
             $("#name").html(username);
-            $("#my-microbloging").attr("href","http://t.sina.com.cn/" + username);
+            $("#my-microbloging").attr("href", "http://t.sina.com.cn/" + username);
             if (type == -1) {
                 CoverResize();
                 $("div#cover").show();
@@ -198,6 +198,7 @@ function ConcernDeleteClick(id, content, item) {
     });
 }
 function ConcernContentClick(cate, content) {
+    SetCate(cate);
     SearchContent(false, content, cate, 0);
 }
 function RefreshConcern() {
@@ -218,6 +219,47 @@ function RefreshConcern() {
     });
 }
 //End of Concern Event
+
+function SetCate(cate) {
+    switch (cate) {
+        case 0:
+            $("#sort").html("全部分类");
+            $("#sorts-name").html("全部分类");
+            break;
+        case 1:
+            $("#sort").html("互联网");
+            $("#sorts-name").html("互联网");
+            break;
+        case 2:
+            $("#sort").html("移动互联网");
+            $("#sorts-name").html("移动互联网");
+            break;
+        case 3:
+            $("#sort").html("网络游戏");
+            $("#sorts-name").html("网络游戏");
+            break;
+        case 4:
+            $("#sort").html("电子商务");
+            $("#sorts-name").html("电子商务");
+            break;
+        case 5:
+            $("#sort").html("软件·电信");
+            $("#sorts-name").html("软件·电信");
+            break;
+        case 6:
+            $("#sort").html("新媒体");
+            $("#sorts-name").html("新媒体");
+            break;
+        case 7:
+            $("#sort").html("投资·银行");
+            $("#sorts-name").html("投资·银行");
+            break;
+        case 8:
+            $("#sort").html("其他");
+            $("#sorts-name").html("其他");
+            break;
+    }
+}
 
 //History Event - default.js
 function HistoryMouseOver(item) {
@@ -242,6 +284,7 @@ function HistoryPicClick() {
     });
 }
 function HistoryClick(cate, content) {
+    SetCate(cate);
     SearchContent(false, content, cate, 0);
 }
 function RefreshHistory() {
@@ -373,8 +416,8 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                         }
                         str += '</div>';
                         $("div#pages").html(str);
-                    }else{
-                    	$("div#pages").html("");
+                    } else {
+                        $("div#pages").html("");
                     }
 
                     if (!noresult) {
@@ -407,24 +450,24 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                                 $("#search-result-outer").show();
                             }
                         });
-                        
+
                         $("#search-result-outer").show();
                         $("a#search-result-rss").attr("href", 'search/rss/' + cate + '/' + searchContent);
                     }
-                    
+
                     if (!($.browser.msie && $.browser.version == "6.0")) {
-                    	if($("div#backTop").css("position") != "fixed"){
-                    		$("div#backTop").position({
-	                            of: $("div#microblogs"),
-	                            my: "left top",
-	                            at: "right top",
-	                            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-	                            collision: "none none"
-	                        });
-	                        $("div#backTop").css("position", "fixed");
-                    	}
+                        if ($("div#backTop").css("position") != "fixed") {
+                            $("div#backTop").position({
+                                of: $("div#microblogs"),
+                                my: "left top",
+                                at: "right top",
+                                offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                                collision: "none none"
+                            });
+                            $("div#backTop").css("position", "fixed");
+                        }
                     }
-					
+
                     page = pagenum;
                     count = 0;
 
@@ -661,7 +704,7 @@ function DocumenScroll() {
 
     if ($.browser.msie && $.browser.version == "6.0") {
         //$("div#backTop").attr("position","absolute");
-    	$("div#backTop").position({
+        $("div#backTop").position({
             of: $("div#microblogs"),
             my: "left top",
             at: "right top",
@@ -670,7 +713,7 @@ function DocumenScroll() {
         });
     }
 
-    
+
 
     if ($(window).scrollTop() != 0) {
         $("div#backTop").fadeIn(200);
@@ -696,8 +739,8 @@ function DocumenScroll() {
 
                 $("#flower").fadeOut(200);
                 $("div#blogs").html($("div#blogs").html() + msg);
-                
-                
+
+
                 if (!($.browser.msie && $.browser.version == "6.0")) {
                     $("div#backTop").position({
                         of: $("div#microblogs"),
@@ -708,7 +751,7 @@ function DocumenScroll() {
                     });
                     $("div#backTop").css("position", "fixed");
                 }
-                
+
                 /*
                 $("a.microblog-item-relate").unbind("click");
                 $("a.microblog-item-relate").click(function () {
