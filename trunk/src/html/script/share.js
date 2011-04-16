@@ -3,6 +3,12 @@ var logined = false;
 var rolekind = "";
 
 $(function () {
+    $("#logo").mouseover(function () {
+        $(this).html("回首页");
+    });
+    $("#logo").mouseout(function () {
+        $(this).html("测试版");
+    });
     InitUser();
     SetPublish();
 
