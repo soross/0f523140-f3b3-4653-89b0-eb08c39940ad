@@ -404,6 +404,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                             }
                         });
                         $("div#pages").html("");
+                        $("#search-result-outer").show();
                         $("a#search-result-rss").attr("href", 'search/rss/' + cate + '/' + searchContent);
                     }
 
