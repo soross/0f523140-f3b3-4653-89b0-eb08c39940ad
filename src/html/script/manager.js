@@ -62,7 +62,7 @@ $(function () {
     $("#search-text").keypress(function (e) {
         if (e.which == 13) {
             if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴") {
-                location = "/?search=" + encodeURI($("#search-text").val()) + "&cat=" + $("#sort").attr("name");      
+                location = "/?search=" + encodeURI($("#search-text").val()) + "&cat=" + $("#sort").attr("name");
             }
         }
     });
@@ -339,6 +339,9 @@ function SetContent(id, datas, item, count) {
             $("a.item-applys-read").each(function () {
                 $(this).attr("href", "resume/show/" + $(this).parent().attr("id"));
                 $(this).attr("target", "_blank");
+                $(this).click(function () {
+                    $(this).prev("span.item-applys-time:first").html($(this).prev("span.item-applys-time:first").html() + "(已阅)");
+                });
             });
             var allpage = 0;
             if (count % 10 == 0) {
