@@ -351,7 +351,7 @@ function SearchConcernClick() {
 }
 function SearchContent(noresult, content, cate, pagenum, callback) {
     $("#fresh-blogs").hide();
-    $("#blogs").html('<img src="images/loading.gif" style="margin-left:275px;margin-top:' + (($("#blogs").height() - 32) / 2) + 'px;margin-bottom:' + (($("#blogs").height() - 32) / 2) + 'px;" />');
+    $("#blogs").html('<img src="images/loading.gif" style="margin-left:275px;margin-top:100px;margin-bottom:100px;" />');
     $.ajax({
         type: 'POST',
         url: 'search/show/' + cate,
