@@ -61,12 +61,12 @@ function parsekeyword($keyword, $out)
         {
             #$out = preg_replace('/(>.*?)('.$key.')(.*?<)/i', '${1}<span class=\'highlight\'>${2}</span>${3}', $out);
             $out = preg_replace('/('.$key.')/i', '<span class=\'highlight\'>${1}</span>', $out);
-            $out = preg_replace('$href=\\"([^<]*)<span[^>]+>([^<]+)</span>\\"$i',
-                'href="${1}${2}"', $out);
-            $out = preg_replace('$title=\\"([^<]*)<span[^>]+>([^<]+)</span>\\"$i',
-                'title="${1}${2}"', $out);
-            $out = preg_replace('$class=\\"([^<]*)<span[^>]+>([^<]+)</span>\\"$i',
-                'title="${1}${2}"', $out);
+            $out = preg_replace('$href=\\"([^<]*)<span[^>]+>([^<]+)</span>([^\\"]*)\\"$i',
+                'href="${1}${2}${3}"', $out);
+            $out = preg_replace('$title=\\"([^<]*)<span[^>]+>([^<]+)</span>([^\\"]*)\\"$i',
+                'title="${1}${2}${3}"', $out);
+            $out = preg_replace('$class=\\"([^<]*)<span[^>]+>([^<]+)</span>([^\\"]*)\\"$i',
+                'title="${1}${2}${3}"', $out);
         }
     return $out;
 }
