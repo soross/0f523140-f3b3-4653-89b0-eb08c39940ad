@@ -42,7 +42,7 @@ function get_received_applies($tweet_id, $num, $page, $count = false)
     if($count)
     {
         $limit = "";
-        $select = "COUNT(*)";
+        $select = "COUNT(DISTINCT tweets.tweet_id)";
     }
     else
     {
@@ -53,7 +53,7 @@ function get_received_applies($tweet_id, $num, $page, $count = false)
         $limit = " LIMIT $page , $num";
     }
     connect_db();
-    $view = "SELECT DISTINCT $select from applications AS ap, (SELECT * FROM tweets WHERE tweet_id='$tweet_id' AND deleted=0) AS tweets, (SELECT user_site_id, site_id from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.deleted=0 AND ap.deleted=0 AND ap.tweet_id='$tweet_id' AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT $select from applications AS ap, (SELECT * FROM tweets WHERE tweet_id='$tweet_id' AND deleted=0) AS tweets, (SELECT user_site_id, site_id from accountbindings WHERE user_id = '$id') AS ab WHERE tweets.deleted=0 AND ap.deleted=0 AND ap.tweet_id='$tweet_id' AND tweets.user_site_id = ab.user_site_id AND tweets.site_id = ab.site_id ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
