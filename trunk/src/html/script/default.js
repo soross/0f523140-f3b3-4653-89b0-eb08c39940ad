@@ -486,6 +486,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
 
 //Other Event
 var appyId = "";
+var theItem;
 
 function InitBoxes() {
     $("#popBox_apply1").position({
@@ -540,8 +541,8 @@ function SentResume() {
         type: 'GET',
         url: 'apply_sent/add/' + appyId,
         success: function (msg) {
-            $(item).hide();
-            $(item).next().show();
+            $(theItem).hide();
+            $(theItem).next().show();
             $("#popBox_apply1").hide();
         }
     });
@@ -549,6 +550,7 @@ function SentResume() {
 function JobApply(item, id, name) {
     var userid;
     appyId = id;
+    theItem = item;
     $.ajax({
         type: 'GET',
         url: 'resume/current',
