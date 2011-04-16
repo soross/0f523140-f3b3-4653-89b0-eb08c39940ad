@@ -507,15 +507,6 @@ function InitBoxes() {
     $("#popBox_apply0").css("position", "fixed");
 }
 
-function UpdateResumeText(e) {
-    if (115 - Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2) >= 0) {
-        $("#remain-number").html((115 - Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2)));
-    }
-    else {
-        $("#remain-number").html((Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2 - 115)));
-    }
-}
-
 function JobLike(item, id) {
     $.ajax({
         type: 'GET',

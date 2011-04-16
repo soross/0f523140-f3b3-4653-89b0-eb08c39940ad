@@ -54,6 +54,14 @@ function JobUnApply(item, id) {
         }
     });
 }
+function UpdateResumeText(e) {
+    if (115 - Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2) >= 0) {
+        $("#remain-number").html((115 - Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2)));
+    }
+    else {
+        $("#remain-number").html((Math.ceil($(e).val().replace(/[^\x00-\xff]/g, "**").length / 2 - 115)));
+    }
+}
 
 function CompanyMR() {
     if (position + 840 < length) {
