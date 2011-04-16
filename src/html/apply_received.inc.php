@@ -116,7 +116,7 @@ function received_apply_show()
         else
             $source = '<a class="left microblog-item-position" target="_blank">'.$r['source'].'</a>';
         $g = received_apply_count_tweet($r['tweet_id']);
-        $content .= '<div class="item" id="'.$r['tweet_id'].'">
+        $content .= '<div class="item item-noclose" id="'.$r['tweet_id'].'">
                         <div class="item-delete">
                             <a class="right"></a>
                         </div>

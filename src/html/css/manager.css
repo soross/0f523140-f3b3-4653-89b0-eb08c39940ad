@@ -114,6 +114,11 @@ div.item-over
     background-image: url('../images/item-over-background.jpg');
     background-repeat: no-repeat;
 }
+div.item-over-noclose
+{
+    background-image: url('../images/item-over-background-noclose.jpg');
+    background-repeat: no-repeat;
+}
 div.item-delete
 {
     height: 17px;
