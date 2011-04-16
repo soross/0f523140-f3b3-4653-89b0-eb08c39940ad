@@ -72,7 +72,7 @@ class Twitter_Autolink {
     }
     
     public function autoLinkEmail($tweet) {
-        $t = preg_replace('/([a-zA-Z0-9_\.]+)([@|＠|#]|\[at\])([a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4})/',
+        $t = preg_replace('/([a-zA-Z0-9_\-\.]+)([@|＠|#]|\[at\])([a-zA-Z0-9_\-]+([.][a-zA-Z0-9_\-]+)*[.][a-zA-Z]{2,4})/',
                           '<a class="' . $this->urlClass . ' ' . $this->emailClass . '" href="mailto:${1}@${3}">${1}${2}${3}</a>', $tweet);
         return $t;
     }
