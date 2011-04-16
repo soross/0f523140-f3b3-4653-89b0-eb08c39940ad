@@ -156,7 +156,6 @@ function AfterLogin() {
             $("#name").html(username);
             if (type == -1) {
                 CoverResize();
-                $(window).scrollTop(0);
                 $("div#cover").show();
                 $("div#role-choose").show();
             }
