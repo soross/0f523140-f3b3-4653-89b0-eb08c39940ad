@@ -1,0 +1,31 @@
+.addfeed_cn .addbox{ position:absolute; display:block; border:#D9E9EF solid 3px; background:#FFFFFF; width:252px; z-index:998; font-size:12px;}
+.addfeed_cn .bgfrm{filter: alpha(opacity=0);-moz-opacity:0;opacity: 0;}
+.addfeed_cn .addshow{ width:245px; height:auto;}
+.addfeed_cn .addh{ height:20px; background:#EDF5F8;}
+.addfeed_cn .addh .addt{ padding-left:6px; line-height:20px; color:#666666;}
+.addfeed_cn .addbottom{ height:14px; height:18px; background:#EDF5F8; text-align:right; padding:0 6px 0 0; text-align:left;}
+.addfeed_cn .flist li, .addfeed_cn .flist .li{white-space:nowrap; overflow:hidden; color:#666; font-weight:normal; text-align:left;!important}
+.addfeed_cn .flist a{ display:block; height:16px; width:110px}
+.addfeed_cn .flist a:link,
+.addfeed_cn .flist a:visited{ color:#666; text-decoration:none;}
+.addfeed_cn .flist a:hover{ color:#7EB937; text-decoration:none;}
+.addbottom a:link,
+.addbottom a:visited{ color:#0083B1; text-decoration:none;}
+
+.feed_0{ background:url(../images/feed/0.gif) no-repeat left;}
+.feed_1{ background:url(../images/feed/1.gif) no-repeat left;}
+.feed_2{ background:url(../images/feed/2.gif) no-repeat left;}
+.feed_3{ background:url(../images/feed/3.gif) no-repeat left;}
+.feed_4{ background:url(../images/feed/4.gif) no-repeat left;}
+.feed_5{ background:url(../images/feed/5.gif) no-repeat left;}
+.feed_6{ background:url(../images/feed/6.gif) no-repeat left;}
+.feed_7{ background:url(../images/feed/7.gif) no-repeat left;}
+.feed_8{ background:url(../images/feed/8.gif) no-repeat left;}
+.feed_9{ background:url(../images/feed/9.gif) no-repeat left;}
+.feed_10{ background:url(../images/feed/10.gif) no-repeat left;}
+.feed_11{ background:url(../images/feed/11.gif) no-repeat left;}
+.feed_12{ background:url(../images/feed/12.gif) no-repeat left;}
+.feed_13{ background:url(../images/feed/13.gif) no-repeat left;}
+.feed_14{ background:url(../images/feed/14.gif) no-repeat left;}
+.feed_15{ background:url(../images/feed/15.gif) no-repeat left;}
+.feed_16{ background:url(../images/feed/16.gif) no-repeat left;}
