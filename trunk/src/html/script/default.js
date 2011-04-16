@@ -315,7 +315,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
             searchContent = content;
             cateContent = cate;
             $("#blogs").html(msg);
-            callback();
+            if (callback != null) { callback(); }
             RefreshHistory();
             page = pagenum / 5;
             $.ajax({
@@ -909,8 +909,8 @@ function GetNewerBlogs() {
                     });
                     */
                 }
-                if( msg.split("id=").length - 1 <= 0)
-                	return ;
+                if (msg.split("id=").length - 1 <= 0)
+                    return;
                 $("div#fresh-blogs").html(msg);
                 $("div#fresh").html('有' + (msg.split("id=").length - 1) + '条更新，点击查看');
                 $("div#fresh-outer").slideDown(300, null, function () {
