@@ -140,6 +140,12 @@ $(function () {
         $("#cellphone").val($("#m-phone").val());
         $("#h-email").val($("#email").val());
         $("#h-content").val(editor.document.getBody().getHtml());
+        if ($("#info-pic-control input").attr("checked") == "checked") {
+            $("#h-avatar").val(1);
+        }
+        else {
+            $("#h-avatar").val(0);
+        }
 
         $("#ResumeForm").submit();
     });
