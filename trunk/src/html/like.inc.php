@@ -75,12 +75,12 @@ function like_show()
                                         break;
                                     }
                                 if(!$app)
-                                    $content .= '<a class="right item-favourite item-doapply apply">
-                                            申请该职位</a><a class="right item-favourite item-doapply unapply" style="display: none;">
+                                    $content .= '<a class="right item-favourite item-doapply apply" onclick="JobApply(this,\''.$f['tweet_id'].'\',\''.$f['post_screenname'].'\')">
+                                            申请该职位</a><a class="right item-favourite item-doapply unapply" style="display: none;" onclick="JobUnApply(this,\''.$f['tweet_id'].'\')">
                                             取消申请</a>';
                                 else
-                                    $content .= '<a class="right item-favourite item-doapply apply" style="display: none;">
-                                            申请该职位</a><a class="right item-favourite item-doapply unapply">
+                                    $content .= '<a class="right item-favourite item-doapply apply" style="display: none;" onclick="JobApply(this,\''.$f['tweet_id'].'\',\''.$f['post_screenname'].'\')">
+                                            申请该职位</a><a class="right item-favourite item-doapply unapply" onclick="JobUnApply(this,\''.$f['tweet_id'].'\')">
                                             取消申请</a>';
                             }
         $content .= '
