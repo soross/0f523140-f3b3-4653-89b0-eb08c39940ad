@@ -163,7 +163,7 @@ for crawler in A:
     t = Thread(target=working)
     t.setDaemon(True)
     t.start()
-    sleep(2)
+    sleep(0.2)
     
 print now() + "Preparing cursors to operate database..."
 path = '/var/www/0f523140-f3b3-4653-89b0-eb08c39940ad/src/crawler'
@@ -172,7 +172,6 @@ os.chdir(path)
 import MySQLdb, uuid
 db = MySQLdb.connect("127.0.0.1","apis","G2WvPRsxGEr77wEd","apis",charset="utf8")
 c = db.cursor()
-d = detect()
 #_tagid = open("tag_list_withid.dict", "r").read().decode("utf-8").split('\n')
 c.execute("SELECT * FROM tags")
 tagid = {}
@@ -181,9 +180,10 @@ for i in c:
     tag_id, tag = i[0], i[1]
     tagnoid += [tag]
     tagid[tag] = tag_id
-f = open(path+"/tag_list_nogroup.dict", "w")
+f = open("tag_list_nogroup.dict", "w")
 f.write('\n'.join(tagnoid))
 f.close()
+d = detect()
 #for line in _tagid:
 #    tag_id, tag = line.split()
 #    tagid[tag] = tag_id
