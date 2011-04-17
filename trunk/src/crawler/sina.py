@@ -181,7 +181,7 @@ for i in c:
     tag_id, tag = i[0], i[1]
     tagnoid += [tag]
     tagid[tag] = tag_id
-f = open("tag_list_nogroup.list", "w")
+f = open("tag_list_nogroup.dict", "w")
 f.write('\n'.join(tagnoid))
 f.close()
 #for line in _tagid:
