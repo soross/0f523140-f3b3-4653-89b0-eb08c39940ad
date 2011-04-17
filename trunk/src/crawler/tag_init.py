@@ -18,16 +18,16 @@ for item in dic:
     dic2 += [tag]
     dic3 += [(tag_id, tag)]
 dic.close()
-dic = open("tag_list_nogroup.dict", "w")
-dic.write("\n".join(dic2).encode("utf-8").lower())
-dic.close()
-dic = open("tag_list_withid.dict", "w")
-dic.write("\n".join([" ".join(x) for x in dic3]).encode("utf-8").lower())
-dic.close()
+#dic = open("tag_list_nogroup.dict", "w")
+#dic.write("\n".join(dic2).encode("utf-8").lower())
+#dic.close()
+#dic = open("tag_list_withid.dict", "w")
+#dic.write("\n".join([" ".join(x) for x in dic3]).encode("utf-8").lower())
+#dic.close()
 print now() + "Wrote Dict."
 
 import MySQLdb
-db = MySQLdb.connect("115.156.219.195","apis","apis","apis",charset="utf8")
+db = MySQLdb.connect("127.0.0.1","apis","apis","apis",charset="utf8")
 c = db.cursor()
 c.executemany("""INSERT INTO tags (tag_id, name, tag_group, count) VALUES (%s, %s, %s, %s)""",
               result)
