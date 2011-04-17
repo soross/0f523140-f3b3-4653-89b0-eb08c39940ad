@@ -153,9 +153,15 @@ def working():
     test = SinaFetch()
     test.setToken(crawlerinfo[1], crawlerinfo[2])
     for page in range(1, PAGE + 1):
-        result = test.friends_timeline(page)
+        while True:
+            try:
+                result = test.friends_timeline(page)
+                break
+            except:
+                print now() + "Crawler %s Cate:%d page %d/%d Failed, Retrying..." % (crawlerinfo[0], cateid, page, PAGE)
         B += [(cateid, result)]
         print now() + "Crawler %s Cate:%d page %d/%d Done." % (crawlerinfo[0], cateid, page, PAGE)
+        sleep(0.2)
     q.task_done()
 
 for crawler in A:
