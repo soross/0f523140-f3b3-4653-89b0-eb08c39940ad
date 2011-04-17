@@ -21,7 +21,13 @@ PAGE = 1
 B = []
 
 try:
-    PAGE = int(sys.argv[1])
+    tmp = sys.argv[1].split("-")
+    if len(tmp) < 2:
+        PAGE = int(tmp[0])
+    else
+        START, PAGE = tmp
+        START = int(START)
+        PAGE = int(PAGE) - START + 1
 except IndexError:
     pass
 
