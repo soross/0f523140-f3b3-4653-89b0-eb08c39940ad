@@ -25,7 +25,7 @@ try:
     tmp = sys.argv[1].split("-")
     if len(tmp) < 2:
         PAGE = int(tmp[0])
-    else
+    else:
         START, PAGE = tmp
         START = int(START)
         PAGE = int(PAGE) - START + 1
