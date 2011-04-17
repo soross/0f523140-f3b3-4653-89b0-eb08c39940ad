@@ -165,9 +165,9 @@ def working():
                 result = test.friends_timeline(page)
                 break
             except:
-                print now() + "Crawler %s Cate:%d page %d/%d Failed, Retrying..." % (crawlerinfo[0], cateid, page, PAGE)
+                print now() + "Crawler %s Cate:%d page %d/%d Failed, Retrying..." % (crawlerinfo[0], cateid, page, START + PAGE - 1)
         B += [(cateid, result)]
-        print now() + "Crawler %s Cate:%d page %d/%d Done." % (crawlerinfo[0], cateid, page, PAGE)
+        print now() + "Crawler %s Cate:%d page %d/%d Done." % (crawlerinfo[0], cateid, page, START + PAGE - 1)
         sleep(0.2)
     q.task_done()
 
