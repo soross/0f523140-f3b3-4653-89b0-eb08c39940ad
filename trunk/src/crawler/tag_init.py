@@ -27,7 +27,7 @@ dic.close()
 print now() + "Wrote Dict."
 
 import MySQLdb
-db = MySQLdb.connect("127.0.0.1","apis","apis","apis",charset="utf8")
+db = MySQLdb.connect("127.0.0.1","apis","G2WvPRsxGEr77wEd","apis",charset="utf8")
 c = db.cursor()
 c.executemany("""INSERT INTO tags (tag_id, name, tag_group, count) VALUES (%s, %s, %s, %s)""",
               result)
