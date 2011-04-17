@@ -17,6 +17,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 PAGE = 1
+START = 1
     
 B = []
 
@@ -158,7 +159,7 @@ def working():
     cateid, crawlerinfo = q.get()
     test = SinaFetch()
     test.setToken(crawlerinfo[1], crawlerinfo[2])
-    for page in range(1, PAGE + 1):
+    for page in range(START, PAGE + START):
         while True:
             try:
                 result = test.friends_timeline(page)
