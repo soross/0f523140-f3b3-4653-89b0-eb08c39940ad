@@ -1,6 +1,6 @@
 <config>
     <segmenter>
-        <main_dict>/var/www/0f523140-f3b3-4653-89b0-eb08c39940ad/src/crawler/tag_list_nogroup.dict</main_dict>
+        <main_dict>tag_list_nogroup.dict</main_dict>
     </segmenter>
 
     <__matrix__>
