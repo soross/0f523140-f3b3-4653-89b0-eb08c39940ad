@@ -26,17 +26,17 @@ $(function () {
         if ($(this).val().length > 32) {
             $(this).val($(this).val().substring(0, 32));
         }
-        if ($(this).val().indexOf("#") > -1 || $(this).val().indexOf("&") > -1 || $(this).val().indexOf("?") > -1) {
-            $(this).val($(this).val().replace("#", "").replace("&", "").replace("?", ""));
-        }
+        //if ($(this).val().indexOf("#") > -1 || $(this).val().indexOf("&") > -1 || $(this).val().indexOf("?") > -1) {
+        //    $(this).val($(this).val().replace("#", "").replace("&", "").replace("?", ""));
+        //}
     });
     $("#search-text").keyup(function () {
         if ($(this).val().length > 32) {
             $(this).val($(this).val().substring(0, 32));
         }
-        if ($(this).val().indexOf("#") > -1 || $(this).val().indexOf("&") > -1 || $(this).val().indexOf("?") > -1) {
-            $(this).val($(this).val().replace("#", "").replace("&", "").replace("?", ""));
-        }
+        //if ($(this).val().indexOf("#") > -1 || $(this).val().indexOf("&") > -1 || $(this).val().indexOf("?") > -1) {
+        //    $(this).val($(this).val().replace("#", "").replace("&", "").replace("?", ""));
+        //}
     });
     $("a#search-button").click(function () {
         if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
