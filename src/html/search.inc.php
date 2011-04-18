@@ -48,7 +48,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false, $tag
     {
         $view = "SELECT * FROM tags WHERE name = '$key' LIMIT 1";
         $list = mysql_query($view);
-        $row = mysql_fetch_array($list));
+        $row = mysql_fetch_array($list);
         if($row)
         {
             $key = " AND tr.tweet_id = tweets.tweet_id";
