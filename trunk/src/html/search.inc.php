@@ -123,7 +123,7 @@ function search_show()
     $cate = $args[2];
     $time = get_post('time');
     $page = get_post('page');
-    $key = get_post('search');
+    $key = trim(get_post('search'));
     $admin = get_post('admin');
     if($key and $key != "all")
     {
@@ -140,7 +140,7 @@ function search_count()
 {
     $args = func_get_args();
     $cate = $args[2];
-    $key = get_post('search');
+    $key = trim(get_post('search'));
     $data = get_search_result($key, 10, $cate, "", "",true);
     theme('page', 'count', $data[0][0]);
 }
