@@ -40,9 +40,10 @@ function theme_search($key, $content)
     theme('page', $key, $content);
 }
 
-function get_search_result($key, $num, $cate, $time, $page, $count = false, $tag = false)
+function get_search_result($key, $num, $cate, $time, $page, $count = false)
 {
     connect_db();
+    $tag = false;
     if($key and $key != "all")
     {
         $view = "SELECT * FROM tags WHERE name = '$key' LIMIT 1";
@@ -53,17 +54,15 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false, $tag
             $key = " AND tweets.tweet_id IN (SELECT tweet_id FROM tag_relationship WHERE tag_id IN (SELECT tag_id FROM tags WHERE name = '$key'))";
             $tag = true;
         }
-        else
-            $tag = false;
     }
     if($key and $key != "all" and !$tag)
     {
         #$key = explode(" ",$key);
         #$key = "%".implode("%",$key)."%";
         #$key = " AND (tweets.content LIKE '$key' OR tweets.post_screenname LIKE '$key')";
-        $key = " AND MATCH(post_screenname,content) AGAINST ('$key' IN BOOLEAN MODE)";
+        $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN BOOLEAN MODE)";
     }
-    else
+    elseif(!$tag)
         $key = "";
     if($cate and $cate!="0")
     {
@@ -131,25 +130,6 @@ function search_show()
         search_history_add("", "", $cate);
     }
     $data = get_search_result($key, 10, $cate, $time, $page);
-    $content = theme('result', $data, $key, $admin);
-    theme('search', $key, $content);
-}
-
-function search_tag()
-{
-    $args = func_get_args();
-    $cate = $args[2];
-    $time = get_post('time');
-    $page = get_post('page');
-    $key = get_post('search');
-    $admin = get_post('admin');
-    if($key and $key != "all")
-    {
-        include_once('login.inc.php');
-        if(user_is_authenticated())
-        search_history_add("", "", $cate);
-    }
-    $data = get_search_result($key, 10, $cate, $time, $page, "", true);
     $content = theme('result', $data, $key, $admin);
     theme('search', $key, $content);
 }
