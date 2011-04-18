@@ -310,6 +310,7 @@ function SetHot() {
     });
 }
 function HotClick(content) {
+    SetCate(0);
     SearchContent(false, content, 0, 0);
 }
 //End of Hot Event
