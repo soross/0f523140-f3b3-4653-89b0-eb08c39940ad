@@ -43,7 +43,6 @@ function theme_search($key, $content)
 function get_search_result($key, $num, $cate, $time, $page, $count = false, $tag = false)
 {
     connect_db();
-    $tag1 = "";
     if($key and $key != "all")
     {
         $view = "SELECT * FROM tags WHERE name = '$key' LIMIT 1";
@@ -51,8 +50,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false, $tag
         $row = mysql_fetch_array($list);
         if($row)
         {
-            $key = " AND tr.tweet_id = tweets.tweet_id";
-            $tag1 = ",(SELECT tweet_id FROM tag_relationship WHERE tag_id IN (SELECT tag_id FROM tags WHERE name = '$key')) AS tr";
+            $key = " AND tweets.tweet_id IN (SELECT tweet_id FROM tag_relationship WHERE tag_id IN (SELECT tag_id FROM tags WHERE name = '$key'))";
             $tag = true;
         }
         else
@@ -103,7 +101,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false, $tag
         }
         $time = " AND tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
     }
-    $view = "SELECT DISTINCT $content FROM tweets$tag1$cate1 WHERE tweets.deleted = 0$key$cate2$time ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT DISTINCT $content FROM tweets$cate1 WHERE tweets.deleted = 0$key$cate2$time ORDER BY tweets.post_datetime DESC$limit";
     //FIXME: Low performance!
     
     $list = mysql_query($view);
