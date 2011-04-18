@@ -674,7 +674,7 @@ function DocumenScroll() {
         $("#flower").fadeIn(200);
         $.ajax({
             type: 'POST',
-            url: 'search/' + cateContent,
+            url: 'search/show/' + cateContent,
             data: { search: encodeURI(searchContent), page: page }, //, time: '-' + $(".microblog-item:last").attr("id")
             //url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
             success: function (msg) {
