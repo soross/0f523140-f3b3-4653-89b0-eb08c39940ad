@@ -44,6 +44,8 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
 {
     connect_db();
     $tag = false;
+    if($key === "c" or $key === "C")
+        $key = "C++";
     if($key and $key != "all")
     {
         $view = "SELECT * FROM tags WHERE name = '$key' LIMIT 1";
