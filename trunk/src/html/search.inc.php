@@ -40,14 +40,19 @@ function theme_search($key, $content)
     theme('page', $key, $content);
 }
 
-function get_search_result($key, $num, $cate, $time, $page, $count = false)
+function get_search_result($key, $num, $cate, $time, $page, $count = false, $tag = false)
 {
     connect_db();
     
     //$view = "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('$key') ORDER BY post_datetime DESC";
     //FIXME: Cannot use this syntax.
-    
-    if($key and $key != "all")
+    $tag1 = "";
+    if($tag and $key and $key != "all")
+    {
+        $key = " AND tr.tweet_id = tweets.tweet_id";
+        $tag1 = ",(SELECT tweet_id FROM tag_relationship WHERE tag_id IN (SELECT tag_id FROM tags WHERE name = '$key')) AS tr"
+    }
+    elseif($key and $key != "all")
     {
         #$key = explode(" ",$key);
         #$key = "%".implode("%",$key)."%";
@@ -92,7 +97,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         }
         $time = " AND tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
     }
-    $view = "SELECT DISTINCT $content FROM tweets$cate1 WHERE tweets.deleted = 0$key$cate2$time ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT DISTINCT $content FROM tweets$tag1$cate1 WHERE tweets.deleted = 0$key$cate2$time ORDER BY tweets.post_datetime DESC$limit";
     //FIXME: Low performance!
     
     $list = mysql_query($view);
@@ -122,6 +127,25 @@ function search_show()
         search_history_add("", "", $cate);
     }
     $data = get_search_result($key, 10, $cate, $time, $page);
+    $content = theme('result', $data, $key, $admin);
+    theme('search', $key, $content);
+}
+
+function search_tag()
+{
+    $args = func_get_args();
+    $cate = $args[2];
+    $time = get_post('time');
+    $page = get_post('page');
+    $key = get_post('search');
+    $admin = get_post('admin');
+    if($key and $key != "all")
+    {
+        include_once('login.inc.php');
+        if(user_is_authenticated())
+        search_history_add("", "", $cate);
+    }
+    $data = get_search_result($key, 10, $cate, $time, $page, "", true);
     $content = theme('result', $data, $key, $admin);
     theme('search', $key, $content);
 }
