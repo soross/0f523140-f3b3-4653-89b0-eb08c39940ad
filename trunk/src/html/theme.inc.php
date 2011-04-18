@@ -66,7 +66,7 @@ function parsekeyword($keyword, $out)
 {
     $keyword = explode(" ",$keyword);
     foreach($keyword as $key)
-        if($key and $key !== "all")
+        if($key and $key !== "all" and strlen($key) >= 2)
         {
             #$out = preg_replace('/(>.*?)('.$key.')(.*?<)/i', '${1}<span class=\'highlight\'>${2}</span>${3}', $out);
             $out = preg_replace('/('.parsekeywordforpreg($key).')/i', '<span class=\'highlight\'>${1}</span>', $out);
