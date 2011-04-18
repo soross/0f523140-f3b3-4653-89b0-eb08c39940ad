@@ -50,7 +50,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false, $tag
     if($tag and $key and $key != "all")
     {
         $key = " AND tr.tweet_id = tweets.tweet_id";
-        $tag1 = ",(SELECT tweet_id FROM tag_relationship WHERE tag_id IN (SELECT tag_id FROM tags WHERE name = '$key')) AS tr"
+        $tag1 = ",(SELECT tweet_id FROM tag_relationship WHERE tag_id IN (SELECT tag_id FROM tags WHERE name = '$key')) AS tr";
     }
     elseif($key and $key != "all")
     {
