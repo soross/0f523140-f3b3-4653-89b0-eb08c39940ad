@@ -49,9 +49,10 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
     
     if($key and $key != "all")
     {
-        $key = explode(" ",$key);
-        $key = "%".implode("%",$key)."%";
-        $key = " AND (tweets.content LIKE '$key' OR tweets.post_screenname LIKE '$key')";
+        #$key = explode(" ",$key);
+        #$key = "%".implode("%",$key)."%";
+        #$key = " AND (tweets.content LIKE '$key' OR tweets.post_screenname LIKE '$key')";
+        $key = " AND MATCH(post_screenname,content) AGAINST ('$key' IN BOOLEAN MODE)";
     }
     else
         $key = "";
