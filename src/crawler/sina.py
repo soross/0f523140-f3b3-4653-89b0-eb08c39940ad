@@ -230,7 +230,7 @@ while True:
                   (tweet_id, 0,))
         #for tag in d.Split(content)[:]:
         for tag in tagnoid:
-            if tag not in content:
+            if tag.lower() not in content.lower():
                 continue
             try:
                 c.execute("""INSERT INTO tag_relationship (
@@ -278,7 +278,7 @@ for cat, items in B:
                   (cat, tweet_id))
         #for tag in d.Split(text)[:]:
         for tag in tagnoid:
-            if tag not in text:
+            if tag.lower() not in text.lower():
                 continue
             try:
                 c.execute("""INSERT INTO tag_relationship (
