@@ -198,7 +198,10 @@ for i in c:
 f = open("tag_list_nogroup.dict", "w")
 f.write('\n'.join(tagnoid))
 f.close()
-d = detect()
+
+#Disabled temperarly
+#d = detect()
+
 #for line in _tagid:
 #    tag_id, tag = line.split()
 #    tagid[tag] = tag_id
@@ -225,7 +228,10 @@ while True:
                      tweet_id, cat_id)
                      VALUES (%s, %s)""",
                   (tweet_id, 0,))
-        for tag in d.Split(content)[:]:
+        #for tag in d.Split(content)[:]:
+        for tag in tagnoid:
+            if tag not in content:
+                continue
             try:
                 c.execute("""INSERT INTO tag_relationship (
                              tag_id, tweet_id)
@@ -270,7 +276,10 @@ for cat, items in B:
                      cat_id, tweet_id)
                      VALUES (%s, %s)""",
                   (cat, tweet_id))
-        for tag in d.Split(text)[:]:
+        #for tag in d.Split(text)[:]:
+        for tag in tagnoid:
+            if tag not in text:
+                continue
             try:
                 c.execute("""INSERT INTO tag_relationship (
                              tag_id, tweet_id)
