@@ -16,7 +16,7 @@ from crawler_id import idlist as A
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-PAGE = 1
+PAGE = 2
 START = 1
     
 B = []
