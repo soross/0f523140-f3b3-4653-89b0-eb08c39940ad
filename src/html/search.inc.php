@@ -71,7 +71,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
     $content = "*";
     if($count)
     {
-        $content = "COUNT(tweet_id)";
+        $content = "COUNT(tweets.tweet_id)";
         $limit = "";
         $time = "";
     }
