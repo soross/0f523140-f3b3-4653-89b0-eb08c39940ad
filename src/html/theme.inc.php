@@ -53,6 +53,15 @@ function parselink($out)
     return $out;
 }
 
+function parsekeywordforpreg($str)
+{
+    #$str = str_replace("++", "\\+\\+", $str);
+    $str = str_replace("+", "\\+", $str);
+    $str = str_replace("*", "\\*", $str);
+    $str = str_replace("?", "\\?", $str);
+    return $str;
+}
+
 function parsekeyword($keyword, $out)
 {
     $keyword = explode(" ",$keyword);
@@ -60,7 +69,7 @@ function parsekeyword($keyword, $out)
         if($key and $key !== "all")
         {
             #$out = preg_replace('/(>.*?)('.$key.')(.*?<)/i', '${1}<span class=\'highlight\'>${2}</span>${3}', $out);
-            $out = preg_replace('/('.str_replace("+", "\\+", $key).')/i', '<span class=\'highlight\'>${1}</span>', $out);
+            $out = preg_replace('/('.parsekeywordforpreg($key).')/i', '<span class=\'highlight\'>${1}</span>', $out);
             $out = preg_replace('$href=\\"([^<]*)(<span[^>]+>([^<]*)</span>([^"]*))+\\"$i',
                 'href="${1}${3}${4}"', $out);
             $out = preg_replace('$title=\\"([^<]*)(<span[^>]+>([^<]*)</span>([^"]*))\\"$i',
