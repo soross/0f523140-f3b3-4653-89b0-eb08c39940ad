@@ -43,16 +43,22 @@ function theme_search($key, $content)
 function get_search_result($key, $num, $cate, $time, $page, $count = false, $tag = false)
 {
     connect_db();
-    
-    //$view = "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('$key') ORDER BY post_datetime DESC";
-    //FIXME: Cannot use this syntax.
     $tag1 = "";
-    if($tag and $key and $key != "all")
+    if($key and $key != "all")
     {
-        $key = " AND tr.tweet_id = tweets.tweet_id";
-        $tag1 = ",(SELECT tweet_id FROM tag_relationship WHERE tag_id IN (SELECT tag_id FROM tags WHERE name = '$key')) AS tr";
+        $view = "SELECT * FROM tags WHERE name = '$key' LIMIT 1";
+        $list = mysql_query($view);
+        $row = mysql_fetch_array($list));
+        if($row)
+        {
+            $key = " AND tr.tweet_id = tweets.tweet_id";
+            $tag1 = ",(SELECT tweet_id FROM tag_relationship WHERE tag_id IN (SELECT tag_id FROM tags WHERE name = '$key')) AS tr";
+            $tag = true;
+        }
+        else
+            $tag = false;
     }
-    elseif($key and $key != "all")
+    if($key and $key != "all" and !$tag)
     {
         #$key = explode(" ",$key);
         #$key = "%".implode("%",$key)."%";
