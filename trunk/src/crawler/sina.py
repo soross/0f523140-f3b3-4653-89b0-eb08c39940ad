@@ -52,6 +52,8 @@ print now() + "Initializing..."
 def iszhaopin(s):
     keywords = [(u"招聘", ),
                 (u"诚聘", ),
+                (u"诚招", ),
+                (u"新职位", ),
                 (u"急聘", ),
                 (u"需要", u"人员"),
                 (u"招人", ),
