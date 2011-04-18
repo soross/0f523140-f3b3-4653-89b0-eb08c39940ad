@@ -66,6 +66,11 @@ function parsekeyword($keyword, $out)
 {
     $keyword = explode(" ",$keyword);
     foreach($keyword as $key)
+    {
+        if(!$key)
+            continue;
+        if($key === "c" or $key === "C")
+            $key = "C++";
         if($key and $key !== "all" and strlen($key) >= 2)
         {
             #$out = preg_replace('/(>.*?)('.$key.')(.*?<)/i', '${1}<span class=\'highlight\'>${2}</span>${3}', $out);
@@ -77,6 +82,7 @@ function parsekeyword($keyword, $out)
             $out = preg_replace('$class=\\"([^<]*)(<span[^>]+>([^<]*)</span>([^"]*))\\"$i',
                 'title="${1}${3}${4}"', $out);
         }
+    }
     return $out;
 }
 
