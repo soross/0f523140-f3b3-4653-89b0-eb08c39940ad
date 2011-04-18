@@ -18,7 +18,9 @@ idlist = [
         [3, (u"田田July", "032ec596fa363aa9bd3e5e5917f6aea4", "9e0c243fa3ff3515765510ba4010c411")],
         [4, (u"田田Lily", "3ef7fc951a66918dd1cd722485fe1686", "74f524fe376ce995703e73e63407684f")],
         [5, (u"小朱Linda", "0c10534f393fe08451edb140e3b1150d", "423fd333a2542dbf6e2a38119a6e7e04")],
+        [5, (u"软件电信2", "f577ad7699dc1a74330bc41329c2ce71", "20cc173dbb46a6784588767e71de03ef")],
         [6, (u"小王trueman", "1f8f7db82cdbc346a91840cef2bc1cb9", "a16ead9ee3b6b3f43e601de127275ddc")],
+        [6, (u"新媒体2", "fc565ccfa32bdb962becc8d49a5a37d3", "8504469c6cad83cde0998299aca8b2fa")],
         [7, (u"小毕Simon", "4151efe34301f5fddb9d34fc72e5f4a4", "dc4a07e8b7936d688726604a7442e4bc")],
         [8, (u"小黄Lily", "8ee871ac7d18e0141b54077fefd58af6", "dc5cda5a9a4ab5c5a5cd53f85f1f7915")],
 	]
