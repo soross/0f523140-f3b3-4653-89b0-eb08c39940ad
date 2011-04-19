@@ -36,70 +36,76 @@ $(function () {
                 $.ajax({
                     type: "POST",
                     url: deleteurl + deleteid,
-                    success: function () {
-                        deleteitem.animate({ opacity: 0 }, 300, null, function () {
-                            deleteitem.slideUp(200, null, function () {
-                                if (type == "feedback") {
-                                    if (flag) {
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: 'feedback/show/' + page,
-                                            success: function (msg) {
-                                                var str = '<div class="item newer" style="display:none;"';
-                                                str += msg.split('<div class="item"')[10];
-                                                $("div.item:last").after(str);
-                                                $(".newer:last").slideDown(200);
-                                                $("a.delete").unbind("click");
-                                                $(".item-blog-title").unbind("click");
-                                                $("a.delete").click(function () {
-                                                    deleteitem = $(this).parent().parent().parent();
-                                                    deleteid = deleteitem.attr("id");
-                                                    deleteurl = 'feedback/delete/';
-                                                    type = "feedback";
-                                                    $("#delete-dialog").dialog("open");
-                                                });
-                                                $(".item-blog-title").click(function () {
-                                                    var item = $(this).parent().next(".item-blog-content");
-                                                    if (item.hasClass("close")) {
-                                                        item.slideDown(200);
-                                                        item.removeClass("close");
-                                                    }
-                                                    else {
-                                                        item.slideUp(200);
-                                                        item.addClass("close");
-                                                    }
-                                                });
-                                            }
-                                        });
+                    success: function (msg) {
+                        msg = $.trim(msg);
+                        if (msg == "" || msg == "0") {
+                            deleteitem.animate({ opacity: 0 }, 300, null, function () {
+                                deleteitem.slideUp(200, null, function () {
+                                    if (type == "feedback") {
+                                        if (flag) {
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: 'feedback/show/' + page,
+                                                success: function (msg) {
+                                                    var str = '<div class="item newer" style="display:none;"';
+                                                    str += msg.split('<div class="item"')[10];
+                                                    $("div.item:last").after(str);
+                                                    $(".newer:last").slideDown(200);
+                                                    $("a.delete").unbind("click");
+                                                    $(".item-blog-title").unbind("click");
+                                                    $("a.delete").click(function () {
+                                                        deleteitem = $(this).parent().parent().parent();
+                                                        deleteid = deleteitem.attr("id");
+                                                        deleteurl = 'feedback/delete/';
+                                                        type = "feedback";
+                                                        $("#delete-dialog").dialog("open");
+                                                    });
+                                                    $(".item-blog-title").click(function () {
+                                                        var item = $(this).parent().next(".item-blog-content");
+                                                        if (item.hasClass("close")) {
+                                                            item.slideDown(200);
+                                                            item.removeClass("close");
+                                                        }
+                                                        else {
+                                                            item.slideUp(200);
+                                                            item.addClass("close");
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                        }
+                                        UpdateFeedback();
                                     }
-                                    UpdateFeedback();
-                                }
-                                else if (type == "tweet") {
-                                    if (flag) {
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: 'search/0',
-                                            data: {page: page, admin: 1},
-                                            success: function (msg) {
-                                                var str = '<div class="microblog-item newer" style="display:none;"';
-                                                str += msg.split('<div class="microblog-item"')[10];
-                                                $("div.microblog-item:last").after(str);
-                                                $(".newer:last").slideDown(200);
-                                                $("a.delete").unbind("click");
-                                                $("a.delete").click(function () {
-                                                    deleteitem = $(this).parent().parent().parent();
-                                                    deleteid = deleteitem.attr("name");
-                                                    deleteurl = 'tweet/delete/';
-                                                    type = "tweet";
-                                                    $("#delete-dialog").dialog("open");
-                                                });
-                                            }
-                                        });
+                                    else if (type == "tweet") {
+                                        if (flag) {
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: 'search/0',
+                                                data: { page: page, admin: 1 },
+                                                success: function (msg) {
+                                                    var str = '<div class="microblog-item newer" style="display:none;"';
+                                                    str += msg.split('<div class="microblog-item"')[10];
+                                                    $("div.microblog-item:last").after(str);
+                                                    $(".newer:last").slideDown(200);
+                                                    $("a.delete").unbind("click");
+                                                    $("a.delete").click(function () {
+                                                        deleteitem = $(this).parent().parent().parent();
+                                                        deleteid = deleteitem.attr("name");
+                                                        deleteurl = 'tweet/delete/';
+                                                        type = "tweet";
+                                                        $("#delete-dialog").dialog("open");
+                                                    });
+                                                }
+                                            });
+                                        }
+                                        UpdateNormal();
                                     }
-                                    UpdateNormal();
-                                }
+                                });
                             });
-                        });
+                        }
+                        else {
+                            alert(msg);
+                        }
                     }
                 });
             },
@@ -119,7 +125,7 @@ function ShowNormal(e) {
     $.ajax({
         type: 'POST',
         url: 'search/show/0/',
-        data: {admin: 1, page: e},
+        data: { admin: 1, page: e },
         success: function (msg) {
             $("div#pages").fadeOut(50);
             $("div#blogsinner").html(msg);
@@ -135,8 +141,8 @@ function ShowNormal(e) {
     });
 }
 
-function DeleteTweet(id, d){
-	deleteitem = $(d).parent().parent().parent();
+function DeleteTweet(id, d) {
+    deleteitem = $(d).parent().parent().parent();
     deleteid = id;
     deleteurl = 'tweet/delete/';
     type = "tweet";
