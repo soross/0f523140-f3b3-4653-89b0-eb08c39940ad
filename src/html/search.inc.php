@@ -134,6 +134,14 @@ function search_show()
             search_history_add("", "", $cate);
     }
     $data = get_search_result($key, 10, $cate, $time, $page);
+    if(!$page)
+    {
+        search_count();
+        echo ',';
+        include_once('follow.inc.php');
+        following_exist("", "", $key);
+        echo ',';
+    }
     $content = theme('result', $data, $key, $admin);
     theme('search', $key, $content);
 }
