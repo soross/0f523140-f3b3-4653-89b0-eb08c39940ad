@@ -73,9 +73,9 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
     }
     else
     {
-        $cate1 = ",(SELECT tweet_id from cat_relationship WHERE cat_id!=8) AS cate";
-        $cate2 = " AND tweets.tweet_id=cate.tweet_id";
-        #$cate1 = $cate2 = "";
+        #$cate1 = ",(SELECT tweet_id from cat_relationship WHERE cat_id!=8) AS cate";
+        #$cate2 = " AND tweets.tweet_id=cate.tweet_id";
+        $cate1 = $cate2 = "";
     }
     $limit = " LIMIT 0 , $num";
     $content = "*";
