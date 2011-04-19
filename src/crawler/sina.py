@@ -113,7 +113,7 @@ class SinaFetch():
         try:
             return self.obj.__getattribute__(key)
         except Exception, e:
-            print e
+            #print e
             return ''
         
     def getAttValue(self, obj, key):
@@ -151,8 +151,6 @@ class SinaFetch():
             name = unicode(self.getAtt("screen_name"))
             avatar = self.getAtt("profile_image_url")
             thumbnail = self.getAtt("thumbnail_pic")
-            if thumbnail[:7] != "http://":
-                thumbnail = ""
             if iszhaopin(text):
                 results += [(userid, name, avatar, mid, text, posttime, source, thumbnail)]
         return results
