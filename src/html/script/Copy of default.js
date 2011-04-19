@@ -123,7 +123,7 @@ $(function () {
 
     $("a.company-name").click(function () {
         var text = $.trim($(this).html());
-        StartSearch('search/' + encodeURI(text), function (msg, thissearch) {
+        StartSearch('search/' + encodeURIComponent(text), function (msg, thissearch) {
             page = 0;
             cate = 0;
             $("#sort").html($("a#" + cate).html());
@@ -186,7 +186,7 @@ $(function () {
         if ($.query.get("search") != "") {
             var text = $.trim($.query.get("search"));
             var cat = $.trim($.query.get("cat"));
-            StartSearch('search/' + encodeURI(text) + '/' + cat, function (msg, thissearch) {
+            StartSearch('search/' + encodeURIComponent(text) + '/' + cat, function (msg, thissearch) {
                 page = 0;
                 cate = cat;
                 $("#sort").html($("a#" + cate).html());
@@ -253,7 +253,7 @@ $(function () {
             $("div#hot").html(msg);
             $("a.hot-content-item").click(function () {
                 var text = $(this).html().split('(')[0];
-                StartSearch('search/' + encodeURI(text), function (msg, thissearch) {
+                StartSearch('search/' + encodeURIComponent(text), function (msg, thissearch) {
                     page = 0;
                     cate = 0;
                     $("#sort").html($("a#" + cate).html());
@@ -278,7 +278,7 @@ $(function () {
     $("#search-text").keypress(function (e) {
         if (e.which == 13) {
             if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
-                StartSearch('search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate, function (msg, thissearch) {
+                StartSearch('search/' + encodeURIComponent($.trim($("#search-text").val())) + '/' + cate, function (msg, thissearch) {
                     isTurn = false;
                     SetSearch(msg, $("#search-text").val(), thissearch);
                 });
@@ -303,7 +303,7 @@ $(function () {
     });
     $("a#search-button").click(function () {
         if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴" && $("#search-text").val() != "") {
-            StartSearch('search/' + encodeURI($.trim($("#search-text").val())) + '/' + cate, function (msg, thissearch) {
+            StartSearch('search/' + encodeURIComponent($.trim($("#search-text").val())) + '/' + cate, function (msg, thissearch) {
                 isTurn = false;
                 SetSearch(msg, $("#search-text").val(), thissearch);
             });
@@ -336,7 +336,7 @@ function SetAllSearch(msg) {
                             });
                             $.ajax({
                                 type: "POST",
-                                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
+                                url: 'search/' + encodeURIComponent(SearchResult) + '/' + cate + '/count',
                                 success: function (msg) {
                                     $(window).scrollTop(0);
                                     prevLess = false;
@@ -389,7 +389,7 @@ function SetAllSearch(msg) {
                                         page = $(this).html() - 1;
                                         $.ajax({
                                             type: 'GET',
-                                            url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                                            url: 'search/' + encodeURIComponent(SearchResult) + '/' + cate + '/page/' + (page * 5),
                                             success: function (msg) {
                                                 isTurn = true;
                                                 SetAllSearch(msg);
@@ -400,7 +400,7 @@ function SetAllSearch(msg) {
                                         page--;
                                         $.ajax({
                                             type: 'GET',
-                                            url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                                            url: 'search/' + encodeURIComponent(SearchResult) + '/' + cate + '/page/' + (page * 5),
                                             success: function (msg) {
                                                 isTurn = true;
                                                 SetAllSearch(msg);
@@ -411,7 +411,7 @@ function SetAllSearch(msg) {
                                         page++;
                                         $.ajax({
                                             type: 'GET',
-                                            url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                                            url: 'search/' + encodeURIComponent(SearchResult) + '/' + cate + '/page/' + (page * 5),
                                             success: function (msg) {
                                                 isTurn = true;
                                                 SetAllSearch(msg);
@@ -427,7 +427,7 @@ function SetAllSearch(msg) {
                                 var text = $(this).attr("title");
                                 $.ajax({
                                     type: 'GET',
-                                    url: 'search/' + encodeURI(text),
+                                    url: 'search/' + encodeURIComponent(text),
                                     success: function (msg, thissearch) {
                                         page = 0;
                                         cate = 0;
@@ -441,7 +441,7 @@ function SetAllSearch(msg) {
                             $("a.microblog-item-relate").unbind("click");
                             $("a.microblog-item-relate").click(function () {
                                 var text = $(this).html();
-                                StartSearch('search/' + encodeURI(text), function (msg, thissearch) {
+                                StartSearch('search/' + encodeURIComponent(text), function (msg, thissearch) {
                                     page = 0;
                                     cate = 0;
                                     $("#sort").html($("a#" + cate).html());
@@ -453,7 +453,7 @@ function SetAllSearch(msg) {
                             $("a.tag").unbind("click");
                             $("a.tag").click(function () {
                                 var text = $(this).attr("title");
-                                StartSearch('search/' + encodeURI(text), function (msg, thissearch) {
+                                StartSearch('search/' + encodeURIComponent(text), function (msg, thissearch) {
                                     page = 0;
                                     cate = 0;
                                     $("#sort").html($("a#" + cate).html());
@@ -545,14 +545,14 @@ function SetResult(msg) {
     $("div#search-result div.left").html(str);
     $.ajax({
         type: 'POST',
-        url: 'follow/exist/' + encodeURI(msg),
+        url: 'follow/exist/' + encodeURIComponent(msg),
         success: function (e) {
             if (e[0] == '0') {
                 $("a#search-result-concern").attr("class", "right search-result-concern");
                 $("a#search-result-concern").click(function () {
                     $.ajax({
                         type: 'POST',
-                        url: 'follow/add/' + encodeURI(SearchResult),
+                        url: 'follow/add/' + encodeURIComponent(SearchResult),
                         success: function () {
                             $("a#search-result-concern").attr("class", "right search-result-concern-have");
                             $("a#search-result-concern").unbind("mouseover");
@@ -590,7 +590,7 @@ function SetResult(msg) {
             }
         }
     });
-    $("a#search-result-rss").attr("href", 'rss/' + encodeURI(msg));
+    $("a#search-result-rss").attr("href", 'rss/' + encodeURIComponent(msg));
 }
 
 function SetRolePicker() {
@@ -729,7 +729,7 @@ function SetConcern() {
                     $("a#search-result-concern").click(function () {
                         $.ajax({
                             type: 'POST',
-                            url: 'follow/add/' + encodeURI(SearchResult),
+                            url: 'follow/add/' + encodeURIComponent(SearchResult),
                             success: function () {
                                 $("a#search-result-concern").attr("class", "right search-result-concern-have");
                                 $("a#search-result-concern").unbind("mouseover");
@@ -778,7 +778,7 @@ function SetConcern() {
     $(".concern-item-content").click(function () {
         var text = $(this).children(".concern-item-content-info").html();
         $(this).children(".concern-item-content-number").fadeOut(200, function () { $(this).parent().removeClass("concern-item-content-new"); });
-        StartSearch('search/' + encodeURI(text), function (msg, thissearch) {
+        StartSearch('search/' + encodeURIComponent(text), function (msg, thissearch) {
             page = 0;
             cate = 0;
             $("#sort").html($("a#" + cate).html());
@@ -842,7 +842,7 @@ function SetSearch(msg, e, thissearch) {
             });
             $.ajax({
                 type: "POST",
-                url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/count',
+                url: 'search/' + encodeURIComponent(SearchResult) + '/' + cate + '/count',
                 success: function (msg) {
                     if (currentsearch != thissearch) return;
                     $(window).scrollTop(0);
@@ -897,7 +897,7 @@ function SetSearch(msg, e, thissearch) {
                         $("div#pages").fadeIn(200);
                         $("a.page-number").click(function () {
                             page = $(this).html() - 1;
-                            StartSearch('search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                            StartSearch('search/' + encodeURIComponent(SearchResult) + '/' + cate + '/page/' + (page * 5),
                                                 function (msg, thissearch) {
                                                     isTurn = true;
                                                     SetSearch(msg, SearchResult, thissearch);
@@ -905,7 +905,7 @@ function SetSearch(msg, e, thissearch) {
                         });
                         $("a#prevPage").click(function () {
                             page--;
-                            StartSearch('search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                            StartSearch('search/' + encodeURIComponent(SearchResult) + '/' + cate + '/page/' + (page * 5),
                                                 function (msg, thissearch) {
                                                     isTurn = true;
                                                     SetSearch(msg, SearchResult, thissearch);
@@ -913,7 +913,7 @@ function SetSearch(msg, e, thissearch) {
                         });
                         $("a#nextPage").click(function () {
                             page++;
-                            StartSearch('search/' + encodeURI(SearchResult) + '/' + cate + '/page/' + (page * 5),
+                            StartSearch('search/' + encodeURIComponent(SearchResult) + '/' + cate + '/page/' + (page * 5),
                                                 function (msg, thissearch) {
                                                     isTurn = true;
                                                     SetSearch(msg, SearchResult, thissearch);
@@ -927,7 +927,7 @@ function SetSearch(msg, e, thissearch) {
             }
             $("a.tag").click(function () {
                 var text = $(this).attr("title");
-                StartSearch('search/' + encodeURI(text),
+                StartSearch('search/' + encodeURIComponent(text),
                                     function (msg, thissearch) {
                                         page = 0;
                                         cate = 0;
@@ -940,7 +940,7 @@ function SetSearch(msg, e, thissearch) {
             $("a.microblog-item-relate").unbind("click");
             $("a.microblog-item-relate").click(function () {
                 var text = $(this).html();
-                StartSearch('search/' + encodeURI(text),
+                StartSearch('search/' + encodeURIComponent(text),
                                     function (msg, thissearch) {
                                         page = 0;
                                         cate = 0;
@@ -953,7 +953,7 @@ function SetSearch(msg, e, thissearch) {
             $("a.tag").unbind("click");
             $("a.tag").click(function () {
                 var text = $(this).attr("title");
-                StartSearch('search/' + encodeURI(text),
+                StartSearch('search/' + encodeURIComponent(text),
                                     function (msg, thissearch) {
                                         page = 0;
                                         cate = 0;
@@ -1061,7 +1061,7 @@ function SetHistory() {
     $(".history-item").mouseout(function () { $(this).removeClass("history-item-over"); });
     $(".history-item").click(function () {
         var text = $(this).attr("title");
-        StartSearch('search/' + encodeURI(text),
+        StartSearch('search/' + encodeURIComponent(text),
             function (msg, thissearch) {
                 cate = 0;
                 page = 0;
@@ -1088,7 +1088,7 @@ function DocumenScroll() {
         $("#flower").fadeIn(200);
         $.ajax({
             type: 'GET',
-            url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
+            url: 'search/' + encodeURIComponent(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
             success: function (msg) {
                 if (msg == "" || msg.split('"microblog-item"').length < 11) {
                     scrollflag = true;
@@ -1100,7 +1100,7 @@ function DocumenScroll() {
                     var text = $(this).html();
                     $.ajax({
                         type: 'GET',
-                        url: 'search/' + encodeURI(text),
+                        url: 'search/' + encodeURIComponent(text),
                         success: function (msg, thissearch) {
                             page = 0;
                             cate = 0;
@@ -1114,7 +1114,7 @@ function DocumenScroll() {
                 $("a.tag").unbind("click");
                 $("a.tag").click(function () {
                     var text = $(this).attr("title");
-                    StartSearch('search/' + encodeURI(text),
+                    StartSearch('search/' + encodeURIComponent(text),
                         function (msg, thissearch) {
                             page = 0;
                             cate = 0;
@@ -1185,7 +1185,7 @@ function DocumenScroll() {
 function GetNewerBlogs() {
     $.ajax({
         type: 'GET',
-        url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + nowFirst,
+        url: 'search/' + encodeURIComponent(SearchResult) + '/' + cate + '/' + nowFirst,
         success: function (msg) {
             if (msg != "") {
                 $.ajax({
@@ -1204,7 +1204,7 @@ function GetNewerBlogs() {
                     $("a.microblog-item-relate").unbind("click");
                     $("a.microblog-item-relate").click(function () {
                         var text = $(this).html();
-                        StartSearch('search/' + encodeURI(text),
+                        StartSearch('search/' + encodeURIComponent(text),
                             function (msg, thissearch) {
                                 page = 0;
                                 cate = 0;
@@ -1217,7 +1217,7 @@ function GetNewerBlogs() {
                     $("a.tag").unbind("click");
                     $("a.tag").click(function () {
                         var text = $(this).attr("title");
-                        StartSearch('search/' + encodeURI(text),
+                        StartSearch('search/' + encodeURIComponent(text),
                             function (msg, thissearch) {
                                 page = 0;
                                 cate = 0;
@@ -1298,7 +1298,7 @@ function GetNewerBlogs() {
                     $("a.microblog-item-relate").unbind("click");
                     $("a.microblog-item-relate").click(function () {
                         var text = $(this).html();
-                        StartSearch('search/' + encodeURI(text),
+                        StartSearch('search/' + encodeURIComponent(text),
                             function (msg, thissearch) {
                                 page = 0;
                                 cate = 0;
@@ -1311,7 +1311,7 @@ function GetNewerBlogs() {
                     $("a.tag").unbind("click");
                     $("a.tag").click(function () {
                         var text = $(this).attr("title");
-                        StartSearch('search/' + encodeURI(text),
+                        StartSearch('search/' + encodeURIComponent(text),
                             function (msg, thissearch) {
                                 page = 0;
                                 cate = 0;
