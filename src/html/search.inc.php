@@ -143,7 +143,25 @@ function search_count()
     $args = func_get_args();
     $cate = $args[2];
     $key = trim(get_post('search'));
+    connect_db();
+    $view = "SELECT * FROM searches WHERE search = '$key' AND cat_id = '$cate' LIMIT 1";
+    $list = mysql_query($view);
+    $row = mysql_fetch_array($list);
+    if($row)
+    {
+        $now_time = date("Y-m-d H:i:s",time());
+        $now_time = strtotime($now_time);
+        if($row['resultcounttime'])
+            $save_time = strtotime($row['resultcounttime']);
+        if(isset($save_time) and $now_time - $save_time < 3600)
+        {
+            theme('page', 'count', $row['resultnum']);
+            exit();
+        }
+    }
     $data = get_search_result($key, 10, $cate, "", "",true);
+    $view = "UPDATE searches SET resultnum = '".$data[0][0]."', resultcounttime = '".date("Y-m-d H:i:s",time())."' WHERE search = '$key' AND cat_id = '$cate'";
+    $list = mysql_query($view);
     theme('page', 'count', $data[0][0]);
 }
 
@@ -262,6 +280,20 @@ function search_history_add()
     $current_datetime = date('Y-m-d H:i:s');
     $view = "INSERT INTO searchhistory(history_id, search, user_id, deleted, add_time, cat_id) VALUES ('$v4uuid', '$key', '$id', '0', '$current_datetime', '$cat')";
     $list = mysql_query($view) or die("Insert error!");
+    $view = "SELECT * FROM searches WHERE search='$key' AND cat_id='$cat'";
+    $list = mysql_query($view);
+    $row = mysql_fetch_array($list);
+    if($row)
+    {
+        $currentnum = intval($row['count']) + 1;
+        $view = "UPDATE searches SET count = '$currentnum' WHERE search='$key' AND cat_id='$cat'";
+        $list = mysql_query($view) or die("Update error!");
+    }
+    else
+    {
+        $view = "INSERT INTO searches(search, cat_id, count) VALUES('$key', '$cat', '1')";
+        $list = mysql_query($view) or die("Update error!");
+    }
 }
 
 function deal_search_history($query)
