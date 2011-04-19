@@ -289,6 +289,7 @@ function search_history_add()
     {
         $currentnum = intval($row['count']) + 1;
         $view = "UPDATE searches SET count = '$currentnum' WHERE search='$key' AND cat_id='$cat'";
+        echo $currentnum.$key.$cat;
         $list = mysql_query($view) or die("Update error!");
     }
     else
