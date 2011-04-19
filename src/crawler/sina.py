@@ -146,11 +146,11 @@ class SinaFetch():
             posttime = self.getAtt("created_at")
             source = self.getAtt("source")
             user = self.getAtt("user")
+            thumbnail = self.getAtt("thumbnail_pic")
             self.obj = user
             userid = self.getAtt("id")
             name = unicode(self.getAtt("screen_name"))
             avatar = self.getAtt("profile_image_url")
-            thumbnail = self.getAtt("thumbnail_pic")
             if iszhaopin(text):
                 results += [(userid, name, avatar, mid, text, posttime, source, thumbnail)]
         return results
