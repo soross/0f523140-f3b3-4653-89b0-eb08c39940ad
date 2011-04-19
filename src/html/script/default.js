@@ -707,6 +707,7 @@ function DocumenScroll() {
                         offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
                         collision: "none none"
                     });
+                    $("div#backTop").css("position", "fixed");
                 }
 
                 /*
