@@ -360,6 +360,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
             var f;
             if (pagenum == 0) {
                 c = msg.split(',')[0];
+                countpage = Math.floor(c);
                 f = msg.split(',')[1];
             }
             var str = "";
@@ -383,13 +384,12 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
             prevLess = false;
             nextLess = false;
             var allPage;
-            if (c % 50 == 0) {
-                allPage = Math.floor(c / 50);
+            if (countpage % 50 == 0) {
+                allPage = Math.floor(countpage / 50);
             }
             else {
-                allPage = Math.floor(c / 50) + 1;
+                allPage = Math.floor(countpage / 50) + 1;
             }
-            countpage = Math.floor(c);
             if (allPage > 1) {
                 var str = '<div id="pages-inner" class="right">';
                 if (page != 0) {
@@ -431,7 +431,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                 $("div#pages").html("");
             }
 
-            if (!noresult) {
+            if (!noresult && pagenum != 0) {
                 content = $.trim(content);
                 var result = "";
                 if ($("a#sort").attr("title") != "全部分类") {
@@ -478,8 +478,6 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
             $(window).scroll(function () {
                 DocumenScroll();
             });
-
-
         }
     });
 }
