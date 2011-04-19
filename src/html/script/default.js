@@ -654,7 +654,7 @@ function DocumenScroll() {
             my: "left top",
             at: "right top",
             offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-            collision: "none none"
+            collision: "fit fit"
         });
     }
 
@@ -692,9 +692,8 @@ function DocumenScroll() {
                         my: "left top",
                         at: "right top",
                         offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                        collision: "none none"
+                        collision: "fit fit"
                     });
-                    $("div#backTop").css("position", "fixed");
                 }
 
                 /*
