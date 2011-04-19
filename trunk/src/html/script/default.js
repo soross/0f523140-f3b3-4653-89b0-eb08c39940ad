@@ -87,7 +87,7 @@ $(function () {
         }
 
         /*
-        StartSearch('search/' + encodeURI(text) + '/' + cat, function (msg, thissearch) {
+        StartSearch('search/' + encodeURIComponent(text) + '/' + cat, function (msg, thissearch) {
         page = 0;
         cate = cat;
         $("#sort").html($("a#" + cate).html());
@@ -341,7 +341,7 @@ function SearchConcernClick() {
         $.ajax({
             type: 'POST',
             url: 'follow/add/' + cateContent,
-            data: { search: encodeURI(searchContent) },
+            data: { search: encodeURIComponentComponent(searchContent) },
             success: function (msg) {
                 $("#search-result-concern").attr("class", "right search-result-concern-have");
                 concernFlag = true;
@@ -356,7 +356,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
     $.ajax({
         type: 'POST',
         url: 'search/show/' + cate,
-        data: { search: encodeURI(content), page: pagenum },
+        data: { search: encodeURIComponentComponent(content), page: pagenum },
         success: function (msg) {
             searchContent = content;
             cateContent = cate;
@@ -367,7 +367,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
             $.ajax({
                 type: 'POST',
                 url: 'search/count/' + cate,
-                data: { search: encodeURI(content) },
+                data: { search: encodeURIComponentComponent(content) },
                 success: function (msg) {
                     msg = $.trim(msg);
                     $("html, body").scrollTop(0);
@@ -438,7 +438,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                         $.ajax({
                             type: 'POST',
                             url: 'follow/exist/' + cateContent,
-                            data: { search: encodeURI(content) },
+                            data: { search: encodeURIComponentComponent(content) },
                             success: function (e) {
                                 if ($.trim(e) == '0') {
                                     concernFlag = false;
@@ -676,8 +676,8 @@ function DocumenScroll() {
         $.ajax({
             type: 'POST',
             url: 'search/show/' + cateContent,
-            data: { search: encodeURI(searchContent), page: page }, //, time: '-' + $(".microblog-item:last").attr("id")
-            //url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
+            data: { search: encodeURIComponentComponent(searchContent), page: page }, //, time: '-' + $(".microblog-item:last").attr("id")
+            //url: 'search/' + encodeURIComponent(SearchResult) + '/' + cate + '/-' + $(".microblog-item:last").attr("id"),
             success: function (msg) {
                 if (msg == "" || msg.split('"microblog-item"').length < 11) {
                     scrollflag = true;
@@ -704,7 +704,7 @@ function DocumenScroll() {
                 var text = $(this).html();
                 $.ajax({
                 type: 'GET',
-                url: 'search/' + encodeURI(text),
+                url: 'search/' + encodeURIComponent(text),
                 success: function (msg, thissearch) {
                 page = 0;
                 cate = 0;
@@ -719,7 +719,7 @@ function DocumenScroll() {
                 $("a.tag").click(function () {
                 var text = $(this).attr("title");
                     
-                StartSearch('search/' + encodeURI(text),
+                StartSearch('search/' + encodeURIComponent(text),
                 function (msg, thissearch) {
                 page = 0;
                 cate = 0;
@@ -808,8 +808,8 @@ function GetNewerBlogs() {
     $.ajax({
         type: 'POST',
         url: 'search/' + cateContent,
-        data: { search: encodeURI(searchContent), time: nowFirst },
-        //url: 'search/' + encodeURI(SearchResult) + '/' + cate + '/' + nowFirst,
+        data: { search: encodeURIComponent(searchContent), time: nowFirst },
+        //url: 'search/' + encodeURIComponent(SearchResult) + '/' + cate + '/' + nowFirst,
         success: function (msg) {
             if (msg != "") {
                 $.ajax({
@@ -829,7 +829,7 @@ function GetNewerBlogs() {
                     $("a.microblog-item-relate").unbind("click");
                     $("a.microblog-item-relate").click(function () {
                     var text = $(this).html();
-                    StartSearch('search/' + encodeURI(text),
+                    StartSearch('search/' + encodeURIComponent(text),
                     function (msg, thissearch) {
                     page = 0;
                     cate = 0;
@@ -842,7 +842,7 @@ function GetNewerBlogs() {
                     $("a.tag").unbind("click");
                     $("a.tag").click(function () {
                     var text = $(this).attr("title");
-                    StartSearch('search/' + encodeURI(text),
+                    StartSearch('search/' + encodeURIComponent(text),
                     function (msg, thissearch) {
                     page = 0;
                     cate = 0;
@@ -927,7 +927,7 @@ function GetNewerBlogs() {
                     $("a.microblog-item-relate").unbind("click");
                     $("a.microblog-item-relate").click(function () {
                     var text = $(this).html();
-                    StartSearch('search/' + encodeURI(text),
+                    StartSearch('search/' + encodeURIComponent(text),
                     function (msg, thissearch) {
                     page = 0;
                     cate = 0;
@@ -940,7 +940,7 @@ function GetNewerBlogs() {
                     $("a.tag").unbind("click");
                     $("a.tag").click(function () {
                     var text = $(this).attr("title");
-                    StartSearch('search/' + encodeURI(text),
+                    StartSearch('search/' + encodeURIComponent(text),
                     function (msg, thissearch) {
                     page = 0;
                     cate = 0;

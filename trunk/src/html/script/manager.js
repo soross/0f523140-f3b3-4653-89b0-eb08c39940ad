@@ -62,19 +62,19 @@ $(function () {
     $("#search-text").keypress(function (e) {
         if (e.which == 13) {
             if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴") {
-                location = "/?search=" + encodeURI($("#search-text").val()) + "&cat=" + $("#sort").attr("name");
+                location = "/?search=" + encodeURIComponent($("#search-text").val()) + "&cat=" + $("#sort").attr("name");
             }
         }
     });
     $("a#search-button").click(function () {
         if ($("#search-text").val() != "职位关键字，如：北京 产品经理 阿里巴巴") {
-            location = "/?search=" + encodeURI($("#search-text").val()) + "&cat=" + $("#sort").attr("name");
+            location = "/?search=" + encodeURIComponent($("#search-text").val()) + "&cat=" + $("#sort").attr("name");
         }
     });
 
     $("a.company-name").click(function () {
         var text = $(this).html();
-        location = "/?search=" + encodeURI(text) + "&cat=0";
+        location = "/?search=" + encodeURIComponent(text) + "&cat=0";
     });
 
     $("#birthday").datepicker({
