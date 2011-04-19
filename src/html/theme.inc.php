@@ -92,7 +92,7 @@ function theme_page($title, $content) {
     ob_start('ob_gzhandler');
     header('Content-Type: text/html; charset=utf-8');
     echo $content;
-    exit();
+    //exit();
 }
 
 function theme_cat()
