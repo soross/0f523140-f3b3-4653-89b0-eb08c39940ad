@@ -44,10 +44,6 @@ $(function () {
         }
     });
 
-    $(window).scroll(function () {
-        DocumenScroll();
-    });
-
     $("div#backTop").click(function () {
         $("html, body").animate({ scrollTop: 0 }, 1000);
     });
@@ -223,39 +219,40 @@ function RefreshConcern() {
 function SetCate(cate) {
     switch (cate) {
         case 0:
-            $("#sort").html("全部分类");
+            $("#sort").html("全部分类▼");
             $("#sorts-name").html("全部分类");
+            $("a#sort").attr("title", "全部分类");
             break;
         case 1:
-            $("#sort").html("互联网");
+            $("#sort").html("互联网▼");
             $("#sorts-name").html("互联网");
             break;
         case 2:
-            $("#sort").html("移动互联网");
+            $("#sort").html("移动互联网▼");
             $("#sorts-name").html("移动互联网");
             break;
         case 3:
-            $("#sort").html("网络游戏");
+            $("#sort").html("网络游戏▼");
             $("#sorts-name").html("网络游戏");
             break;
         case 4:
-            $("#sort").html("电子商务");
+            $("#sort").html("电子商务▼");
             $("#sorts-name").html("电子商务");
             break;
         case 5:
-            $("#sort").html("软件·电信");
+            $("#sort").html("软件·电信▼");
             $("#sorts-name").html("软件·电信");
             break;
         case 6:
-            $("#sort").html("新媒体");
+            $("#sort").html("新媒体▼");
             $("#sorts-name").html("新媒体");
             break;
         case 7:
-            $("#sort").html("投资·银行");
+            $("#sort").html("投资·银行▼");
             $("#sorts-name").html("投资·银行");
             break;
         case 8:
-            $("#sort").html("其他");
+            $("#sort").html("其他▼");
             $("#sorts-name").html("其他");
             break;
     }
@@ -351,6 +348,7 @@ function SearchConcernClick() {
     }
 }
 function SearchContent(noresult, content, cate, pagenum, callback) {
+    $(window).unbind("scroll");
     $("#fresh-blogs").hide();
     $("#blogs").html('<img src="images/loading.gif" style="margin-left:275px;margin-top:100px;margin-bottom:100px;" />');
     $.ajax({
@@ -472,7 +470,6 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                     page = pagenum;
                     count = 0;
 
-                    $(window).unbind("scroll");
                     $(window).scroll(function () {
                         DocumenScroll();
                     });
