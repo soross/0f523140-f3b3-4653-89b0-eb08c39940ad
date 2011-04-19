@@ -433,6 +433,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
 
             if (!noresult && pagenum != 0) {
                 content = $.trim(content);
+                content = $('<div/>').text(content).html();
                 var result = "";
                 if ($("a#sort").attr("title") != "全部分类") {
                     result = $("a#sort").attr("title") + "中：";
