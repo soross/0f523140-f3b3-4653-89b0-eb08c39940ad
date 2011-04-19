@@ -207,6 +207,8 @@ function oauth_sina_callback()
     $GLOBALS['user']['nickname'] = $nick;
     $GLOBALS['user']['id'] = $id;
     $GLOBALS['user']['role'] = $role;
+    $view = "INSERT INTO log_userlogin(user_id, ipaddress, login_time, useragent, cookies) VALUES('$id', '".$_SERVER["REMOTE_ADDR"]."', '".date('Y-m-d H:i:s')."', '".$_SERVER["HTTP_USER_AGENT"]."', '".$_SERVER["HTTP_COOKIE"]."')";
+    $list = mysql_query($view);
     save_cookie();
     header("Location: ".BASE_URL);
 }
