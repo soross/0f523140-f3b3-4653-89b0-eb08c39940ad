@@ -351,7 +351,7 @@ function SearchConcernClick() {
         $.ajax({
             type: 'POST',
             url: 'follow/add/' + cateContent,
-            data: { search: encodeURIComponentComponent(searchContent) },
+            data: { search: encodeURIComponent(searchContent) },
             success: function (msg) {
                 $("#search-result-concern").attr("class", "right search-result-concern-have");
                 concernFlag = true;
