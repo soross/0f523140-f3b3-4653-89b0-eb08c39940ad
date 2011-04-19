@@ -443,7 +443,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                         result += '#<a class="keyword">' + content.split(' ')[s] + '</a>#';
                     }
                 }
-                result += "的搜索结果，共有" + msg + "条结果";
+                result += "的搜索结果，共有" + countpage + "条结果";
                 $("div#search-result div.left").html(result);
 
                 if (f == '0') {
