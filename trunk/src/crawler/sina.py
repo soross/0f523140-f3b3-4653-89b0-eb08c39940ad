@@ -146,7 +146,12 @@ class SinaFetch():
             posttime = self.getAtt("created_at")
             source = self.getAtt("source")
             user = self.getAtt("user")
-            thumbnail = self.getAtt("thumbnail_pic")
+            try:
+                thumbnail = self.getAtt("thumbnail_pic")
+                if thumbnail[:7] != "http://":
+                    thumbnail = ""
+            except:
+                thumbnail = ""
             self.obj = user
             userid = self.getAtt("id")
             name = unicode(self.getAtt("screen_name"))
