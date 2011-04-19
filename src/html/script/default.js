@@ -126,7 +126,20 @@ $(function () {
         */
     }
 
-
+    $(window).resize(function () {
+        if (!($.browser.msie && $.browser.version == "6.0")) {
+            if ($("div#backTop").css("position") != "fixed") {
+                $("div#backTop").position({
+                    of: $("div#microblogs"),
+                    my: "left top",
+                    at: "right top",
+                    offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                    collision: "none none"
+                });
+                $("div#backTop").css("position", "fixed");
+            }
+        }
+    });
 });
 //End of Init
 
@@ -654,7 +667,7 @@ function DocumenScroll() {
             my: "left top",
             at: "right top",
             offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-            collision: "fit fit"
+            collision: "none none"
         });
     }
 
@@ -692,7 +705,7 @@ function DocumenScroll() {
                         my: "left top",
                         at: "right top",
                         offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                        collision: "fit fit"
+                        collision: "none none"
                     });
                 }
 
