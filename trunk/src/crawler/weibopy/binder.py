@@ -158,7 +158,6 @@ def bind_api(**config):
 
             # If an error was returned, throw an exception
             body = resp.read()
-            print body
             self.api.last_response = resp
             if self.api.log is not None:
                 requestUrl = "URL:http://"+ self.host + url
