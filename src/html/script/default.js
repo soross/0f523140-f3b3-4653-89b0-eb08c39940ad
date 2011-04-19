@@ -431,7 +431,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                 $("div#pages").html("");
             }
 
-            if (!noresult && pagenum != 0) {
+            if (!noresult && pagenum == 0) {
                 content = $.trim(content);
                 content = $('<div/>').text(content).html();
                 var result = "";
