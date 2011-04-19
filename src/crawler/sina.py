@@ -274,7 +274,7 @@ for cat, items in B:
                      site_id, tweet_id, user_site_id, content, post_datetime,
                      type, tweet_site_id, favorite_count, application_count,
                      post_screenname, profile_image_url, source, thumbnail)
-                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
                   (1, tweet_id, userid, text, posttime,
                    2, mid, 0, 0,
                    name, avatar, source, thumbnail))
