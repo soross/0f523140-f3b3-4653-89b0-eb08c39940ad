@@ -150,8 +150,11 @@ class SinaFetch():
             userid = self.getAtt("id")
             name = unicode(self.getAtt("screen_name"))
             avatar = self.getAtt("profile_image_url")
+            thumbnail = self.getAtt("thumbnail_pic")
+            if(thumbnail[:7] != "http://")
+                thumbnail = ""
             if iszhaopin(text):
-                results += [(userid, name, avatar, mid, text, posttime, source)]
+                results += [(userid, name, avatar, mid, text, posttime, source, thumbnail)]
         return results
 
 q = Queue()
@@ -258,7 +261,7 @@ while True:
 q.join()
 print now() + "Craw Complete."
 for cat, items in B:
-    for userid, name, avatar, mid, text, posttime, source in items:
+    for userid, name, avatar, mid, text, posttime, source, thumbnail in items:
         tweet_id = uuid.uuid4().hex
         c.execute("SELECT * FROM tweets WHERE tweet_site_id = %s", (mid,))
         if c.fetchone() != None:
@@ -267,11 +270,11 @@ for cat, items in B:
         c.execute("""INSERT INTO tweets (
                      site_id, tweet_id, user_site_id, content, post_datetime,
                      type, tweet_site_id, favorite_count, application_count,
-                     post_screenname, profile_image_url, source)
+                     post_screenname, profile_image_url, source, thumbnail)
                      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
                   (1, tweet_id, userid, text, posttime,
                    2, mid, 0, 0,
-                   name, avatar, source))
+                   name, avatar, source, thumbnail))
         c.execute("""INSERT INTO cat_relationship (
                      cat_id, tweet_id)
                      VALUES (%s, %s)""",
