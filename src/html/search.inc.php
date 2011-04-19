@@ -164,7 +164,7 @@ function search_count()
         if(isset($save_time) and $now_time - $save_time < 3600)
         {
             theme('page', 'count', $row['resultnum']);
-            exit();
+            return;
         }
     }
     $data = get_search_result($key, 10, $cate, "", "",true);
