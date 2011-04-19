@@ -131,7 +131,7 @@ function search_show()
     {
         include_once('login.inc.php');
         if(user_is_authenticated())
-        search_history_add("", "", $cate);
+            search_history_add("", "", $cate);
     }
     $data = get_search_result($key, 10, $cate, $time, $page);
     $content = theme('result', $data, $key, $admin);
@@ -264,6 +264,8 @@ function search_history_add()
     $id = get_current_user_id();
     $args = func_get_args();
     $cat = $args[2];
+    if(!$cat)
+        $cat = 0;
     $key = get_post('search');
     if(!$key)
         die('Invalid Argument!');
