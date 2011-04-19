@@ -354,7 +354,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
     $.ajax({
         type: 'POST',
         url: 'search/show/' + cate,
-        data: { search: encodeURIComponentComponent(content), page: pagenum },
+        data: { search: encodeURIComponent(content), page: pagenum },
         success: function (msg) {
             var c;
             var f;
