@@ -356,126 +356,129 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
         url: 'search/show/' + cate,
         data: { search: encodeURIComponentComponent(content), page: pagenum },
         success: function (msg) {
+            var c;
+            var f;
+            if (pagenum == 0) {
+                c = msg.split(',')[0];
+                f = msg.split(',')[1];
+            }
+            var str = "";
+            for (s in msg.split(',')) {
+                if (s == 2) {
+                    str += msg.split(',')[s];
+                }
+                else if (s >= 2) {
+                    str += ',' + msg.split(',')[s];
+                }
+            }
+            msg = str;
             searchContent = content;
             cateContent = cate;
             $("#blogs").html(msg);
             if (callback != null) { callback(); }
             RefreshHistory();
             page = pagenum / 5;
-            $.ajax({
-                type: 'POST',
-                url: 'search/count/' + cate,
-                data: { search: encodeURIComponentComponent(content) },
-                success: function (msg) {
-                    msg = $.trim(msg);
-                    $("html, body").scrollTop(0);
-                    prevLess = false;
-                    nextLess = false;
-                    var allPage;
-                    if (msg % 50 == 0) {
-                        allPage = Math.floor(msg / 50);
-                    }
-                    else {
-                        allPage = Math.floor(msg / 50) + 1;
-                    }
-                    if (allPage > 1) {
-                        var str = '<div id="pages-inner" class="right">';
-                        if (page != 0) {
-                            str += '<a class="page-control left" id="prevPage" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (pagenum - 5) + ')">上一页</a>';
-                        }
-                        for (i = 0; i < allPage; i++) {
-                            if (!prevLess && i - page < -2) {
-                                if (i == 0) {
-                                    str += '<a class="page-number left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
-                                }
-                                else {
-                                    prevLess = true;
-                                    str += '<span class="left">...</span>';
-                                }
-                            }
-                            if (Math.abs(i - page) <= 2) {
-                                if (i == page) {
-                                    str += '<a class="page-number page-number-current left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
-                                }
-                                else {
-                                    str += '<a class="page-number left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
-                                }
-                            }
-                            if (i == allPage - 1 && i - page > 2) {
-                                str += '<a class="page-number left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
-                                nextLess = true;
-                            }
-                            if (!nextLess && i - page > 2) {
-                                nextLess = true;
-                                str += '<span class="left">...</span>';
-                            }
-                        }
-                        if (page != allPage - 1) {
-                            str += '<a class="page-control left" id="nextPage" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (pagenum + 5) + ')">下一页</a>';
-                        }
-                        str += '</div>';
-                        $("div#pages").html(str);
-                    } else {
-                        $("div#pages").html("");
-                    }
 
-                    if (!noresult) {
-                        content = $.trim(content);
-                        var result = "";
-                        if ($("a#sort").attr("title") != "全部分类") {
-                            result = $("a#sort").attr("title") + "中：";
-                        }
-                        for (s in content.split(' ')) {
-                            if (content.split(' ')[s] != "") {
-                                result += '#<a class="keyword">' + content.split(' ')[s] + '</a>#';
-                            }
-                        }
-                        result += "的搜索结果，共有" + msg + "条结果";
-                        $("div#search-result div.left").html(result);
-
-                        $.ajax({
-                            type: 'POST',
-                            url: 'follow/exist/' + cateContent,
-                            data: { search: encodeURIComponentComponent(content) },
-                            success: function (e) {
-                                if ($.trim(e) == '0') {
-                                    concernFlag = false;
-                                    $("#search-result-concern").attr("class", "right search-result-concern");
-                                }
-                                else {
-                                    concernFlag = true;
-                                    $("#search-result-concern").attr("class", "right search-result-concern-have");
-                                }
-                                $("#search-result-outer").show();
-                            }
-                        });
-
-                        $("#search-result-outer").show();
-                        $("a#search-result-rss").attr("href", 'search/rss/' + cate + '/' + searchContent);
-                    }
-
-                    if (!($.browser.msie && $.browser.version == "6.0")) {
-                        if ($("div#backTop").css("position") != "fixed") {
-                            $("div#backTop").position({
-                                of: $("div#microblogs"),
-                                my: "left top",
-                                at: "right top",
-                                offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                                collision: "none none"
-                            });
-                            $("div#backTop").css("position", "fixed");
-                        }
-                    }
-
-                    page = pagenum;
-                    count = 0;
-
-                    $(window).scroll(function () {
-                        DocumenScroll();
-                    });
-
+            $("html, body").scrollTop(0);
+            prevLess = false;
+            nextLess = false;
+            var allPage;
+            if (c % 50 == 0) {
+                allPage = Math.floor(c / 50);
+            }
+            else {
+                allPage = Math.floor(c / 50) + 1;
+            }
+            countpage = Math.floor(c);
+            if (allPage > 1) {
+                var str = '<div id="pages-inner" class="right">';
+                if (page != 0) {
+                    str += '<a class="page-control left" id="prevPage" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (pagenum - 5) + ')">上一页</a>';
                 }
+                for (i = 0; i < allPage; i++) {
+                    if (!prevLess && i - page < -2) {
+                        if (i == 0) {
+                            str += '<a class="page-number left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
+                        }
+                        else {
+                            prevLess = true;
+                            str += '<span class="left">...</span>';
+                        }
+                    }
+                    if (Math.abs(i - page) <= 2) {
+                        if (i == page) {
+                            str += '<a class="page-number page-number-current left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
+                        }
+                        else {
+                            str += '<a class="page-number left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
+                        }
+                    }
+                    if (i == allPage - 1 && i - page > 2) {
+                        str += '<a class="page-number left" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (i * 5) + ')">' + (i + 1) + '</a>';
+                        nextLess = true;
+                    }
+                    if (!nextLess && i - page > 2) {
+                        nextLess = true;
+                        str += '<span class="left">...</span>';
+                    }
+                }
+                if (page != allPage - 1) {
+                    str += '<a class="page-control left" id="nextPage" onclick="SearchContent(' + noresult + ',\'' + content + '\',' + cate + ',' + (pagenum + 5) + ')">下一页</a>';
+                }
+                str += '</div>';
+                $("div#pages").html(str);
+            } else {
+                $("div#pages").html("");
+            }
+
+            if (!noresult) {
+                content = $.trim(content);
+                var result = "";
+                if ($("a#sort").attr("title") != "全部分类") {
+                    result = $("a#sort").attr("title") + "中：";
+                }
+                for (s in content.split(' ')) {
+                    if (content.split(' ')[s] != "") {
+                        result += '#<a class="keyword">' + content.split(' ')[s] + '</a>#';
+                    }
+                }
+                result += "的搜索结果，共有" + msg + "条结果";
+                $("div#search-result div.left").html(result);
+
+                if (f == '0') {
+                    concernFlag = false;
+                    $("#search-result-concern").attr("class", "right search-result-concern");
+                }
+                else {
+                    concernFlag = true;
+                    $("#search-result-concern").attr("class", "right search-result-concern-have");
+                }
+                $("#search-result-outer").show();
+
+                $("#search-result-outer").show();
+                $("a#search-result-rss").attr("href", 'search/rss/' + cate + '/' + searchContent);
+            }
+
+            if (!($.browser.msie && $.browser.version == "6.0")) {
+                if ($("div#backTop").css("position") != "fixed") {
+                    $("div#backTop").position({
+                        of: $("div#microblogs"),
+                        my: "left top",
+                        at: "right top",
+                        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                        collision: "none none"
+                    });
+                    $("div#backTop").css("position", "fixed");
+                }
+            }
+
+            page = pagenum;
+            count = 0;
+
+            $(window).scroll(function () {
+                DocumenScroll();
             });
+
 
         }
     });
