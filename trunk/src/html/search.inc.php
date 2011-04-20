@@ -66,9 +66,9 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         #$key = " AND (tweets.content LIKE '$key' OR tweets.post_screenname LIKE '$key')";
         if(mb_strlen($key, "utf8") > 3)
         {
-            $relevance = ",MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE) AS relevance";
-            $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE)";
-            $order = "ORDER BY relevance DESC";
+            #$relevance = ",MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE) AS relevance";
+            $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE) > 5";
+            #$order = "ORDER BY relevance DESC";
         }
         else
             $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN BOOLEAN MODE)";
