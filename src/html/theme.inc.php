@@ -83,8 +83,15 @@ function parsekeyword($keyword, $out)
             #    'title="${1}${3}${4}"', $out);
             #out = preg_replace('$class=\\"([^<]*)(<span[^>]+>([^<]*)</span>([^"]*))\\"$i',
             #    'title="${1}${3}${4}"', $out);
+            $links = preg_match_all('$<[^>]+>[^<]*</[^>]+>$', $out);
             $notlink = preg_split('$<[^>]+>[^<]*</[^>]+>$', $out);
-            $out = implode("<br>", $notlink);
+            $out = "";
+            $i = 0;
+            foreach($notlink as $str)
+            {
+                $out .= str_replace($key, $str, "<span class='highlight'>$str</span>").$links[$i];
+                $i ++;
+            }
         }
     }
     return $out;
