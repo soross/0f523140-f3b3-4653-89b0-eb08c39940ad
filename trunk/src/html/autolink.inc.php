@@ -137,9 +137,9 @@ class Twitter_Autolink {
      * Callback used by autoLinkUsernamesAndLists
      */
     private function replacementUsernameAndLists($matches) {
-        $replacement  = $matches[0];
+        #$replacement  = $matches[0];
         #$replacement .= $matches[1];
-        #$replacement  = '';
+        $replacement  = '';
 
         if (isset($matches[3])) {
             /* Replace the list and username */
