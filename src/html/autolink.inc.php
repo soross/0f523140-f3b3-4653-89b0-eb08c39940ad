@@ -127,7 +127,7 @@ class Twitter_Autolink {
     }
 
     public function autoLinkUsernamesAndLists($tweet) {
-        $notuser = preg_split('([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu', $tweet);
+        $notuser = preg_split('$([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu', $tweet);
         preg_match_all('$([^a-z0-9_]|^)([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu', $tweet, $users);
         $out = "";
         foreach($notuser as $str)
