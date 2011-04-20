@@ -130,17 +130,15 @@ class Twitter_Autolink {
         $notuser = preg_split('$([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu', $tweet);
         preg_match_all('$([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu', $tweet, $users);
         $out = "";
-        $oldstr = "";
         foreach($notuser as $str)
         {
-            preg_match('/[a-z0-9_]$/iu', $oldstr, $tmpmatch);
+            preg_match('/[a-z0-9_]$/iu', $str, $tmpmatch);
             $user = array_shift($users[2]);
             $atstr = array_shift($users[1]);
             if($tmpmatch[0])
                 $out .= $str.$atstr.$user;
             else
                 $out .= $str.'<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="'. $this->get_base() . 'profile/'. $user . '" target="_blank">' . $atstr . $user . '</a>';
-            $oldstr = $str;
         }
         return $out;
         #return preg_replace_callback('$([^a-z0-9_]|^)([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu',//(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
