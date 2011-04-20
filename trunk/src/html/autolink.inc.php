@@ -127,8 +127,8 @@ class Twitter_Autolink {
     }
 
     public function autoLinkUsernamesAndLists($tweet) {
-        #return preg_replace_callback('$([^a-z0-9_]|^)([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu',//(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
-        return preg_replace_callback('$([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu',//(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
+        return preg_replace_callback('$([^a-z0-9_]|^)([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu',//(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
+        #return preg_replace_callback('$([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu',//(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
                                      array($this, 'replacementUsernameAndLists'),
                                      $tweet);
     }
@@ -137,18 +137,18 @@ class Twitter_Autolink {
      * Callback used by autoLinkUsernamesAndLists
      */
     private function replacementUsernameAndLists($matches) {
-        #$replacement  = $matches[0];
+        $replacement  = $matches[0];
         #$replacement .= $matches[1];
-        $replacement  = '';
+        #$replacement  = '';
 
         if (isset($matches[3])) {
             /* Replace the list and username */
-            #$replacement .= '<a class="' . $this->urlClass . ' ' . $this->listClass . '" href="' . $this->get_base() .'lists/'. $matches[3] . $matches[4] . '" target="_blank">' . $matches[2] . $matches[3] . $matches[4] . '</a>';
-            $replacement .= '<a class="' . $this->urlClass . ' ' . $this->listClass . '" href="' . $this->get_base() .'lists/'. $matches[2] . $matches[3] . '" target="_blank">' . $matches[1] . $matches[2] . $matches[3] . '</a>';
+            $replacement .= '<a class="' . $this->urlClass . ' ' . $this->listClass . '" href="' . $this->get_base() .'lists/'. $matches[3] . $matches[4] . '" target="_blank">' . $matches[2] . $matches[3] . $matches[4] . '</a>';
+            #$replacement .= '<a class="' . $this->urlClass . ' ' . $this->listClass . '" href="' . $this->get_base() .'lists/'. $matches[2] . $matches[3] . '" target="_blank">' . $matches[1] . $matches[2] . $matches[3] . '</a>';
         } else {
             /* Replace the username */
-            #$replacement .= '<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="' . $this->get_base() . 'profile/' . $matches[3] . '" target="_blank">' . $matches[2] . $matches[3] . '</a>';
-            $replacement .= '<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="' . $this->get_base() . 'profile/' . $matches[2] . '" target="_blank">' . $matches[1] . $matches[2] . '</a>';
+            $replacement .= '<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="' . $this->get_base() . 'profile/' . $matches[3] . '" target="_blank">' . $matches[2] . $matches[3] . '</a>';
+            #$replacement .= '<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="' . $this->get_base() . 'profile/' . $matches[2] . '" target="_blank">' . $matches[1] . $matches[2] . '</a>';
         }
 
         return $replacement;
