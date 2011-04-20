@@ -62,7 +62,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         #$key = explode(" ",$key);
         #$key = "%".implode("%",$key)."%";
         #$key = " AND (tweets.content LIKE '$key' OR tweets.post_screenname LIKE '$key')";
-        $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN BOOLEAN MODE)";
+        $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE)";
     }
     elseif(!$tag)
         $key = "";
