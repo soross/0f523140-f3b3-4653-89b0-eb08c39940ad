@@ -579,6 +579,7 @@ function JobUnLike(item, id) {
     });
 }
 function HotCompany(item) {
+    SetCate(0);
     SearchContent(false, $(item).html(), 0, 0);
 }
 
