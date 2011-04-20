@@ -66,9 +66,9 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         #$key = " AND (tweets.content LIKE '$key' OR tweets.post_screenname LIKE '$key')";
         if(mb_strlen($key, "utf8") > 3)
         {
+            $relevance = ",MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE) AS relevance";
             $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE)";
             $order = "ORDER BY relevance DESC";
-            $relevance = ",MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE) AS relevance";
         }
         else
             $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN BOOLEAN MODE)";
@@ -114,7 +114,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         $time = " AND tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
     }
     $view = "SELECT $content$relevance FROM tweets$cate1 WHERE tweets.deleted = 0$key$cate2$time $order $limit";
-    return array(array('content' => $view));
+    #return array(array('content' => $view));
     $list = mysql_query($view);
     $result = array();
     $i = 0;
