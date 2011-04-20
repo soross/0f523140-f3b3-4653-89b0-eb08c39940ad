@@ -68,7 +68,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         {
             $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE)";
             $order = "ORDER BY relevance DESC";
-            $relevance = ",MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE) AS relevance";
+            $relevance = ",MATCH(tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE) AS relevance";
         }
         else
             $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN BOOLEAN MODE)";
