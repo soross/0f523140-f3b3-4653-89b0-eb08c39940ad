@@ -371,6 +371,13 @@ function SearchConcernClick() {
     }
 }
 function SearchContent(noresult, content, cate, pagenum, callback) {
+    $("div#search-result div.left").text("正在搜索" + content + "...");
+    if (pagenum == 0) {
+        firstTime = true;
+    }
+    else {
+        firstTime = false;
+    }
     $(window).unbind("scroll");
     $("#fresh-blogs").hide();
     $("#blogs").html('<img src="images/loading.gif" style="margin-left:275px;margin-top:100px;margin-bottom:100px;" />');
