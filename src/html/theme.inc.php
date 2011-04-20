@@ -76,13 +76,15 @@ function parsekeyword($keyword, $out)
         if($key and $key !== "all" and strlen($key) >= 2)
         {
             #$out = preg_replace('/(>.*?)('.$key.')(.*?<)/i', '${1}<span class=\'highlight\'>${2}</span>${3}', $out);
-            $out = preg_replace('/('.parsekeywordforpreg($key).')/i', '<span class=\'highlight\'>${1}</span>', $out);
-            $out = preg_replace('$href=\\"([^<]*)(<span[^>]+>([^<]*)</span>([^"]*))+\\"$i',
-                'href="${1}${3}${4}"', $out);
-            $out = preg_replace('$title=\\"([^<]*)(<span[^>]+>([^<]*)</span>([^"]*))\\"$i',
-                'title="${1}${3}${4}"', $out);
-            $out = preg_replace('$class=\\"([^<]*)(<span[^>]+>([^<]*)</span>([^"]*))\\"$i',
-                'title="${1}${3}${4}"', $out);
+            #$out = preg_replace('/('.parsekeywordforpreg($key).')/i', '<span class=\'highlight\'>${1}</span>', $out);
+            #$out = preg_replace('$href=\\"([^<]*)(<span[^>]+>([^<]*)</span>([^"]*))+\\"$i',
+            #    'href="${1}${3}${4}"', $out);
+            #$out = preg_replace('$title=\\"([^<]*)(<span[^>]+>([^<]*)</span>([^"]*))\\"$i',
+            #    'title="${1}${3}${4}"', $out);
+            #out = preg_replace('$class=\\"([^<]*)(<span[^>]+>([^<]*)</span>([^"]*))\\"$i',
+            #    'title="${1}${3}${4}"', $out);
+            $notlink = preg_split('$<.+></.+>$', $out);
+            $out = implode("<br>", $notlink);
         }
     }
     return $out;
