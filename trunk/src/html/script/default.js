@@ -491,7 +491,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                         offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
                         collision: "none none"
                     });
-                    $("div#backTop").css("position", "fixed");
+                    $("div#backTop").css("position", "absolute");
                 }
             }
 
