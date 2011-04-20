@@ -136,7 +136,7 @@ function search_show()
     $data = get_search_result($key, 10, $cate, $time, $page);
     if(!$page and !$time and !$admin)
     {
-        search_count();
+        search_count("", "", $cate);
         echo ',';
         include_once('follow.inc.php');
         if($key and $key != "all")
