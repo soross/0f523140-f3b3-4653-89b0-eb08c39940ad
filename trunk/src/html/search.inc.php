@@ -62,7 +62,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         #$key = explode(" ",$key);
         #$key = "%".implode("%",$key)."%";
         #$key = " AND (tweets.content LIKE '$key' OR tweets.post_screenname LIKE '$key')";
-        if(mb_strlen($key, "utf8") < 3)
+        if(mb_strlen($key, "utf8") > 3)
             $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE)";
         else
             $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN BOOLEAN MODE)";
