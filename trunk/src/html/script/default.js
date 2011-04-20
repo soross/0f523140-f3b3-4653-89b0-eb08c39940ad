@@ -134,7 +134,7 @@ $(function () {
             offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
             collision: "none none"
         });
-        $("div#backTop").css("position", "fixed");
+        $("div#backTop").css("position", "absolute");
     }
     $(window).resize(function () {
         if (!($.browser.msie && $.browser.version == "6.0")) {
@@ -145,7 +145,7 @@ $(function () {
                 offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
                 collision: "none none"
             });
-            $("div#backTop").css("position", "fixed");
+            $("div#backTop").css("position", "absolute");
         }
     });
 });
@@ -678,6 +678,18 @@ function DocumenScroll() {
             offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
             collision: "none none"
         });
+    }
+    if (!($.browser.msie && $.browser.version == "6.0")) {
+        if ($("div#backTop").css("position") != "fixed") {
+            $("div#backTop").position({
+                of: $("div#microblogs"),
+                my: "left top",
+                at: "right top",
+                offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                collision: "none none"
+            });
+            $("div#backTop").css("position", "fixed");
+        }
     }
 
 
