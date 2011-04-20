@@ -298,12 +298,12 @@ function search_history_add()
         $currentnum = intval($row['count']) + 1;
         $view = "UPDATE searches SET count = '$currentnum' WHERE search='$key' AND cat_id='$cat'";
         #echo $currentnum.$key.$cat;
-        $list = mysql_query($view) or die("Update error!");
+        $list = mysql_query($view) or die("Update count error!");
     }
     else
     {
         $view = "INSERT INTO searches(search, cat_id, count) VALUES('$key', '$cat', '1')";
-        $list = mysql_query($view) or die("Update error!");
+        $list = mysql_query($view) or die("Insert count error!");
     }
 }
 
