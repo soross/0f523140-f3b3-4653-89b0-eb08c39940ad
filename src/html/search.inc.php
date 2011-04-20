@@ -44,7 +44,8 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
 {
     connect_db();
     $tag = false;
-    $order = "ORDER BY tweets.post_datetime";
+    $relevance = "";
+    $order = "ORDER BY tweets.post_datetime DESC";
     if($key === "c" or $key === "C")
         $key = "C++";
     if($key and $key != "all")
@@ -67,6 +68,8 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         {
             $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE)";
             $order = "ORDER BY relevance";
+            $relevance = ",MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE) relevance";
+        }
         else
             $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN BOOLEAN MODE)";
     }
@@ -110,7 +113,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         }
         $time = " AND tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
     }
-    $view = "SELECT DISTINCT $content FROM tweets$cate1 WHERE tweets.deleted = 0$key$cate2$time $order DESC$limit";
+    $view = "SELECT DISTINCT $content$relevance FROM tweets$cate1 WHERE tweets.deleted = 0$key$cate2$time $order $limit";
     //FIXME: Low performance!
     
     $list = mysql_query($view);
