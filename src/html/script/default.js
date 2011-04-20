@@ -129,7 +129,7 @@ $(function () {
 
     var $window = jQuery(window);
     var temp = ($window.scrollLeft() + $window.width() - 962) / 2;
-    var controlx = 941 + (temp >= 0 ? temp : 0);
+    var controlx = 942 + (temp >= 0 ? temp : 0);
     var controly = $window.scrollTop() + $window.height() - 100;
     $("div#backTop").css({ left: controlx + 'px', top: controly + 'px' });
     $("div#backTop").css("position", "fixed");
@@ -146,7 +146,7 @@ $(function () {
     $(window).resize(function () {
         var $window = jQuery(window);
         var temp = ($window.scrollLeft() + $window.width() - 962) / 2;
-        var controlx = 941 + (temp >= 0 ? temp : 0);
+        var controlx = 942 + (temp >= 0 ? temp : 0);
         var controly = $window.scrollTop() + $window.height() - 100;
         $("div#backTop").css({ left: controlx + 'px', top: controly + 'px' });
     });
