@@ -126,27 +126,29 @@ $(function () {
         */
     }
 
-    if (!($.browser.msie && $.browser.version == "6.0")) {
-        $("div#backTop").position({
-            of: $("div#microblogs"),
-            my: "left top",
-            at: "right top",
-            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-            collision: "none none"
-        });
-        $("div#backTop").css("position", "absolute");
-    }
+
+    var $window = jQuery(window);
+    var temp = ($window.scrollLeft() + $window.width() - 962) / 2;
+    var controlx = 982 + (temp >= 0 ? temp : 0);
+    var controly = $window.scrollTop() + $window.height() - 100;
+    $("div#backTop").css({ left: controlx + 'px', top: controly + 'px' });
+    $("div#backTop").css("position", "fixed");
+    //    if (!($.browser.msie && $.browser.version == "6.0")) {
+    //        $("div#backTop").position({
+    //            of: $("div#microblogs"),
+    //            my: "left top",
+    //            at: "right top",
+    //            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+    //            collision: "none none"
+    //        });
+    //        $("div#backTop").css("position", "absolute");
+    //    }
     $(window).resize(function () {
-        if (!($.browser.msie && $.browser.version == "6.0")) {
-            $("div#backTop").position({
-                of: $("div#microblogs"),
-                my: "left top",
-                at: "right top",
-                offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                collision: "none none"
-            });
-            $("div#backTop").css("position", "absolute");
-        }
+        var $window = jQuery(window);
+        var temp = ($window.scrollLeft() + $window.width() - 962) / 2;
+        var controlx = 982 + (temp >= 0 ? temp : 0);
+        var controly = $window.scrollTop() + $window.height() - 100;
+        $("div#backTop").css({ left: controlx + 'px', top: controly + 'px' });
     });
 });
 //End of Init
@@ -482,18 +484,18 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                 $("a#search-result-rss").attr("href", 'search/rss/' + cate + '/' + searchContent);
             }
 
-            if (!($.browser.msie && $.browser.version == "6.0")) {
-                if ($("div#backTop").css("position") != "fixed") {
-                    $("div#backTop").position({
-                        of: $("div#microblogs"),
-                        my: "left top",
-                        at: "right top",
-                        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                        collision: "none none"
-                    });
-                    $("div#backTop").css("position", "absolute");
-                }
-            }
+            //            if (!($.browser.msie && $.browser.version == "6.0")) {
+            //                if ($("div#backTop").css("position") != "fixed") {
+            //                    $("div#backTop").position({
+            //                        of: $("div#microblogs"),
+            //                        my: "left top",
+            //                        at: "right top",
+            //                        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+            //                        collision: "none none"
+            //                    });
+            //                    $("div#backTop").css("position", "absolute");
+            //                }
+            //            }
 
             page = pagenum;
             count = 0;
@@ -669,28 +671,28 @@ var countpage = 100;
 
 function DocumenScroll() {
 
-    if ($.browser.msie && $.browser.version == "6.0") {
-        //$("div#backTop").attr("position","absolute");
-        $("div#backTop").position({
-            of: $("div#microblogs"),
-            my: "left top",
-            at: "right top",
-            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-            collision: "none none"
-        });
-    }
-    if (!($.browser.msie && $.browser.version == "6.0")) {
-        if ($("div#backTop").css("position") != "fixed") {
-            $("div#backTop").position({
-                of: $("div#microblogs"),
-                my: "left top",
-                at: "right top",
-                offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                collision: "none none"
-            });
-            $("div#backTop").css("position", "fixed");
-        }
-    }
+    //    if ($.browser.msie && $.browser.version == "6.0") {
+    //        //$("div#backTop").attr("position","absolute");
+    //        $("div#backTop").position({
+    //            of: $("div#microblogs"),
+    //            my: "left top",
+    //            at: "right top",
+    //            offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+    //            collision: "none none"
+    //        });
+    //    }
+    //    if (!($.browser.msie && $.browser.version == "6.0")) {
+    //        if ($("div#backTop").css("position") != "fixed") {
+    //            $("div#backTop").position({
+    //                of: $("div#microblogs"),
+    //                my: "left top",
+    //                at: "right top",
+    //                offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+    //                collision: "none none"
+    //            });
+    //            $("div#backTop").css("position", "fixed");
+    //        }
+    //    }
 
 
 
@@ -720,16 +722,16 @@ function DocumenScroll() {
                 $("div#blogs").html($("div#blogs").html() + msg);
 
 
-                if (!($.browser.msie && $.browser.version == "6.0")) {
-                    $("div#backTop").position({
-                        of: $("div#microblogs"),
-                        my: "left top",
-                        at: "right top",
-                        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
-                        collision: "none none"
-                    });
-                    $("div#backTop").css("position", "fixed");
-                }
+                //                if (!($.browser.msie && $.browser.version == "6.0")) {
+                //                    $("div#backTop").position({
+                //                        of: $("div#microblogs"),
+                //                        my: "left top",
+                //                        at: "right top",
+                //                        offset: "0 " + ($(window).scrollTop() + $(window).height() - $("div#microblogs").offset().top - 100),
+                //                        collision: "none none"
+                //                    });
+                //                    $("div#backTop").css("position", "fixed");
+                //                }
 
                 /*
                 $("a.microblog-item-relate").unbind("click");
