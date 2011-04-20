@@ -383,18 +383,18 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                 c = msg.split(',')[0];
                 countpage = Math.floor(c);
                 f = msg.split(',')[1];
-                msg = msg.split(',')[2];
-            }
-            var str = "";
-            for (s in msg.split(',')) {
-                if (s == 2) {
-                    str += msg.split(',')[s];
+                msg = msg.split(',')[2];            
+                var str = "";
+                for (s in msg.split(',')) {
+                    if (s == 2) {
+                        str += msg.split(',')[s];
+                    }
+                    else if (s >= 2) {
+                        str += ',' + msg.split(',')[s];
+                    }
                 }
-                else if (s >= 2) {
-                    str += ',' + msg.split(',')[s];
-                }
+                msg = str;
             }
-            msg = str;
             searchContent = content;
             cateContent = cate;
             $("#blogs").html(msg);
