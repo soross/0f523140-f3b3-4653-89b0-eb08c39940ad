@@ -132,8 +132,8 @@ class Twitter_Autolink {
         $out = "";
         foreach($notuser as $str)
         {
-            $user = array_shift($links[3]);
-            $atstr = array_shift($links[2]);
+            $user = array_shift($users[3]);
+            $atstr = array_shift($users[2]);
             $out .= $str.'<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="'. $this->get_base() . 'profile/'. $user . '" target="_blank">' . $atstr . $user . '</a>';
         }
         return $out;
