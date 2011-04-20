@@ -134,7 +134,7 @@ class Twitter_Autolink {
         {
             $user = array_shift($users[3]);
             $atstr = array_shift($users[2]);
-            $out .= $str.array_shift($users[2]).'<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="'. $this->get_base() . 'profile/'. $user . '" target="_blank">' . $atstr . $user . '</a>';
+            $out .= $str.array_shift($users[1]).'<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="'. $this->get_base() . 'profile/'. $user . '" target="_blank">' . $atstr . $user . '</a>';
         }
         return $out;
         #return preg_replace_callback('$([^a-z0-9_]|^)([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu',//(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
