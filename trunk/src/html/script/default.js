@@ -1,4 +1,13 @@
 ﻿//Init - default.js
+currentsearch = 0;
+
+function guidGenerator() {
+    var S4 = function () {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    };
+    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+}
+
 $(function () {
     $("#history-pic").animate({ opacity: 0.6 }, 0);
 
@@ -371,6 +380,9 @@ function SearchConcernClick() {
     }
 }
 function SearchContent(noresult, content, cate, pagenum, callback) {
+    var thissearch;
+    thissearch = guidGenerator();
+    currentsearch = thissearch;
     $("div#search-result div.left").text("正在搜索" + content + "...");
     if (pagenum == 0) {
         firstTime = true;
@@ -385,7 +397,8 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
         type: 'POST',
         url: 'search/show/' + cate,
         data: { search: encodeURIComponent(content), page: pagenum },
-        success: function (msg) {
+        success: function (msg, thissearch) {
+            if (currentsearch != thissearch) return;
             var c;
             var f;
             if (pagenum == 0) {
