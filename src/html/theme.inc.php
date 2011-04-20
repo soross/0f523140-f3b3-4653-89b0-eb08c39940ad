@@ -83,7 +83,7 @@ function parsekeyword($keyword, $out)
             #    'title="${1}${3}${4}"', $out);
             #out = preg_replace('$class=\\"([^<]*)(<span[^>]+>([^<]*)</span>([^"]*))\\"$i',
             #    'title="${1}${3}${4}"', $out);
-            $notlink = preg_split('$<.+></.+>$', $out);
+            $notlink = preg_split('$<.+?></.+?>$', $out);
             $out = implode("<br>", $notlink);
         }
     }
