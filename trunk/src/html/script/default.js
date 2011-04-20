@@ -382,7 +382,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
     var thissearch;
     thissearch = guidGenerator();
     currentsearch = thissearch;
-    if (!noresult) {
+    if (!noresult && pagenum == 0) {
         content = $.trim(content);
         content = $('<div/>').text(content).html();
         var result = "";
