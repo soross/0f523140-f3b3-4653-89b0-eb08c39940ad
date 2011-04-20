@@ -380,16 +380,17 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
             var c;
             var f;
             if (pagenum == 0) {
-                c = msg.split(',')[0];
+                tt = msg.split(',');
+                c = tt[0];
                 countpage = Math.floor(c);
-                f = msg.split(',')[1];       
+                f = tt[1];
                 var str = "";
-                for (s in msg.split(',')) {
+                for (s in tt) {
                     if (s == 2) {
-                        str += msg.split(',')[s];
+                        str += tt[s];
                     }
                     else if (s >= 2) {
-                        str += ',' + msg.split(',')[s];
+                        str += ',' + tt[s];
                     }
                 }
                 msg = str;
