@@ -383,6 +383,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                 c = msg.split(',')[0];
                 countpage = Math.floor(c);
                 f = msg.split(',')[1];
+                msg = msg.split(',')[2];
             }
             var str = "";
             for (s in msg.split(',')) {
@@ -827,7 +828,7 @@ function GetNewerBlogs() {
 
     $.ajax({
         type: 'POST',
-        url: 'search/' + cateContent,
+        url: 'search/show/' + cateContent,
         data: { search: encodeURIComponent(searchContent), time: nowFirst },
         //url: 'search/' + encodeURIComponent(SearchResult) + '/' + cate + '/' + nowFirst,
         success: function (msg) {
