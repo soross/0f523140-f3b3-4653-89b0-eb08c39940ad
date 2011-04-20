@@ -114,7 +114,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         $time = " AND tweets.post_datetime".$fuhao."\"".date('Y-m-d H:i:s', $time)."\"";
     }
     $view = "SELECT $content$relevance FROM tweets$cate1 WHERE tweets.deleted = 0$key$cate2$time $order $limit";
-    return $view;
+    return array(array('content' => $view));
     $list = mysql_query($view);
     $result = array();
     $i = 0;
