@@ -134,7 +134,7 @@ function search_show()
             search_history_add("", "", $cate);
     }
     $data = get_search_result($key, 10, $cate, $time, $page);
-    if(!$page)
+    if(!$page and !$time)
     {
         search_count();
         echo ',';
