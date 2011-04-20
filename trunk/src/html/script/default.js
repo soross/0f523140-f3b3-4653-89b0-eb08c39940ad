@@ -396,7 +396,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
         type: 'POST',
         url: 'search/show/' + cate,
         data: { search: encodeURIComponent(content), page: pagenum },
-        success: function (msg, thissearch) {
+        success: function (msg) {
             if (currentsearch != thissearch) return;
             var c;
             var f;
