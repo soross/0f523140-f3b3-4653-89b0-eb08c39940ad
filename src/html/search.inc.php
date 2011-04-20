@@ -67,7 +67,7 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
         if(mb_strlen($key, "utf8") > 3)
         {
             #$relevance = ",MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE) AS relevance";
-            $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE) > 5";
+            $key = " AND MATCH(tweets.post_screenname,tweets.content) AGAINST ('$key' IN NATURAL LANGUAGE MODE) > 4";
             #$order = "ORDER BY relevance DESC";
         }
         else
