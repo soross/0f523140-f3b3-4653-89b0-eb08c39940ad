@@ -135,7 +135,7 @@ class Twitter_Autolink {
             preg_match('/[a-z0-9_]$/iu', $str, $tmpmatch);
             $user = array_shift($users[2]);
             $atstr = array_shift($users[1]);
-            if($tmpmatch[0])
+            if($tmpmatch)
                 $out .= $str.$atstr.$user;
             else
                 $out .= $str.'<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="'. $this->get_base() . 'profile/'. $user . '" target="_blank">' . $atstr . $user . '</a>';
