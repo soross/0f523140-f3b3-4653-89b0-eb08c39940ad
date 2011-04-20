@@ -134,12 +134,15 @@ function search_show()
             search_history_add("", "", $cate);
     }
     $data = get_search_result($key, 10, $cate, $time, $page);
-    if(!$page and !$time)
+    if(!$page and !$time and !$admin)
     {
         search_count();
         echo ',';
         include_once('follow.inc.php');
-        following_exist("", "", $key);
+        if($key and $key != "all")
+            following_exist("", "", $key);
+        else
+            echo '0';
         echo ',';
     }
     $content = theme('result', $data, $key, $admin);
