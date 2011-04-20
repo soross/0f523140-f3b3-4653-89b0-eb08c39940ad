@@ -137,10 +137,11 @@ class Twitter_Autolink {
      * Callback used by autoLinkUsernamesAndLists
      */
     private function replacementUsernameAndLists($matches) {
-        $replacement  = $matches[0];
+        #$replacement  = $matches[0];
         #$replacement .= $matches[1];
+        $replacement  = '';
 
-        if (isset($matches[4])) {
+        if (isset($matches[3])) {
             /* Replace the list and username */
             #$replacement .= '<a class="' . $this->urlClass . ' ' . $this->listClass . '" href="' . $this->get_base() .'lists/'. $matches[3] . $matches[4] . '" target="_blank">' . $matches[2] . $matches[3] . $matches[4] . '</a>';
             $replacement .= '<a class="' . $this->urlClass . ' ' . $this->listClass . '" href="' . $this->get_base() .'lists/'. $matches[2] . $matches[3] . '" target="_blank">' . $matches[1] . $matches[2] . $matches[3] . '</a>';
