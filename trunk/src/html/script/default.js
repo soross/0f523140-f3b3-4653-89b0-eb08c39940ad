@@ -382,8 +382,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
             if (pagenum == 0) {
                 c = msg.split(',')[0];
                 countpage = Math.floor(c);
-                f = msg.split(',')[1];
-                msg = msg.split(',')[2];            
+                f = msg.split(',')[1];       
                 var str = "";
                 for (s in msg.split(',')) {
                     if (s == 2) {
