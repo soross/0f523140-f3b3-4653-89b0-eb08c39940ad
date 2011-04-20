@@ -12,7 +12,6 @@ $(function () {
     $("#history-pic").animate({ opacity: 0.6 }, 0);
 
     SetHot();
-    SearchContent(true, "all", 0, 0);
 
     SetSorts();
     InitBoxes();
