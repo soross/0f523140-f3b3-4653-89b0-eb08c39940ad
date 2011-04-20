@@ -382,7 +382,18 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
     var thissearch;
     thissearch = guidGenerator();
     currentsearch = thissearch;
-    $("div#search-result div.left").text("正在搜索" + content + "...");
+    if (!noresult) {
+        content = $.trim(content);
+        content = $('<div/>').text(content).html();
+        var result = "";
+        for (s in content.split(' ')) {
+            if (content.split(' ')[s] != "") {
+                result += '#<a class="keyword">' + content.split(' ')[s] + '</a>#';
+            }
+        }
+        $("div#search-result div.left").html("正在搜索" + result + "...");
+        $("#search-result-outer").show();
+    }
     if (pagenum == 0) {
         firstTime = true;
     }
@@ -499,7 +510,6 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                 }
                 $("#search-result-outer").show();
 
-                $("#search-result-outer").show();
                 $("a#search-result-rss").attr("href", 'search/rss/' + cate + '/' + searchContent);
             }
 
