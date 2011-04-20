@@ -87,7 +87,7 @@ function parsekeyword($keyword, $out)
             $notlink = preg_split('$<[^>]+>[^<]*</[^>]+>$', $out);
             $out = "";
             foreach($notlink as $str)
-                $out .= str_ireplace($key, "<span class='highlight'>$key</span>", $str).array_shift($links);
+                $out .= str_ireplace($key, "<span class='highlight'>$key</span>", $str).array_shift($links[0]);
         }
     }
     return $out;
