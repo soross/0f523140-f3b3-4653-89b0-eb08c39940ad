@@ -127,10 +127,20 @@ class Twitter_Autolink {
     }
 
     public function autoLinkUsernamesAndLists($tweet) {
-        return preg_replace_callback('$([^a-z0-9_]|^)([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu',//(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
+        $notuser = preg_split('([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu', $tweet);
+        preg_match_all('$([^a-z0-9_]|^)([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu', $tweet, $users);
+        $out = "";
+        foreach($notuser as $str)
+        {
+            $user = array_shift($links[3]);
+            $atstr = array_shift($links[2]);
+            $out .= $str.'<a class="' . $this->urlClass . ' ' . $this->usernameClass . '" href="'. $this->get_base() . 'profile/'. $user . '" target="_blank">' . $atstr . $user . '</a>';
+        }
+        return $out;
+        #return preg_replace_callback('$([^a-z0-9_]|^)([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu',//(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
         #return preg_replace_callback('$([@|＠])([a-z0-9\-_\x{4e00}-\x{9fa5}]{1,20})$iu',//(/[a-z][a-z0-9\x80-\xFF-]{0,79})?$iu',
-                                     array($this, 'replacementUsernameAndLists'),
-                                     $tweet);
+                                     #array($this, 'replacementUsernameAndLists'),
+                                     #$tweet);
     }
 
     /**
