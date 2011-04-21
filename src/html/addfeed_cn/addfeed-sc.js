@@ -130,7 +130,7 @@ var $$addfeed = {
 						html += '<div class="addshow"><div class="addh"><div class="addt">订阅到:</div></div><div class="addbody"><div class="flist" style="position:inherit; margin:0 0 3px 0; padding:6px; width:232px;">';
 						for(var key in $$addfeed.feeds){
 							if (!btn_i || (btn_i && btn_i.indexOf("|"+$$addfeed.feeds[key].id+"|")>=0)) {
-								html+='<div class="li" style=" float:left; display:inline; position:inherit; margin:0 0 0 3px; padding:0; line-height:16px; width:110px; height:22px; border:none; background:none; font-size:12px;"><a class="feed_'+ $$addfeed.feeds[key].id +'" item="'+ $$addfeed.feeds[key].id +'" href="#">&nbsp;</a></div>';
+								html+='<div class="li" style=" float:left; display:inline; position:inherit; margin:0 0 0 3px; padding:0; line-height:16px; height:22px; border:none; background:none; font-size:12px;"><a class="feed_'+ $$addfeed.feeds[key].id +'" item="'+ $$addfeed.feeds[key].id +'" href="#">&nbsp;</a></div>';
 							}
 						}
 						html += '</div><div style="clear:both;line-height:0"></div></div>';
