@@ -23,6 +23,7 @@ function get_likes($num, $page, $count = false)
     {
         $select = "COUNT(tweets.tweet_id)";
         $limit = "";
+    }
     else
     {
         $select = "*";
