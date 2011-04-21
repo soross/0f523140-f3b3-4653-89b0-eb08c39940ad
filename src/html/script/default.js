@@ -379,6 +379,7 @@ function SearchConcernClick() {
     }
 }
 function SearchContent(noresult, content, cate, pagenum, callback) {
+    $("div#pages").hide();
     var thissearch;
     thissearch = guidGenerator();
     currentsearch = thissearch;
@@ -484,6 +485,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
             } else {
                 $("div#pages").html("");
             }
+            $("div#pages").show();
 
             if (!noresult && pagenum == 0) {
                 content = $.trim(content);
