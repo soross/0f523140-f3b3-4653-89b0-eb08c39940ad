@@ -28,7 +28,7 @@ function get_likes($num, $page)
     $page = intval($page) * $num;
     $limit = " LIMIT $page , $num";
     connect_db();
-    $view = "SELECT tweets.* from tweets, (SELECT * FROM favorites WHERE user_id='$id' AND deleted=0) as favorites WHERE tweets.tweet_id=favorites.tweet_id ORDER BY tweets.post_datetime DESC$limit";
+    $view = "SELECT tweets.* from tweets, (SELECT * FROM favorites WHERE user_id='$id' AND deleted=0) as favorites WHERE tweets.deleted=0 AND tweets.tweet_id=favorites.tweet_id ORDER BY tweets.post_datetime DESC$limit";
     $list = mysql_query($view);
     $result = array();
     $i = 0;
