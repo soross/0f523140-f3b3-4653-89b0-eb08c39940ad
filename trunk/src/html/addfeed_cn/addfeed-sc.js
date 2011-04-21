@@ -24,29 +24,23 @@ $.fn.addfeed = function(options){
 	};
 
 var $$addfeed = {
-		gourl:"http://addfeed.cn/go/?act=feed",
 		timeDelayout:420,
 		feeds:{
 			"rss":{id:0, name:"Rss订阅"},
 			"google":{id:1, name:"谷歌阅览器"},
 			"zhuaxia":{id:2, name:"抓虾"},
 			"xianguo":{id:3, name:"鲜果"},
-			"qq":{id:4, name:"QQ邮箱"},
+			//"qq":{id:4, name:"QQ邮箱"},
 			"yahoo":{id:5, name:"雅虎"},
 			"inezha":{id:7, name:"哪吒"},
 			"Email":{id:8, name:"邮天下"},
 			"youdao":{id:9, name:"有道"},
 			"feige":{id:10, name:"飞鸽"},
-			"netvibes":{id:11, name:"netvibes"},
 			"bloglines":{id:12, name:"Bloglines"},
-			"rojo":{id:13, name:"Rojo"},
-			"newsgator":{id:14, name:"newsgator"},
-			"hexun":{id:15, name:"和讯"},
-			"douban":{id:16, name:"九点"}
 		},
 		e:encodeURIComponent,
-		gotourl:function(argStr){
-			open($$addfeed.gourl + argStr, 'addthis');
+		gotourl:function(url,argStr){
+			open(url + argStr, 'addthis');
 			return false;
 		},
 		windowOffset:function(){
@@ -121,7 +115,7 @@ var $$addfeed = {
 							//alert(btn.u);
 						}
 						btn.e = $(btn).attr("e") ? $(btn).attr("e") : "mouseover";
-						btn.argStr = "&u=" + $$addfeed.e(btn.u);
+						btn.argStr = $$addfeed.e(btn.u);
 						btn.addthis = btn;
 						$(".addbox").hide();
 						$$addfeed.showThisItem(btn.addthis);
@@ -150,7 +144,47 @@ var $$addfeed = {
 							if (Number($(this).attr("item"))==0) {
 								open(btn.u, 'addfeed');
 							}
-							else {$$addfeed.gotourl('&id='+ $.attr(this,"item") +btn.argStr);}
+							else {
+								a = $.attr(this,"item")
+								switch(a){
+									case "1":
+										$$addfeed.gotourl("http://www.google.com/reader/view/feed/",btn.argStr);
+										break;
+									case "2":
+										$$addfeed.gotourl("http://www.zhuaxia.com/add_channel.php?url=",btn.argStr);
+										break;
+									case "3":
+										$$addfeed.gotourl("http://xianguo.com/subscribe?url=",btn.argStr);
+										break;
+									//case "4":
+									//	$$addfeed.gotourl("http://mail.qq.com/cgi-bin/feed?u=",btn.argStr);
+									//	break;
+									case "5":
+										$$addfeed.gotourl("http://add.my.yahoo.com/rss?url=",btn.argStr);
+										break;
+									case "7":
+										$$addfeed.gotourl("http://inezha.com/add?url=",btn.argStr);
+										break;
+									case "8":
+										$$addfeed.gotourl("http://www.emailrss.cn/?rss=",btn.argStr);
+										break;
+									case "9":
+										$$addfeed.gotourl("http://reader.youdao.com/b.do?url=",btn.argStr);
+										break;
+									case "10":
+										$$addfeed.gotourl("http://www.pageflakes.com/subscribe.aspx?url=",btn.argStr);
+										break;
+									case "12":
+										$$addfeed.gotourl("http://www.bloglines.com/sub/",btn.argStr);
+										break;
+									case "15":
+										$$addfeed.gotourl("http://rss.hexun.com/sub/",btn.argStr);
+										break;
+									case "16":
+										$$addfeed.gotourl("http://9.douban.com/reader/subscribe?url=",btn.argStr);
+										break;
+								}
+							}
 							//$.cancelEvent(evt||event);
 							//隐藏addbox
 							$(btn.addbox).hide();
