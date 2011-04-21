@@ -512,7 +512,7 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
                 }
                 $("#search-result-outer").show();
 
-                $("a#search-result-rss").attr("href", 'search/rss/' + cate + '/' + searchContent);
+                $("a#search-result-rss").attr("href", 'http://www.ybole.com/search/rss/' + cate + '/' + searchContent);
             }
 
             //            if (!($.browser.msie && $.browser.version == "6.0")) {
