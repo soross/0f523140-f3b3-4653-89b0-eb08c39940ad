@@ -8,6 +8,20 @@ function guidGenerator() {
     return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
 }
 
+function ShowLargePic(url) {
+    CoverResize();
+    $("div#cover").fadeIn(200);
+    $("body").css("overflow", "hidden");
+    var obj = new Image();
+    obj.src = url;
+    obj.onload = function () {
+    }
+}
+
+function HidePic() {
+    $("body").css("overflow", "auto");
+}
+
 $(function () {
     $("#history-pic").animate({ opacity: 0.6 }, 0);
 
@@ -431,6 +445,9 @@ function SearchContent(noresult, content, cate, pagenum, callback) {
             searchContent = content;
             cateContent = cate;
             $("#blogs").html(msg);
+            if (pagenum == 0) {
+                nowFirst = $(".microblog-item:first").attr("id");
+            }
             if (callback != null) { callback(); }
             RefreshHistory();
             page = pagenum / 5;
