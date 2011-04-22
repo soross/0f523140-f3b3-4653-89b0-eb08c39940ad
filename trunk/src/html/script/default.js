@@ -775,7 +775,7 @@ function DocumenScroll() {
     //        }
     //    }
 
-
+    $("pages").hide();
 
     if ($(window).scrollTop() != 0) {
         $("div#backTop").fadeIn(200);
@@ -800,6 +800,7 @@ function DocumenScroll() {
                 }
 
                 $("#flower").fadeOut(200);
+                $("pages").show();
                 $("div#blogs").html($("div#blogs").html() + msg);
 
 
