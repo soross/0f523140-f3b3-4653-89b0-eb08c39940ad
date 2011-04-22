@@ -20,6 +20,7 @@ function ShowLargePic(url) {
     CoverResize();
     $("div#cover").fadeIn(200);
     $("#LPic").fadeIn(200);
+    $("div#cover").click(function () { HidePic(); });
     $("body").css("overflow", "hidden");
     obj.onload = function () {
         temp = ($window.width() - obj.width) / 2;
@@ -32,6 +33,7 @@ function ShowLargePic(url) {
 }
 
 function HidePic() {
+    $("div#cover").unbind("click");
     $("body").css("overflow", "auto");
     $("div#cover").fadeOut(200);
     $("#LPic").fadeOut(200);
