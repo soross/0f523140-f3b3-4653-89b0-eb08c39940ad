@@ -8,7 +8,7 @@ function guidGenerator() {
     return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
 }
 
-function ShowLargePic(url) {
+function ShowMiddlePic(url) {
     loagflag = false;
     var obj = new Image();
     obj.src = url;
