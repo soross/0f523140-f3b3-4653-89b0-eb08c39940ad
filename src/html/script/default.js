@@ -41,6 +41,7 @@ function HidePic() {
 }
 
 $(function () {
+    $("#LPic").draggable();
     $("#history-pic").animate({ opacity: 0.6 }, 0);
 
     SetHot();
