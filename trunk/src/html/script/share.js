@@ -210,8 +210,8 @@ function ShowJobsPublish() {
     $("body").css("overflow", "hidden");
     $("div#jobs-publish").fadeIn(200);
     $("div#jobs-publish-text textarea").focus();
-//    $("div#jobs-publish-text textarea").val($("div#jobs-publish-text textarea").val());
-    $("div#jobs-publish-text textarea").val("??");
+    $("div#jobs-publish-text textarea").val($("div#jobs-publish-text textarea").val());
+//    $("div#jobs-publish-text textarea").val("??");
 }
 function HideJobsPublish() {
     $("div#cover").fadeOut(200);
