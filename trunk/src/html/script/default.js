@@ -9,17 +9,27 @@ function guidGenerator() {
 }
 
 function ShowLargePic(url) {
-    CoverResize();
-    $("div#cover").fadeIn(200);
-    $("body").css("overflow", "hidden");
     var obj = new Image();
     obj.src = url;
+    var $window = jQuery(window);
+    var temp = ($window.width() - obj.width) / 2;
+    var controlx = temp >= 0 ? temp : 0;
+    temp = ($window.height() - obj.height) / 2;
+    var controly = temp >= 0 ? temp : 0;
+    $("#LPic").css({ left: controlx + 'px', top: controly + 'px', height: obj.height + 'px', width: obj.width + 'px' });
+    CoverResize();
+    $("div#cover").fadeIn(200);
+    $("#LPic").fadeIn(200);
+    $("body").css("overflow", "hidden");
     obj.onload = function () {
+        $("#LPic img").attr("src", url);
     }
 }
 
 function HidePic() {
     $("body").css("overflow", "auto");
+    $("div#cover").fadeOut(200);
+    $("#LPic").fadeOut(200);
 }
 
 $(function () {
