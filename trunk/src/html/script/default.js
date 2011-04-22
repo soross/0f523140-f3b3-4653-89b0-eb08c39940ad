@@ -774,9 +774,7 @@ function DocumenScroll() {
     //            $("div#backTop").css("position", "fixed");
     //        }
     //    }
-
-    $("pages").hide();
-
+    
     if ($(window).scrollTop() != 0) {
         $("div#backTop").fadeIn(200);
     }
@@ -789,6 +787,7 @@ function DocumenScroll() {
         count++;
         page++;
         $("#flower").fadeIn(200);
+        $("#pages").hide();
         $.ajax({
             type: 'POST',
             url: 'search/show/' + cateContent,
@@ -800,7 +799,7 @@ function DocumenScroll() {
                 }
 
                 $("#flower").fadeOut(200);
-                $("pages").show();
+                $("#pages").show();
                 $("div#blogs").html($("div#blogs").html() + msg);
 
 
