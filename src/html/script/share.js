@@ -82,7 +82,6 @@ function CoverResize() {
     } else {
         pageWidth = windowWidth;
     }
-    pageWidth += 50;
     $("body").css("overflow", "hidden");
     $("div#cover").css("height", pageHeight + "px");
     $("div#cover").css("width", pageWidth + "px");
