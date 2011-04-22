@@ -16,7 +16,7 @@ function ShowLargePic(url) {
     var temp = ($window.width() - 50) / 2;
     var controlx = temp >= 0 ? temp : 0;
     temp = ($window.height() - 50) / 2;
-    var controly = temp >= 0 ? temp : 0;
+    var controly = $window.scrollTop() + (temp >= 0 ? temp : 0);
     $("#LPic").css({ left: controlx + 'px', top: controly + 'px', height: '50px', width: '50px' });
     CoverResize();
     $("div#cover").fadeIn(200);
@@ -32,7 +32,7 @@ function ShowLargePic(url) {
         temp = ($window.width() - obj.width) / 2;
         controlx = temp >= 0 ? temp : 0;
         temp = ($window.height() - obj.height) / 2;
-        controly = temp >= 0 ? temp : 0;
+        controly = $window.scrollTop() + (temp >= 0 ? temp : 0);
         $("#LPic").css({ left: controlx + 'px', top: controly + 'px', height: obj.height + 'px', width: obj.width + 'px' });
         if (!loagflag) {
             $("#LPic").html('<img src="' + url + '" alt="" />');
