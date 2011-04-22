@@ -33,6 +33,10 @@ $(function () {
     });
 
     $("div#inner-content a").click(function () {
+        question: $("#question").val("");
+        description: $("#description").val("");
+        email: $("#email").val("");
+        $("div#feedback-info").dialog("open");
         $.ajax({
             type: 'POST',
             url: 'feedback/post',
@@ -42,10 +46,6 @@ $(function () {
                 email: $("#email").val()
             },
             success: function (msg) {
-                question: $("#question").val("");
-                description: $("#description").val("");
-                email: $("#email").val("");
-                $("div#feedback-info").dialog("open");
             }
         });
     });
