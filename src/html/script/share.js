@@ -204,11 +204,13 @@ function UpdateRecruitmentText() {
     }
 }
 function ShowJobsPublish() {
+
     CoverResize();
     $("div#cover").fadeIn(200);
     $("body").css("overflow", "hidden");
     $("div#jobs-publish").fadeIn(200);
     $("div#jobs-publish-text textarea").focus();
+    $("div#jobs-publish-text textarea").val($("div#jobs-publish-text textarea").val());
 }
 function HideJobsPublish() {
     $("div#cover").fadeOut(200);
@@ -221,6 +223,7 @@ function ShowRecruitmentPublish() {
     $("body").css("overflow", "hidden");
     $("div#recruitment-publish").fadeIn(200);
     $("div#recruitment-publish-text textarea").focus();
+    $("div#recruitment-publish-text textarea").val($("div#recruitment-publish-text textarea").val());
 }
 function HideRecruitmentPublish() {
     $("div#cover").fadeOut(200);
