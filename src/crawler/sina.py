@@ -192,7 +192,7 @@ path = '/var/www/0f523140-f3b3-4653-89b0-eb08c39940ad/src/crawler'
 #path = os.path.dirname(sys.argv[0])
 os.chdir(path)
 import MySQLdb, uuid
-db = MySQLdb.connect("127.0.0.1","apis","G2WvPRsxGEr77wEd","apis",charset="utf8")
+db = MySQLdb.connect("205.185.126.152","apis","G2WvPRsxGEr77wEd","apis",charset="utf8")
 c = db.cursor()
 #_tagid = open("tag_list_withid.dict", "r").read().decode("utf-8").split('\n')
 c.execute("SELECT * FROM tags")
