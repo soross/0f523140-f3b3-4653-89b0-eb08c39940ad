@@ -205,7 +205,11 @@ function theme_result($result, $keyword = '', $admin = false)
                         <div class="microblog-item-blog">
                             <a class="microblog-item-blog-name" target="_blank" href="'.BASE_URL.'profile/'.$r['post_screenname'].'">'
                             .$r['post_screenname'].'</a>：'.$jg.'
-                        </div>
+        </div>';
+        if($r['thumbnail'])
+            $content .= '
+                        <div><a onclick="ShowLargePic(\''.str_replace("/thumbnail/", "/large/", $r['thumbnail']).'\')><img src="'.$r['thumbnail'].'" /></a></div>';
+        $content .= '
                         <div class="microblog-item-other">
                             <a target="_blank" href="http://api.t.sina.com.cn/'.$r['user_site_id'].'/statuses/'.$r['tweet_site_id'].'" class="left microblog-item-time">'.time_tran($r['post_datetime']).'</a> '.$source;
         if($admin)
