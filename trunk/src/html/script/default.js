@@ -9,6 +9,7 @@ function guidGenerator() {
 }
 
 function ShowLargePic(url) {
+    loagflag = false;
     var obj = new Image();
     obj.src = url;
     var $window = jQuery(window);
@@ -33,11 +34,16 @@ function ShowLargePic(url) {
         temp = ($window.height() - obj.height) / 2;
         controly = temp >= 0 ? temp : 0;
         $("#LPic").css({ left: controlx + 'px', top: controly + 'px', height: obj.height + 'px', width: obj.width + 'px' });
-        $("#LPic").html('<img src="' + url + '" alt="" />');
+        if (!loagflag) {
+            $("#LPic").html('<img src="' + url + '" alt="" />');
+        }
     }
 }
 
+var loagflag = false;
+
 function HidePic() {
+    loagflag = true;
     $("div#cover").unbind("click");
     $("body").unbind("keypress");
     $("body").css("overflow", "auto");
