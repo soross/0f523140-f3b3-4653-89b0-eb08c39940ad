@@ -22,7 +22,7 @@ function ShowLargePic(url) {
     $("div#cover").fadeIn(200);
     $("#LPic").fadeIn(200);
     $("div#cover").click(function () { HidePic(); });
-    $("body").keypress(function (e) {
+    $("#LPic").keypress(function (e) {
         if (e.which == 27) {
             HidePic();
         }
@@ -45,7 +45,7 @@ var loagflag = false;
 function HidePic() {
     loagflag = true;
     $("div#cover").unbind("click");
-    $("body").unbind("keypress");
+    $("#LPic").unbind("keypress");
     $("body").css("overflow", "auto");
     $("div#cover").fadeOut(200);
     $("#LPic").fadeOut(200);
