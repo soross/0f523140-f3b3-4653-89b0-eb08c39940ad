@@ -9,6 +9,7 @@ function guidGenerator() {
 }
 
 function ShowMiddlePic(url) {
+    $("#LPic").html('<img style="margin-top:9px;margin-left:9px;" src="images/loading.gif" alt="" />');
     loagflag = false;
     var obj = new Image();
     obj.src = url;
