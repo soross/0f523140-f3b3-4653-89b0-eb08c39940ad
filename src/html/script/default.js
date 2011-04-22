@@ -35,7 +35,7 @@ function ShowMiddlePic(url) {
         controly = $window.scrollTop() + (temp >= 0 ? temp : 0);
         $("#LPic").css({ left: controlx + 'px', top: controly + 'px', height: obj.height + 'px', width: obj.width + 'px' });
         if (!loagflag) {
-            $("#LPic").html('<img src="' + url + '" alt="" />');
+            $("#LPic").html('<a href="' + url.replace("bmiddle", "large") + '"><img src="' + url + '" alt="" /></a>');
         }
     }
 }
@@ -53,7 +53,7 @@ function HidePic() {
 }
 
 $(function () {
-    $("#LPic").draggable();
+    //    $("#LPic").draggable();
     $("#history-pic").animate({ opacity: 0.6 }, 0);
 
     SetHot();
