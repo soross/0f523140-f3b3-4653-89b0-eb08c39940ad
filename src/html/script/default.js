@@ -12,17 +12,22 @@ function ShowLargePic(url) {
     var obj = new Image();
     obj.src = url;
     var $window = jQuery(window);
-    var temp = ($window.width() - obj.width) / 2;
+    var temp = ($window.width() - 50) / 2;
     var controlx = temp >= 0 ? temp : 0;
-    temp = ($window.height() - obj.height) / 2;
+    temp = ($window.height() - 50) / 2;
     var controly = temp >= 0 ? temp : 0;
-    $("#LPic").css({ left: controlx + 'px', top: controly + 'px', height: obj.height + 'px', width: obj.width + 'px' });
+    $("#LPic").css({ left: controlx + 'px', top: controly + 'px', height: '50px', width: '50px' });
     CoverResize();
     $("div#cover").fadeIn(200);
     $("#LPic").fadeIn(200);
     $("body").css("overflow", "hidden");
     obj.onload = function () {
-        $("#LPic img").attr("src", url);
+        temp = ($window.width() - obj.width) / 2;
+        controlx = temp >= 0 ? temp : 0;
+        temp = ($window.height() - obj.height) / 2;
+        controly = temp >= 0 ? temp : 0;
+        $("#LPic").css({ left: controlx + 'px', top: controly + 'px', height: obj.height + 'px', width: obj.width + 'px' });
+        $("#LPic").html('<img src="' + url + '" alt="" />');
     }
 }
 
@@ -30,6 +35,7 @@ function HidePic() {
     $("body").css("overflow", "auto");
     $("div#cover").fadeOut(200);
     $("#LPic").fadeOut(200);
+    $("#LPic").html("");
 }
 
 $(function () {
