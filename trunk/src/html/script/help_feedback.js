@@ -42,6 +42,9 @@ $(function () {
                 email: $("#email").val()
             },
             success: function (msg) {
+                question: $("#question").val("");
+                description: $("#description").val("");
+                email: $("#email").val("");
                 $("div#feedback-info").dialog("open");
             }
         });
