@@ -35,7 +35,7 @@ function ShowMiddlePic(url) {
         controly = $window.scrollTop() + (temp >= 0 ? temp : 0);
         $("#LPic").css({ left: controlx + 'px', top: controly + 'px', height: obj.height + 'px', width: obj.width + 'px' });
         if (!loagflag) {
-            $("#LPic").html('<a href="' + url.replace("bmiddle", "large") + '"><img src="' + url + '" alt="" /></a>');
+            $("#LPic").html('<a target="_blank" href="' + url.replace("bmiddle", "large") + '"><img src="' + url + '" alt="" /></a>');
         }
     }
 }
