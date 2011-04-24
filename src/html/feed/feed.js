@@ -1,24 +1,8 @@
-/**
- * jQuery 1.2.6+ Addfeed plugin
- * 插件名称: Addfeed
- * @version 1.05
- * Copyright (c) 2009 高飞(addfeed.cn)
- * Licensed under GPL licenses
- *
- * jQuery Addfeed插件是由分享家(addthis.org.cn)作者开发，是一个提供订阅按钮的小插件。
- * 目前收录了常用的15个网络订阅网站的按钮，以国内为主，精选国外常用若干个；
- * 浏览器兼容: Opera 9.0+  Firefox 1.5+  Safari 2.0 +  Chrome 1.0+  IE 6.0+
- *
- * 执行绑定：$("...").addfeed();
- * site: http://addfeed.cn
- * blog: http://heFlying.com    http://hfw828.blog.sohu.com/
- */
-
 $.fn.addfeed = function(options){
 		options = options || {};
 		//绑定每个按钮
 		return this.each(function() { 
-			if (!$(this).attr("class").match(/(^|\s)addfeed_cn($|\s)/)) $(this).addClass("addfeed_cn");
+			if (!$(this).attr("class").match(/(^|\s)feed($|\s)/)) $(this).addClass("feed");
 			$$addfeed.initBtn(this);
 		});
 	};
@@ -94,9 +78,7 @@ var $$addfeed = {
 			info_btn = info_window = info_dropdown = left = top = null;
 		},
 		showThisItem:function(thisItem){
-			$(".addfeed_cn .addbox").hide();
-			//$(".addfeed_cn").css("position","static");
-			//$(thisItem).css("position", "relative");
+			$(".feed .addbox").hide();
 			$(thisItem).find(".addbox").show();
 		},
 		initBtn:function(btn){ //btn{locked, argStr, mouse_over, boxmouseover, boxmouseout, timeOut, addthis, addbox, u , t, e}
@@ -134,7 +116,7 @@ var $$addfeed = {
 							}
 						}
 						html += '</div><div style="clear:both;line-height:0"></div></div>';
-						html += '<div class="addbottom">by:<a href="http://addthis.org.cn" target="_blank">分享家(Addfeed)</a></div>';
+						html += '<div class="addbottom">by GNG</a></div>';
 						html += '</div>';
 						$(addbox).html(html);
 						//alert($(addbox).html());
