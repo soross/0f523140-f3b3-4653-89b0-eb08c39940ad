@@ -51,15 +51,7 @@ $(function () {
                                                     str += msg.split('<div class="item"')[10];
                                                     $("div.item:last").after(str);
                                                     $(".newer:last").slideDown(200);
-                                                    $("a.delete").unbind("click");
                                                     $(".item-blog-title").unbind("click");
-                                                    $("a.delete").click(function () {
-                                                        deleteitem = $(this).parent().parent().parent();
-                                                        deleteid = deleteitem.attr("id");
-                                                        deleteurl = 'feedback/delete/';
-                                                        type = "feedback";
-                                                        $("#delete-dialog").dialog("open");
-                                                    });
                                                     $(".item-blog-title").click(function () {
                                                         var item = $(this).parent().next(".item-blog-content");
                                                         if (item.hasClass("close")) {
@@ -87,14 +79,6 @@ $(function () {
                                                     str += msg.split('<div class="microblog-item"')[10];
                                                     $("div.microblog-item:last").after(str);
                                                     $(".newer:last").slideDown(200);
-                                                    $("a.delete").unbind("click");
-                                                    $("a.delete").click(function () {
-                                                        deleteitem = $(this).parent().parent().parent();
-                                                        deleteid = deleteitem.attr("name");
-                                                        deleteurl = 'tweet/delete/';
-                                                        type = "tweet";
-                                                        $("#delete-dialog").dialog("open");
-                                                    });
                                                 }
                                             });
                                         }
