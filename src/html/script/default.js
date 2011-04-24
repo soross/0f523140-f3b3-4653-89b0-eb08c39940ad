@@ -227,7 +227,8 @@ function AfterLogin() {
             var username = msg.split(',')[0];
             var type = msg.split(',')[1];
             $("#name").html(username);
-            $("#my-microbloging").attr("href", "profile/" + username);
+            $("#my-microbloging").attr("href", "http://weibo.cn/n/" + encodeURIComponent(username));
+            $("#name").attr("href", "profile/" + encodeURIComponent(username));
             if (type == -1) {
                 CoverResize();
                 $("div#cover").show();
