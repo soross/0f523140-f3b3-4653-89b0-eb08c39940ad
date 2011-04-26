@@ -237,3 +237,15 @@ function showError(msg){
 	$("#errormsg").html(msg);
 	$("#error-info").dialog("open");
 }
+
+$("#error-info").dialog({
+        autoOpen: false,
+        draggable: false,
+        resizable: false,
+        modal: true,
+        buttons: {
+            "确定": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
