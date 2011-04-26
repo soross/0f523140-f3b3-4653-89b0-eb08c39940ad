@@ -2,6 +2,25 @@
 var logined = false;
 var rolekind = "";
 
+$("#error-info").dialog({
+        autoOpen: false,
+        draggable: false,
+        resizable: false,
+        modal: true,
+        buttons: {
+            "确定": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+
+function showError(msg){
+	$("#errormsg").html(msg);
+	$("#error-info").dialog("open");
+}
+
+
+
 $(function () {
     $("#logo").mouseover(function () {
         $(this).html("回首页");
@@ -233,19 +252,3 @@ function HideRecruitmentPublish() {
     $("div#recruitment-publish").fadeOut(200);
 }
 
-function showError(msg){
-	$("#errormsg").html(msg);
-	$("#error-info").dialog("open");
-}
-
-$("#error-info").dialog({
-        autoOpen: false,
-        draggable: false,
-        resizable: false,
-        modal: true,
-        buttons: {
-            "确定": function () {
-                $(this).dialog("close");
-            }
-        }
-    });
