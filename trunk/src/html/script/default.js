@@ -41,6 +41,12 @@ function ShowMiddlePic(url) {
     }
 }
 
+if($.query.get("errormsg") != ""){
+	showError(decodeURI($.query.get("errormsg")));
+}
+
+
+
 var loagflag = false;
 
 function HidePic() {
