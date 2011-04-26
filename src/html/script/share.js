@@ -137,10 +137,12 @@ function SetPublish() {
             data: { text: $("div#recruitment-publish-text textarea").val() },
             success: function (msg) {
                 if ($.trim(msg) != "0") {
-                    alert(msg);
-                }
-                HideRecruitmentPublish();
-                $("#popBox_publishok").show();
+					showError(msg);
+                    //alert(msg);
+                }else{
+					HideRecruitmentPublish();
+					$("#popBox_publishok").show();
+				}
             }
         });
     });
@@ -229,4 +231,9 @@ function HideRecruitmentPublish() {
     $("div#cover").fadeOut(200);
     $("body").css("overflow", "auto");
     $("div#recruitment-publish").fadeOut(200);
+}
+
+function showError(msg){
+	$("#errormsg").html(msg);
+	$("#error-info").dialog("open");
 }
