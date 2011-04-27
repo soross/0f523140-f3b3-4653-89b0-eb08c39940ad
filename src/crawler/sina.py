@@ -216,7 +216,7 @@ print now() + "Dealing with pending tweets..."
 c.execute("SELECT * FROM pending_tweets LIMIT 0 , 1")
 while True:
     try:
-        tweet_site_id, post_screenname, profile_image_url, source, post_datetime, content, type_, user_site_id, tweet_id, site_id = c.fetchone()
+        tweet_site_id, post_screenname, profile_image_url, source, post_datetime, content, type_, user_site_id, tweet_id, site_id, thumbnail = c.fetchone()
         c.execute("DELETE FROM pending_tweets WHERE tweet_id = %s", (tweet_id,))
         c.execute("SELECT * FROM tweets WHERE site_id = %s AND tweet_site_id = %s", (site_id, tweet_site_id))
         if c.fetchone() != None:
@@ -226,11 +226,11 @@ while True:
         c.execute("""INSERT INTO tweets (
                      site_id, tweet_id, user_site_id, content, post_datetime,
                      type, tweet_site_id, favorite_count, application_count,
-                     post_screenname, profile_image_url, source)
-                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+                     post_screenname, profile_image_url, source, thumbnail)
+                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
                   (site_id, tweet_id, user_site_id, content, post_datetime,
                    type_, tweet_site_id, 0, 0,
-                   post_screenname, profile_image_url, source))
+                   post_screenname, profile_image_url, source, thumbnail))
         c.execute("""INSERT INTO cat_relationship (
                      tweet_id, cat_id)
                      VALUES (%s, %s)""",
