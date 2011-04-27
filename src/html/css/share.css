@@ -543,14 +543,6 @@ div#recruitment-publish-tags span#recruitment-publish-tags-ps
     letter-spacing: 1px;
     text-align: center;
 }
-div#recruitment-publish-tags input
-{
-    width: 320px;
-    margin-top: 7px;
-    margin-left: 6px;
-    border: none;
-    background-color: #f5f5f5;
-}
 div#recruitment-publish-tags-hot
 {
     margin-top: 10px;
