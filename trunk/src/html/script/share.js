@@ -150,8 +150,6 @@ function SetPublish() {
         });
     });
     $("div#recruitment-publish-confirm a").click(function () {
-    	$("#r-text").val($("div#recruitment-publish-text textarea").val());
-    	$("#r-upload").val($("#file").val());
     	$("#RecruitmentForm").submit();
     	
                 if ($.trim($("#hf").html()) != "0" || $.trim($("#hf").html()) != "") {

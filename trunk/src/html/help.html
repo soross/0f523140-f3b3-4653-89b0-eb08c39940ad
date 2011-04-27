@@ -118,12 +118,14 @@
         <div id="recruitment-publish-content">
             <div id="recruitment-publish-remain">
                 还可输入136个字</div>
+    <form action="tweet/post/2" id="RecruitmentForm" method="post" enctype="multipart/form-data" target="hf">
             <div id="recruitment-publish-text">
-                <textarea>#招聘#</textarea>
+                <textarea name="text">#招聘#</textarea>
             </div>
             <div id="recruitment-publish-tags-hot">
             </div>
-            <div id="recruitment-publish-file"><span class="left">上传图片</span><input type="file" id="file" /></div>
+            <div id="recruitment-publish-file"><span class="left">上传图片</span><input type="file" name="upload" id="file" /></div>
+    </form>
             <div id="recruitment-publish-confirm">
                 <a class="right"></a><span class="right">本信息将同步发送到新浪微博</span>
             </div>
@@ -152,10 +154,6 @@
                 <a class="popboxicon btn_ikown" onclick="$('#popBox_publishok').hide();">好的，我知道了</a></div>
         </div>
     </div>
-    <form action="tweet/post/2" id="RecruitmentForm" method="post" enctype="multipart/form-data" target="hf" style="display:none;">
-    	<input type="text" name="text" id="r-text" />
-    	<input type="file" name="upload" id="r-upload" />
-    </form>
     <iframe id="hf" name="hf" style="display:none;"></iframe>
 	<div id="error-info" title="错误">
         <p id="errormsg">
