@@ -141,7 +141,7 @@ function SetPublish() {
             url: 'tweet/post/1',
             data: { text: $("div#jobs-publish-text textarea").val() },
             success: function (msg) {
-                if ($.trim(msg) != "0" || $.trim(msg) != "") {
+                if ($.trim(msg) != "0" && $.trim(msg) != "") {
                 	showError(msg);
                 }
                 HideJobsPublish();
@@ -152,7 +152,7 @@ function SetPublish() {
     $("div#recruitment-publish-confirm a").click(function () {
     	$("#RecruitmentForm").submit();
     	
-                if ($.trim($("#hf").html()) != "0" || $.trim($("#hf").html()) != "") {
+                if ($.trim($("#hf").html()) != "0" && $.trim($("#hf").html()) != "") {
 					showError($.trim($("#hf").html()));
                     //alert(msg);
                 }else{
