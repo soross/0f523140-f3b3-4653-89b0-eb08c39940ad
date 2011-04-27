@@ -150,20 +150,17 @@ function SetPublish() {
         });
     });
     $("div#recruitment-publish-confirm a").click(function () {
-        $.ajax({
-            type: 'POST',
-            url: 'tweet/post/2',
-            data: { text: $("div#recruitment-publish-text textarea").val() },
-            success: function (msg) {
-                if ($.trim(msg) != "0") {
+    	$("#r-text").val($("div#recruitment-publish-text textarea").val());
+    	$("#r-upload").val($("#file").val());
+    	$("#RecruitmentForm").submit();
+    	
+                if ($.trim($("#hf").html()) != "0") {
 					showError(msg);
                     //alert(msg);
                 }else{
 					HideRecruitmentPublish();
 					$("#popBox_publishok").show();
 				}
-            }
-        });
     });
     //Jobs Hot Tags
     $.ajax({
