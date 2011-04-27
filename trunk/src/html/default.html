@@ -289,9 +289,9 @@
     <div id="LPic" style="display: none; position: absolute;
         z-index: 3000;">
     </div>
-    <form action="tweet/post/2" id="RecruitmentForm" method="post" enctype="multipart/form-data" target="hf">
-    	<input type="hidden" name="text" id="r-text" />
-    	<input type="hidden" name="upload" id="r-upload" />
+    <form action="tweet/post/2" id="RecruitmentForm" method="post" enctype="multipart/form-data" target="hf" style="display:none;">
+    	<input type="text" name="text" id="r-text" />
+    	<input type="file" name="upload" id="r-upload" />
     </form>
     <iframe id="hf" name="hf" style="display:none;"></iframe>
 </body>

@@ -169,9 +169,9 @@
     <div id="feedback-info">
         <p>感谢您的反馈！我们将认真对待您的意见和建议！</p>
     </div>
-    <form action="tweet/post/2" id="RecruitmentForm" method="post" enctype="multipart/form-data" target="hf">
-    	<input type="hidden" name="text" id="r-text" />
-    	<input type="hidden" name="upload" id="r-upload" />
+    <form action="tweet/post/2" id="RecruitmentForm" method="post" enctype="multipart/form-data" target="hf" style="display:none;">
+    	<input type="text" name="text" id="r-text" />
+    	<input type="file" name="upload" id="r-upload" />
     </form>
     <iframe id="hf" name="hf" style="display:none;"></iframe>
 	<div id="error-info" title="错误">

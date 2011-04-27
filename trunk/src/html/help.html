@@ -152,9 +152,9 @@
                 <a class="popboxicon btn_ikown" onclick="$('#popBox_publishok').hide();">好的，我知道了</a></div>
         </div>
     </div>
-    <form action="tweet/post/2" id="RecruitmentForm" method="post" enctype="multipart/form-data" target="hf">
-    	<input type="hidden" name="text" id="r-text" />
-    	<input type="hidden" name="upload" id="r-upload" />
+    <form action="tweet/post/2" id="RecruitmentForm" method="post" enctype="multipart/form-data" target="hf" style="display:none;">
+    	<input type="text" name="text" id="r-text" />
+    	<input type="file" name="upload" id="r-upload" />
     </form>
     <iframe id="hf" name="hf" style="display:none;"></iframe>
 	<div id="error-info" title="错误">
