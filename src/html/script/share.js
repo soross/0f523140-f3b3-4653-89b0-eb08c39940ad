@@ -155,7 +155,7 @@ function SetPublish() {
     	$("#RecruitmentForm").submit();
     	
                 if ($.trim($("#hf").html()) != "0") {
-					showError(msg);
+					showError($("#hf").html());
                     //alert(msg);
                 }else{
 					HideRecruitmentPublish();
