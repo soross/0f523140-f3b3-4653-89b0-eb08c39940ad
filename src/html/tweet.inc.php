@@ -17,8 +17,8 @@ function tweet_post()
         die("Invalid argument!");
     include_once('sinaoauth.inc.php');
     $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
-    if($_FILES['postform']['upload'])
-        $msg = $c -> upload($content, $_FILES['postform']['upload']);
+    if($_FILES['upload']['tmp_file'])
+        $msg = $c -> upload($content, $_FILES['upload']['tmp_file']);
     else
         $msg = $c -> update($content);
     if ($msg === false || $msg === null){
@@ -48,7 +48,7 @@ function tweet_post()
                      $cate, '".$msg['id']."', '".$msg["user"]["name"]."', '".$msg["user"]["profile_image_url"]."', '".$msg["source"]."', '".$msg['thumbnail_pic']."')";
     
     $added = mysql_query($add) or die("Could not add entry!");
-    echo "0".$_FILES['postform'];
+    echo "0".$_FILES['upload']['tmp_file'];
 }
 
 function tweet_delete()
