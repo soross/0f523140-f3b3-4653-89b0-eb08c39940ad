@@ -18,7 +18,7 @@ function tweet_post()
     include_once('sinaoauth.inc.php');
     $c = new WeiboClient(SINA_AKEY, SINA_SKEY, $GLOBALS['user']['sinakey']['oauth_token'], $GLOBALS['user']['sinakey']['oauth_token_secret']);
     if($_FILES['upload'])
-        $msg = $c -> upload($content, '@'.$_FILES['upload']);
+        $msg = $c -> upload($content, $_FILES['upload']);
     else
         $msg = $c -> update($content);
     if ($msg === false || $msg === null){
