@@ -151,20 +151,15 @@ function SetPublish() {
     });
     $("div#recruitment-publish-confirm a").click(function () {
     	$("#RecruitmentForm").submit();
-    	var lFrame = document.getElementById('hf');
-    	lFrame.onreadystatechange = function()
-    	{
-    	   if (lFrame.readyState == 'complete')
-    	   {
-                if ($.trim($("#hf").contents().find("body").html()) != "0" && $.trim($("#hf").contents().find("body").html()) != "") {
+    	$("#hf").load(function(){
+    		if ($.trim($("#hf").contents().find("body").html()) != "0" && $.trim($("#hf").contents().find("body").html()) != "") {
 					showError($.trim($("#hf").contents().find("body").html()));
                     //alert(msg);
                 }else{
 					HideRecruitmentPublish();
 					$("#popBox_publishok").show();
 				}
-    	   }
-    	};
+    	});
     });
     //Jobs Hot Tags
     $.ajax({
