@@ -141,8 +141,8 @@ function SetPublish() {
             url: 'tweet/post/1',
             data: { text: $("div#jobs-publish-text textarea").val() },
             success: function (msg) {
-                if ($.trim(msg) != "0") {
-                    alert(msg);
+                if ($.trim(msg) != "0" || $.trim(msg) != "") {
+                	showError(msg);
                 }
                 HideJobsPublish();
                 $("#popBox_publishok").show();
@@ -154,8 +154,8 @@ function SetPublish() {
     	$("#r-upload").val($("#file").val());
     	$("#RecruitmentForm").submit();
     	
-                if ($.trim($("#hf").html()) != "0") {
-					showError($("#hf").html());
+                if ($.trim($("#hf").html()) != "0" || $.trim($("#hf").html()) != "") {
+					showError($.trim($("#hf").html()));
                     //alert(msg);
                 }else{
 					HideRecruitmentPublish();
