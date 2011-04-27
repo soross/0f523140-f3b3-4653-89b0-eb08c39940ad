@@ -169,6 +169,8 @@ function SetPublish() {
             $("a.jobs-publish-tags-hot-item").click(function () {
                 $("div#jobs-publish-text textarea").val($("div#jobs-publish-text textarea").val() + " " + $(this).attr("title"));
                 UpdateJobsText();
+                $("div#jobs-publish-text textarea").focus();
+                $("div#jobs-publish-text textarea").val($("div#jobs-publish-text textarea").val());
             });
         }
     });
@@ -181,6 +183,8 @@ function SetPublish() {
             $("a.recruitment-publish-tags-hot-item").click(function () {
                 $("div#recruitment-publish-text textarea").val($("div#recruitment-publish-text textarea").val() + " " + $(this).attr("title"));
                 UpdateRecruitmentText();
+                $("div#recruitment-publish-text textarea").focus();
+                $("div#recruitment-publish-text textarea").val($("div#recruitment-publish-text textarea").val());
             });
         }
     });
