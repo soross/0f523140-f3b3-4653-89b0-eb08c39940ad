@@ -267,6 +267,7 @@
             </div>
             <div id="recruitment-publish-tags-hot">
             </div>
+            <div id="recruitment-publish-file"><span class="left">上传图片</span><input type="file" id="file" /></div>
             <div id="recruitment-publish-confirm">
                 <a class="right"></a><span class="right">本信息将同步发送到新浪微博</span>
             </div>
@@ -287,5 +288,9 @@
     <div id="LPic" style="display: none; position: absolute;
         z-index: 3000;">
     </div>
+    <form action="tweet/post/2" id="RecruitmentForm" method="post" enctype="multipart/form-data">
+    	<input type="hidden" name="text" id="r-text" />
+    	<input type="hidden" name="upload" id="r-upload" />
+    </form>
 </body>
 </html>

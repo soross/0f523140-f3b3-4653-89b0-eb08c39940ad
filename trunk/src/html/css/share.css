@@ -567,6 +567,16 @@ div#recruitment-publish-tags-hot span#recruitment-publish-tags-hot-title
     width: 70px;
     text-align: center;
 }
+div#recruitment-publish-file span
+{
+	margin-left: 15px;
+    height: 28px;
+    line-height: 28px;
+    color: #435c79;
+    letter-spacing: 4px;
+    width: 70px;
+    text-align: center;
+}
 div#recruitment-publish-tags-hot a.recruitment-publish-tags-hot-item
 {
     height: 24px;
