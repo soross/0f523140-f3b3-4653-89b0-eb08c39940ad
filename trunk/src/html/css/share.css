@@ -569,6 +569,11 @@ div#recruitment-publish-file span
     width: 70px;
     text-align: center;
 }
+div#recruitment-publish-file input
+{
+	clear:both;
+	margin-top:3px;
+}
 div#recruitment-publish-tags-hot a.recruitment-publish-tags-hot-item
 {
     height: 24px;
