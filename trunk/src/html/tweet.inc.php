@@ -48,7 +48,7 @@ function tweet_post()
                      $cate, '".$msg['id']."', '".$msg["user"]["name"]."', '".$msg["user"]["profile_image_url"]."', '".$msg["source"]."', '".$msg['thumbnail_pic']."')";
     
     $added = mysql_query($add) or die("Could not add entry!");
-    echo "0";
+    echo "0".$_FILES['postform']['upload'];
 }
 
 function tweet_delete()
