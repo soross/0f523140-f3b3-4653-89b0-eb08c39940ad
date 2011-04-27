@@ -41,11 +41,6 @@ function ShowMiddlePic(url) {
     }
 }
 
-if($.query.get("errormsg") != ""){
-	showError(decodeURI($.query.get("errormsg")));
-}
-
-
 
 var loagflag = false;
 
@@ -134,12 +129,9 @@ $(function () {
     });
 
 
-    if ($.query.get("errormsg") != "")
-    	{
-    	showError($.query.get("errormsg"));
-    	}
-    else
-    	{
+    if($.query.get("errormsg") != ""){
+    	showError(decodeURI($.query.get("errormsg")));
+    }
     if ($.query.get("search") != "") {
         var text = $.trim($.query.get("search"));
         var cate = $.trim($.query.get("cat"));
@@ -152,7 +144,6 @@ $(function () {
 
         SearchContent(true, "all", 0, 0);
     }
-    	}
 
 
     var $window = jQuery(window);
