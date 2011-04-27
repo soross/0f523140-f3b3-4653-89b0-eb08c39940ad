@@ -2,6 +2,15 @@
 var logined = false;
 var rolekind = "";
 
+
+function showError(msg){
+	$("#errormsg").html(msg);
+	$("#error-info").dialog("open");
+}
+
+
+
+$(function () {
 $("#error-info").dialog({
         autoOpen: false,
         draggable: false,
@@ -13,15 +22,6 @@ $("#error-info").dialog({
             }
         }
     });
-
-function showError(msg){
-	$("#errormsg").html(msg);
-	$("#error-info").dialog("open");
-}
-
-
-
-$(function () {
     $("#logo").mouseover(function () {
         $(this).html("回首页");
     });
