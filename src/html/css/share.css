@@ -572,7 +572,9 @@ div#recruitment-publish-file span
 div#recruitment-publish-file input
 {
 	clear:both;
-	margin-top:3px;
+	margin-top:5px;
+	border:1px #435c79 solid;
+	background-color:#ffffff;
 }
 div#recruitment-publish-tags-hot a.recruitment-publish-tags-hot-item
 {
