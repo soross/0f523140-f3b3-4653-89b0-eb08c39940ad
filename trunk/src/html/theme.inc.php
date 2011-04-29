@@ -191,6 +191,7 @@ function theme_result($result, $keyword = '', $admin = false)
             #$jg = parselink(parsekeyword($keyword, $r['content']));
         else
             $jg = parselink($r['content']);
+        $jg = htmlentities($jg);
         $tags = get_tags($r['tweet_id']);
         if(strstr($r['source'], '<'))
             $source = str_replace("<a ", '<a target="_blank" class="left microblog-item-position"', $r['source']);
