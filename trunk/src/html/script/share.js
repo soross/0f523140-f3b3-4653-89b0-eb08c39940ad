@@ -170,17 +170,8 @@ function SetPublish() {
             $("a.jobs-publish-tags-hot-item").click(function () {
                 $("div#jobs-publish-text textarea").val($("div#jobs-publish-text textarea").val() + " " + $(this).attr("title"));
                 UpdateJobsText();
-                var element=$("div#jobs-publish-text textarea");
-                if ($.browser.msie) {
-                	        var range= element.createTextRange();
-                	        range.collapse(false);
-                	        range.select();
-                	    } else {
-                	        element.focus();
-                	        var v= element.value();
-                	        element.value= '';
-                	        element.value= v;
-                	    }
+                $("div#jobs-publish-text textarea").focus();
+                $("div#jobs-publish-text textarea").val($("div#jobs-publish-text textarea").val());
             });
         }
     });
@@ -193,17 +184,8 @@ function SetPublish() {
             $("a.recruitment-publish-tags-hot-item").click(function () {
                 $("div#recruitment-publish-text textarea").val($("div#recruitment-publish-text textarea").val() + " " + $(this).attr("title"));
                 UpdateRecruitmentText();
-                var element=$("div#recruitment-publish-text textarea");
-                if ($.browser.msie) {
-                	        var range= element.createTextRange();
-                	        range.collapse(false);
-                	        range.select();
-                	    } else {
-                	        element.focus();
-                	        var v= element.value();
-                	        element.value= '';
-                	        element.value= v;
-                	    }
+                $("div#recruitment-publish-text textarea").focus();
+                $("div#recruitment-publish-text textarea").val($("div#recruitment-publish-text textarea").val());
             });
         }
     });
@@ -247,17 +229,8 @@ function ShowJobsPublish() {
     $("div#cover").fadeIn(200);
     $("body").css("overflow", "hidden");
     $("div#jobs-publish").fadeIn(200);
-    var element=$("div#jobs-publish-text textarea");
-    if ($.browser.msie) {
-    	        var range= element.createTextRange();
-    	        range.collapse(false);
-    	        range.select();
-    	    } else {
-    	        element.focus();
-    	        var v= element.value();
-    	        element.value= '';
-    	        element.value= v;
-    	    }
+    $("div#jobs-publish-text textarea").focus();
+    $("div#jobs-publish-text textarea").val($("div#jobs-publish-text textarea").val());
 //    $("div#jobs-publish-text textarea").val("??");
 }
 function HideJobsPublish() {
@@ -270,17 +243,8 @@ function ShowRecruitmentPublish() {
     $("div#cover").fadeIn(200);
     $("body").css("overflow", "hidden");
     $("div#recruitment-publish").fadeIn(200);
-    var element=$("div#recruitment-publish-text textarea");
-    if ($.browser.msie) {
-    	        var range= element.createTextRange();
-    	        range.collapse(false);
-    	        range.select();
-    	    } else {
-    	        element.focus();
-    	        var v= element.value();
-    	        element.value= '';
-    	        element.value= v;
-    	    }
+    $("div#recruitment-publish-text textarea").focus();
+    $("div#recruitment-publish-text textarea").val($("div#recruitment-publish-text textarea").val());
 }
 function HideRecruitmentPublish() {
     $("div#cover").fadeOut(200);
