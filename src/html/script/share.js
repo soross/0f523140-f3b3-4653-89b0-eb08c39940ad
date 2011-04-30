@@ -152,11 +152,19 @@ function SetPublish() {
     $("div#recruitment-publish-confirm a").click(function () {
     	$("#RecruitmentForm").submit();
     	$("#hf").load(function(){
+					HideRecruitmentPublish();
+				    var $window = jQuery(window);
+				    var temp = ($window.width() - 50) / 2;
+				    var controlx = temp >= 0 ? temp : 0;
+				    temp = ($window.height() - 50) / 2;
+				    var controly = $window.scrollTop() + (temp >= 0 ? temp : 0);
+				    $("#LFlower").css({ left: controlx + 'px', top: controly + 'px', height: '50px', width: '50px' });
+				    $("#LFlower").fadeIn(200);
     		if ($.trim($("#hf").contents().find("body").html()) != "0" && $.trim($("#hf").contents().find("body").html()) != "") {
 					showError($.trim($("#hf").contents().find("body").html()));
                     //alert(msg);
                 }else{
-					HideRecruitmentPublish();
+				    $("#LFlower").hide();
 					$("#popBox_publishok").show();
 				}
     	});
