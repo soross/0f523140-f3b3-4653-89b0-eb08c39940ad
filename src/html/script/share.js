@@ -157,6 +157,7 @@ function SetPublish() {
 				    var controlx = temp >= 0 ? temp : 0;
 				    temp = ($window.height() - 50) / 2;
 				    var controly = $window.scrollTop() + (temp >= 0 ? temp : 0);
+				    $("#LFlower").html('<img style="margin-top:9px;margin-left:9px;" src="images/loading.gif" alt="" />');
 				    $("#LFlower").css({ left: controlx + 'px', top: controly + 'px', height: '50px', width: '50px' });
 				    $("#LFlower").fadeIn(200);
     	$("#hf").load(function(){
