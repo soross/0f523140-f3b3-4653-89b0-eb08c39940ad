@@ -160,12 +160,14 @@ function SetPublish() {
 				    $("#LFlower").html('<img style="margin-top:9px;margin-left:9px;" src="images/loading.gif" alt="" />');
 				    $("#LFlower").css({ left: controlx + 'px', top: controly + 'px', height: '50px', width: '50px' });
 				    $("#LFlower").fadeIn(200);
+				    $("div#cover").fadeIn(200);
     	$("#hf").load(function(){
     		if ($.trim($("#hf").contents().find("body").html()) != "0" && $.trim($("#hf").contents().find("body").html()) != "") {
 					showError($.trim($("#hf").contents().find("body").html()));
                     //alert(msg);
                 }else{
-				    $("#LFlower").hide();
+				    $("#LFlower").fadeOut(200);
+				    $("div#cover").fadeOut(200);
 					$("#popBox_publishok").show();
 				}
     	});
