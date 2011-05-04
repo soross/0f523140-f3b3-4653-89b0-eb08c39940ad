@@ -100,7 +100,7 @@ function hot_tag()
         elseif($key == "2")
             $content .= '<a class="left recruitment-publish-tags-hot-item" title="'.$h['name'].'">'.$h['name'].'</a>';
         elseif($key == "3")
-            $content .= '<a>'.$h['name'].'('.$h['count'].')</a>';
+            $content .= '<a onclick="HotClick(\''.$h['name'].'\')">'.$h['name'].'('.$h['count'].')</a>';
         else
             $content .= '<a class="left hot-content-item" onclick="HotClick(\''.$h['name'].'\')">'.$h['name'].'('.$h['count'].')</a>';
     if($key == "0" or $key == "")
