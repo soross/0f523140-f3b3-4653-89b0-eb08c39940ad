@@ -55,7 +55,7 @@ function HidePic() {
 }
 
 $(function () {
-    //    $("#LPic").draggable();
+    $("#LPic").draggable();
     $("#history-pic").animate({ opacity: 0.6 }, 0);
 
     SetHot();
@@ -135,7 +135,7 @@ $(function () {
     if ($.query.get("search") != "") {
         var text = $.trim($.query.get("search"));
         var cate = $.trim($.query.get("cat"));
-
+        SetCate(cate);
         if (text != "职位关键字，如：北京 产品经理 阿里巴巴" && text != "") {
             SearchContent(false, text, cate, 0);
         }
