@@ -34,7 +34,18 @@ function GetNumber()
         type: 'POST',
         url: 'count/',
         success: function (msg) {
-        	$("#number").text(msg.split(',')[0]);
+        	$("#number").text(msg.split(',')[1]);
+        }
+    });
+}
+
+function GetHot()
+{
+	$.ajax({
+        type: 'GET',
+        url: 'hot/tag',
+        success: function (msg) {
+            $(".hotjobs").html(msg);
         }
     });
 }
@@ -43,5 +54,6 @@ function GetNumber()
 $(function (){
 	FreshContent();
 	GetNumber();
+	GetHot();
 	setInterval(AnimateContent,5000);
 });
