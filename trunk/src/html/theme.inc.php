@@ -172,6 +172,31 @@ function time_tran($the_time){
         return $the_time;
 }
 
+function theme_mini($result)
+{
+    $content = "";
+    foreach($result as $r)
+    {
+        $jg = parselink(str_replace(array("<", ">"), array("&lt;", "&gt;"), $r['content']));
+        if(strstr($r['source'], '<'))
+            $source = str_replace("<a ", '<a target="_blank" class="left microblog-item-position"', $r['source']);
+        else
+            $source = '<a class="left microblog-item-position" target="_blank">'.$r['source'].'</a>';
+        content .= '
+                <li class="index_listitem">
+                    <div class="fl item_pic"></div>
+                    <div class="fl item_content">
+                        <a class="nickname" target="_blank" href="'.BASE_URL.'profile/'.$r['post_screenname'].'">
+                            '.$r['post_screenname'].'：</a>'.$jg.'
+                        <p class="">
+                            <span class="fl" style="color: #a2a2a2;">'.time_tran($r['post_datetime']).'&nbsp;'.$source.'</span><span class="fr" style="color: #ea7f37;">申请该职位&nbsp;|&nbsp;收藏</span>
+                        </p>
+                    </div>
+                </li>';
+    }
+    echo $content;
+}
+
 function theme_result($result, $keyword = '', $admin = false)
 {
     include_once("login.inc.php");

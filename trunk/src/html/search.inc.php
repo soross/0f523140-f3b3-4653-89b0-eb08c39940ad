@@ -127,6 +127,12 @@ function get_search_result($key, $num, $cate, $time, $page, $count = false)
     return $result;
 }
 
+function search_mini()
+{
+    $data = get_search_result("", 10, "", "", "");
+    theme('mini', $data);
+}    
+
 function search_show()
 {
     $args = func_get_args();
