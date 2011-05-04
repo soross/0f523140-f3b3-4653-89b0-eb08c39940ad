@@ -21,10 +21,8 @@ function AnimateContent() {
 function FreshContent(){
 	$.ajax({
         type: 'POST',
-        url: '/search/show/0',
-        data: { search: encodeURIComponent('all'), page: 0 },
+        url: '/search/mini',
         success: function (msg) {
-			alert(msg);
 			$("#itemfirst").html(msg);
 		}
 	});
