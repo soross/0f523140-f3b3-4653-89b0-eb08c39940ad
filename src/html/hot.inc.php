@@ -86,6 +86,11 @@ function hot_tag()
         $content = '<span id="recruitment-publish-tags-hot-title" class="left">热门标签</span>';
         $num = 10;
     }
+    elseif($key == "3")
+    {
+        $content = '';
+        $num = 9;
+    }
     else
         die("Invalid argument!");
     $hots = get_hot($num);
@@ -94,6 +99,8 @@ function hot_tag()
             $content .= '<a class="left jobs-publish-tags-hot-item" title="'.$h['name'].'">'.$h['name'].'</a>';
         elseif($key == "2")
             $content .= '<a class="left recruitment-publish-tags-hot-item" title="'.$h['name'].'">'.$h['name'].'</a>';
+        elseif($key == "3")
+            $content .= '<a>'.$h['name'].'</a>';
         else
             $content .= '<a class="left hot-content-item" onclick="HotClick(\''.$h['name'].'\')">'.$h['name'].'('.$h['count'].')</a>';
     if($key == "0" or $key == "")
