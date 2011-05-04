@@ -17,6 +17,85 @@
 <script type="text/javascript">
 function retclick(text){
 document.getElementById("categoryname").setAttribute("value",text);}
+function Search()
+{
+	var cate=$("#categoryname").val();
+	switch (cate)
+	{
+	case "全部分类":
+		cate=0;
+		break;
+	case "互联网":
+		cate=1;
+		break;
+	case "移动互联网":
+		cate=2;
+		break;
+	case "网络游戏":
+		cate=3;
+		break;
+	case "电子商务":
+		cate=4;
+		break;
+	case "软件·电信":
+		cate=5;
+		break;
+	case "新媒体":
+		cate=6;
+		break;
+	case "投资·银行":
+		cate=7;
+		break;
+	case "其他":
+		cate=8;
+		break;
+	}
+	var text=$("#searchinput").val();
+    if (text != "输入职位关键词：职位名 工作地 公司名") {
+        location = "/?search=" + encodeURIComponent(text) + "&cat=" + cate;
+    }
+}
+function KeySearch(event)
+{
+	if (event.which==13)
+	{
+		var cate=$("#categoryname").val();
+		switch (cate)
+		{
+		case "全部分类":
+			cate=0;
+			break;
+		case "互联网":
+			cate=1;
+			break;
+		case "移动互联网":
+			cate=2;
+			break;
+		case "网络游戏":
+			cate=3;
+			break;
+		case "电子商务":
+			cate=4;
+			break;
+		case "软件·电信":
+			cate=5;
+			break;
+		case "新媒体":
+			cate=6;
+			break;
+		case "投资·银行":
+			cate=7;
+			break;
+		case "其他":
+			cate=8;
+			break;
+		}
+		var text=$("#searchinput").val();
+	    if (text != "输入职位关键词：职位名 工作地 公司名") {
+	        location = "/?search=" + encodeURIComponent(text) + "&cat=" + cate;
+	    }
+	}
+}
 </script>
 </head>
 
@@ -25,8 +104,8 @@ document.getElementById("categoryname").setAttribute("value",text);}
 		<div class="layout_mid">
 			<div class="ybole_logo fl"></div>
 			<div class="searcharea fr" id="searcharea" style="border:'2px solid #000000';color:black;">
-				<input type="text" class="search_info fl" id="searchinput"value="输入职位关键词：职位名 工作地 公司名" onblur="if(this.value=='')this.value='输入职位关键词：职位名 工作地 公司名';" onfocus="if(this.value=='输入职位关键词：职位名 工作地 公司名')this.value=''" />
-				<input type="submit" value="" class="bg btn_search fr"/>
+				<input type="text" class="search_info fl" id="searchinput" value="输入职位关键词：职位名 工作地 公司名" onblur="if(this.value=='')this.value='输入职位关键词：职位名 工作地 公司名';" onfocus="if(this.value=='输入职位关键词：职位名 工作地 公司名')this.value=''" />
+				<input type="submit" value="" class="bg btn_search fr" onclick="Search()" onkeypress="KeySearch(event)"/>
 				<input type="button" value="全部分类" class="bg jobcategory fr" id="categoryname" onclick="showCg()" />				
 				<div class="categorydetail" id="categorydetail">
 					<div class="arrow1"></div>
@@ -52,7 +131,7 @@ document.getElementById("categoryname").setAttribute("value",text);}
 	<div id="index_wrap">
 		<div class="layout_mid">
 			<div id="index_info" class="bg fl">
-				<input type="button" value="" class="bg index_login" onclick="javascript:window.location='login'"/>
+				<input type="button" value="" class="bg index_login" onclick="javascript:window.location='/login'"/>
 			</div>
 			<div id="index_msgs" class="fl">
 				<div class="bg fl bglt"></div>
