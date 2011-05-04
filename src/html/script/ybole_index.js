@@ -50,6 +50,10 @@ function GetHot()
     });
 }
 
+function HotClick(e)
+{
+	window.location="/?search="+encodeURIComponent(e)+"&cat=0";
+}
 //.....
 $(function (){
 	FreshContent();
