@@ -182,7 +182,7 @@ function theme_mini($result)
             $source = str_replace("<a ", '<a target="_blank" class="left microblog-item-position"', $r['source']);
         else
             $source = '<a class="left microblog-item-position" target="_blank">'.$r['source'].'</a>';
-        content .= '
+        $content .= '
                 <li class="index_listitem">
                     <div class="fl item_pic"></div>
                     <div class="fl item_content">
