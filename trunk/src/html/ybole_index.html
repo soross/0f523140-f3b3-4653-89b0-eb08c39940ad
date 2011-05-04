@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>歪伯乐</title>
+<link rel="stylesheet" href="css/ybole_index.css">
+<script src="script/jquery-1.5.2.js" type="text/javascript" ></script>
+<script src="script/ybole_index.js" type="text/javascript" ></script>
+<script type="text/javascript">
+	function showCg(){	
+	var divdetail = document.getElementById("categorydetail");
+	if (divdetail.style.display=="block"){divdetail.style.cssText = "display: none;"; }
+			else { divdetail.style.cssText = "display: block;"; }
+	}
+</script>	
+<script type="text/javascript">
+function retclick(text){
+document.getElementById("categoryname").setAttribute("value",text);}
+</script>
+</head>
+
+<body>
+	<div id="index_top">
+		<div class="layout_mid">
+			<div class="ybole_logo fl"></div>
+			<div class="searcharea fr" id="searcharea" style="border:'2px solid #000000';color:black;">
+				<input type="text" class="search_info fl" id="searchinput"value="输入职位关键词：职位名 工作地 公司名" onblur="if(this.value=='')this.value='输入职位关键词：职位名 工作地 公司名';" onfocus="if(this.value=='输入职位关键词：职位名 工作地 公司名')this.value=''" />
+				<input type="submit" value="" class="bg btn_search fr"/>
+				<input type="button" value="全部分类" class="bg jobcategory fr" id="categoryname" onclick="showCg()" />				
+				<div class="categorydetail" id="categorydetail">
+					<div class="arrow1"></div>
+					<div class="arrow2"></div>
+					<div class="detailbox">
+						<ul>
+							<li><input type="radio" name="radiocategory" value="全部分类" checked="checked" onclick="retclick(this.value)"/>全部分类</li>
+							<li><input type="radio" name="radiocategory" value="互联网" onclick="retclick(this.value)"/>互联网</li>
+							<li><input type="radio" name="radiocategory" value="移动互联网" onclick="retclick(this.value)"/>移动互联网</li>
+							<li><input type="radio" name="radiocategory" value="网络游戏" onclick="retclick(this.value)"/>网络游戏</li>
+							<li><input type="radio" name="radiocategory" value="电子商务" onclick="retclick(this.value)"/>电子商务</li>
+							<li><input type="radio" name="radiocategory" value="软件·电信" onclick="retclick(this.value)"/>计算机软件·电信</li>
+							<li><input type="radio" name="radiocategory" value="新媒体" onclick="retclick(this.value)"/>新媒体</li>
+							<li><input type="radio" name="radiocategory" value="风投·银行" onclick="retclick(this.value)"/>风险投资·投资银行</li>
+							<li><input type="radio" name="radiocategory" value="其他" onclick="retclick(this.value)"/>其他</li>
+						</ul>
+					</div>
+				</div>		
+			</div>
+		</div>
+	</div>
+		
+	<div id="index_wrap">
+		<div class="layout_mid">
+			<div id="index_info" class="bg fl">
+				<input type="button" value="" class="bg index_login" onclick="javascript:window.location='login'"/>
+			</div>
+			<div id="index_msgs" class="fl">
+				<div class="bg fl bglt"></div>
+				<div class="fl bgmid">
+					<ul class="list_msgs" id="itemfirst">
+						<li class="index_listitem">
+							<div class="fl item_pic"></div>
+							<div class="fl item_content"><a class="nickname">赶集网：</a>招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。 （3）简历发送至 nihongtao@ganji.com 欢迎同学们骚扰 <a>http://sinaurl.cn/ht7Wa5</a>
+								<p class=""><span class="fl" style="color:#a2a2a2">5分钟前&nbsp<a>新浪微博</a></span><span class="fr" style="color:#ea7f37">申请该职位&nbsp|&nbsp收藏</span></p>
+							</div>
+						</li>
+						<li class="index_listitem">
+							<div class="fl item_pic"></div>
+							<div class="fl item_content"><a class="nickname">赶集网：</a> HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。 （3）简历发送至 nihongtao@ganji.com 欢迎同学们骚扰 <a>http://sinaurl.cn/ht7Wa5</a>
+								<p class=""><span class="fl" style="color:#a2a2a2">5分钟前&nbsp<a>新浪微博</a></span><span class="fr" style="color:#ea7f37">申请该职位&nbsp|&nbsp收藏</span></p>
+							</div>
+						</li>
+						<li class="index_listitem">
+							<div class="fl item_pic"></div>
+							<div class="fl item_content"><a class="nickname">赶集网：</a>招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。 （3）简历发送至 nihongtao@ganji.com 欢迎同学们骚扰 <a>http://sinaurl.cn/ht7Wa5</a>
+								<p class=""><span class="fl" style="color:#a2a2a2">5分钟前&nbsp<a>新浪微博</a></span><span class="fr" style="color:#ea7f37">申请该职位&nbsp|&nbsp收藏</span></p>
+							</div>
+						</li>
+						<li class="index_listitem">
+							<div class="fl item_pic"></div>
+							<div class="fl item_content"><a class="nickname">赶集网：</a>招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。 （3）简历发送至 nihongtao@ganji.com 欢迎同学们骚扰 <a>http://sinaurl.cn/ht7Wa5</a>
+								<p class=""><span class="fl" style="color:#a2a2a2">5分钟前&nbsp<a>新浪微博</a></span><span class="fr" style="color:#ea7f37">申请该职位&nbsp|&nbsp收藏</span></p>
+							</div>
+						</li>
+						<li class="index_listitem">
+							<div class="fl item_pic"></div>
+							<div class="fl item_content"><a class="nickname">赶集网：</a>招聘前端开发工程师 （1）工作地点：北京 
+								<p class=""><span class="fl" style="color:#a2a2a2">5分钟前&nbsp<a>新浪微博</a></span><span class="fr" style="color:#ea7f37">申请该职位&nbsp|&nbsp收藏</span></p>
+							</div>
+						</li>
+						<li class="index_listitem">
+							<div class="fl item_pic"></div>
+							<div class="fl item_content"><a class="nickname">赶集网：</a>招聘前端开发工程师 （1）工作地点：北京 （3）简历发送至 nihongtao@ganji.com 欢迎同学们骚扰 <a>http://sinaurl.cn/ht7Wa5</a>
+								<p class=""><span class="fl" style="color:#a2a2a2">5分钟前&nbsp<a>新浪微博</a></span><span class="fr" style="color:#ea7f37">申请该职位&nbsp|&nbsp收藏</span></p>
+							</div>
+						</li>
+						<li class="index_listitem">
+							<div class="fl item_pic"></div>
+							<div class="fl item_content"><a class="nickname">赶集网：</a>招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。 （3）简历发送至 nihongtao@ganji.com 欢迎同学们骚扰 <a>http://sinaurl.cn/ht7Wa5</a>
+								<p class=""><span class="fl" style="color:#a2a2a2">5分钟前&nbsp<a>新浪微博</a></span><span class="fr" style="color:#ea7f37">申请该职位&nbsp|&nbsp收藏</span></p>
+							</div>
+						</li>
+						<li class="index_listitem">
+							<div class="fl item_pic"></div>
+							<div class="fl item_content"><a class="nickname">赶集网：</a>招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。 （3）简历发送至 nihongtao@ganji.com 欢迎同学们骚扰 <a>http://sinaurl.cn/ht7Wa5</a>
+								<p class=""><span class="fl" style="color:#a2a2a2">5分钟前&nbsp<a>新浪微博</a></span><span class="fr" style="color:#ea7f37">申请该职位&nbsp|&nbsp收藏</span></p>
+							</div>
+						</li>
+						<li class="index_listitem">
+							<div class="fl item_pic"></div>
+							<div class="fl item_content"><a class="nickname">赶集网：</a>招聘前端开发工程师 （1）工作地点：北京文化人数将地方上空间的防护斯蒂芬妮似懂非懂福建省对解放军 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。 （3）简历发送至 nihongtao@ganji.com 欢迎同学们骚扰 <a>http://sinaurl.cn/ht7Wa5</a>
+								<p class=""><span class="fl" style="color:#a2a2a2">5分钟前&nbsp<a>新浪微博</a></span><span class="fr" style="color:#ea7f37">申请该职位&nbsp|&nbsp收藏</span></p>
+							</div>
+						</li>
+						<li class="index_listitem">
+							<div class="fl item_pic"></div>
+							<div class="fl item_content"><a class="nickname">赶集网：</a>招聘前端开发工程师 （1）工作地点：北京 （2）要求：两年以上使用(X) HTML strict、CSS和Javascript跨浏览器开发经验。三个以上较复杂的前端开发案例。
+								<p class=""><span class="fl" style="color:#a2a2a2">5分钟前&nbsp<a>新浪微博</a></span><span class="fr" style="color:#ea7f37">申请该职位&nbsp|&nbsp收藏</span></p>
+							</div>
+						</li>
+					</ul>
+				</div>				
+				<div class="bg fl bgrt"></div>
+				<div class='bottom_cover'></div>
+				<div class="bg msg_newnum">今日新增：<a>100</a>个职位</div>		
+			</div>
+			<div id="index_hotnews">
+				<div class="title">热招中...</div>
+				<div class="hotjobs"><a>产品经理(198)</a><a>产品经理(198)</a><a>产品经理(198)</a><a>产品经理(198)</a><a>产品经理(198)</a><a>产品经理(198)</a><a>产品经理(198)</a><a>产品经理(198)</a><a>产品经理(198)</a></div>
+				<ul class="hotcompanys">
+					<a><li id="cp1"></li></a>
+					<a><li id="cp2"></li></a>
+					<a><li id="cp3"></li></a>
+					<a><li id="cp4"></li></a>
+					<a><li id="cp5"></li></a>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="layout_mid">
+		<div id="index_foot">
+			<ul>
+				<li><a>网站帮助</a> | <a onclick="AnimateContent()">意见反馈</a> | <a>联系我们 </a></li>
+				<li>CopyRight © 2011-2012 歪伯乐</li>	
+			</ul>
+		</div>
+	</div>
+	
+</body>
+
+</html>
