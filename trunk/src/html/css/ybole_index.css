@@ -99,10 +99,10 @@ a,ul,li{
 	height:85px;
 	border:1px #2a97ca solid;
 	position:relative;
-	top:-10px;
+	top:-50px;
 	left:-1px;
 	background-color:white;
-	border-top:0px white solid;
+	2border-top:0px white solid;
 }
 .detailbox ul li{
 	width:150px;
@@ -177,8 +177,7 @@ a,ul,li{
 .index_listitem{
 	width:590px;
 	height:auto;
-	border-top:1px #cccccc dashed;
-	
+	border-top:1px #cccccc dashed;	
 }
 .item_pic{
 	width:50px;
