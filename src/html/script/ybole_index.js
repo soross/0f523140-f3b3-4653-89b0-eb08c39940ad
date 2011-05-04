@@ -28,8 +28,20 @@ function FreshContent(){
 	});
 }
 
+function GetNumber()
+{
+	$.ajax({
+        type: 'POST',
+        url: 'count/',
+        success: function (msg) {
+        	$("#number").text(msg.split(',')[0]);
+        }
+    });
+}
+
 //.....
 $(function (){
 	FreshContent();
+	GetNumber();
 	setInterval(AnimateContent,5000);
 });
