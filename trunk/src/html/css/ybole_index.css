@@ -176,8 +176,7 @@ a,ul,li{
 
 .index_listitem{
 	width:590px;
-	height:105px;
-	_height:102px;
+	height:auto;
 	border-top:1px #cccccc dashed;
 	
 }
