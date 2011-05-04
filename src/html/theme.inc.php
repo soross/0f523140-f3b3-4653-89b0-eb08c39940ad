@@ -184,7 +184,7 @@ function theme_mini($result)
             $source = '<a class="left microblog-item-position" target="_blank">'.$r['source'].'</a>';
         $content .= '
                 <li class="index_listitem">
-                    <div class="fl item_pic"></div>
+                    <div class="fl item_pic"><img alt="" width="50" height="50" src="'.$r['profile_image_url'].'" /></div>
                     <div class="fl item_content">
                         <a class="nickname" target="_blank" href="'.BASE_URL.'profile/'.$r['post_screenname'].'">
                             '.$r['post_screenname'].'：</a>'.$jg.'
