@@ -45,7 +45,6 @@ function GetHot()
         type: 'GET',
         url: 'hot/tag/3',
         success: function (msg) {
-        	msg=msg.split('<div id="hot-content">')[1].split("</div>")[0];
             $(".hotjobs").html(msg);
         }
     });
