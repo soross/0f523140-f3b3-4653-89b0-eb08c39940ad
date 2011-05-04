@@ -261,42 +261,50 @@ function RefreshConcern() {
 
 function SetCate(cate) {
     switch (cate) {
-        case 0:
+        case "0":
             $("#sort").html("全部分类▼");
             $("#sorts-name").html("全部分类");
             $("a#sort").attr("title", "全部分类");
             break;
-        case 1:
+        case "1":
             $("#sort").html("互联网▼");
             $("#sorts-name").html("互联网");
+            $("a#sort").attr("title", "互联网");
             break;
-        case 2:
+        case "2":
             $("#sort").html("移动互联网▼");
             $("#sorts-name").html("移动互联网");
+            $("a#sort").attr("title", "移动互联网");
             break;
-        case 3:
+        case "3":
             $("#sort").html("网络游戏▼");
             $("#sorts-name").html("网络游戏");
+            $("a#sort").attr("title", "网络游戏");
             break;
-        case 4:
+        case "4":
             $("#sort").html("电子商务▼");
             $("#sorts-name").html("电子商务");
+            $("a#sort").attr("title", "电子商务");
             break;
-        case 5:
+        case "5":
             $("#sort").html("软件·电信▼");
             $("#sorts-name").html("软件·电信");
+            $("a#sort").attr("title", "软件·电信");
             break;
-        case 6:
+        case "6":
             $("#sort").html("新媒体▼");
             $("#sorts-name").html("新媒体");
+            $("a#sort").attr("title", "新媒体");
             break;
-        case 7:
+        case "7":
             $("#sort").html("投资·银行▼");
             $("#sorts-name").html("投资·银行");
+            $("a#sort").attr("title", "投资·银行");
             break;
-        case 8:
+        case "8":
             $("#sort").html("其他▼");
             $("#sorts-name").html("其他");
+            $("a#sort").attr("title", "其他");
             break;
     }
 }
